@@ -150,6 +150,13 @@
 - [x] 13.4 Harness: lock-ordering (first/duplicate/taken/unknown), validation (role/expiry), wiring 113 IDs; full suite green; rebuild + redeploy
 - [ ] 13.5 FIELD TEST: 1 passenger + 2 drivers — both notified with timers, first Approve wins, loser sees taken, passenger sees match
 
+## Phase 14 — Signed Latency + Auto-Connect Reconcile ✅ DONE (code; field test pending)
+
+- [x] 14.1 Signed PING/PONG (19 types) over the envelope path — authenticated by existing signatures, no raw Ping; RTT in `peers.latency`, 5s timeouts, stray/own messages ignored
+- [x] 14.2 Transport reconcile every 20s (+3s after join): `getConnection` vs mapped tids, direct HELLO to unknowns — closes the missed-HELLO gap so ALL channel peers end up connected
+- [x] 14.3 Nearby list shows `· Nms` per peer; auto-pings peers missing readings older than 60s (max 5/refresh); PONG/timeout refreshes the list
+- [x] 14.4 Harness: echo/nonce match, RTT record + emit, stray/self ignore, offline/unknown guards, reconcile selectivity; full suite green; rebuild + redeploy
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

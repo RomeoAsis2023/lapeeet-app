@@ -27,6 +27,8 @@
         RIDE_ACCEPT:     'RIDE_ACCEPT',
         RIDE_REJECT:     'RIDE_REJECT',   // reasons: declined | taken | expired
         RIDE_LOCKED:     'RIDE_LOCKED',   // Phase 13: passenger broadcast, first-accept-wins
+        PING:            'PING',          // Phase 14: signed latency probe {nonce, ts}
+        PONG:            'PONG',          // Phase 14: signed latency reply {nonce, ts}
         RIDE_CANCEL:     'RIDE_CANCEL',
         RIDE_STATUS:     'RIDE_STATUS',
         LOCATION_UPDATE: 'LOCATION_UPDATE',
@@ -128,8 +130,11 @@
         peers: new Map(),         // identityB64 -> { transportId, lastSeen, role, name, tLat, tLng, capacity, brand, model }
         rideRequests: new Map(),  // ride_id -> full request envelope body (drivers, last 1h)
         activeRide: null,         // { ride_id, peer_identity, role }
+        latency: new Map(),       // Phase 14: identityB64 -> { rtt, ts }
+        _pendingPings: {},        // nonce -> { to, ts, timer }
         _seenIds: [],             // envelope dedup ring
         _heartbeatTimer: null,
+        _reconcileTimer: null,
         _onEvent: null,
         _role: 'RIDER',
 
@@ -168,6 +173,11 @@
             // Driver presence heartbeat.
             if (this._heartbeatTimer) clearInterval(this._heartbeatTimer);
             this._heartbeatTimer = setInterval(() => self._heartbeatTick(), HEARTBEAT_MS);
+            // Phase 14: transport reconcile — HELLO any connected peer we have
+            // no identity mapping for (covers missed HELLOs so ALL peers connect).
+            if (this._reconcileTimer) clearInterval(this._reconcileTimer);
+            this._reconcileTimer = setInterval(() => self._reconcilePeers(), 20000);
+            setTimeout(() => self._reconcilePeers(), 3000);
             this._emit({ type: '__status', status: this.status, channel: this.channel });
             return true;
         },
@@ -175,6 +185,8 @@
         shutdown() {
             if (this._heartbeatTimer) clearInterval(this._heartbeatTimer);
             this._heartbeatTimer = null;
+            if (this._reconcileTimer) clearInterval(this._reconcileTimer);
+            this._reconcileTimer = null;
             try { this.connect && this.connect.Disconnect(); } catch (e) {}
             this.connect = null;
             this.initialized = false;
@@ -316,6 +328,14 @@
                     }
                     break;
                 }
+                case T.PING: {
+                    if (!isSelf) this._onPing({ from: env.from, body: b, isSelf });
+                    break;
+                }
+                case T.PONG: {
+                    if (!isSelf) this._onPong({ from: env.from, body: b, isSelf });
+                    break;
+                }
                 case T.RIDE_REQUEST: {
                     if (!isSelf && this.validateRideRequest(b)) {
                         this.rideRequests.set(b.ride_id, {
@@ -435,6 +455,83 @@
                 tLng: loc ? trunc3(loc.lng) : undefined,
                 capacity, brand, model
             });
+        },
+
+        /* ---------- TRANSPORT RECONCILE (Phase 14: all peers auto-connected) ---------- */
+
+        /**
+         * Ask the transport for every connected peer id; greet any transport
+         * peer we hold no identity mapping for. Closes the "missed HELLO" gap
+         * so every peer in the channel ends up mapped + announced.
+         */
+        _reconcilePeers() {
+            if (!this.initialized || this.status !== 'online' || !this.connect) return;
+            let tids = [];
+            try {
+                this.connect.getConnection((out) => {
+                    const list = (out && (out.connection || out.connections)) || [];
+                    tids = Array.isArray(list) ? list : [];
+                });
+            } catch (e) { return; }
+            if (!tids.length) return;
+            const known = new Set([this.transportId]);
+            this.peers.forEach((p) => { if (p.transportId) known.add(p.transportId); });
+            tids.forEach((tid) => {
+                if (tid && !known.has(tid)) {
+                    known.add(tid); // greet once per sweep
+                    try { this._sendHello(tid); } catch (e) {}
+                }
+            });
+        },
+
+        /* ---------- SIGNED LATENCY PROBE (Phase 14: Ping equivalent) ---------- */
+
+        PING_TIMEOUT_MS: 5000,
+
+        /**
+         * Signed ping to a stable identity. RTT lands in this.latency on PONG.
+         * Returns nonce, or false when offline/unknown peer.
+         */
+        pingPeer(identityB64) {
+            if (!this.connect || this.status !== 'online') return false;
+            const peer = this.peers.get(identityB64);
+            if (!peer || !peer.transportId) return false;
+            const nonce = Math.random().toString(36).slice(2, 10) +
+                Date.now().toString(36).slice(-4);
+            const self = this;
+            const timer = setTimeout(() => {
+                if (self._pendingPings[nonce]) {
+                    delete self._pendingPings[nonce];
+                    self._emit({ type: '__ping-timeout', from: identityB64 });
+                }
+            }, this.PING_TIMEOUT_MS);
+            this._pendingPings[nonce] = { to: identityB64, ts: Date.now(), timer };
+            const env = this.sendDirect(identityB64, MSG_TYPES.PING, { nonce, ts: Date.now() });
+            if (!env) {
+                try { clearTimeout(timer); } catch (e) {}
+                delete this._pendingPings[nonce];
+                return false;
+            }
+            return nonce;
+        },
+
+        _onPing(env, transportId) {
+            if (env.isSelf) return;
+            // Authenticated by envelope signature upstream — echo back.
+            this.sendDirect(env.from, MSG_TYPES.PONG, {
+                nonce: env.body.nonce, ts: env.body.ts
+            });
+        },
+
+        _onPong(env) {
+            if (env.isSelf) return;
+            const pend = this._pendingPings[env.body.nonce];
+            if (!pend || pend.to !== env.from) return; // stray or foreign reply
+            try { clearTimeout(pend.timer); } catch (e) {}
+            delete this._pendingPings[env.body.nonce];
+            const rtt = Math.max(0, Date.now() - Number(env.body.ts || Date.now()));
+            this.latency.set(env.from, { rtt, ts: Date.now() });
+            this._emit({ type: 'PONG', body: { nonce: env.body.nonce, rtt }, from: env.from, isSelf: false });
         },
 
         /* ---------- SIGNING ---------- */

@@ -13,7 +13,67 @@
       "file_type": "code",
       "norm_label": "_bindautocomplete()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1928"
+      "source_location": "L1951"
+    },
+    {
+      "id": "www_assets_js_app_bindcapacitydropdown",
+      "label": "_bindCapacityDropdown()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "_bindcapacitydropdown()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1455"
+    },
+    {
+      "id": "www_assets_js_app_bindcapacitydropdown_applyfocus",
+      "label": "applyFocus()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "applyfocus()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1487"
+    },
+    {
+      "id": "www_assets_js_app_bindcapacitydropdown_close",
+      "label": "close()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "close()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1471"
+    },
+    {
+      "id": "www_assets_js_app_bindcapacitydropdown_open",
+      "label": "open()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "open()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1477"
+    },
+    {
+      "id": "www_assets_js_app_bindcapacitydropdown_setvalue",
+      "label": "setValue()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "setvalue()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1491"
     },
     {
       "id": "www_assets_js_app_binddatascreen",
@@ -25,7 +85,7 @@
       "file_type": "code",
       "norm_label": "_binddatascreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1573"
+      "source_location": "L1596"
     },
     {
       "id": "www_assets_js_app_bindebikescreen",
@@ -37,7 +97,7 @@
       "file_type": "code",
       "norm_label": "_bindebikescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1694"
+      "source_location": "L1717"
     },
     {
       "id": "www_assets_js_app_bindhomescreen",
@@ -85,7 +145,7 @@
       "file_type": "code",
       "norm_label": "_bindmapscreenbuttons()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L725"
+      "source_location": "L744"
     },
     {
       "id": "www_assets_js_app_bindmessagesscreen",
@@ -97,7 +157,7 @@
       "file_type": "code",
       "norm_label": "_bindmessagesscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1177"
+      "source_location": "L1196"
     },
     {
       "id": "www_assets_js_app_bindonboardingscreen",
@@ -109,7 +169,7 @@
       "file_type": "code",
       "norm_label": "_bindonboardingscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1754"
+      "source_location": "L1777"
     },
     {
       "id": "www_assets_js_app_bindprofilescreen",
@@ -121,7 +181,7 @@
       "file_type": "code",
       "norm_label": "_bindprofilescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1635"
+      "source_location": "L1658"
     },
     {
       "id": "www_assets_js_app_bindrecoverscreen",
@@ -157,7 +217,7 @@
       "file_type": "code",
       "norm_label": "_bindtripsscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1154"
+      "source_location": "L1173"
     },
     {
       "id": "www_assets_js_app_brandselectwire",
@@ -169,7 +229,7 @@
       "file_type": "code",
       "norm_label": "_brandselectwire()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1676"
+      "source_location": "L1699"
     },
     {
       "id": "www_assets_js_app_cancelactiveride",
@@ -181,7 +241,7 @@
       "file_type": "code",
       "norm_label": "_cancelactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1084"
+      "source_location": "L1103"
     },
     {
       "id": "www_assets_js_app_chatload",
@@ -193,7 +253,7 @@
       "file_type": "code",
       "norm_label": "_chatload()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1099"
+      "source_location": "L1118"
     },
     {
       "id": "www_assets_js_app_chatmarkread",
@@ -205,7 +265,7 @@
       "file_type": "code",
       "norm_label": "_chatmarkread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1136"
+      "source_location": "L1155"
     },
     {
       "id": "www_assets_js_app_chatpeers",
@@ -217,7 +277,7 @@
       "file_type": "code",
       "norm_label": "_chatpeers()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1111"
+      "source_location": "L1130"
     },
     {
       "id": "www_assets_js_app_chatpush",
@@ -229,7 +289,7 @@
       "file_type": "code",
       "norm_label": "_chatpush()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1130"
+      "source_location": "L1149"
     },
     {
       "id": "www_assets_js_app_chatsave",
@@ -241,7 +301,7 @@
       "file_type": "code",
       "norm_label": "_chatsave()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1103"
+      "source_location": "L1122"
     },
     {
       "id": "www_assets_js_app_chatthread",
@@ -253,7 +313,7 @@
       "file_type": "code",
       "norm_label": "_chatthread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1126"
+      "source_location": "L1145"
     },
     {
       "id": "www_assets_js_app_declineride",
@@ -265,7 +325,7 @@
       "file_type": "code",
       "norm_label": "_declineride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L962"
+      "source_location": "L981"
     },
     {
       "id": "www_assets_js_app_dismissridedialog",
@@ -277,7 +337,7 @@
       "file_type": "code",
       "norm_label": "_dismissridedialog()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L972"
+      "source_location": "L991"
     },
     {
       "id": "www_assets_js_app_dologout",
@@ -301,7 +361,7 @@
       "file_type": "code",
       "norm_label": "_downloadblob()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1563"
+      "source_location": "L1586"
     },
     {
       "id": "www_assets_js_app_driveraccept",
@@ -313,7 +373,7 @@
       "file_type": "code",
       "norm_label": "_driveraccept()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L995"
+      "source_location": "L1014"
     },
     {
       "id": "www_assets_js_app_driverreject",
@@ -325,7 +385,7 @@
       "file_type": "code",
       "norm_label": "_driverreject()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1034"
+      "source_location": "L1053"
     },
     {
       "id": "www_assets_js_app_driversetstatus",
@@ -337,7 +397,7 @@
       "file_type": "code",
       "norm_label": "_driversetstatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1067"
+      "source_location": "L1086"
     },
     {
       "id": "www_assets_js_app_escapeattr",
@@ -349,7 +409,7 @@
       "file_type": "code",
       "norm_label": "_escapeattr()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1972"
+      "source_location": "L1995"
     },
     {
       "id": "www_assets_js_app_expireridelock",
@@ -361,7 +421,7 @@
       "file_type": "code",
       "norm_label": "_expireridelock()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L853"
+      "source_location": "L872"
     },
     {
       "id": "www_assets_js_app_findride",
@@ -373,7 +433,7 @@
       "file_type": "code",
       "norm_label": "_findride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1143"
+      "source_location": "L1162"
     },
     {
       "id": "www_assets_js_app_gatetarget",
@@ -386,18 +446,6 @@
       "norm_label": "_gatetarget()",
       "source_file": "www/assets/js/app.js",
       "source_location": "L181"
-    },
-    {
-      "id": "www_assets_js_app_initmapdeferred",
-      "label": "_initMapDeferred()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "app.js",
-      "file_type": "code",
-      "norm_label": "_initmapdeferred()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L692"
     },
     {
       "id": "www_assets_js_app_installnavguard",
@@ -433,7 +481,7 @@
       "file_type": "code",
       "norm_label": "_lockdecision()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L868"
+      "source_location": "L887"
     },
     {
       "id": "www_assets_js_app_lockpermanentdarkmode",
@@ -469,7 +517,7 @@
       "file_type": "code",
       "norm_label": "_lockride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L875"
+      "source_location": "L894"
     },
     {
       "id": "www_assets_js_app_modefromparam",
@@ -505,7 +553,7 @@
       "file_type": "code",
       "norm_label": "_offerms()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L841"
+      "source_location": "L860"
     },
     {
       "id": "www_assets_js_app_onp2pevent",
@@ -517,7 +565,7 @@
       "file_type": "code",
       "norm_label": "_onp2pevent()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1199"
+      "source_location": "L1218"
     },
     {
       "id": "www_assets_js_app_onrejectasdriver",
@@ -529,7 +577,7 @@
       "file_type": "code",
       "norm_label": "_onrejectasdriver()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1380"
+      "source_location": "L1403"
     },
     {
       "id": "www_assets_js_app_onrideaccepted",
@@ -541,7 +589,7 @@
       "file_type": "code",
       "norm_label": "_onrideaccepted()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1307"
+      "source_location": "L1330"
     },
     {
       "id": "www_assets_js_app_onridelocked",
@@ -553,7 +601,7 @@
       "file_type": "code",
       "norm_label": "_onridelocked()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1354"
+      "source_location": "L1377"
     },
     {
       "id": "www_assets_js_app_onridestatus",
@@ -565,7 +613,7 @@
       "file_type": "code",
       "norm_label": "_onridestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1400"
+      "source_location": "L1423"
     },
     {
       "id": "www_assets_js_app_openridelock",
@@ -577,7 +625,7 @@
       "file_type": "code",
       "norm_label": "_openridelock()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L845"
+      "source_location": "L864"
     },
     {
       "id": "www_assets_js_app_populatehomestatus",
@@ -589,7 +637,7 @@
       "file_type": "code",
       "norm_label": "_populatehomestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L634"
+      "source_location": "L653"
     },
     {
       "id": "www_assets_js_app_populatesettingsgit",
@@ -601,7 +649,7 @@
       "file_type": "code",
       "norm_label": "_populatesettingsgit()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L650"
+      "source_location": "L669"
     },
     {
       "id": "www_assets_js_app_pumpridedialog",
@@ -613,7 +661,7 @@
       "file_type": "code",
       "norm_label": "_pumpridedialog()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L893"
+      "source_location": "L912"
     },
     {
       "id": "www_assets_js_app_queueridedialog",
@@ -625,7 +673,7 @@
       "file_type": "code",
       "norm_label": "_queueridedialog()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L887"
+      "source_location": "L906"
     },
     {
       "id": "www_assets_js_app_refreshhomepeers",
@@ -649,7 +697,7 @@
       "file_type": "code",
       "norm_label": "_renderactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1038"
+      "source_location": "L1057"
     },
     {
       "id": "www_assets_js_app_renderdriverrequests",
@@ -661,7 +709,7 @@
       "file_type": "code",
       "norm_label": "_renderdriverrequests()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L806"
+      "source_location": "L825"
     },
     {
       "id": "www_assets_js_app_resolveinitialrole",
@@ -697,7 +745,7 @@
       "file_type": "code",
       "norm_label": "_shortid()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L801"
+      "source_location": "L820"
     },
     {
       "id": "www_assets_js_app_showratingmodal",
@@ -709,7 +757,7 @@
       "file_type": "code",
       "norm_label": "_showratingmodal()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1413"
+      "source_location": "L1436"
     },
     {
       "id": "www_assets_js_app_start",
@@ -745,7 +793,7 @@
       "file_type": "code",
       "norm_label": "_truncate()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1966"
+      "source_location": "L1989"
     },
     {
       "id": "www_assets_js_base_addtohome",
@@ -753,7 +801,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "addtohome()",
       "source_file": "www/assets/js/base.js",
@@ -765,7 +813,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "animatedheader()",
       "source_file": "www/assets/js/base.js",
@@ -777,7 +825,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "godownbutton()",
       "source_file": "www/assets/js/base.js",
@@ -789,7 +837,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "notification()",
       "source_file": "www/assets/js/base.js",
@@ -801,7 +849,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "offlinemode()",
       "source_file": "www/assets/js/base.js",
@@ -813,7 +861,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "offlinemodetoast()",
       "source_file": "www/assets/js/base.js",
@@ -825,7 +873,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "onlinemode()",
       "source_file": "www/assets/js/base.js",
@@ -837,7 +885,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "onlinemodetoast()",
       "source_file": "www/assets/js/base.js",
@@ -849,23 +897,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "toastbox()",
       "source_file": "www/assets/js/base.js",
       "source_location": "L263"
     },
     {
-      "id": "www_assets_js_app_calcfare",
-      "label": "_calcFare()",
+      "id": "www_assets_js_db_layer_processphoto",
+      "label": "processPhoto()",
       "_callable": true,
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
-      "norm_label": "_calcfare()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1978"
+      "norm_label": "processphoto()",
+      "source_file": "www/assets/js/db-layer.js",
+      "source_location": "L446"
     },
     {
       "id": "www_assets_js_db_layer_all",
@@ -1238,18 +1286,6 @@
       "norm_label": "processavatar()",
       "source_file": "www/assets/js/db-layer.js",
       "source_location": "L477"
-    },
-    {
-      "id": "www_assets_js_db_layer_processphoto",
-      "label": "processPhoto()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "code",
-      "norm_label": "processphoto()",
-      "source_file": "www/assets/js/db-layer.js",
-      "source_location": "L446"
     },
     {
       "id": "www_assets_js_db_layer_run",
@@ -2008,64 +2044,28 @@
       "source_location": "L15"
     },
     {
-      "id": "www_assets_js_app_bindcapacitydropdown",
-      "label": "_bindCapacityDropdown()",
+      "id": "www_assets_js_app_calcfare",
+      "label": "_calcFare()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
-      "community_name": "_bindCapacityDropdown",
+      "community": 3,
+      "community_name": "map-layer.js",
       "file_type": "code",
-      "norm_label": "_bindcapacitydropdown()",
+      "norm_label": "_calcfare()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1432"
+      "source_location": "L2001"
     },
     {
-      "id": "www_assets_js_app_bindcapacitydropdown_applyfocus",
-      "label": "applyFocus()",
+      "id": "www_assets_js_app_initmapdeferred",
+      "label": "_initMapDeferred()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
-      "community_name": "_bindCapacityDropdown",
+      "community": 3,
+      "community_name": "map-layer.js",
       "file_type": "code",
-      "norm_label": "applyfocus()",
+      "norm_label": "_initmapdeferred()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1464"
-    },
-    {
-      "id": "www_assets_js_app_bindcapacitydropdown_close",
-      "label": "close()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "_bindCapacityDropdown",
-      "file_type": "code",
-      "norm_label": "close()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1448"
-    },
-    {
-      "id": "www_assets_js_app_bindcapacitydropdown_open",
-      "label": "open()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "_bindCapacityDropdown",
-      "file_type": "code",
-      "norm_label": "open()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1454"
-    },
-    {
-      "id": "www_assets_js_app_bindcapacitydropdown_setvalue",
-      "label": "setValue()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 29,
-      "community_name": "_bindCapacityDropdown",
-      "file_type": "code",
-      "norm_label": "setvalue()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1468"
+      "source_location": "L711"
     },
     {
       "id": "www_assets_js_map_layer_afterpinchange",
@@ -2198,18 +2198,6 @@
       "norm_label": "drawmaxradius()",
       "source_file": "www/assets/js/map-layer.js",
       "source_location": "L438"
-    },
-    {
-      "id": "www_assets_js_map_layer_flytocurrentlocation",
-      "label": "flyToCurrentLocation()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "map-layer.js",
-      "file_type": "code",
-      "norm_label": "flytocurrentlocation()",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L280"
     },
     {
       "id": "www_assets_js_map_layer_focushome",
@@ -2512,16 +2500,16 @@
       "source_location": "L220"
     },
     {
-      "id": "www_assets_js_ui_components_showtoast",
-      "label": "showToast()",
+      "id": "www_assets_js_map_layer_flytocurrentlocation",
+      "label": "flyToCurrentLocation()",
       "_callable": true,
       "_origin": "ast",
-      "community": 3,
-      "community_name": "map-layer.js",
+      "community": 4,
+      "community_name": "ui-components.js",
       "file_type": "code",
-      "norm_label": "showtoast()",
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1167"
+      "norm_label": "flytocurrentlocation()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L280"
     },
     {
       "id": "www_assets_js_ui_components_bindscreenevents",
@@ -2786,6 +2774,18 @@
       "norm_label": "_screentrips()",
       "source_file": "www/assets/js/ui-components.js",
       "source_location": "L474"
+    },
+    {
+      "id": "www_assets_js_ui_components_showtoast",
+      "label": "showToast()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "ui-components.js",
+      "file_type": "code",
+      "norm_label": "showtoast()",
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L1167"
     },
     {
       "id": "www_assets_js_ui_components_togglerole",
@@ -3157,7 +3157,7 @@
       "file_type": "code",
       "norm_label": "broadcast()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L477"
+      "source_location": "L574"
     },
     {
       "id": "www_assets_js_p2p_layer_canonical",
@@ -3169,7 +3169,7 @@
       "file_type": "code",
       "norm_label": "_canonical()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L442"
+      "source_location": "L539"
     },
     {
       "id": "www_assets_js_p2p_layer_currentloc",
@@ -3181,7 +3181,7 @@
       "file_type": "code",
       "norm_label": "_currentloc()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L367"
+      "source_location": "L387"
     },
     {
       "id": "www_assets_js_p2p_layer_dispatch",
@@ -3193,7 +3193,7 @@
       "file_type": "code",
       "norm_label": "_dispatch()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L272"
+      "source_location": "L284"
     },
     {
       "id": "www_assets_js_p2p_layer_emit",
@@ -3205,7 +3205,7 @@
       "file_type": "code",
       "norm_label": "_emit()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L336"
+      "source_location": "L356"
     },
     {
       "id": "www_assets_js_p2p_layer_ensurekeys",
@@ -3217,7 +3217,7 @@
       "file_type": "code",
       "norm_label": "_ensurekeys()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L186"
+      "source_location": "L198"
     },
     {
       "id": "www_assets_js_p2p_layer_geohash",
@@ -3229,7 +3229,7 @@
       "file_type": "code",
       "norm_label": "geohash()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L48"
+      "source_location": "L50"
     },
     {
       "id": "www_assets_js_p2p_layer_haversinekm",
@@ -3241,7 +3241,7 @@
       "file_type": "code",
       "norm_label": "haversinekm()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L67"
+      "source_location": "L69"
     },
     {
       "id": "www_assets_js_p2p_layer_heartbeattick",
@@ -3253,7 +3253,7 @@
       "file_type": "code",
       "norm_label": "_heartbeattick()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L386"
+      "source_location": "L406"
     },
     {
       "id": "www_assets_js_p2p_layer_idbget",
@@ -3265,7 +3265,7 @@
       "file_type": "code",
       "norm_label": "idbget()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L77"
+      "source_location": "L79"
     },
     {
       "id": "www_assets_js_p2p_layer_idbset",
@@ -3277,7 +3277,7 @@
       "file_type": "code",
       "norm_label": "idbset()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L95"
+      "source_location": "L97"
     },
     {
       "id": "www_assets_js_p2p_layer_init",
@@ -3289,7 +3289,7 @@
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L138"
+      "source_location": "L143"
     },
     {
       "id": "www_assets_js_p2p_layer_markseen",
@@ -3301,7 +3301,31 @@
       "file_type": "code",
       "norm_label": "_markseen()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L267"
+      "source_location": "L279"
+    },
+    {
+      "id": "www_assets_js_p2p_layer_onping",
+      "label": "_onPing()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "p2p-layer.js",
+      "file_type": "code",
+      "norm_label": "_onping()",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L518"
+    },
+    {
+      "id": "www_assets_js_p2p_layer_onpong",
+      "label": "_onPong()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "p2p-layer.js",
+      "file_type": "code",
+      "norm_label": "_onpong()",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L526"
     },
     {
       "id": "www_assets_js_p2p_layer_onreceive",
@@ -3313,7 +3337,7 @@
       "file_type": "code",
       "norm_label": "_onreceive()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L239"
+      "source_location": "L251"
     },
     {
       "id": "www_assets_js_p2p_layer_ontransportjoin",
@@ -3325,7 +3349,7 @@
       "file_type": "code",
       "norm_label": "_ontransportjoin()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L218"
+      "source_location": "L230"
     },
     {
       "id": "www_assets_js_p2p_layer_ontransportleave",
@@ -3337,7 +3361,7 @@
       "file_type": "code",
       "norm_label": "_ontransportleave()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L225"
+      "source_location": "L237"
     },
     {
       "id": "www_assets_js_p2p_layer_peercount",
@@ -3349,7 +3373,19 @@
       "file_type": "code",
       "norm_label": "peercount()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L509"
+      "source_location": "L606"
+    },
+    {
+      "id": "www_assets_js_p2p_layer_pingpeer",
+      "label": "pingPeer()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "p2p-layer.js",
+      "file_type": "code",
+      "norm_label": "pingpeer()",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L495"
     },
     {
       "id": "www_assets_js_p2p_layer_profilesnapshot",
@@ -3361,7 +3397,19 @@
       "file_type": "code",
       "norm_label": "_profilesnapshot()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L350"
+      "source_location": "L370"
+    },
+    {
+      "id": "www_assets_js_p2p_layer_reconcilepeers",
+      "label": "_reconcilePeers()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "p2p-layer.js",
+      "file_type": "code",
+      "norm_label": "_reconcilepeers()",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L467"
     },
     {
       "id": "www_assets_js_p2p_layer_seen",
@@ -3373,7 +3421,7 @@
       "file_type": "code",
       "norm_label": "_seen()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L266"
+      "source_location": "L278"
     },
     {
       "id": "www_assets_js_p2p_layer_sendchat",
@@ -3385,7 +3433,7 @@
       "file_type": "code",
       "norm_label": "sendchat()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L525"
+      "source_location": "L622"
     },
     {
       "id": "www_assets_js_p2p_layer_senddirect",
@@ -3397,7 +3445,7 @@
       "file_type": "code",
       "norm_label": "senddirect()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L503"
+      "source_location": "L600"
     },
     {
       "id": "www_assets_js_p2p_layer_senddirectbytransport",
@@ -3409,7 +3457,7 @@
       "file_type": "code",
       "norm_label": "senddirectbytransport()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L490"
+      "source_location": "L587"
     },
     {
       "id": "www_assets_js_p2p_layer_senddriverstatusnow",
@@ -3421,7 +3469,7 @@
       "file_type": "code",
       "norm_label": "_senddriverstatusnow()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L419"
+      "source_location": "L439"
     },
     {
       "id": "www_assets_js_p2p_layer_sendebikeinfo",
@@ -3433,7 +3481,7 @@
       "file_type": "code",
       "norm_label": "sendebikeinfo()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L522"
+      "source_location": "L619"
     },
     {
       "id": "www_assets_js_p2p_layer_sendhello",
@@ -3445,7 +3493,7 @@
       "file_type": "code",
       "norm_label": "_sendhello()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L360"
+      "source_location": "L380"
     },
     {
       "id": "www_assets_js_p2p_layer_sendlocationupdate",
@@ -3457,7 +3505,7 @@
       "file_type": "code",
       "norm_label": "sendlocationupdate()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L521"
+      "source_location": "L618"
     },
     {
       "id": "www_assets_js_p2p_layer_sendrating",
@@ -3469,7 +3517,7 @@
       "file_type": "code",
       "norm_label": "sendrating()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L524"
+      "source_location": "L621"
     },
     {
       "id": "www_assets_js_p2p_layer_sendrideaccept",
@@ -3481,7 +3529,7 @@
       "file_type": "code",
       "norm_label": "sendrideaccept()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L516"
+      "source_location": "L613"
     },
     {
       "id": "www_assets_js_p2p_layer_sendridecancel",
@@ -3493,7 +3541,7 @@
       "file_type": "code",
       "norm_label": "sendridecancel()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L519"
+      "source_location": "L616"
     },
     {
       "id": "www_assets_js_p2p_layer_sendridelocked",
@@ -3505,7 +3553,7 @@
       "file_type": "code",
       "norm_label": "sendridelocked()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L518"
+      "source_location": "L615"
     },
     {
       "id": "www_assets_js_p2p_layer_sendridereject",
@@ -3517,7 +3565,7 @@
       "file_type": "code",
       "norm_label": "sendridereject()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L517"
+      "source_location": "L614"
     },
     {
       "id": "www_assets_js_p2p_layer_sendriderequest",
@@ -3529,7 +3577,7 @@
       "file_type": "code",
       "norm_label": "sendriderequest()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L515"
+      "source_location": "L612"
     },
     {
       "id": "www_assets_js_p2p_layer_sendriderinfo",
@@ -3541,7 +3589,7 @@
       "file_type": "code",
       "norm_label": "sendriderinfo()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L523"
+      "source_location": "L620"
     },
     {
       "id": "www_assets_js_p2p_layer_sendridestatus",
@@ -3553,7 +3601,7 @@
       "file_type": "code",
       "norm_label": "sendridestatus()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L520"
+      "source_location": "L617"
     },
     {
       "id": "www_assets_js_p2p_layer_setrole",
@@ -3565,7 +3613,7 @@
       "file_type": "code",
       "norm_label": "setrole()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L184"
+      "source_location": "L196"
     },
     {
       "id": "www_assets_js_p2p_layer_shutdown",
@@ -3577,7 +3625,7 @@
       "file_type": "code",
       "norm_label": "shutdown()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L175"
+      "source_location": "L185"
     },
     {
       "id": "www_assets_js_p2p_layer_sign",
@@ -3589,7 +3637,7 @@
       "file_type": "code",
       "norm_label": "sign()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L456"
+      "source_location": "L553"
     },
     {
       "id": "www_assets_js_p2p_layer_signenvelope",
@@ -3601,7 +3649,7 @@
       "file_type": "code",
       "norm_label": "signenvelope()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L446"
+      "source_location": "L543"
     },
     {
       "id": "www_assets_js_p2p_layer_trunc3",
@@ -3613,7 +3661,7 @@
       "file_type": "code",
       "norm_label": "trunc3()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L75"
+      "source_location": "L77"
     },
     {
       "id": "www_assets_js_p2p_layer_validatecapacity",
@@ -3625,7 +3673,7 @@
       "file_type": "code",
       "norm_label": "validatecapacity()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L547"
+      "source_location": "L644"
     },
     {
       "id": "www_assets_js_p2p_layer_validateriderequest",
@@ -3637,7 +3685,7 @@
       "file_type": "code",
       "norm_label": "validateriderequest()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L529"
+      "source_location": "L626"
     },
     {
       "id": "www_assets_js_p2p_layer_validenvelopeshape",
@@ -3649,7 +3697,7 @@
       "file_type": "code",
       "norm_label": "_validenvelopeshape()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L259"
+      "source_location": "L271"
     },
     {
       "id": "www_assets_js_p2p_layer_verify",
@@ -3661,7 +3709,7 @@
       "file_type": "code",
       "norm_label": "verify()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L462"
+      "source_location": "L559"
     },
     {
       "id": "www_assets_js_call_layer_acceptincoming",
@@ -4039,18 +4087,66 @@
       "label": "base.js",
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "base.js",
       "source_file": "www/assets/js/base.js",
       "source_location": "L1"
     },
     {
+      "id": "dev_phases",
+      "label": "dev_phases.md",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "dev_phases.md",
+      "source_file": "dev_phases.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "label": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "source_file": "dev_phases.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_live_vs_dev_separation_locked",
+      "label": "Live vs Dev separation (locked)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "live vs dev separation (locked)",
+      "source_file": "dev_phases.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "dev_phases_open_decisions_need_your_call",
+      "label": "Open decisions (need your call)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "open decisions (need your call)",
+      "source_file": "dev_phases.md",
+      "source_location": "L168"
+    },
+    {
       "id": "dev_phases_phase_0_single_file_shell_done_verified_2026_09_17_step_by_step",
       "label": "Phase 0 \u2014 Single-File Shell \u2705 DONE (verified 2026-09-17, step by step)",
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "phase 0 \u2014 single-file shell \u2705 done (verified 2026-09-17, step by step)",
@@ -4058,124 +4154,100 @@
       "source_location": "L26"
     },
     {
-      "id": "lapeet_app_development_0_executive_summary_of_work_done_so_far",
-      "label": "0. Executive Summary of Work Done So Far",
+      "id": "dev_phases_phase_14_signed_latency_auto_connect_reconcile_done_code_field_test_pending",
+      "label": "Phase 14 \u2014 Signed Latency + Auto-Connect Reconcile \u2705 DONE (code; field test pending)",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "0. executive summary of work done so far",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L17"
+      "norm_label": "phase 14 \u2014 signed latency + auto-connect reconcile \u2705 done (code; field test pending)",
+      "source_file": "dev_phases.md",
+      "source_location": "L153"
     },
     {
-      "id": "lapeet_app_development_7_development_phases_live_checklists_fully_updated_no_skip",
-      "label": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "id": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
+      "label": "Phase 2 \u2014 sql.js Tenant DB + Onboarding + E-Bikes \u2705 DONE",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "7. development phases & live checklists (fully updated \u2014 no skip)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L376"
+      "norm_label": "phase 2 \u2014 sql.js tenant db + onboarding + e-bikes \u2705 done",
+      "source_file": "dev_phases.md",
+      "source_location": "L46"
     },
     {
-      "id": "lapeet_app_development_phase_0_5_currency_localisation_permanent_theme_brand_fixes_100",
-      "label": "PHASE 0.5 \u2014 Currency, Localisation, Permanent Theme, Brand Fixes \u2014 100% \u2705",
+      "id": "dev_phases_phase_5_polish_manifest_done_code_device_test_pending",
+      "label": "Phase 5 \u2014 Polish + Manifest \u2705 DONE (code; device test pending)",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "phase 0.5 \u2014 currency, localisation, permanent theme, brand fixes \u2014 100% \u2705",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L426"
+      "norm_label": "phase 5 \u2014 polish + manifest \u2705 done (code; device test pending)",
+      "source_file": "dev_phases.md",
+      "source_location": "L70"
     },
     {
-      "id": "lapeet_app_development_phase_0_project_scaffolding_static_setup_100_completed",
-      "label": "PHASE 0 \u2014 Project Scaffolding & Static Setup \u2014 **100% \u2705 COMPLETED**",
+      "id": "dev_phases_phase_7_github_pages_deploy_live",
+      "label": "Phase 7 \u2014 GitHub Pages Deploy \u2705 LIVE",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "phase 0 \u2014 project scaffolding & static setup \u2014 **100% \u2705 completed**",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L386"
+      "norm_label": "phase 7 \u2014 github pages deploy \u2705 live",
+      "source_file": "dev_phases.md",
+      "source_location": "L86"
     },
     {
-      "id": "lapeet_app_development_phase_1_map_layer_60_km_cap_organic_maps_deep_links_partially_started",
-      "label": "PHASE 1 \u2014 Map Layer + 60 km Cap + Organic Maps Deep Links \u2014 \ud83d\udea7 PARTIALLY STARTED",
+      "id": "dev_phases_phase_8_orbitdb_via_webconnect_bridge_p0_spike_verdict_conditional_go",
+      "label": "Phase 8 \u2014 OrbitDB via webconnect Bridge \ud83d\udfe1 P0 SPIKE VERDICT: CONDITIONAL GO",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "phase 1 \u2014 map layer + 60 km cap + organic maps deep links \u2014 \ud83d\udea7 partially started",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L441"
+      "norm_label": "phase 8 \u2014 orbitdb via webconnect bridge \ud83d\udfe1 p0 spike verdict: conditional go",
+      "source_file": "dev_phases.md",
+      "source_location": "L95"
     },
     {
-      "id": "lapeet_app_development_phase_2_sql_js_tenant_database_e_bike_registration_db_stub_only",
-      "label": "PHASE 2 \u2014 sql.js Tenant Database + E-Bike Registration \u2014 \ud83d\udea7 DB STUB ONLY",
+      "id": "dev_phases_risks",
+      "label": "Risks",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "phase 2 \u2014 sql.js tenant database + e-bike registration \u2014 \ud83d\udea7 db stub only",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L459"
+      "norm_label": "risks",
+      "source_file": "dev_phases.md",
+      "source_location": "L164"
     },
     {
-      "id": "lapeet_app_development_phase_3_webconnect_js_p2p_layer_core_ride_flow_p2p_stub_only_key_pair_signing_tbi",
-      "label": "PHASE 3 \u2014 webconnect.js P2P Layer + Core Ride Flow \u2014 \u2b1c (P2P STUB ONLY; Key pair/signing TBI)",
+      "id": "dev_phases_track_w_webview_wrapper_parallel_device_side",
+      "label": "Track W \u2014 WebView Wrapper \u2b1c (parallel, device-side)",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "phase 3 \u2014 webconnect.js p2p layer + core ride flow \u2014 \u2b1c (p2p stub only; key pair/signing tbi)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L476"
+      "norm_label": "track w \u2014 webview wrapper \u2b1c (parallel, device-side)",
+      "source_file": "dev_phases.md",
+      "source_location": "L160"
     },
     {
-      "id": "lapeet_app_development_phase_4_webrtc_video_audio_call_built_on_webconnect_streaming_api",
-      "label": "PHASE 4 \u2014 WebRTC Video/Audio Call (Built on webconnect Streaming API) \u2014 \u2b1c",
+      "id": "dev_phases_verification_log",
+      "label": "Verification log",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "phase 4 \u2014 webrtc video/audio call (built on webconnect streaming api) \u2014 \u2b1c",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L487"
-    },
-    {
-      "id": "lapeet_app_development_phase_5_finishing_touches_mvp_polish",
-      "label": "PHASE 5 \u2014 Finishing Touches & MVP Polish",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 5 \u2014 finishing touches & mvp polish",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L493"
-    },
-    {
-      "id": "lapeet_app_development_phase_6_icebox_future_enhancements",
-      "label": "PHASE 6 \u2014 Icebox / Future Enhancements",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 6 \u2014 icebox / future enhancements",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L510"
+      "norm_label": "verification log",
+      "source_file": "dev_phases.md",
+      "source_location": "L176"
     },
     {
       "id": "lapeet_app_development",
@@ -4188,6 +4260,126 @@
       "norm_label": "lapeet_app_development.md",
       "source_file": "Lapeet_app_development.md",
       "source_location": "L1"
+    },
+    {
+      "id": "lapeet_app_development_0_executive_summary_of_work_done_so_far",
+      "label": "0. Executive Summary of Work Done So Far",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "0. executive summary of work done so far",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "lapeet_app_development_10_1_local_storage_indexeddb_browser_side",
+      "label": "10.1 Local Storage / IndexedDB (browser-side)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "10.1 local storage / indexeddb (browser-side)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L577"
+    },
+    {
+      "id": "lapeet_app_development_10_2_db_schema_phase_2_to_implement_no_changes_from_confirmed_3_except_isomorphic_git_snapshot_tables",
+      "label": "10.2 DB Schema (Phase 2 to implement \u2014 NO CHANGES from confirmed \u00a73 except + isomorphic-git snapshot tables)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "10.2 db schema (phase 2 to implement \u2014 no changes from confirmed \u00a73 except + isomorphic-git snapshot tables)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L586"
+    },
+    {
+      "id": "lapeet_app_development_10_3_isomorphic_git_repositories_browser_internal_created_so_far",
+      "label": "10.3 isomorphic-git Repositories (browser internal, created so far)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "10.3 isomorphic-git repositories (browser internal, created so far)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L605"
+    },
+    {
+      "id": "lapeet_app_development_10_db_storage_change_manifest_no_skip",
+      "label": "10. DB + Storage Change Manifest (NO SKIP)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "10. db + storage change manifest (no skip)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L575"
+    },
+    {
+      "id": "lapeet_app_development_11_1_graphify_install_build_pipeline_commands_executed",
+      "label": "11.1 Graphify install + build pipeline commands executed",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "11.1 graphify install + build pipeline commands executed",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L617"
+    },
+    {
+      "id": "lapeet_app_development_11_2_isomorphic_git_distribution_download_vendored_no_npm",
+      "label": "11.2 isomorphic-git distribution download (vendored, no npm)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "11.2 isomorphic-git distribution download (vendored, no npm)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L647"
+    },
+    {
+      "id": "lapeet_app_development_11_3_browser_smoke_tests_mcp_integrated_browser_captured_evaluate_result_objects",
+      "label": "11.3 Browser smoke tests (MCP integrated_browser, captured evaluate result objects)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "11.3 browser smoke tests (mcp integrated_browser, captured evaluate result objects)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L664"
+    },
+    {
+      "id": "lapeet_app_development_11_4_manual_ui_actions_integrated_browser_navigations",
+      "label": "11.4 Manual UI actions / integrated_browser navigations",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "11.4 manual ui actions / integrated_browser navigations",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L699"
+    },
+    {
+      "id": "lapeet_app_development_11_complete_activity_register_no_skip_every_command_run_every_manual_action",
+      "label": "11. COMPLETE ACTIVITY REGISTER (NO SKIP \u2014 every command run, every manual action)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "11. complete activity register (no skip \u2014 every command run, every manual action)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L615"
     },
     {
       "id": "lapeet_app_development_12_questions_open_decisions_from_original_8_all_resolved_6_8_2_still_open",
@@ -4250,6 +4442,306 @@
       "source_location": "L741"
     },
     {
+      "id": "lapeet_app_development_1_1_what_is_lapeeet",
+      "label": "1.1 What Is Lapeeet?",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1.1 what is lapeeet?",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "lapeet_app_development_1_2_core_principles",
+      "label": "1.2 Core Principles",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1.2 core principles",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "lapeet_app_development_1_3_target_use_cases",
+      "label": "1.3 Target Use Cases",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1.3 target use cases",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "lapeet_app_development_1_project_vision_principles_unchanged_still_governs_all_decisions",
+      "label": "1. Project Vision & Principles (UNCHANGED \u2014 Still Governs All Decisions)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. project vision & principles (unchanged \u2014 still governs all decisions)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "lapeet_app_development_2_1_browser_spa_layer_in_www",
+      "label": "2.1 Browser / SPA Layer (in `www/`)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2.1 browser / spa layer (in `www/`)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L65"
+    },
+    {
+      "id": "lapeet_app_development_2_2_1_permanent_memory_graph_artifacts_queryable_forever_in_future_sessions",
+      "label": "2.2.1 Permanent Memory Graph Artifacts \u2014 queryable FOREVER in future sessions",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2.2.1 permanent memory graph artifacts \u2014 queryable forever in future sessions",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L101"
+    },
+    {
+      "id": "lapeet_app_development_2_2_2_ignore_specification_to_keep_graph_clean_no_vendored_deps_indexed",
+      "label": "2.2.2 Ignore specification (to keep graph CLEAN \u2014 no vendored deps indexed)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2.2.2 ignore specification (to keep graph clean \u2014 no vendored deps indexed)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L113"
+    },
+    {
+      "id": "lapeet_app_development_2_2_developer_tools_permanent_memory_layer_outside_www",
+      "label": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2.2 developer tools / permanent memory layer (outside `www/`)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L90"
+    },
+    {
+      "id": "lapeet_app_development_2_technology_stack_fully_confirmed_downloaded",
+      "label": "2. Technology Stack \u2014 FULLY CONFIRMED & DOWNLOADED",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. technology stack \u2014 fully confirmed & downloaded",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L63"
+    },
+    {
+      "id": "lapeet_app_development_3_1_1_canonical_formatter_one_location_all_code_calls_this",
+      "label": "3.1.1 Canonical formatter \u2014 ONE location, all code calls this",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3.1.1 canonical formatter \u2014 one location, all code calls this",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L135"
+    },
+    {
+      "id": "lapeet_app_development_3_1_2_fare_formula_updated_to_php_constants_no_usd_anywhere",
+      "label": "3.1.2 Fare formula (updated to PHP constants, no USD anywhere)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3.1.2 fare formula (updated to php constants, no usd anywhere)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L167"
+    },
+    {
+      "id": "lapeet_app_development_3_1_3_ui_strings_updated_to_php",
+      "label": "3.1.3 UI Strings updated to \u20b1 PHP",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3.1.3 ui strings updated to \u20b1 php",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L187"
+    },
+    {
+      "id": "lapeet_app_development_3_1_official_currency_philippine_peso_php",
+      "label": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3.1 official currency \u2014 philippine peso `\u20b1 php`",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L131"
+    },
+    {
+      "id": "lapeet_app_development_3_2_locale_en_ph_english_philippines",
+      "label": "3.2 Locale \u2014 `en-PH` (English \u2014 Philippines)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3.2 locale \u2014 `en-ph` (english \u2014 philippines)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L194"
+    },
+    {
+      "id": "lapeet_app_development_3_currency_locale_confirmed_fully_implemented",
+      "label": "3. Currency & Locale (CONFIRMED \u2014 FULLY IMPLEMENTED)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3. currency & locale (confirmed \u2014 fully implemented)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L129"
+    },
+    {
+      "id": "lapeet_app_development_6_1_e_bike_registration_driver_tenant_full_seed_data_still_confirmed_same_as_4_1_in_original_doc_no_changes",
+      "label": "6.1 E-Bike Registration \u2014 Driver Tenant (Full Seed Data Still Confirmed \u2014 same as \u00a74.1 in original doc, NO CHANGES)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6.1 e-bike registration \u2014 driver tenant (full seed data still confirmed \u2014 same as \u00a74.1 in original doc, no changes)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L267"
+    },
+    {
+      "id": "lapeet_app_development_6_2_trip_distance_cap_60_km_max_still_valid_4_layer_enforcement_plan_phase_1_impl_partial",
+      "label": "6.2 Trip Distance Cap (60 km max) \u2014 still valid 4-layer enforcement plan (Phase 1 impl partial)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6.2 trip distance cap (60 km max) \u2014 still valid 4-layer enforcement plan (phase 1 impl partial)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L272"
+    },
+    {
+      "id": "lapeet_app_development_6_3_organic_maps_integration_unchanged_deep_link_only_no_embedding_possible",
+      "label": "6.3 Organic Maps Integration (unchanged \u2014 Deep Link Only, no embedding possible)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6.3 organic maps integration (unchanged \u2014 deep link only, no embedding possible)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L275"
+    },
+    {
+      "id": "lapeet_app_development_6_4_graphify_permanent_structural_memory_layer_implemented",
+      "label": "6.4 \ud83c\udd95 Graphify Permanent Structural Memory Layer (IMPLEMENTED)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6.4 \ud83c\udd95 graphify permanent structural memory layer (implemented)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L278"
+    },
+    {
+      "id": "lapeet_app_development_6_5_isomorphic_git_1_25_0_browser_internal_versioning_implemented_option_a_chosen_by_user",
+      "label": "6.5 \ud83c\udd95 isomorphic-git@1.25.0 Browser-internal versioning (IMPLEMENTED \u2014 Option A chosen by user)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6.5 \ud83c\udd95 isomorphic-git@1.25.0 browser-internal versioning (implemented \u2014 option a chosen by user)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L329"
+    },
+    {
+      "id": "lapeet_app_development_6_feature_inventory_scope_updated_with_completed_sub_items",
+      "label": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6. feature inventory & scope (updated with completed sub-items)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L265"
+    },
+    {
+      "id": "lapeet_app_development_8_1_application_source_files",
+      "label": "8.1 Application source files",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "8.1 application source files",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L525"
+    },
+    {
+      "id": "lapeet_app_development_8_2_vendor_distribution_files_downloaded_not_edited",
+      "label": "8.2 Vendor distribution files (downloaded, NOT edited)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "8.2 vendor distribution files (downloaded, not edited)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L536"
+    },
+    {
+      "id": "lapeet_app_development_8_3_developer_tooling_graphifyy_local_install_memory_graph",
+      "label": "8.3 Developer Tooling (graphifyy local install + memory graph)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "8.3 developer tooling (graphifyy local install + memory graph)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L547"
+    },
+    {
+      "id": "lapeet_app_development_8_complete_file_change_manifest_every_file_modified_or_created_no_skip",
+      "label": "8. COMPLETE FILE CHANGE MANIFEST \u2014 Every file modified or created (NO SKIP)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "8. complete file change manifest \u2014 every file modified or created (no skip)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L521"
+    },
+    {
       "id": "lapeet_app_development_9_changelog_reverse_chronological_no_skip",
       "label": "9. CHANGELOG (Reverse Chronological, NO SKIP)",
       "_origin": "ast",
@@ -4272,366 +4764,6 @@
       "norm_label": "lapeeet \u2014 e-bike ride-hailing p2p app \u2014 development plan & live checklist",
       "source_file": "Lapeet_app_development.md",
       "source_location": "L1"
-    },
-    {
-      "id": "lapeet_app_development_3_1_1_canonical_formatter_one_location_all_code_calls_this",
-      "label": "3.1.1 Canonical formatter \u2014 ONE location, all code calls this",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3.1.1 canonical formatter \u2014 one location, all code calls this",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L135"
-    },
-    {
-      "id": "lapeet_app_development_3_1_2_fare_formula_updated_to_php_constants_no_usd_anywhere",
-      "label": "3.1.2 Fare formula (updated to PHP constants, no USD anywhere)",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3.1.2 fare formula (updated to php constants, no usd anywhere)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L167"
-    },
-    {
-      "id": "lapeet_app_development_3_1_3_ui_strings_updated_to_php",
-      "label": "3.1.3 UI Strings updated to \u20b1 PHP",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3.1.3 ui strings updated to \u20b1 php",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L187"
-    },
-    {
-      "id": "lapeet_app_development_3_1_official_currency_philippine_peso_php",
-      "label": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3.1 official currency \u2014 philippine peso `\u20b1 php`",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L131"
-    },
-    {
-      "id": "lapeet_app_development_3_2_locale_en_ph_english_philippines",
-      "label": "3.2 Locale \u2014 `en-PH` (English \u2014 Philippines)",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3.2 locale \u2014 `en-ph` (english \u2014 philippines)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L194"
-    },
-    {
-      "id": "lapeet_app_development_3_currency_locale_confirmed_fully_implemented",
-      "label": "3. Currency & Locale (CONFIRMED \u2014 FULLY IMPLEMENTED)",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "3.1 Official Currency \u2014 Philippine Peso `\u20b1 PHP`",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3. currency & locale (confirmed \u2014 fully implemented)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L129"
-    },
-    {
-      "id": "lapeet_app_development_6_1_e_bike_registration_driver_tenant_full_seed_data_still_confirmed_same_as_4_1_in_original_doc_no_changes",
-      "label": "6.1 E-Bike Registration \u2014 Driver Tenant (Full Seed Data Still Confirmed \u2014 same as \u00a74.1 in original doc, NO CHANGES)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6.1 e-bike registration \u2014 driver tenant (full seed data still confirmed \u2014 same as \u00a74.1 in original doc, no changes)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L267"
-    },
-    {
-      "id": "lapeet_app_development_6_2_trip_distance_cap_60_km_max_still_valid_4_layer_enforcement_plan_phase_1_impl_partial",
-      "label": "6.2 Trip Distance Cap (60 km max) \u2014 still valid 4-layer enforcement plan (Phase 1 impl partial)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6.2 trip distance cap (60 km max) \u2014 still valid 4-layer enforcement plan (phase 1 impl partial)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L272"
-    },
-    {
-      "id": "lapeet_app_development_6_3_organic_maps_integration_unchanged_deep_link_only_no_embedding_possible",
-      "label": "6.3 Organic Maps Integration (unchanged \u2014 Deep Link Only, no embedding possible)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6.3 organic maps integration (unchanged \u2014 deep link only, no embedding possible)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L275"
-    },
-    {
-      "id": "lapeet_app_development_6_4_graphify_permanent_structural_memory_layer_implemented",
-      "label": "6.4 \ud83c\udd95 Graphify Permanent Structural Memory Layer (IMPLEMENTED)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6.4 \ud83c\udd95 graphify permanent structural memory layer (implemented)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L278"
-    },
-    {
-      "id": "lapeet_app_development_6_5_isomorphic_git_1_25_0_browser_internal_versioning_implemented_option_a_chosen_by_user",
-      "label": "6.5 \ud83c\udd95 isomorphic-git@1.25.0 Browser-internal versioning (IMPLEMENTED \u2014 Option A chosen by user)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6.5 \ud83c\udd95 isomorphic-git@1.25.0 browser-internal versioning (implemented \u2014 option a chosen by user)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L329"
-    },
-    {
-      "id": "lapeet_app_development_6_feature_inventory_scope_updated_with_completed_sub_items",
-      "label": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6. feature inventory & scope (updated with completed sub-items)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L265"
-    },
-    {
-      "id": "lapeet_app_development_11_1_graphify_install_build_pipeline_commands_executed",
-      "label": "11.1 Graphify install + build pipeline commands executed",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "11. COMPLETE ACTIVITY REGISTER (NO SKIP \u2014 every command run, every manual action)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "11.1 graphify install + build pipeline commands executed",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L617"
-    },
-    {
-      "id": "lapeet_app_development_11_2_isomorphic_git_distribution_download_vendored_no_npm",
-      "label": "11.2 isomorphic-git distribution download (vendored, no npm)",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "11. COMPLETE ACTIVITY REGISTER (NO SKIP \u2014 every command run, every manual action)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "11.2 isomorphic-git distribution download (vendored, no npm)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L647"
-    },
-    {
-      "id": "lapeet_app_development_11_3_browser_smoke_tests_mcp_integrated_browser_captured_evaluate_result_objects",
-      "label": "11.3 Browser smoke tests (MCP integrated_browser, captured evaluate result objects)",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "11. COMPLETE ACTIVITY REGISTER (NO SKIP \u2014 every command run, every manual action)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "11.3 browser smoke tests (mcp integrated_browser, captured evaluate result objects)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L664"
-    },
-    {
-      "id": "lapeet_app_development_11_4_manual_ui_actions_integrated_browser_navigations",
-      "label": "11.4 Manual UI actions / integrated_browser navigations",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "11. COMPLETE ACTIVITY REGISTER (NO SKIP \u2014 every command run, every manual action)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "11.4 manual ui actions / integrated_browser navigations",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L699"
-    },
-    {
-      "id": "lapeet_app_development_11_complete_activity_register_no_skip_every_command_run_every_manual_action",
-      "label": "11. COMPLETE ACTIVITY REGISTER (NO SKIP \u2014 every command run, every manual action)",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "11. COMPLETE ACTIVITY REGISTER (NO SKIP \u2014 every command run, every manual action)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "11. complete activity register (no skip \u2014 every command run, every manual action)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L615"
-    },
-    {
-      "id": "lapeet_app_development_2_1_browser_spa_layer_in_www",
-      "label": "2.1 Browser / SPA Layer (in `www/`)",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2.1 browser / spa layer (in `www/`)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L65"
-    },
-    {
-      "id": "lapeet_app_development_2_2_1_permanent_memory_graph_artifacts_queryable_forever_in_future_sessions",
-      "label": "2.2.1 Permanent Memory Graph Artifacts \u2014 queryable FOREVER in future sessions",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2.2.1 permanent memory graph artifacts \u2014 queryable forever in future sessions",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L101"
-    },
-    {
-      "id": "lapeet_app_development_2_2_2_ignore_specification_to_keep_graph_clean_no_vendored_deps_indexed",
-      "label": "2.2.2 Ignore specification (to keep graph CLEAN \u2014 no vendored deps indexed)",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2.2.2 ignore specification (to keep graph clean \u2014 no vendored deps indexed)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L113"
-    },
-    {
-      "id": "lapeet_app_development_2_2_developer_tools_permanent_memory_layer_outside_www",
-      "label": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2.2 developer tools / permanent memory layer (outside `www/`)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L90"
-    },
-    {
-      "id": "lapeet_app_development_2_technology_stack_fully_confirmed_downloaded",
-      "label": "2. Technology Stack \u2014 FULLY CONFIRMED & DOWNLOADED",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. technology stack \u2014 fully confirmed & downloaded",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L63"
-    },
-    {
-      "id": "lapeet_app_development_10_1_local_storage_indexeddb_browser_side",
-      "label": "10.1 Local Storage / IndexedDB (browser-side)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "10. DB + Storage Change Manifest (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "10.1 local storage / indexeddb (browser-side)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L577"
-    },
-    {
-      "id": "lapeet_app_development_10_2_db_schema_phase_2_to_implement_no_changes_from_confirmed_3_except_isomorphic_git_snapshot_tables",
-      "label": "10.2 DB Schema (Phase 2 to implement \u2014 NO CHANGES from confirmed \u00a73 except + isomorphic-git snapshot tables)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "10. DB + Storage Change Manifest (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "10.2 db schema (phase 2 to implement \u2014 no changes from confirmed \u00a73 except + isomorphic-git snapshot tables)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L586"
-    },
-    {
-      "id": "lapeet_app_development_10_3_isomorphic_git_repositories_browser_internal_created_so_far",
-      "label": "10.3 isomorphic-git Repositories (browser internal, created so far)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "10. DB + Storage Change Manifest (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "10.3 isomorphic-git repositories (browser internal, created so far)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L605"
-    },
-    {
-      "id": "lapeet_app_development_10_db_storage_change_manifest_no_skip",
-      "label": "10. DB + Storage Change Manifest (NO SKIP)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "10. DB + Storage Change Manifest (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "10. db + storage change manifest (no skip)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L575"
-    },
-    {
-      "id": "lapeet_app_development_1_1_what_is_lapeeet",
-      "label": "1.1 What Is Lapeeet?",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "1. Project Vision & Principles (UNCHANGED \u2014 Still Governs All Decisions)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1.1 what is lapeeet?",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L39"
-    },
-    {
-      "id": "lapeet_app_development_1_2_core_principles",
-      "label": "1.2 Core Principles",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "1. Project Vision & Principles (UNCHANGED \u2014 Still Governs All Decisions)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1.2 core principles",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L42"
-    },
-    {
-      "id": "lapeet_app_development_1_3_target_use_cases",
-      "label": "1.3 Target Use Cases",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "1. Project Vision & Principles (UNCHANGED \u2014 Still Governs All Decisions)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1.3 target use cases",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L55"
-    },
-    {
-      "id": "lapeet_app_development_1_project_vision_principles_unchanged_still_governs_all_decisions",
-      "label": "1. Project Vision & Principles (UNCHANGED \u2014 Still Governs All Decisions)",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "1. Project Vision & Principles (UNCHANGED \u2014 Still Governs All Decisions)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. project vision & principles (unchanged \u2014 still governs all decisions)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L37"
     },
     {
       "id": "www_manifest",
@@ -4777,54 +4909,6 @@
       "source_location": "L1"
     },
     {
-      "id": "dev_phases",
-      "label": "dev_phases.md",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "dev_phases.md",
-      "source_file": "dev_phases.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "label": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "source_file": "dev_phases.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "dev_phases_live_vs_dev_separation_locked",
-      "label": "Live vs Dev separation (locked)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "live vs dev separation (locked)",
-      "source_file": "dev_phases.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "dev_phases_open_decisions_need_your_call",
-      "label": "Open decisions (need your call)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "open decisions (need your call)",
-      "source_file": "dev_phases.md",
-      "source_location": "L152"
-    },
-    {
       "id": "dev_phases_phase_10_rich_profile_avatar_first_last_email_done",
       "label": "Phase 10 \u2014 Rich Profile (avatar + first/last + email) \u2705 DONE",
       "_origin": "ast",
@@ -4834,19 +4918,7 @@
       "node_kind": "heading",
       "norm_label": "phase 10 \u2014 rich profile (avatar + first/last + email) \u2705 done",
       "source_file": "dev_phases.md",
-      "source_location": "L113"
-    },
-    {
-      "id": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
-      "label": "Phase 2 \u2014 sql.js Tenant DB + Onboarding + E-Bikes \u2705 DONE",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 2 \u2014 sql.js tenant db + onboarding + e-bikes \u2705 done",
-      "source_file": "dev_phases.md",
-      "source_location": "L46"
+      "source_location": "L122"
     },
     {
       "id": "dev_phases_phase_3_webconnect_js_p2p_ride_flow_done_code_field_test_pending",
@@ -4859,78 +4931,6 @@
       "norm_label": "phase 3 \u2014 webconnect.js p2p ride flow \u2705 done (code; field test pending)",
       "source_file": "dev_phases.md",
       "source_location": "L53"
-    },
-    {
-      "id": "dev_phases_phase_5_polish_manifest_done_code_device_test_pending",
-      "label": "Phase 5 \u2014 Polish + Manifest \u2705 DONE (code; device test pending)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 5 \u2014 polish + manifest \u2705 done (code; device test pending)",
-      "source_file": "dev_phases.md",
-      "source_location": "L70"
-    },
-    {
-      "id": "dev_phases_phase_7_github_pages_deploy_live",
-      "label": "Phase 7 \u2014 GitHub Pages Deploy \u2705 LIVE",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 7 \u2014 github pages deploy \u2705 live",
-      "source_file": "dev_phases.md",
-      "source_location": "L86"
-    },
-    {
-      "id": "dev_phases_phase_8_orbitdb_full_replacement_track_after_7_gates_each_step",
-      "label": "Phase 8 \u2014 OrbitDB Full Replacement \u2b1c TRACK (after 7; gates each step)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 8 \u2014 orbitdb full replacement \u2b1c track (after 7; gates each step)",
-      "source_file": "dev_phases.md",
-      "source_location": "L95"
-    },
-    {
-      "id": "dev_phases_risks",
-      "label": "Risks",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "risks",
-      "source_file": "dev_phases.md",
-      "source_location": "L148"
-    },
-    {
-      "id": "dev_phases_track_w_webview_wrapper_parallel_device_side",
-      "label": "Track W \u2014 WebView Wrapper \u2b1c (parallel, device-side)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "track w \u2014 webview wrapper \u2b1c (parallel, device-side)",
-      "source_file": "dev_phases.md",
-      "source_location": "L144"
-    },
-    {
-      "id": "dev_phases_verification_log",
-      "label": "Verification log",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "db-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "verification log",
-      "source_file": "dev_phases.md",
-      "source_location": "L160"
     },
     {
       "id": "tools_deploy_pages",
@@ -4964,7 +4964,7 @@
       "node_kind": "heading",
       "norm_label": "phase 11 \u2014 device pin fallback \u2705 done",
       "source_file": "dev_phases.md",
-      "source_location": "L119"
+      "source_location": "L128"
     },
     {
       "id": "dev_phases_phase_9_phone_registration_gate_webauthn_passkeys_done_code_ceremony_field_test_pending",
@@ -4976,7 +4976,7 @@
       "node_kind": "heading",
       "norm_label": "phase 9 \u2014 phone registration gate + webauthn passkeys \u2705 done (code; ceremony field test pending)",
       "source_file": "dev_phases.md",
-      "source_location": "L105"
+      "source_location": "L114"
     },
     {
       "id": "tools_check_auth",
@@ -6165,19 +6165,7 @@
       "node_kind": "heading",
       "norm_label": "phase 12 \u2014 home nearby map + realtime peer discovery \u2705 done (code; 2-device field test pending)",
       "source_file": "dev_phases.md",
-      "source_location": "L126"
-    },
-    {
-      "id": "dev_phases_phase_1_map_60km_gate_organic_maps_done",
-      "label": "Phase 1 \u2014 Map + 60km Gate + Organic Maps \u2705 DONE",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "map-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 1 \u2014 map + 60km gate + organic maps \u2705 done",
-      "source_file": "dev_phases.md",
-      "source_location": "L36"
+      "source_location": "L135"
     },
     {
       "id": "development_phases",
@@ -6324,6 +6312,114 @@
       "source_location": "L102"
     },
     {
+      "id": "lapeet_app_development_7_development_phases_live_checklists_fully_updated_no_skip",
+      "label": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "7. development phases & live checklists (fully updated \u2014 no skip)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L376"
+    },
+    {
+      "id": "lapeet_app_development_phase_0_5_currency_localisation_permanent_theme_brand_fixes_100",
+      "label": "PHASE 0.5 \u2014 Currency, Localisation, Permanent Theme, Brand Fixes \u2014 100% \u2705",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 0.5 \u2014 currency, localisation, permanent theme, brand fixes \u2014 100% \u2705",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L426"
+    },
+    {
+      "id": "lapeet_app_development_phase_0_project_scaffolding_static_setup_100_completed",
+      "label": "PHASE 0 \u2014 Project Scaffolding & Static Setup \u2014 **100% \u2705 COMPLETED**",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 0 \u2014 project scaffolding & static setup \u2014 **100% \u2705 completed**",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L386"
+    },
+    {
+      "id": "lapeet_app_development_phase_1_map_layer_60_km_cap_organic_maps_deep_links_partially_started",
+      "label": "PHASE 1 \u2014 Map Layer + 60 km Cap + Organic Maps Deep Links \u2014 \ud83d\udea7 PARTIALLY STARTED",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 1 \u2014 map layer + 60 km cap + organic maps deep links \u2014 \ud83d\udea7 partially started",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L441"
+    },
+    {
+      "id": "lapeet_app_development_phase_2_sql_js_tenant_database_e_bike_registration_db_stub_only",
+      "label": "PHASE 2 \u2014 sql.js Tenant Database + E-Bike Registration \u2014 \ud83d\udea7 DB STUB ONLY",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 2 \u2014 sql.js tenant database + e-bike registration \u2014 \ud83d\udea7 db stub only",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L459"
+    },
+    {
+      "id": "lapeet_app_development_phase_3_webconnect_js_p2p_layer_core_ride_flow_p2p_stub_only_key_pair_signing_tbi",
+      "label": "PHASE 3 \u2014 webconnect.js P2P Layer + Core Ride Flow \u2014 \u2b1c (P2P STUB ONLY; Key pair/signing TBI)",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 3 \u2014 webconnect.js p2p layer + core ride flow \u2014 \u2b1c (p2p stub only; key pair/signing tbi)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L476"
+    },
+    {
+      "id": "lapeet_app_development_phase_4_webrtc_video_audio_call_built_on_webconnect_streaming_api",
+      "label": "PHASE 4 \u2014 WebRTC Video/Audio Call (Built on webconnect Streaming API) \u2014 \u2b1c",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 4 \u2014 webrtc video/audio call (built on webconnect streaming api) \u2014 \u2b1c",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L487"
+    },
+    {
+      "id": "lapeet_app_development_phase_5_finishing_touches_mvp_polish",
+      "label": "PHASE 5 \u2014 Finishing Touches & MVP Polish",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 5 \u2014 finishing touches & mvp polish",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L493"
+    },
+    {
+      "id": "lapeet_app_development_phase_6_icebox_future_enhancements",
+      "label": "PHASE 6 \u2014 Icebox / Future Enhancements",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 6 \u2014 icebox / future enhancements",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L510"
+    },
+    {
       "id": "www_assets_js_map_layer_rationale_475",
       "label": "NOTE: do NOT encodeURIComponent() the whole pair \u2014 OSRM needs",
       "_origin": "ast",
@@ -6335,54 +6431,6 @@
       "source_location": "L475"
     },
     {
-      "id": "lapeet_app_development_8_1_application_source_files",
-      "label": "8.1 Application source files",
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "8. COMPLETE FILE CHANGE MANIFEST \u2014 Every file modified or created (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "8.1 application source files",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L525"
-    },
-    {
-      "id": "lapeet_app_development_8_2_vendor_distribution_files_downloaded_not_edited",
-      "label": "8.2 Vendor distribution files (downloaded, NOT edited)",
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "8. COMPLETE FILE CHANGE MANIFEST \u2014 Every file modified or created (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "8.2 vendor distribution files (downloaded, not edited)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L536"
-    },
-    {
-      "id": "lapeet_app_development_8_3_developer_tooling_graphifyy_local_install_memory_graph",
-      "label": "8.3 Developer Tooling (graphifyy local install + memory graph)",
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "8. COMPLETE FILE CHANGE MANIFEST \u2014 Every file modified or created (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "8.3 developer tooling (graphifyy local install + memory graph)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L547"
-    },
-    {
-      "id": "lapeet_app_development_8_complete_file_change_manifest_every_file_modified_or_created_no_skip",
-      "label": "8. COMPLETE FILE CHANGE MANIFEST \u2014 Every file modified or created (NO SKIP)",
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "8. COMPLETE FILE CHANGE MANIFEST \u2014 Every file modified or created (NO SKIP)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "8. complete file change manifest \u2014 every file modified or created (no skip)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L521"
-    },
-    {
       "id": "www_assets_js_ui_components",
       "label": "ui-components.js",
       "_origin": "ast",
@@ -6392,6 +6440,18 @@
       "norm_label": "ui-components.js",
       "source_file": "www/assets/js/ui-components.js",
       "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_phase_1_map_60km_gate_organic_maps_done",
+      "label": "Phase 1 \u2014 Map + 60km Gate + Organic Maps \u2705 DONE",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "ui-components.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 1 \u2014 map + 60km gate + organic maps \u2705 done",
+      "source_file": "dev_phases.md",
+      "source_location": "L36"
     },
     {
       "id": "lapeet_app_development_4_1_header_static_logotext_image_never_overwritten_by_screen_title",
@@ -6554,7 +6614,7 @@
       "node_kind": "heading",
       "norm_label": "phase 13 \u2014 passenger-only requests + driver offer dialogs + first-accept-wins \u2705 done (code; 3-device field test pending)",
       "source_file": "dev_phases.md",
-      "source_location": "L135"
+      "source_location": "L144"
     },
     {
       "id": "www_assets_js_call_layer",
@@ -7001,7 +7061,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1945",
+      "source_location": "L1968",
       "weight": 1.0
     },
     {
@@ -7013,7 +7073,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1946",
+      "source_location": "L1969",
       "weight": 1.0
     },
     {
@@ -7025,7 +7085,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1460",
+      "source_location": "L1483",
       "weight": 1.0
     },
     {
@@ -7037,7 +7097,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1586",
+      "source_location": "L1609",
       "weight": 1.0
     },
     {
@@ -7049,7 +7109,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1695",
+      "source_location": "L1718",
       "weight": 1.0
     },
     {
@@ -7121,7 +7181,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L771",
+      "source_location": "L790",
       "weight": 1.0
     },
     {
@@ -7133,7 +7193,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L793",
+      "source_location": "L812",
       "weight": 1.0
     },
     {
@@ -7145,7 +7205,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L796",
+      "source_location": "L815",
       "weight": 1.0
     },
     {
@@ -7157,7 +7217,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L797",
+      "source_location": "L816",
       "weight": 1.0
     },
     {
@@ -7169,7 +7229,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L798",
+      "source_location": "L817",
       "weight": 1.0
     },
     {
@@ -7181,7 +7241,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1178",
+      "source_location": "L1197",
       "weight": 1.0
     },
     {
@@ -7193,7 +7253,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1189",
+      "source_location": "L1208",
       "weight": 1.0
     },
     {
@@ -7205,7 +7265,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1759",
+      "source_location": "L1782",
       "weight": 1.0
     },
     {
@@ -7217,7 +7277,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1861",
+      "source_location": "L1884",
       "weight": 1.0
     },
     {
@@ -7229,7 +7289,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1636",
+      "source_location": "L1659",
       "weight": 1.0
     },
     {
@@ -7265,7 +7325,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1157",
+      "source_location": "L1176",
       "weight": 1.0
     },
     {
@@ -7277,7 +7337,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1165",
+      "source_location": "L1184",
       "weight": 1.0
     },
     {
@@ -7289,7 +7349,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1092",
+      "source_location": "L1111",
       "weight": 1.0
     },
     {
@@ -7301,7 +7361,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1138",
+      "source_location": "L1157",
       "weight": 1.0
     },
     {
@@ -7313,7 +7373,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1140",
+      "source_location": "L1159",
       "weight": 1.0
     },
     {
@@ -7325,7 +7385,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1112",
+      "source_location": "L1131",
       "weight": 1.0
     },
     {
@@ -7337,7 +7397,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1132",
+      "source_location": "L1151",
       "weight": 1.0
     },
     {
@@ -7349,7 +7409,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1134",
+      "source_location": "L1153",
       "weight": 1.0
     },
     {
@@ -7361,7 +7421,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1128",
+      "source_location": "L1147",
       "weight": 1.0
     },
     {
@@ -7373,7 +7433,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L968",
+      "source_location": "L987",
       "weight": 1.0
     },
     {
@@ -7385,7 +7445,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L969",
+      "source_location": "L988",
       "weight": 1.0
     },
     {
@@ -7397,7 +7457,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L990",
+      "source_location": "L1009",
       "weight": 1.0
     },
     {
@@ -7409,7 +7469,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L992",
+      "source_location": "L1011",
       "weight": 1.0
     },
     {
@@ -7421,7 +7481,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1000",
+      "source_location": "L1019",
       "weight": 1.0
     },
     {
@@ -7433,7 +7493,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1001",
+      "source_location": "L1020",
       "weight": 1.0
     },
     {
@@ -7445,7 +7505,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1031",
+      "source_location": "L1050",
       "weight": 1.0
     },
     {
@@ -7457,7 +7517,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1035",
+      "source_location": "L1054",
       "weight": 1.0
     },
     {
@@ -7469,7 +7529,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1080",
+      "source_location": "L1099",
       "weight": 1.0
     },
     {
@@ -7505,7 +7565,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L697",
+      "source_location": "L716",
       "weight": 1.0
     },
     {
@@ -7517,7 +7577,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L710",
+      "source_location": "L729",
       "weight": 1.0
     },
     {
@@ -7529,7 +7589,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L722",
+      "source_location": "L741",
       "weight": 1.0
     },
     {
@@ -7565,7 +7625,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L880",
+      "source_location": "L899",
       "weight": 1.0
     },
     {
@@ -7577,60 +7637,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1206",
+      "source_location": "L1225",
       "weight": 1.0
     },
     {
       "source": "www_assets_js_app_onp2pevent",
       "target": "www_assets_js_app_renderdriverrequests",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1207",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app_onp2pevent",
-      "target": "www_assets_js_app_refreshhomepeers",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1208",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app_onp2pevent",
-      "target": "www_assets_js_app_queueridedialog",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1218",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app_onp2pevent",
-      "target": "www_assets_js_app_onrideaccepted",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1223",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app_onp2pevent",
-      "target": "www_assets_js_app_onridelocked",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7642,6 +7654,54 @@
     },
     {
       "source": "www_assets_js_app_onp2pevent",
+      "target": "www_assets_js_app_refreshhomepeers",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1227",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_onp2pevent",
+      "target": "www_assets_js_app_queueridedialog",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1241",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_onp2pevent",
+      "target": "www_assets_js_app_onrideaccepted",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1246",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_onp2pevent",
+      "target": "www_assets_js_app_onridelocked",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1249",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_onp2pevent",
       "target": "www_assets_js_app_onrejectasdriver",
       "relation": "calls",
       "_origin": "ast",
@@ -7649,7 +7709,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1230",
+      "source_location": "L1253",
       "weight": 1.0
     },
     {
@@ -7661,7 +7721,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1243",
+      "source_location": "L1266",
       "weight": 1.0
     },
     {
@@ -7673,7 +7733,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1248",
+      "source_location": "L1271",
       "weight": 1.0
     },
     {
@@ -7685,7 +7745,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1275",
+      "source_location": "L1298",
       "weight": 1.0
     },
     {
@@ -7697,7 +7757,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1390",
+      "source_location": "L1413",
       "weight": 1.0
     },
     {
@@ -7709,7 +7769,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1391",
+      "source_location": "L1414",
       "weight": 1.0
     },
     {
@@ -7721,7 +7781,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1397",
+      "source_location": "L1420",
       "weight": 1.0
     },
     {
@@ -7733,7 +7793,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1310",
+      "source_location": "L1333",
       "weight": 1.0
     },
     {
@@ -7745,7 +7805,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1318",
+      "source_location": "L1341",
       "weight": 1.0
     },
     {
@@ -7757,7 +7817,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1330",
+      "source_location": "L1353",
       "weight": 1.0
     },
     {
@@ -7769,7 +7829,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1339",
+      "source_location": "L1362",
       "weight": 1.0
     },
     {
@@ -7781,7 +7841,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1364",
+      "source_location": "L1387",
       "weight": 1.0
     },
     {
@@ -7793,7 +7853,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1365",
+      "source_location": "L1388",
       "weight": 1.0
     },
     {
@@ -7805,7 +7865,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1366",
+      "source_location": "L1389",
       "weight": 1.0
     },
     {
@@ -7817,7 +7877,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1375",
+      "source_location": "L1398",
       "weight": 1.0
     },
     {
@@ -7829,7 +7889,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1408",
+      "source_location": "L1431",
       "weight": 1.0
     },
     {
@@ -7841,7 +7901,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1409",
+      "source_location": "L1432",
       "weight": 1.0
     },
     {
@@ -7853,7 +7913,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L849",
+      "source_location": "L868",
       "weight": 1.0
     },
     {
@@ -7865,7 +7925,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L639",
+      "source_location": "L658",
       "weight": 1.0
     },
     {
@@ -7877,7 +7937,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L900",
+      "source_location": "L919",
       "weight": 1.0
     },
     {
@@ -7889,7 +7949,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L912",
+      "source_location": "L931",
       "weight": 1.0
     },
     {
@@ -7901,7 +7961,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L921",
+      "source_location": "L940",
       "weight": 1.0
     },
     {
@@ -7913,7 +7973,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L947",
+      "source_location": "L966",
       "weight": 1.0
     },
     {
@@ -7925,7 +7985,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L952",
+      "source_location": "L971",
       "weight": 1.0
     },
     {
@@ -7937,7 +7997,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L959",
+      "source_location": "L978",
       "weight": 1.0
     },
     {
@@ -7949,7 +8009,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L890",
+      "source_location": "L909",
       "weight": 1.0
     },
     {
@@ -7973,7 +8033,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L625",
+      "source_location": "L644",
       "weight": 1.0
     },
     {
@@ -7985,7 +8045,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1047",
+      "source_location": "L1066",
       "weight": 1.0
     },
     {
@@ -7997,7 +8057,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L823",
+      "source_location": "L842",
       "weight": 1.0
     },
     {
@@ -8009,7 +8069,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L831",
+      "source_location": "L850",
       "weight": 1.0
     },
     {
@@ -10409,7 +10469,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L479",
+      "source_location": "L576",
       "weight": 1.0
     },
     {
@@ -10421,7 +10481,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L290",
+      "source_location": "L302",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_dispatch",
+      "target": "www_assets_js_p2p_layer_onping",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L332",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_dispatch",
+      "target": "www_assets_js_p2p_layer_onpong",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L336",
       "weight": 1.0
     },
     {
@@ -10433,7 +10517,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L320",
+      "source_location": "L340",
       "weight": 1.0
     },
     {
@@ -10445,7 +10529,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L333",
+      "source_location": "L353",
       "weight": 1.0
     },
     {
@@ -10457,7 +10541,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L343",
+      "source_location": "L363",
       "weight": 1.0
     },
     {
@@ -10469,7 +10553,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L192",
+      "source_location": "L204",
       "weight": 1.0
     },
     {
@@ -10481,7 +10565,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L201",
+      "source_location": "L213",
       "weight": 1.0
     },
     {
@@ -10493,7 +10577,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L388",
+      "source_location": "L408",
       "weight": 1.0
     },
     {
@@ -10505,7 +10589,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L395",
+      "source_location": "L415",
       "weight": 1.0
     },
     {
@@ -10517,7 +10601,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L395",
+      "source_location": "L415",
       "weight": 1.0
     },
     {
@@ -10529,7 +10613,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L406",
+      "source_location": "L426",
       "weight": 1.0
     },
     {
@@ -10541,7 +10625,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L410",
+      "source_location": "L430",
       "weight": 1.0
     },
     {
@@ -10553,7 +10637,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L148",
+      "source_location": "L153",
       "weight": 1.0
     },
     {
@@ -10565,7 +10649,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L151",
+      "source_location": "L156",
       "weight": 1.0
     },
     {
@@ -10577,7 +10661,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L160",
+      "source_location": "L165",
       "weight": 1.0
     },
     {
@@ -10589,7 +10673,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L161",
+      "source_location": "L166",
       "weight": 1.0
     },
     {
@@ -10601,7 +10685,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L162",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -10613,7 +10697,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L167",
+      "source_location": "L172",
       "weight": 1.0
     },
     {
@@ -10625,7 +10709,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L170",
+      "source_location": "L175",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_init",
+      "target": "www_assets_js_p2p_layer_reconcilepeers",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L179",
       "weight": 1.0
     },
     {
@@ -10637,227 +10733,11 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L171",
+      "source_location": "L181",
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_p2p_layer_onreceive",
-      "target": "www_assets_js_p2p_layer_validenvelopeshape",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L241",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_onreceive",
-      "target": "www_assets_js_p2p_layer_seen",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L242",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_onreceive",
-      "target": "www_assets_js_p2p_layer_markseen",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L243",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_onreceive",
-      "target": "www_assets_js_p2p_layer_verify",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L245",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_onreceive",
-      "target": "www_assets_js_p2p_layer_dispatch",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L256",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_ontransportjoin",
-      "target": "www_assets_js_p2p_layer_sendhello",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L221",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_ontransportjoin",
-      "target": "www_assets_js_p2p_layer_emit",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L222",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_ontransportleave",
-      "target": "www_assets_js_p2p_layer_emit",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L236",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_sendchat",
-      "target": "www_assets_js_p2p_layer_senddirect",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L525",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_senddirect",
-      "target": "www_assets_js_p2p_layer_senddirectbytransport",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L506",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_senddirectbytransport",
-      "target": "www_assets_js_p2p_layer_signenvelope",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L492",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_senddriverstatusnow",
-      "target": "www_assets_js_p2p_layer_currentloc",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L420",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_senddriverstatusnow",
-      "target": "www_assets_js_p2p_layer_broadcast",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L432",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_senddriverstatusnow",
-      "target": "www_assets_js_p2p_layer_trunc3",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L434",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_sendebikeinfo",
-      "target": "www_assets_js_p2p_layer_senddirect",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L522",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_sendhello",
-      "target": "www_assets_js_p2p_layer_profilesnapshot",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L361",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_sendhello",
-      "target": "www_assets_js_p2p_layer_senddirectbytransport",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L363",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_sendhello",
-      "target": "www_assets_js_p2p_layer_broadcast",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L364",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer_sendlocationupdate",
+      "source": "www_assets_js_p2p_layer_onping",
       "target": "www_assets_js_p2p_layer_senddirect",
       "relation": "calls",
       "_origin": "ast",
@@ -10869,6 +10749,282 @@
       "weight": 1.0
     },
     {
+      "source": "www_assets_js_p2p_layer_onpong",
+      "target": "www_assets_js_p2p_layer_emit",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L534",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_onreceive",
+      "target": "www_assets_js_p2p_layer_validenvelopeshape",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L253",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_onreceive",
+      "target": "www_assets_js_p2p_layer_seen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L254",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_onreceive",
+      "target": "www_assets_js_p2p_layer_markseen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L255",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_onreceive",
+      "target": "www_assets_js_p2p_layer_verify",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L257",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_onreceive",
+      "target": "www_assets_js_p2p_layer_dispatch",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L268",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_ontransportjoin",
+      "target": "www_assets_js_p2p_layer_sendhello",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L233",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_ontransportjoin",
+      "target": "www_assets_js_p2p_layer_emit",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L234",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_ontransportleave",
+      "target": "www_assets_js_p2p_layer_emit",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L248",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_pingpeer",
+      "target": "www_assets_js_p2p_layer_emit",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L505",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_pingpeer",
+      "target": "www_assets_js_p2p_layer_senddirect",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L509",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_reconcilepeers",
+      "target": "www_assets_js_p2p_layer_sendhello",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L482",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_sendchat",
+      "target": "www_assets_js_p2p_layer_senddirect",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L622",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_senddirect",
+      "target": "www_assets_js_p2p_layer_senddirectbytransport",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L603",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_senddirectbytransport",
+      "target": "www_assets_js_p2p_layer_signenvelope",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L589",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_senddriverstatusnow",
+      "target": "www_assets_js_p2p_layer_currentloc",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L440",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_senddriverstatusnow",
+      "target": "www_assets_js_p2p_layer_broadcast",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L452",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_senddriverstatusnow",
+      "target": "www_assets_js_p2p_layer_trunc3",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L454",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_sendebikeinfo",
+      "target": "www_assets_js_p2p_layer_senddirect",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L619",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_sendhello",
+      "target": "www_assets_js_p2p_layer_profilesnapshot",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L381",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_sendhello",
+      "target": "www_assets_js_p2p_layer_senddirectbytransport",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L383",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_sendhello",
+      "target": "www_assets_js_p2p_layer_broadcast",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L384",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_sendlocationupdate",
+      "target": "www_assets_js_p2p_layer_senddirect",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L618",
+      "weight": 1.0
+    },
+    {
       "source": "www_assets_js_p2p_layer_sendrating",
       "target": "www_assets_js_p2p_layer_senddirect",
       "relation": "calls",
@@ -10877,7 +11033,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L524",
+      "source_location": "L621",
       "weight": 1.0
     },
     {
@@ -10889,7 +11045,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L516",
+      "source_location": "L613",
       "weight": 1.0
     },
     {
@@ -10901,7 +11057,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L519",
+      "source_location": "L616",
       "weight": 1.0
     },
     {
@@ -10913,7 +11069,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L518",
+      "source_location": "L615",
       "weight": 1.0
     },
     {
@@ -10925,7 +11081,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L517",
+      "source_location": "L614",
       "weight": 1.0
     },
     {
@@ -10937,7 +11093,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L515",
+      "source_location": "L612",
       "weight": 1.0
     },
     {
@@ -10949,7 +11105,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L523",
+      "source_location": "L620",
       "weight": 1.0
     },
     {
@@ -10961,7 +11117,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L520",
+      "source_location": "L617",
       "weight": 1.0
     },
     {
@@ -10973,7 +11129,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L450",
+      "source_location": "L547",
       "weight": 1.0
     },
     {
@@ -10985,7 +11141,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L539",
+      "source_location": "L636",
       "weight": 1.0
     },
     {
@@ -10997,7 +11153,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L541",
+      "source_location": "L638",
       "weight": 1.0
     },
     {
@@ -11009,7 +11165,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L467",
+      "source_location": "L564",
       "weight": 1.0
     },
     {
@@ -11021,7 +11177,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L470",
+      "source_location": "L567",
       "weight": 1.0
     },
     {
@@ -11561,7 +11717,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1448",
+      "source_location": "L1471",
       "weight": 1.0
     },
     {
@@ -11573,7 +11729,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1464",
+      "source_location": "L1487",
       "weight": 1.0
     },
     {
@@ -11585,7 +11741,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1468",
+      "source_location": "L1491",
       "weight": 1.0
     },
     {
@@ -12855,7 +13011,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
-      "source_location": "L105",
+      "source_location": "L114",
       "weight": 1.0
     },
     {
@@ -12866,7 +13022,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
-      "source_location": "L113",
+      "source_location": "L122",
       "weight": 1.0
     },
     {
@@ -12877,7 +13033,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
-      "source_location": "L119",
+      "source_location": "L128",
       "weight": 1.0
     },
     {
@@ -12888,7 +13044,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
-      "source_location": "L126",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -12899,29 +13055,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
-      "source_location": "L135",
-      "weight": 1.0
-    },
-    {
-      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_track_w_webview_wrapper_parallel_device_side",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dev_phases.md",
       "source_location": "L144",
-      "weight": 1.0
-    },
-    {
-      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_risks",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dev_phases.md",
-      "source_location": "L148",
       "weight": 1.0
     },
     {
@@ -12937,13 +13071,46 @@
     },
     {
       "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "target": "dev_phases_phase_14_signed_latency_auto_connect_reconcile_done_code_field_test_pending",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dev_phases.md",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "target": "dev_phases_track_w_webview_wrapper_parallel_device_side",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dev_phases.md",
+      "source_location": "L160",
+      "weight": 1.0
+    },
+    {
+      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "target": "dev_phases_risks",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dev_phases.md",
+      "source_location": "L164",
+      "weight": 1.0
+    },
+    {
+      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
       "target": "dev_phases_open_decisions_need_your_call",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
-      "source_location": "L152",
+      "source_location": "L168",
       "weight": 1.0
     },
     {
@@ -12954,7 +13121,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
-      "source_location": "L160",
+      "source_location": "L176",
       "weight": 1.0
     },
     {
@@ -13047,7 +13214,7 @@
     },
     {
       "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_phase_8_orbitdb_full_replacement_track_after_7_gates_each_step",
+      "target": "dev_phases_phase_8_orbitdb_via_webconnect_bridge_p0_spike_verdict_conditional_go",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -15159,13 +15326,24 @@
     },
     {
       "source": "www_assets_js_app",
+      "target": "www_assets_js_app_driveraccept",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1014",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
       "target": "www_assets_js_app_driverreject",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1034",
+      "source_location": "L1053",
       "weight": 1.0
     },
     {
@@ -15176,7 +15354,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1038",
+      "source_location": "L1057",
       "weight": 1.0
     },
     {
@@ -15187,7 +15365,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1067",
+      "source_location": "L1086",
       "weight": 1.0
     },
     {
@@ -15198,7 +15376,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1084",
+      "source_location": "L1103",
       "weight": 1.0
     },
     {
@@ -15209,7 +15387,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1099",
+      "source_location": "L1118",
       "weight": 1.0
     },
     {
@@ -15220,7 +15398,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1103",
+      "source_location": "L1122",
       "weight": 1.0
     },
     {
@@ -15231,7 +15409,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1111",
+      "source_location": "L1130",
       "weight": 1.0
     },
     {
@@ -15242,7 +15420,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1126",
+      "source_location": "L1145",
       "weight": 1.0
     },
     {
@@ -15253,7 +15431,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1130",
+      "source_location": "L1149",
       "weight": 1.0
     },
     {
@@ -15264,7 +15442,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1136",
+      "source_location": "L1155",
       "weight": 1.0
     },
     {
@@ -15275,7 +15453,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1143",
+      "source_location": "L1162",
       "weight": 1.0
     },
     {
@@ -15286,7 +15464,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1154",
+      "source_location": "L1173",
       "weight": 1.0
     },
     {
@@ -15297,7 +15475,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1177",
+      "source_location": "L1196",
       "weight": 1.0
     },
     {
@@ -15308,7 +15486,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1199",
+      "source_location": "L1218",
       "weight": 1.0
     },
     {
@@ -15319,7 +15497,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1307",
+      "source_location": "L1330",
       "weight": 1.0
     },
     {
@@ -15330,7 +15508,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1354",
+      "source_location": "L1377",
       "weight": 1.0
     },
     {
@@ -15341,7 +15519,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1380",
+      "source_location": "L1403",
       "weight": 1.0
     },
     {
@@ -15352,7 +15530,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1400",
+      "source_location": "L1423",
       "weight": 1.0
     },
     {
@@ -15363,7 +15541,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1413",
+      "source_location": "L1436",
       "weight": 1.0
     },
     {
@@ -15374,7 +15552,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1432",
+      "source_location": "L1455",
       "weight": 1.0
     },
     {
@@ -15385,7 +15563,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1563",
+      "source_location": "L1586",
       "weight": 1.0
     },
     {
@@ -15396,7 +15574,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1573",
+      "source_location": "L1596",
       "weight": 1.0
     },
     {
@@ -15418,7 +15596,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1635",
+      "source_location": "L1658",
       "weight": 1.0
     },
     {
@@ -15429,18 +15607,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1676",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_bindebikescreen",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1694",
+      "source_location": "L1699",
       "weight": 1.0
     },
     {
@@ -15467,13 +15634,24 @@
     },
     {
       "source": "www_assets_js_app",
+      "target": "www_assets_js_app_bindebikescreen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1717",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
       "target": "www_assets_js_app_bindonboardingscreen",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1754",
+      "source_location": "L1777",
       "weight": 1.0
     },
     {
@@ -15506,7 +15684,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1928",
+      "source_location": "L1951",
       "weight": 1.0
     },
     {
@@ -15517,7 +15695,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1966",
+      "source_location": "L1989",
       "weight": 1.0
     },
     {
@@ -15528,7 +15706,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1972",
+      "source_location": "L1995",
       "weight": 1.0
     },
     {
@@ -15539,7 +15717,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1978",
+      "source_location": "L2001",
       "weight": 1.0
     },
     {
@@ -15693,7 +15871,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L634",
+      "source_location": "L653",
       "weight": 1.0
     },
     {
@@ -15704,7 +15882,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L650",
+      "source_location": "L669",
       "weight": 1.0
     },
     {
@@ -15715,7 +15893,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L692",
+      "source_location": "L711",
       "weight": 1.0
     },
     {
@@ -15726,7 +15904,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L725",
+      "source_location": "L744",
       "weight": 1.0
     },
     {
@@ -15737,7 +15915,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L801",
+      "source_location": "L820",
       "weight": 1.0
     },
     {
@@ -15748,7 +15926,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L806",
+      "source_location": "L825",
       "weight": 1.0
     },
     {
@@ -15759,7 +15937,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L841",
+      "source_location": "L860",
       "weight": 1.0
     },
     {
@@ -15770,7 +15948,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L845",
+      "source_location": "L864",
       "weight": 1.0
     },
     {
@@ -15781,7 +15959,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L853",
+      "source_location": "L872",
       "weight": 1.0
     },
     {
@@ -15792,7 +15970,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L868",
+      "source_location": "L887",
       "weight": 1.0
     },
     {
@@ -15803,7 +15981,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L875",
+      "source_location": "L894",
       "weight": 1.0
     },
     {
@@ -15814,7 +15992,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L887",
+      "source_location": "L906",
       "weight": 1.0
     },
     {
@@ -15825,7 +16003,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L893",
+      "source_location": "L912",
       "weight": 1.0
     },
     {
@@ -15836,7 +16014,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L962",
+      "source_location": "L981",
       "weight": 1.0
     },
     {
@@ -15847,18 +16025,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L972",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_driveraccept",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L995",
+      "source_location": "L991",
       "weight": 1.0
     },
     {
@@ -15869,7 +16036,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1454",
+      "source_location": "L1477",
       "weight": 1.0
     },
     {
@@ -17398,7 +17565,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L138",
+      "source_location": "L143",
       "weight": 1.0
     },
     {
@@ -17409,7 +17576,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L175",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -17420,7 +17587,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L184",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -17431,7 +17598,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L186",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -17442,7 +17609,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L218",
+      "source_location": "L230",
       "weight": 1.0
     },
     {
@@ -17453,7 +17620,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L225",
+      "source_location": "L237",
       "weight": 1.0
     },
     {
@@ -17464,7 +17631,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L239",
+      "source_location": "L251",
       "weight": 1.0
     },
     {
@@ -17475,7 +17642,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L259",
+      "source_location": "L271",
       "weight": 1.0
     },
     {
@@ -17486,7 +17653,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L266",
+      "source_location": "L278",
       "weight": 1.0
     },
     {
@@ -17497,7 +17664,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L267",
+      "source_location": "L279",
       "weight": 1.0
     },
     {
@@ -17508,7 +17675,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L272",
+      "source_location": "L284",
       "weight": 1.0
     },
     {
@@ -17519,7 +17686,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L336",
+      "source_location": "L356",
       "weight": 1.0
     },
     {
@@ -17530,7 +17697,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L350",
+      "source_location": "L370",
       "weight": 1.0
     },
     {
@@ -17541,7 +17708,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L360",
+      "source_location": "L380",
       "weight": 1.0
     },
     {
@@ -17552,7 +17719,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L367",
+      "source_location": "L387",
       "weight": 1.0
     },
     {
@@ -17563,7 +17730,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L386",
+      "source_location": "L406",
       "weight": 1.0
     },
     {
@@ -17574,133 +17741,34 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L419",
+      "source_location": "L439",
       "weight": 1.0
     },
     {
       "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_canonical",
+      "target": "www_assets_js_p2p_layer_reconcilepeers",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L442",
+      "source_location": "L467",
       "weight": 1.0
     },
     {
       "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_signenvelope",
+      "target": "www_assets_js_p2p_layer_pingpeer",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L446",
+      "source_location": "L495",
       "weight": 1.0
     },
     {
       "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_sign",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L456",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_verify",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L462",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_broadcast",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L477",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_senddirectbytransport",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L490",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_senddirect",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L503",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_peercount",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L509",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_sendriderequest",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L515",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_sendrideaccept",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L516",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_sendridereject",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L517",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_sendridelocked",
+      "target": "www_assets_js_p2p_layer_onping",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -17711,13 +17779,156 @@
     },
     {
       "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_onpong",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L526",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_canonical",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L539",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_signenvelope",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L543",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_sign",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L553",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_verify",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L559",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_broadcast",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L574",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_senddirectbytransport",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L587",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_senddirect",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L600",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_peercount",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L606",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_sendriderequest",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L612",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_sendrideaccept",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L613",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_sendridereject",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L614",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_sendridelocked",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L615",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
       "target": "www_assets_js_p2p_layer_sendridecancel",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L519",
+      "source_location": "L616",
       "weight": 1.0
     },
     {
@@ -17728,7 +17939,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L520",
+      "source_location": "L617",
       "weight": 1.0
     },
     {
@@ -17739,7 +17950,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L521",
+      "source_location": "L618",
       "weight": 1.0
     },
     {
@@ -17750,7 +17961,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L522",
+      "source_location": "L619",
       "weight": 1.0
     },
     {
@@ -17761,7 +17972,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L523",
+      "source_location": "L620",
       "weight": 1.0
     },
     {
@@ -17772,7 +17983,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L524",
+      "source_location": "L621",
       "weight": 1.0
     },
     {
@@ -17783,7 +17994,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L525",
+      "source_location": "L622",
       "weight": 1.0
     },
     {
@@ -17794,7 +18005,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L529",
+      "source_location": "L626",
       "weight": 1.0
     },
     {
@@ -17805,7 +18016,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L547",
+      "source_location": "L644",
       "weight": 1.0
     },
     {
@@ -17816,7 +18027,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L77",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -17827,7 +18038,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L95",
+      "source_location": "L97",
       "weight": 1.0
     },
     {
@@ -18434,7 +18645,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L554",
+      "source_location": "L651",
       "weight": 1.0
     },
     {
@@ -18446,7 +18657,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L554",
+      "source_location": "L651",
       "weight": 1.0
     },
     {
@@ -18458,7 +18669,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L554",
+      "source_location": "L651",
       "weight": 1.0
     },
     {
@@ -18578,7 +18789,7 @@
       "confidence_score": 0.95,
       "context": "_isRegistered",
       "source_file": "dev_phases.md",
-      "source_location": "L110",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -18614,7 +18825,7 @@
       "confidence_score": 0.95,
       "context": "_needsUnlock",
       "source_file": "dev_phases.md",
-      "source_location": "L110",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -18650,7 +18861,7 @@
       "confidence_score": 0.95,
       "context": "_sendDriverStatusNow",
       "source_file": "dev_phases.md",
-      "source_location": "L132",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -18674,7 +18885,7 @@
       "confidence_score": 0.95,
       "context": "_tileLayer()",
       "source_file": "dev_phases.md",
-      "source_location": "L128",
+      "source_location": "L137",
       "weight": 1.0
     },
     {
@@ -18711,18 +18922,6 @@
       "context": "appendEvent",
       "source_file": "dev_phases.md",
       "source_location": "L59",
-      "weight": 1.0
-    },
-    {
-      "source": "dev_phases_phase_8_orbitdb_full_replacement_track_after_7_gates_each_step",
-      "target": "www_assets_js_db_layer_appendevent",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "appendEvent",
-      "source_file": "dev_phases.md",
-      "source_location": "L101",
       "weight": 1.0
     },
     {
@@ -18782,7 +18981,7 @@
       "confidence_score": 0.95,
       "context": "cachedLocation",
       "source_file": "dev_phases.md",
-      "source_location": "L128",
+      "source_location": "L137",
       "weight": 1.0
     },
     {
@@ -18818,7 +19017,7 @@
       "confidence_score": 0.95,
       "context": "displayName()",
       "source_file": "dev_phases.md",
-      "source_location": "L115",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -18890,7 +19089,7 @@
       "confidence_score": 0.95,
       "context": "getPin()",
       "source_file": "dev_phases.md",
-      "source_location": "L121",
+      "source_location": "L130",
       "weight": 1.0
     },
     {
@@ -18902,7 +19101,7 @@
       "confidence_score": 0.95,
       "context": "hashPin",
       "source_file": "dev_phases.md",
-      "source_location": "L122",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
@@ -18938,7 +19137,7 @@
       "confidence_score": 0.95,
       "context": "processAvatar()",
       "source_file": "dev_phases.md",
-      "source_location": "L116",
+      "source_location": "L125",
       "weight": 1.0
     },
     {
@@ -18962,7 +19161,7 @@
       "confidence_score": 0.95,
       "context": "registerPasskey",
       "source_file": "dev_phases.md",
-      "source_location": "L108",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -19010,7 +19209,7 @@
       "confidence_score": 0.95,
       "context": "saveProfile",
       "source_file": "dev_phases.md",
-      "source_location": "L117",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -19022,7 +19221,7 @@
       "confidence_score": 0.95,
       "context": "setPin()",
       "source_file": "dev_phases.md",
-      "source_location": "L121",
+      "source_location": "L130",
       "weight": 1.0
     },
     {
@@ -19058,7 +19257,7 @@
       "confidence_score": 0.95,
       "context": "unlockWithPasskey",
       "source_file": "dev_phases.md",
-      "source_location": "L108",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -19106,7 +19305,7 @@
       "confidence_score": 0.95,
       "context": "validateRideRequest",
       "source_file": "dev_phases.md",
-      "source_location": "L137",
+      "source_location": "L146",
       "weight": 1.0
     },
     {
@@ -19142,10 +19341,10 @@
       "confidence_score": 0.95,
       "context": "verifyPin",
       "source_file": "dev_phases.md",
-      "source_location": "L122",
+      "source_location": "L131",
       "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "92b3b57ac3f9cad62f395f1151dfc87598a8c848"
+  "built_at_commit": "d719712dfa9f98afc70beda3788d13025e94fc8d"
 }

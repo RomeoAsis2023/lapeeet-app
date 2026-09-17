@@ -619,15 +619,34 @@
             Array.from(LapeeetMap.homeMarkers.keys()).forEach(k => {
                 if (k !== 'ref' && !want.has(k)) LapeeetMap.removeHomePin(k);
             });
+            // Phase 14: latency per row + ping peers missing fresh readings (max 5/refresh).
+            const latOf = (key) => {
+                if (key[1] !== ':') return null;
+                const rec = LapeeetP2P.latency && LapeeetP2P.latency.get(key.slice(2));
+                return rec || null;
+            };
+            let pingBudget = 5;
+            const nowMs = Date.now();
+            shown.forEach(r => {
+                if ((r.key[0] === 'd' || r.key[0] === 'r') && r.key[1] === ':' && pingBudget > 0) {
+                    const id = r.key.slice(2);
+                    const rec = LapeeetP2P.latency && LapeeetP2P.latency.get(id);
+                    if ((!rec || nowMs - rec.ts > 60000) && LapeeetP2P.pingPeer(id)) pingBudget--;
+                }
+            });
+            const latStr = (key) => {
+                const rec = latOf(key);
+                return rec ? ` · ${rec.rtt}ms` : '';
+            };
             shown.forEach(r => LapeeetMap.upsertHomePin(r.key, r.lat, r.lng, r.kind,
-                r.label + ' · ' + r.km.toFixed(1) + ' km'));
+                r.label + ' · ' + r.km.toFixed(1) + ' km' + latStr(r.key)));
             const pendHtml = pending.slice(0, 10).map(p =>
                 `<li><span>${this._escapeAttr(p.label)}</span><strong class="text-muted">locating…</strong></li>`
             ).join('');
             const total = shown.length + pending.length;
             $('#nearCount').text(total + ' within ' + R + ' km');
             $('#nearList').html((shown.length || pending.length) ? shown.map(r =>
-                `<li><span>${this._escapeAttr(r.label)}</span><strong>${r.km.toFixed(1)} km</strong></li>`
+                `<li><span>${this._escapeAttr(r.label)}</span><strong>${r.km.toFixed(1)} km${latStr(r.key)}</strong></li>`
             ).join('') + pendHtml : '<li class="small text-muted">No peers in range yet — mesh is still discovering.</li>');
         },
 
@@ -1209,6 +1228,10 @@
                     break;
                 case T.HELLO:
                 case T.DRIVER_STATUS:
+                    if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
+                    break;
+                case T.PONG:
+                case '__ping-timeout':
                     if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
                     break;
                 case T.RIDE_REQUEST:

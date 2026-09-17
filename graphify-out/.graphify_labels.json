@@ -9,15 +9,8 @@
   "7": "p2p-layer.js",
   "8": "call-layer.js",
   "9": "ref_fs",
-  "10": "base.js",
-  "11": "7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)",
+  "10": "Lapeeet — dev_phases.md (master plan, no skips)",
   "12": "Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist",
-  "13": "3.1 Official Currency — Philippine Peso `₱ PHP`",
-  "14": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
-  "15": "11. COMPLETE ACTIVITY REGISTER (NO SKIP — every command run, every manual action)",
-  "16": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
-  "17": "10. DB + Storage Change Manifest (NO SKIP)",
-  "18": "1. Project Vision & Principles (UNCHANGED — Still Governs All Decisions)",
   "19": "manifest.json",
   "20": "deploy-pages.ps1",
   "21": "auth-layer.js",
@@ -27,7 +20,5 @@
   "25": "check-wiring.js",
   "26": "check-p2p.js",
   "27": "check-guard.js",
-  "28": "converge.js",
-  "29": "_bindCapacityDropdown",
-  "30": "8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)"
+  "28": "converge.js"
 }

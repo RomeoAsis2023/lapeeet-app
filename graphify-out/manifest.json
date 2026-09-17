@@ -120,15 +120,21 @@
     "semantic_hash": ""
   },
   "dev_phases.md": {
-    "mtime": 1789637372.5119693,
-    "seen": 1789637539.6743731,
-    "ast_hash": "39bd39f0bf823cc9069989caa81b078c",
+    "mtime": 1789637615.5168986,
+    "seen": 1789637787.1454313,
+    "ast_hash": "fd00782b0982a98a7aea1388c966a2e1",
     "semantic_hash": ""
   },
   "tools/check-mode.js": {
     "mtime": 1789637580.9874527,
     "seen": 1789637585.2610404,
     "ast_hash": "1e3719d0e1b0540edb071c4692b70a2c",
+    "semantic_hash": ""
+  },
+  "tools/deploy-pages.ps1": {
+    "mtime": 1789637780.2638297,
+    "seen": 1789637787.1454146,
+    "ast_hash": "da0efa09c44693779815bd75f1ca72c2",
     "semantic_hash": ""
   }
 }

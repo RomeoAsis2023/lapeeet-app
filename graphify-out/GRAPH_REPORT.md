@@ -1,17 +1,17 @@
 # Graph Report - Lapeeet  (2026-09-17)
 
 ## Corpus Check
-- 17 files · ~32,583 words
+- 18 files · ~32,870 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: .css 5, (none) 2, .psd 1)
 
 ## Summary
-- 375 nodes · 666 edges · 19 communities
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 46 edges (avg confidence: 0.94)
+- 376 nodes · 668 edges · 21 communities (20 shown, 1 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 48 edges (avg confidence: 0.94)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9ba55d7f`
+- Built from commit: `9ac967c6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,6 +26,7 @@
 - p2p-layer.js
 - call-layer.js
 - check-mode.js
+- base.js
 - 3.1 Official Currency — Philippine Peso `₱ PHP`
 - Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist
 - 6. Feature Inventory & Scope (Updated with Completed Sub-items)
@@ -63,7 +64,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (19 total, 0 thin omitted)
+## Communities (21 total, 1 thin omitted)
 
 ### Community 0 - "7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)"
 Cohesion: 0.20
@@ -71,7 +72,7 @@ Nodes (11): 0. Executive Summary of Work Done So Far, 7. Development Phases & LI
 
 ### Community 1 - "app.js"
 Cohesion: 0.09
-Nodes (45): Phase 6 — `?mode=` Role Deep Links ⬜ NEXT (small, independent), _bindAutocomplete(), _bindCapacityDropdown(), applyFocus(), open(), _bindDataScreen(), _bindEbikeScreen(), _bindMapScreenButtons() (+37 more)
+Nodes (45): Phase 6 — `?mode=` Role Deep Links ✅ DONE, _bindAutocomplete(), _bindCapacityDropdown(), applyFocus(), open(), _bindDataScreen(), _bindEbikeScreen(), _bindMapScreenButtons() (+37 more)
 
 ### Community 2 - "db-layer.js"
 Cohesion: 0.14
@@ -90,8 +91,8 @@ Cohesion: 0.12
 Nodes (14): 5.1 Tenant Roles, 5.2 Tenancy Guarantees (UPDATED — 6 guarantees now, last two new), 5.3 Data Sharing Boundaries (same as original §3.3 — unchanged), 5. User-Hosted Tenancy Model (Updated With isomorphic-git Versioned Snapshot Layer), commit(), createRepo(), _ensureRepo(), fetch() (+6 more)
 
 ### Community 6 - "Lapeeet — dev_phases.md (master plan, no skips)"
-Cohesion: 0.06
-Nodes (31): argparse, base64, Lapeeet — dev_phases.md (master plan, no skips), Live vs Dev separation (locked), Open decisions (need your call), Phase 0 — Single-File Shell ✅ DONE (verified 2026-09-17, step by step), Phase 2 — sql.js Tenant DB + Onboarding + E-Bikes ✅ DONE, Phase 5 — Polish + Manifest ✅ DONE (code; device test pending) (+23 more)
+Cohesion: 0.09
+Nodes (24): argparse, base64, Lapeeet — dev_phases.md (master plan, no skips), Live vs Dev separation (locked), Open decisions (need your call), Phase 2 — sql.js Tenant DB + Onboarding + E-Bikes ✅ DONE, Phase 5 — Polish + Manifest ✅ DONE (code; device test pending), Phase 7 — GitHub Pages Deploy ⬜ (after 6) (+16 more)
 
 ### Community 7 - "p2p-layer.js"
 Cohesion: 0.10
@@ -104,6 +105,10 @@ Nodes (18): Phase 4 — Call + Chat ✅ DONE (code; field test pending), Phase 4
 ### Community 9 - "check-mode.js"
 Cohesion: 0.07
 Nodes (23): ref_fs, ref_path, ref_vm, fs, path, VL, all, fs (+15 more)
+
+### Community 10 - "base.js"
+Cohesion: 0.25
+Nodes (7): Phase 0 — Single-File Shell ✅ DONE (verified 2026-09-17, step by step), animatedHeader(), offlineMode(), offlineModeToast(), onlineMode(), onlineModeToast(), toastbox()
 
 ### Community 11 - "3.1 Official Currency — Philippine Peso `₱ PHP`"
 Cohesion: 0.33
@@ -143,21 +148,22 @@ Nodes (11): background_color, description, display, icons, lang, name, orientati
 
 ## Knowledge Gaps
 - **79 isolated node(s):** `fs`, `path`, `VL`, `fs`, `vm` (+74 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 123 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 124 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Phase 1 — Map + 60 km Gate + Organic Maps` connect `map-layer.js` to `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)`, `app.js`?**
-  _High betweenness centrality (0.266) - this node is a cross-community bridge._
 - **Why does `_calcFare()` connect `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)` to `app.js`, `map-layer.js`, `6. Feature Inventory & Scope (Updated with Completed Sub-items)`?**
-  _High betweenness centrality (0.266) - this node is a cross-community bridge._
+  _High betweenness centrality (0.259) - this node is a cross-community bridge._
+- **Why does `Lapeeet — dev_phases.md (master plan, no skips)` connect `Lapeeet — dev_phases.md (master plan, no skips)` to `app.js`, `db-layer.js`, `map-layer.js`, `call-layer.js`, `base.js`?**
+  _High betweenness centrality (0.259) - this node is a cross-community bridge._
 - **Why does `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` connect `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` to `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)`, `ui-components.js`, `git-layer.js`, `3.1 Official Currency — Philippine Peso `₱ PHP``, `6. Feature Inventory & Scope (Updated with Completed Sub-items)`, `11. COMPLETE ACTIVITY REGISTER (NO SKIP — every command run, every manual action)`, `2.2 Developer Tools / Permanent Memory Layer (outside `www/`)`, `10. DB + Storage Change Manifest (NO SKIP)`, `1. Project Vision & Principles (UNCHANGED — Still Governs All Decisions)`, `8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)`?**
-  _High betweenness centrality (0.254) - this node is a cross-community bridge._
+  _High betweenness centrality (0.253) - this node is a cross-community bridge._
 - **What connects `fs`, `path`, `VL` to the rest of the system?**
   _79 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.09308510638297872 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09485815602836879 - nodes in this community are weakly interconnected._
 - **Should `db-layer.js` be split into smaller, more focused modules?**
   _Cohesion score 0.1411764705882353 - nodes in this community are weakly interconnected._
 - **Should `map-layer.js` be split into smaller, more focused modules?**

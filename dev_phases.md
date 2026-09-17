@@ -83,13 +83,13 @@
 - [x] 6.2 Valid param persisted to localStorage; `_syncModeUrl()` via `history.replaceState` on boot + toggle + onboarding finish (preserves other params); onboarding role select pre-filled
 - [x] 6.3 Verified: `tools/check-mode.js` 16/16 (mapping, priority, sync, param preservation); browser check left: `file://` + Pages URLs both roles
 
-## Phase 7 — GitHub Pages Deploy ⬜ (after 6)
+## Phase 7 — GitHub Pages Deploy 🟡 SHIPPED, awaiting source selection
 
-**Exit:** `https://romeoasis2023.github.io/lapeeet-app/` serves current build; `?mode=` links work; push-to-`main` auto-deploys.
-- [ ] 7.1 Actions workflow: build (`build-single.py`) → upload `dist/` → `actions/deploy-pages`; `dist/` stays git-ignored; enable Pages (Build from Actions) in repo settings
-- [ ] 7.2 Keep manifest `start_url/scope` relative (subpath-safe); deploy copies `index.html` (renamed) + `manifest.json` + icons to publish root
-- [ ] 7.3 Mixed-content CI guard: fail build on non-allowlisted `http://` URLs (tiles/Nominatim/OSRM/relays must stay HTTPS)
-- [ ] 7.4 Smoke test live URL on desktop + one phone browser (boot, map, `?mode=` both roles, no console errors)
+**Payload live on `gh-pages` branch** (`index.html` + `manifest.json` + icons + `.nojekyll`); site 404s until repo Settings → Pages → Source = `gh-pages` / root.
+- [x] 7.1 `tools/deploy-pages.ps1`: rebuild → publish `dist/` to `gh-pages` (preserves history on re-runs); `dist/` stays git-ignored. (Branch approach chosen over Actions — matches created site setup.)
+- [x] 7.2 Manifest `start_url/scope` already relative (subpath-safe); publish root = `index.html` + `manifest.json` + `assets/img/`
+- [ ] 7.3 Mixed-content CI guard: fail build on non-allowlisted `http://` URLs (deferred — one-line addition when Actions CI lands)
+- [ ] 7.4 Smoke test live URL on desktop + one phone (boot, map, `?mode=` both roles, no console errors) — blocked on source selection
 
 ## Phase 8 — OrbitDB Full Replacement ⬜ TRACK (after 7; gates each step)
 

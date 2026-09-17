@@ -556,6 +556,114 @@
       "source_location": "L1148"
     },
     {
+      "id": "www_assets_js_base_addtohome",
+      "label": "AddtoHome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "addtohome()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L428"
+    },
+    {
+      "id": "www_assets_js_base_animatedheader",
+      "label": "animatedHeader()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "animatedheader()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L292"
+    },
+    {
+      "id": "www_assets_js_base_godownbutton",
+      "label": "goDownButton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "godownbutton()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L35"
+    },
+    {
+      "id": "www_assets_js_base_notification",
+      "label": "notification()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "notification()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L235"
+    },
+    {
+      "id": "www_assets_js_base_offlinemode",
+      "label": "offlineMode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "offlinemode()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L361"
+    },
+    {
+      "id": "www_assets_js_base_offlinemodetoast",
+      "label": "offlineModeToast()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "offlinemodetoast()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L326"
+    },
+    {
+      "id": "www_assets_js_base_onlinemode",
+      "label": "onlineMode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "onlinemode()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L342"
+    },
+    {
+      "id": "www_assets_js_base_onlinemodetoast",
+      "label": "onlineModeToast()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "onlinemodetoast()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L310"
+    },
+    {
+      "id": "www_assets_js_base_toastbox",
+      "label": "toastbox()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "toastbox()",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L263"
+    },
+    {
       "id": "www_assets_js_db_layer_all",
       "label": "_all()",
       "_callable": true,
@@ -1876,114 +1984,6 @@
       "source_location": "L186"
     },
     {
-      "id": "www_assets_js_base_addtohome",
-      "label": "AddtoHome()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "addtohome()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L428"
-    },
-    {
-      "id": "www_assets_js_base_animatedheader",
-      "label": "animatedHeader()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "animatedheader()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L292"
-    },
-    {
-      "id": "www_assets_js_base_godownbutton",
-      "label": "goDownButton()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "godownbutton()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L35"
-    },
-    {
-      "id": "www_assets_js_base_notification",
-      "label": "notification()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "notification()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L235"
-    },
-    {
-      "id": "www_assets_js_base_offlinemode",
-      "label": "offlineMode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "offlinemode()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L361"
-    },
-    {
-      "id": "www_assets_js_base_offlinemodetoast",
-      "label": "offlineModeToast()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "offlinemodetoast()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L326"
-    },
-    {
-      "id": "www_assets_js_base_onlinemode",
-      "label": "onlineMode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "onlinemode()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L342"
-    },
-    {
-      "id": "www_assets_js_base_onlinemodetoast",
-      "label": "onlineModeToast()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "onlinemodetoast()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L310"
-    },
-    {
-      "id": "www_assets_js_base_toastbox",
-      "label": "toastbox()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "toastbox()",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L263"
-    },
-    {
       "id": "www_assets_js_db_layer_processphoto",
       "label": "processPhoto()",
       "_callable": true,
@@ -2883,14 +2883,14 @@
       "source_location": "L1"
     },
     {
-      "id": "dev_phases_phase_6_mode_role_deep_links_next_small_independent",
-      "label": "Phase 6 \u2014 `?mode=` Role Deep Links \u2b1c NEXT (small, independent)",
+      "id": "dev_phases_phase_6_mode_role_deep_links_done",
+      "label": "Phase 6 \u2014 `?mode=` Role Deep Links \u2705 DONE",
       "_origin": "ast",
       "community": 1,
       "community_name": "app.js",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "phase 6 \u2014 `?mode=` role deep links \u2b1c next (small, independent)",
+      "norm_label": "phase 6 \u2014 `?mode=` role deep links \u2705 done",
       "source_file": "dev_phases.md",
       "source_location": "L79"
     },
@@ -2904,6 +2904,29 @@
       "norm_label": "note: base.js already fades #loader after domcontentloaded. here we just unhide...",
       "source_file": "www/assets/js/app.js",
       "source_location": "L132"
+    },
+    {
+      "id": "www_assets_js_base",
+      "label": "base.js",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "code",
+      "norm_label": "base.js",
+      "source_file": "www/assets/js/base.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_phase_0_single_file_shell_done_verified_2026_09_17_step_by_step",
+      "label": "Phase 0 \u2014 Single-File Shell \u2705 DONE (verified 2026-09-17, step by step)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "base.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 0 \u2014 single-file shell \u2705 done (verified 2026-09-17, step by step)",
+      "source_file": "dev_phases.md",
+      "source_location": "L26"
     },
     {
       "id": "lapeet_app_development_3_1_1_canonical_formatter_one_location_all_code_calls_this",
@@ -3565,6 +3588,17 @@
       "source_location": "L53"
     },
     {
+      "id": "tools_deploy_pages",
+      "label": "deploy-pages.ps1",
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "deploy-pages.ps1",
+      "file_type": "code",
+      "norm_label": "deploy-pages.ps1",
+      "source_file": "tools/deploy-pages.ps1",
+      "source_location": "L1"
+    },
+    {
       "id": "www_assets_js_map_layer",
       "label": "map-layer.js",
       "_origin": "ast",
@@ -3871,17 +3905,6 @@
       "source_location": "L1"
     },
     {
-      "id": "www_assets_js_base",
-      "label": "base.js",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "base.js",
-      "source_file": "www/assets/js/base.js",
-      "source_location": "L1"
-    },
-    {
       "id": "dev_phases",
       "label": "dev_phases.md",
       "_origin": "ast",
@@ -3928,18 +3951,6 @@
       "norm_label": "open decisions (need your call)",
       "source_file": "dev_phases.md",
       "source_location": "L112"
-    },
-    {
-      "id": "dev_phases_phase_0_single_file_shell_done_verified_2026_09_17_step_by_step",
-      "label": "Phase 0 \u2014 Single-File Shell \u2705 DONE (verified 2026-09-17, step by step)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 0 \u2014 single-file shell \u2705 done (verified 2026-09-17, step by step)",
-      "source_file": "dev_phases.md",
-      "source_location": "L26"
     },
     {
       "id": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
@@ -7974,7 +7985,7 @@
     },
     {
       "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_phase_6_mode_role_deep_links_next_small_independent",
+      "target": "dev_phases_phase_6_mode_role_deep_links_done",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11739,6 +11750,18 @@
       "weight": 1.0
     },
     {
+      "source": "dev_phases_phase_6_mode_role_deep_links_done",
+      "target": "www_assets_js_app_modefromparam",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "_modeFromParam",
+      "source_file": "dev_phases.md",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
       "source": "lapeet_app_development_phase_0_project_scaffolding_static_setup_100_completed",
       "target": "www_assets_js_app_populatesettingsgit",
       "relation": "references",
@@ -11760,6 +11783,18 @@
       "context": "_screenMap()",
       "source_file": "Lapeet_app_development.md",
       "source_location": "L454",
+      "weight": 1.0
+    },
+    {
+      "source": "dev_phases_phase_6_mode_role_deep_links_done",
+      "target": "www_assets_js_app_syncmodeurl",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "_syncModeUrl()",
+      "source_file": "dev_phases.md",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -12003,7 +12038,7 @@
       "weight": 1.0
     },
     {
-      "source": "dev_phases_phase_6_mode_role_deep_links_next_small_independent",
+      "source": "dev_phases_phase_6_mode_role_deep_links_done",
       "target": "www_assets_js_app_resolveinitialrole",
       "relation": "references",
       "_origin": "ast",
@@ -12112,5 +12147,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9ba55d7fb18a70aeea51d17eb2af58b98733ae1b"
+  "built_at_commit": "9ac967c6e77b29bb1ca22c07ea08b4ff2b1d5770"
 }

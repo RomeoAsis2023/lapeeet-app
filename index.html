@@ -9791,6 +9791,109 @@ body.dark-mode-active #appBottomMenu.appBottomMenu .item .action-button ion-icon
     }
 }
 
+/* =============================================================
+   FULL-PAGE AUTH (register = onboarding wizard, login = lock screen)
+   Immersive branded pages: big logo-full.png hero, step dots,
+   roomy card, large tap targets. body.auth-mode hides the bottom
+   tab bar so auth truly fills the page.
+   ============================================================= */
+body.auth-mode #appBottomMenu.appBottomMenu,
+body.auth-mode #appBottomMenu {
+    display: none !important;
+}
+body.auth-mode #appCapsule,
+body.dark-mode-active.auth-mode #appCapsule {
+    padding-bottom: 24px !important;
+}
+.auth-page {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 26px 18px 30px !important;
+    background:
+      radial-gradient(700px 340px at 50% -60px, rgba(30,116,253,0.22), transparent 65%),
+      linear-gradient(180deg, #0a1324 0%, #0b1629 60%, #0a1324 100%) !important;
+}
+.auth-logo {
+    width: min(240px, 68vw);
+    height: auto;
+    display: block;
+    margin: 6px auto 4px;
+    filter: drop-shadow(0 10px 26px rgba(30, 116, 253, 0.35));
+}
+.auth-tagline {
+    text-align: center;
+    color: var(--lapeeet-text-mute);
+    font-size: 13px;
+    margin: 2px 0 18px;
+    letter-spacing: 0.2px;
+}
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(180deg, var(--lapeeet-cardbg) 0%, var(--lapeeet-cardbg-2) 100%) !important;
+    border: 1px solid rgba(30, 116, 253, 0.18) !important;
+    border-radius: 20px !important;
+    box-shadow:
+      0 18px 44px rgba(0, 0, 0, 0.42),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    overflow: hidden;
+}
+.auth-card .card-body { padding: 24px 20px !important; }
+.auth-title {
+    color: #ffffff !important;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 2px;
+    text-align: center;
+}
+.auth-sub {
+    color: var(--lapeeet-text-mute) !important;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+/* step dots */
+.auth-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 18px;
+}
+.auth-dots span {
+    width: 26px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+}
+.auth-dots span.done { background: rgba(30, 116, 253, 0.55); }
+.auth-dots span.now {
+    background: linear-gradient(90deg, var(--lapeeet-primary), #5aa1ff);
+    box-shadow: 0 0 10px rgba(30, 116, 253, 0.6);
+}
+.auth-card .btn-primary.btn-block {
+    min-height: 52px;
+    font-size: 16px;
+    border-radius: 14px !important;
+}
+.auth-icon-ring {
+    width: 76px;
+    height: 76px;
+    margin: 2px auto 12px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    color: #8cbeff;
+    background: linear-gradient(135deg, rgba(30,116,253,0.28), rgba(30,116,253,0.08));
+    border: 1px solid rgba(30, 116, 253, 0.35);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
 
 </style>
 </head>
@@ -34669,18 +34772,15 @@ module.exports = L.Routing = {
             const capOpts = (this.EBIKE_CAPACITIES || [1, 2, 3, 6, 8, 10, 12, 15])
                 .map(c => `<option value="${c}">${c} passenger${c > 1 ? 's' : ''}</option>`).join('');
             return `
-            <div class="section mt-2">
-                <div class="card">
+            <div class="auth-page">
+                <img src="assets/img/logo-full.png" alt="Lapeeet" class="auth-logo">
+                <p class="auth-tagline">Create your account — no password needed</p>
+                <div class="card auth-card">
                     <div class="card-body">
-                        <h6 class="card-subtitle">First-time setup</h6>
-                        <h5 class="card-title">Onboarding Wizard</h5>
-                        <p class="card-text small" id="obProgress" style="color:var(--lapeeet-text-lo);">Step 1 of 5</p>
-                    </div>
-                </div>
-            </div>
-            <div class="section full mt-2 mb-2">
-                <div class="wide-block pt-3 pb-3 pl-3 pr-3">
-                    <form onsubmit="event.preventDefault();">
+                        <h5 class="auth-title">Register</h5>
+                        <p class="auth-sub" id="obProgress">Step 1 of 5</p>
+                        <div class="auth-dots" id="obDots" aria-hidden="true"></div>
+                        <form onsubmit="event.preventDefault();">
                         <div class="ob-step" data-step="1">
                             <div class="section-title">1 · Choose your role</div>
                             <div class="form-group boxed"><div class="input-wrapper">
@@ -34748,20 +34848,27 @@ module.exports = L.Routing = {
                             <button id="obNext" type="button" class="btn btn-primary shadowed" style="min-width:140px">Next</button>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>`;
         },
         _screenLock() {
+            let name = '';
+            try {
+                if (window.LapeeetDB && LapeeetDB.initialized) {
+                    name = (LapeeetDB.getProfile() || {}).name || '';
+                }
+            } catch (e) {}
             return `
-            <div class="section mt-2">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div style="font-size:44px;color:#8cbeff"><ion-icon name="finger-print-outline"></ion-icon></div>
-                        <h5 class="card-title mt-2">Unlock Lapeeet</h5>
-                        <p class="card-text small" style="color:var(--lapeeet-text-lo);">
-                            This device is protected by a passkey. Verify it's you to continue.
-                        </p>
-                        <p class="card-text small text-danger" id="lockError" style="display:none"></p>
+            <div class="auth-page">
+                <img src="assets/img/logo-full.png" alt="Lapeeet" class="auth-logo">
+                <p class="auth-tagline">Peer-to-peer e-bike rides · Your data stays with you</p>
+                <div class="card auth-card">
+                    <div class="card-body">
+                        <div class="auth-icon-ring"><ion-icon name="finger-print-outline"></ion-icon></div>
+                        <h5 class="auth-title">Welcome back${name ? ', ' + this._escapeHtml(name) : ''}</h5>
+                        <p class="auth-sub">Unlock with your passkey to continue</p>
+                        <p class="card-text small text-danger text-center" id="lockError" style="display:none"></p>
                         <div class="form-button-group">
                             <button id="btnUnlock" type="button" class="btn btn-primary btn-block shadowed">
                                 <ion-icon name="finger-print-outline"></ion-icon> Unlock with Passkey
@@ -35094,6 +35201,7 @@ module.exports = L.Routing = {
                 },
                 onScreenChange: (s) => {
                     console.debug('[APP] Screen →', s);
+                    try { document.body.classList.toggle('auth-mode', s === 'onboarding' || s === 'lock'); } catch (e) {}
                     if (s === 'map') {
                         if (!LapeeetMap.initialized) this._initMapDeferred();
                         else {
@@ -36256,6 +36364,8 @@ module.exports = L.Routing = {
                     $(this).toggle(Number($(this).attr('data-step')) === step);
                 });
                 $('#obProgress').text(`Step ${step} of ${TOTAL}`);
+                $('#obDots').html(Array.from({ length: TOTAL }, (_, i) =>
+                    `<span class="${i + 1 < step ? 'done' : (i + 1 === step ? 'now' : '')}"></span>`).join(''));
                 $('#obBack').prop('disabled', step === 1);
                 $('#obNext').text(step === TOTAL ? 'Finish Setup' : 'Next');
                 if (step === TOTAL) {

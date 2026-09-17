@@ -1110,6 +1110,31 @@
                         Tied to this site address; removing it disables the lock screen.
                     </p>
                 </div>
+            </div>
+
+            <div class="section full mt-2 mb-2">
+                <div class="section-title">Mesh Diagnostics</div>
+                <div class="wide-block pt-2 pb-2 pl-3 pr-3">
+                    <ul class="listview flush transparent simple-listview">
+                        <li>Channel <strong id="meshChannel">—</strong></li>
+                        <li>Status <strong id="meshStatus">—</strong></li>
+                        <li>Transports <strong id="meshTransports">—</strong></li>
+                        <li>Peers mapped <strong id="meshPeers">—</strong></li>
+                        <li>Idle <strong id="meshIdle">—</strong></li>
+                        <li>Rejoins <strong id="meshRejoins">—</strong></li>
+                    </ul>
+                    <pre id="meshLog" class="small mt-2 mb-1" style="max-height:180px;overflow-y:auto;white-space:pre-wrap;color:var(--lapeeet-text-mute);">(no mesh events yet)</pre>
+                    <div class="form-button-group mt-2">
+                        <button id="btnMeshRefresh" type="button" class="btn btn-outline-primary btn-block">
+                            Refresh
+                        </button>
+                    </div>
+                    <div class="form-button-group mt-2">
+                        <button id="btnMeshRejoin" type="button" class="btn btn-outline-secondary btn-block">
+                            Force Rejoin
+                        </button>
+                    </div>
+                </div>
             </div>`;
         },
 

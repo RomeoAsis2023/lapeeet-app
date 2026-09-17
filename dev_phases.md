@@ -157,6 +157,14 @@
 - [x] 14.3 Nearby list shows `· Nms` per peer; auto-pings peers missing readings older than 60s (max 5/refresh); PONG/timeout refreshes the list
 - [x] 14.4 Harness: echo/nonce match, RTT record + emit, stray/self ignore, offline/unknown guards, reconcile selectivity; full suite green; rebuild + redeploy
 
+## Phase 15 — Auto-Connect Resilience (diagnostics + watchdog + STUN) ✅ DONE (code; field test pending)
+
+- [x] 15.1 Diagnosis first: both sides join the same `lapeeet-wdw5` channel and greet on join — failure is transport/NAT-level or stalled rooms, previously invisible
+- [x] 15.2 Mesh log ring (40 events) + activity timestamp on every join/verified message; `meshStats()` (channel, transports, peers, idle age, rejoins, log tail)
+- [x] 15.3 Isolation watchdog (15s tick, 60s silence → `rejoin()` with fresh transport, stable identity, dropped transport-bound state); 5× Google STUN redundancy
+- [x] 15.4 Settings Mesh Diagnostics card (stats + log + Refresh + Force Rejoin); harness 10/10 (STUN list, rejoin decision, state reset, stats shape, log cap); full suite green; rebuild + redeploy
+- [ ] 15.5 FIELD TEST: 2 devices on the reported setup — read the diagnostics card on both sides to isolate signaling vs NAT
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

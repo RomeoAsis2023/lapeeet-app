@@ -1,8 +1,8 @@
 {
   "www/assets/js/app.js": {
-    "mtime": 1789654591.047732,
-    "seen": 1789654599.15412,
-    "ast_hash": "f64d019053077a5a89c9f3e966e79014",
+    "mtime": 1789655147.0350702,
+    "seen": 1789655155.3745441,
+    "ast_hash": "cc82f539d949a730d06bc6cb7a392660",
     "semantic_hash": ""
   },
   "www/assets/js/base.js": {
@@ -30,15 +30,15 @@
     "semantic_hash": ""
   },
   "www/assets/js/p2p-layer.js": {
-    "mtime": 1789654552.4939902,
-    "seen": 1789654560.776362,
-    "ast_hash": "9b53d1a7d5de6f71369090b2034daec9",
+    "mtime": 1789655107.9939454,
+    "seen": 1789655109.6412714,
+    "ast_hash": "fdf84176d8f26496137a50bcbbb41000",
     "semantic_hash": ""
   },
   "www/assets/js/ui-components.js": {
-    "mtime": 1789649972.2993822,
-    "seen": 1789649978.4167767,
-    "ast_hash": "b946fbbd5db4e0a367b19cb169175cb2",
+    "mtime": 1789655128.3098993,
+    "seen": 1789655136.6819394,
+    "ast_hash": "727a7f60790a569ae0203c8cf3169486",
     "semantic_hash": ""
   },
   "Lapeet_app_development.md": {
@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "tools/check-p2p.js": {
-    "mtime": 1789654664.3542387,
-    "seen": 1789654671.664993,
-    "ast_hash": "1d202e952c260e90b279b2aa5e3ac78d",
+    "mtime": 1789655194.2165926,
+    "seen": 1789655202.4065185,
+    "ast_hash": "6dffb75b6a36f662da16e0aba8ffad8c",
     "semantic_hash": ""
   },
   "www/manifest.json": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "dev_phases.md": {
-    "mtime": 1789654690.9578142,
-    "seen": 1789654710.107786,
-    "ast_hash": "012e3ffb0f8c81fb89fc467e68713a93",
+    "mtime": 1789655213.7794156,
+    "seen": 1789655230.035601,
+    "ast_hash": "e58ded5ec23bee6ab9cceeead040e6bc",
     "semantic_hash": ""
   },
   "tools/check-mode.js": {

@@ -45,6 +45,15 @@
     // Phase 13: driver offer window — one constant, both sides agree.
     const RIDE_OFFER_MS = 60000;
 
+    // Phase 15: STUN redundancy — one server failing must not kill NAT traversal.
+    const STUN_SERVERS = [
+        'stun:stun.l.google.com:19302',
+        'stun:stun1.l.google.com:19302',
+        'stun:stun2.l.google.com:19302',
+        'stun:stun3.l.google.com:19302',
+        'stun:stun4.l.google.com:19302'
+    ];
+
     /* ---------- geohash-4 (no dep) ---------- */
     const GH32 = '0123456789bcdefghjkmnpqrstuvwxyz';
     function geohash(lat, lng, len) {
@@ -132,6 +141,10 @@
         activeRide: null,         // { ride_id, peer_identity, role }
         latency: new Map(),       // Phase 14: identityB64 -> { rtt, ts }
         _pendingPings: {},        // nonce -> { to, ts, timer }
+        _meshLog: [],             // Phase 15: ring buffer {ts, msg} for diagnostics
+        lastPeerActivity: 0,      // Phase 15: Date.now() of last join/verified message
+        rejoinCount: 0,           // Phase 15: isolation rejoins this session
+        _watchdogTimer: null,
         _seenIds: [],             // envelope dedup ring
         _heartbeatTimer: null,
         _reconcileTimer: null,
@@ -158,7 +171,7 @@
             this.connect = global.webconnect({
                 appName: APP_NAME,
                 channelName: this.channel,
-                iceConfiguration: { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] }
+                iceConfiguration: { iceServers: STUN_SERVERS.map((u) => ({ urls: u })) }
             });
             const self = this;
             this.connect.getMyId((out) => { self.transportId = out && out.connectId; });
@@ -168,6 +181,8 @@
 
             this.initialized = true;
             this.status = 'online';
+            this.lastPeerActivity = Date.now();
+            this._mlog('joined ' + this.channel + ' as ' + String(this.transportId).slice(0, 8));
             // Announce ourselves so the cell learns identity->transport mapping.
             setTimeout(() => { try { self._sendHello(null); } catch (e) {} }, 1200);
             // Driver presence heartbeat.
@@ -178,6 +193,9 @@
             if (this._reconcileTimer) clearInterval(this._reconcileTimer);
             this._reconcileTimer = setInterval(() => self._reconcilePeers(), 20000);
             setTimeout(() => self._reconcilePeers(), 3000);
+            // Phase 15: isolation watchdog — rejoin when the mesh goes silent.
+            if (this._watchdogTimer) clearInterval(this._watchdogTimer);
+            this._watchdogTimer = setInterval(() => self._watchdogTick(), 15000);
             this._emit({ type: '__status', status: this.status, channel: this.channel });
             return true;
         },
@@ -187,6 +205,8 @@
             this._heartbeatTimer = null;
             if (this._reconcileTimer) clearInterval(this._reconcileTimer);
             this._reconcileTimer = null;
+            if (this._watchdogTimer) clearInterval(this._watchdogTimer);
+            this._watchdogTimer = null;
             try { this.connect && this.connect.Disconnect(); } catch (e) {}
             this.connect = null;
             this.initialized = false;
@@ -194,6 +214,91 @@
         },
 
         setRole(role) { this._role = role; },
+
+        /* ---------- PHASE 15: DIAGNOSTICS + AUTO-REJOIN ---------- */
+
+        _mlog(msg) {
+            try {
+                this._meshLog.push({ ts: Date.now(), msg: String(msg).slice(0, 160) });
+                if (this._meshLog.length > 40) this._meshLog.splice(0, this._meshLog.length - 40);
+            } catch (e) {}
+        },
+
+        _touchActivity() { this.lastPeerActivity = Date.now(); },
+
+        _transportCount() {
+            if (!this.connect) return 0;
+            try {
+                let n = 0;
+                this.connect.getConnection((out) => {
+                    const list = (out && (out.connection || out.connections)) || [];
+                    n = Array.isArray(list) ? list.length : 0;
+                });
+                return n;
+            } catch (e) { return -1; }
+        },
+
+        meshStats() {
+            const now = Date.now();
+            return {
+                channel: this.channel,
+                status: this.status,
+                transportId: this.transportId,
+                transports: this._transportCount(),
+                peers: this.peerCount(),
+                rejoins: this.rejoinCount,
+                idleSec: this.lastPeerActivity ? Math.round((now - this.lastPeerActivity) / 1000) : -1,
+                log: this._meshLog.slice(-12)
+            };
+        },
+
+        _shouldRejoin(now) {
+            if (!this.initialized || this.status !== 'online') return false;
+            if (!this.lastPeerActivity) return false;
+            return (now - this.lastPeerActivity) > 60000;
+        },
+
+        _watchdogTick() {
+            if (!this._shouldRejoin(Date.now())) return;
+            this._mlog('isolated 60s+ with 0 activity — rejoining mesh');
+            try {
+                if (window.LapeeetUI) LapeeetUI.showToast('Mesh silent — reconnecting…', 'warning');
+            } catch (e) {}
+            this.rejoin();
+        },
+
+        /**
+         * Leave + rejoin the channel with a fresh transport session.
+         * Identity keys are kept (stable connectId); transport-bound state
+         * (peers, latency, pending pings) is dropped — it rebuilds via HELLO.
+         */
+        async rejoin() {
+            const opts = {
+                lat: (this.myLoc && this.myLoc.lat) || 14.5995,
+                lng: (this.myLoc && this.myLoc.lng) || 120.9842,
+                role: this._role,
+                onEventCallback: this._onEvent
+            };
+            const keepChannel = this.channel;
+            try {
+                Object.keys(this._pendingPings || {}).forEach((n) => {
+                    try { clearTimeout(this._pendingPings[n].timer); } catch (e) {}
+                });
+            } catch (e) {}
+            this._pendingPings = {};
+            this.peers = new Map();
+            this.latency = new Map();
+            this._seenIds = [];
+            this.shutdown();
+            this.rejoinCount++;
+            this._mlog('rejoin #' + this.rejoinCount + ' on ' + keepChannel);
+            try {
+                await this.init(opts);
+            } catch (e) {
+                this._mlog('rejoin failed: ' + (e.message || e));
+            }
+            return true;
+        },
 
         async _ensureKeys() {
             const util = (global.nacl && global.nacl.util) || global.naclUtil;
@@ -229,6 +334,8 @@
 
         _onTransportJoin(transportId) {
             if (!transportId) return;
+            this._touchActivity();
+            this._mlog('transport join ' + String(transportId).slice(0, 8));
             // Greet the newcomer directly so both sides learn the mapping fast.
             try { this._sendHello(transportId); } catch (e) {}
             this._emit({ type: '__peer-join', transportId });
@@ -236,6 +343,7 @@
 
         _onTransportLeave(transportId) {
             if (!transportId) return;
+            this._mlog('transport leave ' + String(transportId).slice(0, 8));
             // Drop identity mappings bound to this transport.
             const gone = [];
             this.peers.forEach((p, ident) => {
@@ -260,6 +368,7 @@
             }
             const isSelf = data.from === this.connectId;
             if (!isSelf) {
+                this._touchActivity();
                 this.peers.set(data.from, Object.assign(
                     this.peers.get(data.from) || {},
                     { transportId, lastSeen: Date.now() }
@@ -606,6 +715,7 @@
         peerCount() { return this.peers.size; },
 
         RIDE_OFFER_MS,
+        STUN_SERVERS,
 
         /* ---------- CONVENIENCE SENDERS ---------- */
 

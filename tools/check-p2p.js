@@ -120,5 +120,54 @@ ok('geo cap constant 60', G.MAX_TRIP_KM === 60);
   ok('reconcile greets only unknown transports',
     hellos.length === 1 && hellos[0] === 't-stranger');
   P2P.connect = null;
+
+  // Phase 15: STUN redundancy, watchdog, rejoin, diagnostics.
+  ok('STUN list has 5 stun: servers',
+    Array.isArray(P2P.STUN_SERVERS) && P2P.STUN_SERVERS.length >= 3 &&
+    P2P.STUN_SERVERS.every((u) => String(u).indexOf('stun:') === 0));
+  P2P.initialized = false; P2P.status = 'offline'; P2P.lastPeerActivity = Date.now();
+  ok('no rejoin when offline', P2P._shouldRejoin(Date.now()) === false);
+  P2P.initialized = true; P2P.status = 'online'; P2P.lastPeerActivity = 0;
+  ok('no rejoin with zero activity', P2P._shouldRejoin(Date.now()) === false);
+  P2P.lastPeerActivity = Date.now() - 10000;
+  ok('no rejoin when recently active', P2P._shouldRejoin(Date.now()) === false);
+  P2P.lastPeerActivity = Date.now() - 61000;
+  ok('rejoin when isolated 60s+', P2P._shouldRejoin(Date.now()) === true);
+  for (let i = 0; i < 50; i++) P2P._mlog('m' + i);
+  ok('mesh log ring caps at 40', P2P._meshLog.length === 40);
+  P2P._meshLog = [];
+  P2P.peers = new Map([['a', { transportId: 't-a', lastSeen: Date.now() }]]);
+  P2P.latency = new Map([['a', { rtt: 5, ts: Date.now() }]]);
+  P2P._pendingPings = { n1: { to: 'a', ts: 1, timer: setTimeout(() => {}, 99999) } };
+  P2P._seenIds = ['x'];
+  P2P.channel = 'lapeeet-wdw5';
+  P2P.transportId = 't-self';
+  P2P.rejoinCount = 0;
+  P2P._role = 'DRIVER';
+  P2P.myLoc = { lat: 1, lng: 2, ts: 3 };
+  P2P._onEvent = () => {};
+  let discCalled = false;
+  let initOpts = null;
+  P2P.connect = { Disconnect: () => { discCalled = true; } };
+  P2P.init = async (opts) => {
+    initOpts = opts;
+    P2P.initialized = true; P2P.status = 'online';
+    return true;
+  };
+  await P2P.rejoin();
+  ok('rejoin disconnects + re-inits with role/loc/onEvent',
+    discCalled && initOpts && initOpts.role === 'DRIVER' &&
+    initOpts.lat === 1 && initOpts.lng === 2 && P2P.rejoinCount === 1);
+  ok('rejoin drops transport-bound state',
+    P2P.peers.size === 0 && P2P.latency.size === 0 &&
+    Object.keys(P2P._pendingPings).length === 0 && P2P._seenIds.length === 0);
+  P2P.connect = { getConnection: (cb) => cb({ connection: ['t-self', 't-x'] }) };
+  const stats = P2P.meshStats();
+  ok('meshStats shape',
+    stats.channel === 'lapeeet-wdw5' && stats.status === 'online' &&
+    stats.transports === 2 && stats.peers === 0 && stats.rejoins === 1 &&
+    typeof stats.idleSec === 'number' && Array.isArray(stats.log));
+  P2P.connect = null;
+  ok('transport count 0 without connect', P2P._transportCount() === 0);
   process.exit(fails ? 1 : 0);
 })().catch((e) => { console.error('HARNESS FAIL:', e.message); process.exit(1); });

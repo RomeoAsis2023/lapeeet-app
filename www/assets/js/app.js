@@ -201,6 +201,27 @@
 
         _bindSettingsScreen() {
             const $st = $('#settingsPasskeyState');
+            const refreshMeshDiag = () => {
+                if (!$('#meshChannel').length || !window.LapeeetP2P) return;
+                try {
+                    const s = LapeeetP2P.meshStats();
+                    $('#meshChannel').text(s.channel || '—');
+                    $('#meshStatus').text(s.status || '—');
+                    $('#meshTransports').text(String(s.transports));
+                    $('#meshPeers').text(String(s.peers));
+                    $('#meshIdle').text(s.idleSec < 0 ? 'never' : s.idleSec + 's');
+                    $('#meshRejoins').text(String(s.rejoins));
+                    $('#meshLog').text((s.log || []).map(e =>
+                        new Date(e.ts).toLocaleTimeString() + '  ' + e.msg).join('\n') || '(no mesh events yet)');
+                } catch (e) {}
+            };
+            refreshMeshDiag();
+            $('#btnMeshRefresh').off('click').on('click', () => { refreshMeshDiag(); this._populateHomeStatus(); });
+            $('#btnMeshRejoin').off('click').on('click', async () => {
+                LapeeetUI.showToast('Rejoining mesh…', 'info');
+                try { await LapeeetP2P.rejoin(); } catch (e) {}
+                setTimeout(() => refreshMeshDiag(), 2500);
+            });
             const refresh = () => {
                 if (!$st.length) return;
                 try {

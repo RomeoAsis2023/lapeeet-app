@@ -107,7 +107,7 @@
 **Rules:** no backend → no SMS OTP (format-validated only, shared post-match only); passkeys need https origin (Pages ✓, file:// ✗ gracefully skipped); auth gate, not DB encryption.
 - [x] 9.1 `www/assets/js/auth-layer.js`: b64url, minimal CBOR decoder, COSE-ES256→SPKI, authData parser, `registerPasskey`/`unlockWithPasskey` with challenge/origin/RP-hash/flags/signCount checks (`tools/check-auth.js` 21/21, incl. P-256 generator-point vector)
 - [x] 9.2 `my_profile.passkey_json` column (SCHEMA + ALTER migration for pre-existing DBs; data-preserving, repeat-safe — harness-proven)
-- [x] 9.3 Registration gate (`_isRegistered` name+valid mobile → onboarding lock; `_needsUnlock` → lock screen; nav guard; erase-and-restart hatch); onboarding 5 steps (role → profile+required PH mobile → ebike → passkey create/skip → confirm); profile phone validation; Settings Security card (add/replace/remove passkey)
+- [x] 9.3 Registration gate (`_isRegistered` name+valid mobile → onboarding lock; `_needsUnlock` → lock screen; nav guard; erase-and-restart hatch); onboarding 5 steps (role → profile+required PH mobile → ebike → passkey create/skip → confirm); profile phone validation; Settings Security card (add/replace/remove passkey); full-page auth UI (logo-full.png hero, step dots, auth-mode shell hides tab bar)
 - [ ] 9.4 FIELD TEST: real fingerprint/face enrollment + unlock on Pages URL (cannot run in Node); then `?mode=` + gate interplay on phone
 
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)

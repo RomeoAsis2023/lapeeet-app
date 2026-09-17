@@ -621,18 +621,15 @@
             const capOpts = (this.EBIKE_CAPACITIES || [1, 2, 3, 6, 8, 10, 12, 15])
                 .map(c => `<option value="${c}">${c} passenger${c > 1 ? 's' : ''}</option>`).join('');
             return `
-            <div class="section mt-2">
-                <div class="card">
+            <div class="auth-page">
+                <img src="assets/img/logo-full.png" alt="Lapeeet" class="auth-logo">
+                <p class="auth-tagline">Create your account — no password needed</p>
+                <div class="card auth-card">
                     <div class="card-body">
-                        <h6 class="card-subtitle">First-time setup</h6>
-                        <h5 class="card-title">Onboarding Wizard</h5>
-                        <p class="card-text small" id="obProgress" style="color:var(--lapeeet-text-lo);">Step 1 of 5</p>
-                    </div>
-                </div>
-            </div>
-            <div class="section full mt-2 mb-2">
-                <div class="wide-block pt-3 pb-3 pl-3 pr-3">
-                    <form onsubmit="event.preventDefault();">
+                        <h5 class="auth-title">Register</h5>
+                        <p class="auth-sub" id="obProgress">Step 1 of 5</p>
+                        <div class="auth-dots" id="obDots" aria-hidden="true"></div>
+                        <form onsubmit="event.preventDefault();">
                         <div class="ob-step" data-step="1">
                             <div class="section-title">1 · Choose your role</div>
                             <div class="form-group boxed"><div class="input-wrapper">
@@ -700,20 +697,27 @@
                             <button id="obNext" type="button" class="btn btn-primary shadowed" style="min-width:140px">Next</button>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>`;
         },
         _screenLock() {
+            let name = '';
+            try {
+                if (window.LapeeetDB && LapeeetDB.initialized) {
+                    name = (LapeeetDB.getProfile() || {}).name || '';
+                }
+            } catch (e) {}
             return `
-            <div class="section mt-2">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div style="font-size:44px;color:#8cbeff"><ion-icon name="finger-print-outline"></ion-icon></div>
-                        <h5 class="card-title mt-2">Unlock Lapeeet</h5>
-                        <p class="card-text small" style="color:var(--lapeeet-text-lo);">
-                            This device is protected by a passkey. Verify it's you to continue.
-                        </p>
-                        <p class="card-text small text-danger" id="lockError" style="display:none"></p>
+            <div class="auth-page">
+                <img src="assets/img/logo-full.png" alt="Lapeeet" class="auth-logo">
+                <p class="auth-tagline">Peer-to-peer e-bike rides · Your data stays with you</p>
+                <div class="card auth-card">
+                    <div class="card-body">
+                        <div class="auth-icon-ring"><ion-icon name="finger-print-outline"></ion-icon></div>
+                        <h5 class="auth-title">Welcome back${name ? ', ' + this._escapeHtml(name) : ''}</h5>
+                        <p class="auth-sub">Unlock with your passkey to continue</p>
+                        <p class="card-text small text-danger text-center" id="lockError" style="display:none"></p>
                         <div class="form-button-group">
                             <button id="btnUnlock" type="button" class="btn btn-primary btn-block shadowed">
                                 <ion-icon name="finger-print-outline"></ion-icon> Unlock with Passkey

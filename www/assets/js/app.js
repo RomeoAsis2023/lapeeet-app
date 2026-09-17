@@ -38,6 +38,7 @@
                 },
                 onScreenChange: (s) => {
                     console.debug('[APP] Screen →', s);
+                    try { document.body.classList.toggle('auth-mode', s === 'onboarding' || s === 'lock'); } catch (e) {}
                     if (s === 'map') {
                         if (!LapeeetMap.initialized) this._initMapDeferred();
                         else {
@@ -1200,6 +1201,8 @@
                     $(this).toggle(Number($(this).attr('data-step')) === step);
                 });
                 $('#obProgress').text(`Step ${step} of ${TOTAL}`);
+                $('#obDots').html(Array.from({ length: TOTAL }, (_, i) =>
+                    `<span class="${i + 1 < step ? 'done' : (i + 1 === step ? 'now' : '')}"></span>`).join(''));
                 $('#obBack').prop('disabled', step === 1);
                 $('#obNext').text(step === TOTAL ? 'Finish Setup' : 'Next');
                 if (step === TOTAL) {

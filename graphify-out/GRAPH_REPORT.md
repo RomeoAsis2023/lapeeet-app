@@ -1,17 +1,17 @@
 # Graph Report - Lapeeet  (2026-09-17)
 
 ## Corpus Check
-- 20 files · ~36,230 words
+- 20 files · ~36,659 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: .css 5, (none) 2, .psd 1)
 
 ## Summary
-- 427 nodes · 757 edges · 27 communities (26 shown, 1 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 53 edges (avg confidence: 0.93)
+- 428 nodes · 763 edges · 26 communities (25 shown, 1 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 57 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9288efb6`
+- Built from commit: `fce8fade`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,7 +38,6 @@
 - manifest.json
 - auth-layer.js
 - check-auth.js
-- Lapeeet — Development Phases (Single-File Live P2P)
 - check-p2p.js
 - ref_fs
 - check-dist.js
@@ -46,8 +45,8 @@
 ## God Nodes (most connected - your core abstractions)
 1. `start()` - 21 edges
 2. `_needInit()` - 20 edges
-3. `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` - 16 edges
-4. `Lapeeet — dev_phases.md (master plan, no skips)` - 16 edges
+3. `Lapeeet — dev_phases.md (master plan, no skips)` - 17 edges
+4. `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` - 16 edges
 5. `_render()` - 12 edges
 6. `sendDirect()` - 12 edges
 7. `_renderScreen()` - 12 edges
@@ -56,37 +55,37 @@
 10. `_setState()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `0. Executive Summary of Work Done So Far` --references--> `_calcFare()`  [INFERRED]
+  Lapeet_app_development.md → www/assets/js/app.js
 - `6.2 Trip Distance Cap (60 km max) — still valid 4-layer enforcement plan (Phase 1 impl partial)` --references--> `_calcFare()`  [INFERRED]
   Lapeet_app_development.md → www/assets/js/app.js
 - `Phase 4 — Call + Chat` --references--> `attachMesh()`  [INFERRED]
   DEVELOPMENT_PHASES.md → www/assets/js/call-layer.js
 - `Phase 8 — OrbitDB Full Replacement ⬜ TRACK (after 7; gates each step)` --references--> `appendEvent()`  [INFERRED]
   dev_phases.md → www/assets/js/db-layer.js
-- `Phase 3 — webconnect.js P2P Core Ride Flow` --references--> `removeDriverPin()`  [INFERRED]
-  DEVELOPMENT_PHASES.md → www/assets/js/map-layer.js
 - `PHASE 5 — Finishing Touches & MVP Polish` --references--> `formatCurrency()`  [INFERRED]
   Lapeet_app_development.md → www/assets/js/ui-components.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (27 total, 1 thin omitted)
+## Communities (26 total, 1 thin omitted)
 
 ### Community 0 - "7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)"
-Cohesion: 0.20
-Nodes (11): 0. Executive Summary of Work Done So Far, 7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip), PHASE 0.5 — Currency, Localisation, Permanent Theme, Brand Fixes — 100% ✅, PHASE 0 — Project Scaffolding & Static Setup — **100% ✅ COMPLETED**, PHASE 1 — Map Layer + 60 km Cap + Organic Maps Deep Links — 🚧 PARTIALLY STARTED, PHASE 2 — sql.js Tenant Database + E-Bike Registration — 🚧 DB STUB ONLY, PHASE 3 — webconnect.js P2P Layer + Core Ride Flow — ⬜ (P2P STUB ONLY; Key pair/signing TBI), PHASE 4 — WebRTC Video/Audio Call (Built on webconnect Streaming API) — ⬜ (+3 more)
+Cohesion: 0.29
+Nodes (7): 7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip), PHASE 0.5 — Currency, Localisation, Permanent Theme, Brand Fixes — 100% ✅, PHASE 2 — sql.js Tenant Database + E-Bike Registration — 🚧 DB STUB ONLY, PHASE 3 — webconnect.js P2P Layer + Core Ride Flow — ⬜ (P2P STUB ONLY; Key pair/signing TBI), PHASE 4 — WebRTC Video/Audio Call (Built on webconnect Streaming API) — ⬜, PHASE 5 — Finishing Touches & MVP Polish, PHASE 6 — Icebox / Future Enhancements
 
 ### Community 1 - "app.js"
 Cohesion: 0.08
-Nodes (51): Phase 6 — `?mode=` Role Deep Links ✅ DONE, _bindAutocomplete(), _bindCapacityDropdown(), applyFocus(), open(), _bindDataScreen(), _bindEbikeScreen(), _bindLockScreen() (+43 more)
+Nodes (54): Phase 6 — `?mode=` Role Deep Links ✅ DONE, PHASE 0 — Project Scaffolding & Static Setup — **100% ✅ COMPLETED**, PHASE 1 — Map Layer + 60 km Cap + Organic Maps Deep Links — 🚧 PARTIALLY STARTED, _bindAutocomplete(), _bindCapacityDropdown(), applyFocus(), open(), _bindDataScreen() (+46 more)
 
 ### Community 2 - "db-layer.js"
-Cohesion: 0.13
-Nodes (36): Phase 3 — webconnect.js P2P Ride Flow ✅ DONE (code; field test pending), Phase 3 — webconnect.js P2P Core Ride Flow, _all(), appendEvent(), b64ToU8(), createEbike(), deleteEbike(), exportBinary() (+28 more)
+Cohesion: 0.14
+Nodes (35): Phase 3 — webconnect.js P2P Ride Flow ✅ DONE (code; field test pending), _all(), appendEvent(), b64ToU8(), createEbike(), deleteEbike(), exportBinary(), exportJSON() (+27 more)
 
 ### Community 3 - "map-layer.js"
-Cohesion: 0.12
-Nodes (30): Phase 1 — Map + 60km Gate + Organic Maps ✅ DONE, Phase 1 — Map + 60 km Gate + Organic Maps, _afterPinChange(), buildOrganicMapsDeepLink(), calculateRoute(), classifyDistance(), clearPins(), clearRoute() (+22 more)
+Cohesion: 0.08
+Nodes (40): Phase 1 — Map + 60km Gate + Organic Maps ✅ DONE, 0. Live vs Dev separation (locked), Icebox (not MVP), Lapeeet — Development Phases (Single-File Live P2P), Ops (dev workstation only), Phase 0 — Single-File Shell, Phase 1 — Map + 60 km Gate + Organic Maps, Phase 2 — sql.js Tenant DB + Onboarding + E-Bikes (+32 more)
 
 ### Community 4 - "ui-components.js"
 Cohesion: 0.15
@@ -121,8 +120,8 @@ Cohesion: 0.33
 Nodes (6): 3.1.1 Canonical formatter — ONE location, all code calls this, 3.1.2 Fare formula (updated to PHP constants, no USD anywhere), 3.1.3 UI Strings updated to ₱ PHP, 3.1 Official Currency — Philippine Peso `₱ PHP`, 3.2 Locale — `en-PH` (English — Philippines), 3. Currency & Locale (CONFIRMED — FULLY IMPLEMENTED)
 
 ### Community 12 - "Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist"
-Cohesion: 0.25
-Nodes (7): 12. QUESTIONS / OPEN DECISIONS FROM ORIGINAL §8 — **ALL RESOLVED 6/8, 2 STILL OPEN**, 13. RISKS & MITIGATIONS REGISTER (UPDATED — 7 original + 4 new), 14.1 Graphify CLI (run from repo root `c:\Users\meoas\OneDrive\Desktop\Lapeeet\`), 14.2 isomorphic-git Browser API (run in browser DevTools console OR in future app code), 14. QUICK OPERATIONS REFERENCE (for next session, copy-paste ready), 9. CHANGELOG (Reverse Chronological, NO SKIP), Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist
+Cohesion: 0.22
+Nodes (8): 0. Executive Summary of Work Done So Far, 12. QUESTIONS / OPEN DECISIONS FROM ORIGINAL §8 — **ALL RESOLVED 6/8, 2 STILL OPEN**, 13. RISKS & MITIGATIONS REGISTER (UPDATED — 7 original + 4 new), 14.1 Graphify CLI (run from repo root `c:\Users\meoas\OneDrive\Desktop\Lapeeet\`), 14.2 isomorphic-git Browser API (run in browser DevTools console OR in future app code), 14. QUICK OPERATIONS REFERENCE (for next session, copy-paste ready), 9. CHANGELOG (Reverse Chronological, NO SKIP), Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist
 
 ### Community 13 - "6. Feature Inventory & Scope (Updated with Completed Sub-items)"
 Cohesion: 0.33
@@ -153,16 +152,12 @@ Cohesion: 0.17
 Nodes (11): background_color, description, display, icons, lang, name, orientation, scope (+3 more)
 
 ### Community 21 - "auth-layer.js"
-Cohesion: 0.25
-Nodes (18): b64urlDecode(), b64urlEncode(), cborDecode(), item(), read(), uint(), coseToSpki(), isSupported() (+10 more)
+Cohesion: 0.23
+Nodes (19): Phase 9 — Phone Registration Gate + WebAuthn Passkeys ✅ DONE (code; ceremony field test pending), b64urlDecode(), b64urlEncode(), cborDecode(), item(), read(), uint(), coseToSpki() (+11 more)
 
 ### Community 22 - "check-auth.js"
 Cohesion: 0.10
 Nodes (18): ad1, ad2, cbor, cose, coseBytes, dec, enc, fs (+10 more)
-
-### Community 23 - "Lapeeet — Development Phases (Single-File Live P2P)"
-Cohesion: 0.20
-Nodes (9): 0. Live vs Dev separation (locked), Icebox (not MVP), Lapeeet — Development Phases (Single-File Live P2P), Ops (dev workstation only), Phase 0 — Single-File Shell, Phase 2 — sql.js Tenant DB + Onboarding + E-Bikes, Phase 4 — Call + Chat, Phase 5 — Polish + WebView Wrap (+1 more)
 
 ### Community 24 - "check-p2p.js"
 Cohesion: 0.29
@@ -184,17 +179,17 @@ Nodes (5): ref_vm, all, fs, h, vm
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Lapeeet — dev_phases.md (master plan, no skips)` connect `Lapeeet — dev_phases.md (master plan, no skips)` to `app.js`, `db-layer.js`, `map-layer.js`, `build-single.py`, `call-layer.js`?**
-  _High betweenness centrality (0.222) - this node is a cross-community bridge._
-- **Why does `_calcFare()` connect `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)` to `app.js`, `map-layer.js`, `6. Feature Inventory & Scope (Updated with Completed Sub-items)`?**
-  _High betweenness centrality (0.212) - this node is a cross-community bridge._
+- **Why does `Lapeeet — dev_phases.md (master plan, no skips)` connect `Lapeeet — dev_phases.md (master plan, no skips)` to `app.js`, `db-layer.js`, `map-layer.js`, `build-single.py`, `call-layer.js`, `auth-layer.js`?**
+  _High betweenness centrality (0.272) - this node is a cross-community bridge._
+- **Why does `_calcFare()` connect `app.js` to `map-layer.js`, `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist`, `6. Feature Inventory & Scope (Updated with Completed Sub-items)`?**
+  _High betweenness centrality (0.224) - this node is a cross-community bridge._
 - **Why does `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` connect `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` to `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)`, `ui-components.js`, `git-layer.js`, `3.1 Official Currency — Philippine Peso `₱ PHP``, `6. Feature Inventory & Scope (Updated with Completed Sub-items)`, `11. COMPLETE ACTIVITY REGISTER (NO SKIP — every command run, every manual action)`, `2.2 Developer Tools / Permanent Memory Layer (outside `www/`)`, `10. DB + Storage Change Manifest (NO SKIP)`, `1. Project Vision & Principles (UNCHANGED — Still Governs All Decisions)`, `8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)`?**
-  _High betweenness centrality (0.203) - this node is a cross-community bridge._
+  _High betweenness centrality (0.215) - this node is a cross-community bridge._
 - **What connects `fs`, `vm`, `src` to the rest of the system?**
   _98 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.08455625436757512 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07957393483709273 - nodes in this community are weakly interconnected._
 - **Should `db-layer.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.13086770981507823 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.13513513513513514 - nodes in this community are weakly interconnected._
 - **Should `map-layer.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.12310606060606061 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08350951374207188 - nodes in this community are weakly interconnected._

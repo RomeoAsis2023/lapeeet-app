@@ -1094,3 +1094,106 @@ body.dark-mode-active #appBottomMenu.appBottomMenu .item .action-button ion-icon
     }
 }
 
+/* =============================================================
+   FULL-PAGE AUTH (register = onboarding wizard, login = lock screen)
+   Immersive branded pages: big logo-full.png hero, step dots,
+   roomy card, large tap targets. body.auth-mode hides the bottom
+   tab bar so auth truly fills the page.
+   ============================================================= */
+body.auth-mode #appBottomMenu.appBottomMenu,
+body.auth-mode #appBottomMenu {
+    display: none !important;
+}
+body.auth-mode #appCapsule,
+body.dark-mode-active.auth-mode #appCapsule {
+    padding-bottom: 24px !important;
+}
+.auth-page {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 26px 18px 30px !important;
+    background:
+      radial-gradient(700px 340px at 50% -60px, rgba(30,116,253,0.22), transparent 65%),
+      linear-gradient(180deg, #0a1324 0%, #0b1629 60%, #0a1324 100%) !important;
+}
+.auth-logo {
+    width: min(240px, 68vw);
+    height: auto;
+    display: block;
+    margin: 6px auto 4px;
+    filter: drop-shadow(0 10px 26px rgba(30, 116, 253, 0.35));
+}
+.auth-tagline {
+    text-align: center;
+    color: var(--lapeeet-text-mute);
+    font-size: 13px;
+    margin: 2px 0 18px;
+    letter-spacing: 0.2px;
+}
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(180deg, var(--lapeeet-cardbg) 0%, var(--lapeeet-cardbg-2) 100%) !important;
+    border: 1px solid rgba(30, 116, 253, 0.18) !important;
+    border-radius: 20px !important;
+    box-shadow:
+      0 18px 44px rgba(0, 0, 0, 0.42),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    overflow: hidden;
+}
+.auth-card .card-body { padding: 24px 20px !important; }
+.auth-title {
+    color: #ffffff !important;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 2px;
+    text-align: center;
+}
+.auth-sub {
+    color: var(--lapeeet-text-mute) !important;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+/* step dots */
+.auth-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 18px;
+}
+.auth-dots span {
+    width: 26px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+}
+.auth-dots span.done { background: rgba(30, 116, 253, 0.55); }
+.auth-dots span.now {
+    background: linear-gradient(90deg, var(--lapeeet-primary), #5aa1ff);
+    box-shadow: 0 0 10px rgba(30, 116, 253, 0.6);
+}
+.auth-card .btn-primary.btn-block {
+    min-height: 52px;
+    font-size: 16px;
+    border-radius: 14px !important;
+}
+.auth-icon-ring {
+    width: 76px;
+    height: 76px;
+    margin: 2px auto 12px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    color: #8cbeff;
+    background: linear-gradient(135deg, rgba(30,116,253,0.28), rgba(30,116,253,0.08));
+    border: 1px solid rgba(30, 116, 253, 0.35);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+

@@ -102,6 +102,14 @@
 - [ ] 8.4 Harness+docs: `check-orbit.js` (Node round-trip), phases/README update, commit, push; bundle-size + budget-phone cold-start measured
 - [ ] 8.5 FIELD TEST: 2-device full cycle + kill/restart persistence + export/import round-trip
 
+## Phase 9 — Phone Registration Gate + WebAuthn Passkeys ✅ DONE (code; ceremony field test pending)
+
+**Rules:** no backend → no SMS OTP (format-validated only, shared post-match only); passkeys need https origin (Pages ✓, file:// ✗ gracefully skipped); auth gate, not DB encryption.
+- [x] 9.1 `www/assets/js/auth-layer.js`: b64url, minimal CBOR decoder, COSE-ES256→SPKI, authData parser, `registerPasskey`/`unlockWithPasskey` with challenge/origin/RP-hash/flags/signCount checks (`tools/check-auth.js` 21/21, incl. P-256 generator-point vector)
+- [x] 9.2 `my_profile.passkey_json` column (SCHEMA + ALTER migration for pre-existing DBs; data-preserving, repeat-safe — harness-proven)
+- [x] 9.3 Registration gate (`_isRegistered` name+valid mobile → onboarding lock; `_needsUnlock` → lock screen; nav guard; erase-and-restart hatch); onboarding 5 steps (role → profile+required PH mobile → ebike → passkey create/skip → confirm); profile phone validation; Settings Security card (add/replace/remove passkey)
+- [ ] 9.4 FIELD TEST: real fingerprint/face enrollment + unlock on Pages URL (cannot run in Node); then `?mode=` + gate interplay on phone
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

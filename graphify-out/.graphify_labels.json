@@ -19,5 +19,11 @@
   "17": "1. Project Vision & Principles (UNCHANGED — Still Governs All Decisions)",
   "18": "8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)",
   "19": "manifest.json",
-  "20": "deploy-pages.ps1"
+  "20": "deploy-pages.ps1",
+  "21": "auth-layer.js",
+  "22": "check-auth.js",
+  "23": "Lapeeet — Development Phases (Single-File Live P2P)",
+  "24": "check-p2p.js",
+  "25": "ref_fs",
+  "26": "check-dist.js"
 }

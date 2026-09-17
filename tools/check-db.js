@@ -60,5 +60,28 @@ const VL = path.join(__dirname, '..', 'www', 'assets', 'vendor-live');
   // Legacy id=1 singleton guard.
   const me = db2.exec('SELECT * FROM me WHERE id = 1');
   console.log((me.length && me[0].values.length ? 'PASS' : 'FAIL') + ' - me singleton row');
-  db.close(); db2.close();
+  // Phase 9: passkey column present on fresh schema.
+  const cols = db2.exec('PRAGMA table_info(my_profile)')[0].values.map(r => r[1]);
+  console.log((cols.includes('passkey_json') ? 'PASS' : 'FAIL') + ' - my_profile.passkey_json column');
+  ok('passkey set/get round-trip', () => {
+    db2.run('UPDATE my_profile SET passkey_json = ? WHERE id = 1', ['{"credIdB64":"abc"}']);
+    const r = db2.exec("SELECT passkey_json FROM my_profile WHERE id = 1")[0].values[0][0];
+    if (r !== '{"credIdB64":"abc"}') throw new Error('mismatch');
+  });
+  // Phase 9 migration: pre-existing DB WITHOUT the column gets ALTERed.
+  const old = new SQL.Database();
+  old.exec(`CREATE TABLE my_profile(id INTEGER PRIMARY KEY CHECK(id = 1),
+    name TEXT DEFAULT '', phone TEXT DEFAULT '', avatar_url TEXT DEFAULT '')`);
+  old.exec(`INSERT INTO my_profile(id,name,phone) VALUES (1,'Old User','+639171234567')`);
+  try { old.exec('ALTER TABLE my_profile ADD COLUMN passkey_json TEXT DEFAULT ' + "''"); }
+  catch (e) { throw new Error('migration failed: ' + e.message); }
+  const migrated = old.exec('SELECT name, phone, passkey_json FROM my_profile WHERE id = 1')[0].values[0];
+  console.log((migrated[0] === 'Old User' && migrated[1] === '+639171234567' && migrated[2] === ''
+    ? 'PASS' : 'FAIL') + ' - pre-existing DB migrates, data intact');
+  // Second ALTER (already-migrated DB) must be a harmless no-op error.
+  let secondOk = false;
+  try { old.exec('ALTER TABLE my_profile ADD COLUMN passkey_json TEXT'); }
+  catch (e) { secondOk = /duplicate/i.test(e.message); }
+  console.log((secondOk ? 'PASS' : 'FAIL') + ' - repeat migration safely rejected');
+  db.close(); db2.close(); old.close();
 })().catch(e => { console.error('HARNESS FAIL:', e.message); process.exit(1); });

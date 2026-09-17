@@ -75,7 +75,8 @@
         id INTEGER PRIMARY KEY CHECK(id = 1),
         name TEXT DEFAULT '',
         phone TEXT DEFAULT '',
-        avatar_url TEXT DEFAULT ''
+        avatar_url TEXT DEFAULT '',
+        passkey_json TEXT DEFAULT ''
     );
     CREATE TABLE IF NOT EXISTS my_ebikes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -174,6 +175,9 @@
                 this.db = new this.SQL.Database();
             }
             this.db.exec(SCHEMA);
+            // Phase 9 migration: passkey column on pre-existing tenant DBs.
+            try { this.db.exec('ALTER TABLE my_profile ADD COLUMN passkey_json TEXT DEFAULT ' + "''"); }
+            catch (e) { /* column already exists — ignore */ }
             // Ensure singleton rows exist.
             this.db.exec("INSERT OR IGNORE INTO me(id) VALUES (1)");
             this.db.exec("INSERT OR IGNORE INTO my_profile(id) VALUES (1)");
@@ -240,11 +244,25 @@
             const next = {
                 name: patch.name !== undefined ? patch.name : (cur.name || ''),
                 phone: patch.phone !== undefined ? patch.phone : (cur.phone || ''),
-                avatar_url: patch.avatar_url !== undefined ? patch.avatar_url : (cur.avatar_url || '')
+                avatar_url: patch.avatar_url !== undefined ? patch.avatar_url : (cur.avatar_url || ''),
+                passkey_json: patch.passkey_json !== undefined ? patch.passkey_json : (cur.passkey_json || '')
             };
-            this._run('UPDATE my_profile SET name = ?, phone = ?, avatar_url = ? WHERE id = 1',
-                [next.name, next.phone, next.avatar_url]);
+            this._run('UPDATE my_profile SET name = ?, phone = ?, avatar_url = ?, passkey_json = ? WHERE id = 1',
+                [next.name, next.phone, next.avatar_url, next.passkey_json]);
             return next;
+        },
+        /** Enrolled passkey record object, 'SKIP', or null. */
+        getPasskey() {
+            this._needInit();
+            const raw = (this.getProfile().passkey_json || '').trim();
+            if (!raw) return null;
+            if (raw === 'SKIP') return 'SKIP';
+            try { return JSON.parse(raw); } catch (e) { return null; }
+        },
+        setPasskey(recordOrSkip) {
+            this._needInit();
+            const val = recordOrSkip === 'SKIP' ? 'SKIP' : JSON.stringify(recordOrSkip || {});
+            this._run('UPDATE my_profile SET passkey_json = ? WHERE id = 1', [val]);
         },
         setIdentity(connectId, pubkey) {
             this._needInit();

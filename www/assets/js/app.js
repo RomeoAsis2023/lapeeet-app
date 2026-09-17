@@ -48,12 +48,13 @@
                         }
                     }
                     if (s === 'home') this._populateHomeStatus();
-                    if (s === 'settings') this._populateSettingsGit();
+                    if (s === 'settings') { this._populateSettingsGit(); this._bindSettingsScreen(); }
                     if (s === 'data') this._bindDataScreen();
                     if (s === 'profile') this._bindProfileScreen();
                     if (s === 'ebike') this._bindEbikeScreen();
                     if (s === 'messages') this._bindMessagesScreen();
                     if (s === 'trips') this._bindTripsScreen();
+                    if (s === 'lock') this._bindLockScreen();
                     if (s === 'onboarding') this._bindOnboardingScreen();
                 }
             });
@@ -125,6 +126,15 @@
                 p2pStatus: LapeeetP2P.status || 'offline'
             });
 
+            // 5b. REGISTRATION GATE (Phase 9): install navigate guard, then
+            // redirect first-run users to onboarding and locked users to lock.
+            this._installNavGuard();
+            if (!this._isRegistered()) {
+                LapeeetUI.navigate('onboarding');
+            } else if (this._needsUnlock()) {
+                LapeeetUI.navigate('lock');
+            }
+
             // 6. Update home screen status indicators
             setTimeout(() => this._populateHomeStatus(), 200);
 
@@ -135,6 +145,111 @@
             this.started = true;
             console.info(`[APP] Lapeeet v${APP_VERSION} ready. Role = ${this.role}.`);
             LapeeetUI.showToast('Lapeeet started — Phase 0 scaffold complete', 'success');
+        },
+
+        /* ---------- PHASE 9: REGISTRATION GATE + PASSKEY LOCK ---------- */
+
+        _unlocked: false, // session flag: true after passkey assertion (or no passkey enrolled)
+
+        /** Registered = profile has a name AND a valid PH mobile. */
+        _isRegistered() {
+            try {
+                if (!(window.LapeeetDB && LapeeetDB.initialized)) return false;
+                const p = LapeeetDB.getProfile() || {};
+                return !!(p.name && p.name.trim() &&
+                    window.LapeeetAuth && LapeeetAuth.isValidPHMobile(p.phone));
+            } catch (e) { return false; }
+        },
+
+        /** Lock needed = passkey enrolled (not skipped) and not yet unlocked this session. */
+        _needsUnlock() {
+            if (this._unlocked) return false;
+            try {
+                if (!(window.LapeeetDB && LapeeetDB.initialized)) return false;
+                const pk = LapeeetDB.getPasskey();
+                return !!(pk && pk !== 'SKIP');
+            } catch (e) { return false; }
+        },
+
+        _gateTarget(screen) {
+            if (!this._isRegistered()) {
+                return (screen === 'onboarding') ? null : 'onboarding';
+            }
+            if (this._needsUnlock()) {
+                return (screen === 'lock') ? null : 'lock';
+            }
+            return (screen === 'lock') ? 'home' : null; // unlocked users never see lock
+        },
+
+        _installNavGuard() {
+            if (this._navGuardInstalled || !window.LapeeetUI) return;
+            this._navGuardInstalled = true;
+            const orig = LapeeetUI.navigate.bind(LapeeetUI);
+            LapeeetUI.navigate = (screen) => {
+                const redirect = this._gateTarget(screen);
+                return orig(redirect || screen);
+            };
+        },
+
+        _bindSettingsScreen() {
+            const $st = $('#settingsPasskeyState');
+            const refresh = () => {
+                if (!$st.length) return;
+                try {
+                    const pk = LapeeetDB.getPasskey();
+                    if (pk && pk !== 'SKIP') $st.html('<span class="text-success">Enrolled on this device</span>');
+                    else if (pk === 'SKIP') $st.html('<span class="text-muted">Skipped</span>');
+                    else $st.html('<span class="text-warning">Not set up</span>');
+                } catch (e) { $st.text('—'); }
+            };
+            refresh();
+            $('#btnPasskeyAdd').off('click').on('click', async () => {
+                try {
+                    const prof = LapeeetDB.getProfile();
+                    const rec = await LapeeetAuth.registerPasskey({ name: prof.name, phone: prof.phone });
+                    LapeeetDB.setPasskey(rec);
+                    LapeeetUI.showToast('Passkey enrolled', 'success');
+                    refresh();
+                } catch (e) { LapeeetUI.showToast('Passkey failed: ' + (e.message || e), 'danger'); }
+            });
+            $('#btnPasskeyRemove').off('click').on('click', () => {
+                try {
+                    LapeeetDB.setPasskey('SKIP');
+                    LapeeetUI.showToast('Passkey removed — lock screen off', 'info');
+                    refresh();
+                } catch (e) { LapeeetUI.showToast('Remove failed: ' + (e.message || e), 'danger'); }
+            });
+        },
+
+        _bindLockScreen() {
+            $('#btnUnlock').off('click').on('click', async () => {
+                const errBox = $('#lockError');
+                errBox.hide();
+                try {
+                    const enrolled = LapeeetDB.getPasskey();
+                    const updated = await LapeeetAuth.unlockWithPasskey(enrolled);
+                    LapeeetDB.setPasskey(updated);
+                    this._unlocked = true;
+                    LapeeetUI.showToast('Unlocked — welcome back', 'success');
+                    LapeeetUI.navigate('home');
+                } catch (e) {
+                    errBox.text('Unlock failed: ' + (e.message || e)).show();
+                }
+            });
+            $('#btnLockErase').off('click').on('click', () => {
+                LapeeetUI.openModal({
+                    title: 'Erase this device?',
+                    bodyHtml: '<p class="small">This wipes your local tenant DB (profile, e-bikes, rides). Export first from another device if you need it. This cannot be undone.</p>',
+                    footerHtml: '<button class="btn btn-secondary" id="lockEraseCancel">Cancel</button> ' +
+                        '<button class="btn btn-danger" id="lockEraseGo">Erase everything</button>'
+                });
+                $('#lockEraseCancel').off('click').on('click', () => LapeeetUI.closeModal());
+                $('#lockEraseGo').off('click').on('click', async () => {
+                    try { await LapeeetDB.wipe(); } catch (e) {}
+                    try { localStorage.removeItem('lapeeet::role'); } catch (e) {}
+                    window.location.reload();
+                });
+            });
         },
 
         /* ---------- PHASE 6: ?mode= ROLE DEEP LINKS ---------- */
@@ -966,9 +1081,15 @@
         _bindProfileScreen() {
             $('#btnSaveProfile').off('click').on('click', () => {
                 try {
+                    const phoneRaw = ($('#profilePhone').val() || '').trim();
+                    const phone = window.LapeeetAuth ? LapeeetAuth.normalizePHMobile(phoneRaw) : phoneRaw;
+                    if (phoneRaw && !phone) {
+                        LapeeetUI.showToast('Enter a valid PH mobile (09xxxxxxxxx)', 'warning');
+                        return;
+                    }
                     const saved = LapeeetDB.saveProfile({
                         name: ($('#profileName').val() || '').trim().slice(0, 60),
-                        phone: ($('#profilePhone').val() || '').trim().slice(0, 20)
+                        phone: phone || ''
                     });
                     LapeeetUI.updateSidebar({ name: saved.name || 'Guest User' });
                     LapeeetUI.showToast('Profile saved', 'success');
@@ -1056,10 +1177,24 @@
 
         _bindOnboardingScreen() {
             let step = 1;
-            const TOTAL = 4;
+            const TOTAL = 5;
             const resolveBrand = this._brandSelectWire('#obBrand', '#obBrandOtherWrap', '#obBrandOther');
             // Pre-fill role from resolved boot role (?mode= / saved).
             try { $('#obRole').val(this.role); } catch (e) {}
+            // Restore in-progress passkey state label.
+            const refreshPasskeyLabel = () => {
+                try {
+                    const pk = LapeeetDB.getPasskey();
+                    if (pk && pk !== 'SKIP') {
+                        $('#obPasskeyState').text('Passkey ready on this device.');
+                        $('#obPasskeyBtn').prop('disabled', true);
+                    } else if (pk === 'SKIP') {
+                        $('#obPasskeyState').text('Skipped — you can add one later from Settings.');
+                    } else if (!window.LapeeetAuth || LapeeetAuth.supportReason() !== 'ok') {
+                        $('#obPasskeyState').text(LapeeetAuth ? LapeeetAuth.supportReason() : 'Passkeys unavailable here.');
+                    }
+                } catch (e) {}
+            };
             const show = () => {
                 $('.ob-step').each(function () {
                     $(this).toggle(Number($(this).attr('data-step')) === step);
@@ -1078,17 +1213,34 @@
                 }
             };
             $('#obBack').off('click').on('click', () => { if (step > 1) { step--; show(); } });
+            const validPhoneOrWarn = () => {
+                const norm = window.LapeeetAuth ? LapeeetAuth.normalizePHMobile($('#obPhone').val()) : null;
+                if (!norm) {
+                    LapeeetUI.showToast('Enter a valid PH mobile (09xxxxxxxxx)', 'warning');
+                    return null;
+                }
+                return norm;
+            };
             $('#obNext').off('click').on('click', () => {
-                if (step < TOTAL) { step++; show(); return; }
+                // Leaving step 2 requires a valid mobile number (registration gate).
+                if (step === 2 && !validPhoneOrWarn()) return;
+                if (step < TOTAL) { step++; if (step === 4) refreshPasskeyLabel(); show(); return; }
                 // Finish: persist role + profile (+ first e-bike for drivers).
                 try {
+                    const phone = validPhoneOrWarn();
+                    if (!phone) { step = 2; show(); return; }
+                    const name = ($('#obName').val() || '').trim().slice(0, 60);
+                    if (!name) {
+                        LapeeetUI.showToast('Enter your display name', 'warning');
+                        step = 2; show(); return;
+                    }
                     const role = $('#obRole').val() === 'DRIVER' ? 'DRIVER' : 'RIDER';
                     if (role !== this.role) LapeeetUI.toggleRole();
                     try { localStorage.setItem('lapeeet::role', this.role); } catch (e) {}
                     this._syncModeUrl();
                     const saved = LapeeetDB.saveProfile({
-                        name: ($('#obName').val() || '').trim().slice(0, 60) || 'Guest User',
-                        phone: ($('#obPhone').val() || '').trim().slice(0, 20)
+                        name,
+                        phone
                     });
                     if (role === 'DRIVER') {
                         const model = ($('#obModel').val() || '').trim();
@@ -1103,6 +1255,26 @@
                     LapeeetUI.showToast('Setup complete — welcome!', 'success');
                     LapeeetUI.navigate('home');
                 } catch (e) { LapeeetUI.showToast('Setup failed: ' + (e.message || e), 'danger'); }
+            });
+            $('#obPasskeyBtn').off('click').on('click', async () => {
+                const btn = $('#obPasskeyBtn');
+                btn.prop('disabled', true);
+                try {
+                    const name = ($('#obName').val() || '').trim().slice(0, 60) || 'Lapeeet User';
+                    const phone = LapeeetAuth.normalizePHMobile($('#obPhone').val()) || '';
+                    const rec = await LapeeetAuth.registerPasskey({ name, phone });
+                    LapeeetDB.setPasskey(rec);
+                    $('#obPasskeyState').text('Passkey created on this device.');
+                    LapeeetUI.showToast('Passkey created', 'success');
+                } catch (e) {
+                    $('#obPasskeyState').text('Could not create passkey: ' + (e.message || e));
+                    btn.prop('disabled', false);
+                }
+            });
+            $('#obPasskeySkip').off('click').on('click', () => {
+                try { LapeeetDB.setPasskey('SKIP'); } catch (e) {}
+                $('#obPasskeyState').text('Skipped — you can add one later from Settings.');
+                step++; show();
             });
             show();
         },

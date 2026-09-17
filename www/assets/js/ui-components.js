@@ -29,7 +29,8 @@
         ONBOARDING: 'onboarding',
         EBIKE:      'ebike',
         DATA:       'data',
-        SETTINGS:   'settings'
+        SETTINGS:   'settings',
+        LOCK:       'lock'
     });
 
     const LapeeetUI = {
@@ -91,6 +92,7 @@
                 case SCREENS.EBIKE:      return this._screenEbike();
                 case SCREENS.DATA:       return this._screenData();
                 case SCREENS.SETTINGS:   return this._screenSettings();
+                case SCREENS.LOCK:       return this._screenLock();
                 default:                 return this._screenHome();
             }
         },
@@ -624,7 +626,7 @@
                     <div class="card-body">
                         <h6 class="card-subtitle">First-time setup</h6>
                         <h5 class="card-title">Onboarding Wizard</h5>
-                        <p class="card-text small" id="obProgress" style="color:var(--lapeeet-text-lo);">Step 1 of 4</p>
+                        <p class="card-text small" id="obProgress" style="color:var(--lapeeet-text-lo);">Step 1 of 5</p>
                     </div>
                 </div>
             </div>
@@ -648,8 +650,9 @@
                                 <input type="text" class="form-control" id="obName" placeholder="Your name" maxlength="60">
                             </div></div>
                             <div class="form-group boxed"><div class="input-wrapper">
-                                <label class="label" for="obPhone">Phone</label>
-                                <input type="tel" class="form-control" id="obPhone" placeholder="+63 ..." maxlength="20">
+                                <label class="label" for="obPhone">Mobile number (required)</label>
+                                <input type="tel" class="form-control" id="obPhone" placeholder="09xxxxxxxxx or +63 ..." maxlength="20" autocomplete="tel">
+                                <small class="form-text" style="color:var(--lapeeet-text-mute);">Philippine mobile. Stored on this device only — shared with your matched driver/rider only.</small>
                             </div></div>
                         </div>
                         <div class="ob-step" data-step="3" style="display:none">
@@ -673,7 +676,23 @@
                             </div></div>
                         </div>
                         <div class="ob-step" data-step="4" style="display:none">
-                            <div class="section-title">4 · Confirm</div>
+                            <div class="section-title">4 · Passkey (passwordless login)</div>
+                            <p class="small" style="color:var(--lapeeet-text-lo);">
+                                Protect this account with your fingerprint, face, or device PIN.
+                                No passwords to remember or leak. Passkeys are tied to this site address.
+                            </p>
+                            <p class="small" id="obPasskeyState" style="color:var(--lapeeet-text-lo);">Not set up yet.</p>
+                            <div class="form-button-group">
+                                <button id="obPasskeyBtn" type="button" class="btn btn-primary btn-block shadowed">
+                                    <ion-icon name="finger-print-outline"></ion-icon> Create Passkey
+                                </button>
+                            </div>
+                            <div class="text-center mt-2">
+                                <a href="javascript:;" id="obPasskeySkip" class="small text-muted">Skip for now</a>
+                            </div>
+                        </div>
+                        <div class="ob-step" data-step="5" style="display:none">
+                            <div class="section-title">5 · Confirm</div>
                             <p class="small" id="obReview" style="color:var(--lapeeet-text-lo);"></p>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
@@ -681,6 +700,29 @@
                             <button id="obNext" type="button" class="btn btn-primary shadowed" style="min-width:140px">Next</button>
                         </div>
                     </form>
+                </div>
+            </div>`;
+        },
+        _screenLock() {
+            return `
+            <div class="section mt-2">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div style="font-size:44px;color:#8cbeff"><ion-icon name="finger-print-outline"></ion-icon></div>
+                        <h5 class="card-title mt-2">Unlock Lapeeet</h5>
+                        <p class="card-text small" style="color:var(--lapeeet-text-lo);">
+                            This device is protected by a passkey. Verify it's you to continue.
+                        </p>
+                        <p class="card-text small text-danger" id="lockError" style="display:none"></p>
+                        <div class="form-button-group">
+                            <button id="btnUnlock" type="button" class="btn btn-primary btn-block shadowed">
+                                <ion-icon name="finger-print-outline"></ion-icon> Unlock with Passkey
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="javascript:;" id="btnLockErase" class="small" style="color:#ff9aa2">Lost access? Erase this device and start over</a>
+                        </div>
+                    </div>
                 </div>
             </div>`;
         },
@@ -870,6 +912,29 @@
                         exported as signed git commits. Clone any public repo, or
                         create local-only repos — everything stays on this device
                         until you explicitly push.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section full mt-2 mb-2">
+                <div class="section-title">Security (Passkey)</div>
+                <div class="wide-block pt-2 pb-2 pl-3 pr-3">
+                    <ul class="listview flush transparent simple-listview">
+                        <li>Passkey <strong id="settingsPasskeyState">checking…</strong></li>
+                    </ul>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPasskeyAdd" type="button" class="btn btn-primary btn-block shadowed">
+                            <ion-icon name="finger-print-outline"></ion-icon> Add / Replace Passkey
+                        </button>
+                    </div>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPasskeyRemove" type="button" class="btn btn-outline-secondary btn-block">
+                            Remove Passkey
+                        </button>
+                    </div>
+                    <p class="text-muted smaller mt-3 mb-0" style="color:var(--lapeeet-text-mute);">
+                        Passwordless login with fingerprint, face, or device PIN.
+                        Tied to this site address; removing it disables the lock screen.
                     </p>
                 </div>
             </div>`;

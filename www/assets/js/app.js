@@ -238,6 +238,16 @@
                 } catch (e) { el.text('—'); }
             };
             refreshPin();
+            const diag = $('#settingsAuthDiag');
+            if (diag.length) {
+                try {
+                    const parts = [];
+                    parts.push('secure=' + (window.isSecureContext ? 'yes' : 'NO'));
+                    parts.push('host=' + (window.location.hostname || '(none — file?)'));
+                    parts.push('webauthn=' + (window.PublicKeyCredential ? 'yes' : 'NO'));
+                    diag.text(parts.join(' · '));
+                } catch (e) { diag.text('—'); }
+            }
             $('#btnPinSet').off('click').on('click', async () => {
                 const w0 = $('#pinCurWrap'), w1 = $('#pinSetWrap'), w2 = $('#pinSetWrap2');
                 const existing = (() => { try { return LapeeetDB.getPin(); } catch (e) { return null; } })();

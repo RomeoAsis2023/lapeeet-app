@@ -90,5 +90,32 @@ const ok = (name, cond) => {
   const msg = A.friendlyError({ name: 'InvalidStateError', message: 'A request is already pending.' }, 'unlock');
   ok('pending message is actionable', /already open/.test(msg));
 
+  // 6. Discoverable fallback: first get() (pinned cred) throws NotAllowedError,
+  // second get() (empty allow list) runs and its result goes to verification.
+  let fbCalls = 0;
+  const fbNav = {
+    credentials: {
+      create: () => Promise.reject(new Error('unused')),
+      get: (opts) => {
+        fbCalls++;
+        const allow = (opts && opts.publicKey && opts.publicKey.allowCredentials) || [];
+        if (allow.length) {
+          const e = new Error('no matching credential');
+          e.name = 'NotAllowedError';
+          return Promise.reject(e);
+        }
+        return Promise.resolve({ id: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', response: {} });
+      },
+    },
+  };
+  sandbox.navigator = fbNav;
+  let fbErr = null;
+  try {
+    await A.unlockWithPasskey({ credIdB64: 'AAEC', pubKeySpkiB64: 'AAEC', signCount: 0 });
+  } catch (e) { fbErr = e; }
+  ok('fallback runs second ceremony', fbCalls === 2);
+  ok('fallback mismatch rejected (not guard error)',
+    !!fbErr && /not enrolled/.test(fbErr.message));
+
   process.exit(fails ? 1 : 0);
 })().catch((e) => { console.error('HARNESS FAIL:', e); process.exit(1); });

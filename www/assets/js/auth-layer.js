@@ -329,16 +329,32 @@
             const challenge = new Uint8Array(32);
             crypto.getRandomValues(challenge);
             this._pendingChallenge = b64urlEncode(challenge);
+            const normB64 = (s) => String(s || '').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
-            const assertion = await navigator.credentials.get({
+            const tryGet = (allow) => navigator.credentials.get({
                 publicKey: {
                     challenge,
                     rpId,
-                    allowCredentials: [{ type: 'public-key', id: b64urlDecode(enrolled.credIdB64) }],
+                    allowCredentials: allow,
                     userVerification: 'preferred',
                     timeout: 60000
                 }
             });
+
+            let assertion;
+            try {
+                // Fast path: the exact enrolled credential.
+                assertion = await tryGet([{ type: 'public-key', id: b64urlDecode(enrolled.credIdB64) }]);
+            } catch (e) {
+                if (!(e && e.name === 'NotAllowedError')) throw e;
+                // Fallback: discoverable flow — let the user pick any resident
+                // passkey for this site, then match it against the enrollment.
+                assertion = await tryGet([]);
+                const picked = assertion && assertion.id ? normB64(assertion.id) : '';
+                if (!picked || picked !== normB64(enrolled.credIdB64)) {
+                    throw new Error('That passkey is not enrolled on this device');
+                }
+            }
             if (!assertion) throw new Error('No assertion returned');
             return this._verifyAssertion(assertion, enrolled, rpId);
         },

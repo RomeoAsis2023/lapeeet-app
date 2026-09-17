@@ -1026,6 +1026,7 @@
                     <ul class="listview flush transparent simple-listview">
                         <li>Passkey <strong id="settingsPasskeyState">checking…</strong></li>
                         <li>Device PIN <strong id="settingsPinState">checking…</strong></li>
+                        <li>Auth setup <strong id="settingsAuthDiag" class="small">checking…</strong></li>
                     </ul>
                     <div class="form-button-group mt-2">
                         <button id="btnPasskeyAdd" type="button" class="btn btn-primary btn-block shadowed">

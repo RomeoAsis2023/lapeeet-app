@@ -38,7 +38,7 @@ console.log(fails === 0
 for (const id of ['btnUnlock', 'btnLockErase', 'btnLockRecover', 'btnLogout',
   'btnProfileLogout', 'btnRecoverImport', 'fileRecoverDb', 'btnRecoverFresh',
   'btnRecoverBack', 'recoverError', 'obPasskeyBtn', 'obPasskeySkip', 'obPasskeyState',
-  'btnPasskeyAdd', 'btnPasskeyRemove', 'settingsPasskeyState', 'fileImportDb',
+  'btnPasskeyAdd', 'btnPasskeyRemove', 'settingsPasskeyState', 'settingsAuthDiag', 'fileImportDb',
   'capacityGroup', 'capacityValue', 'btnRequestRide']) {
   const where = (html.includes(`id="${id}"`) ? 'index' : '') +
     (ui.includes(`id="${id}"`) ? ' ui' : '');

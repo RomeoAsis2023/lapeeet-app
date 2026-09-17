@@ -9978,6 +9978,29 @@ body.dark-mode-active.auth-mode #appCapsule {
 }
 .role-card.is-selected .role-check { display: inline-flex; }
 
+/* ---------- PHASE 13: ride offer dialog timer ---------- */
+#rideDialogTimer {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+.ride-timer-track {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(140, 160, 190, 0.25);
+    overflow: hidden;
+    margin-top: 10px;
+}
+.ride-timer-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #1E74FD, #5aa1ff);
+    transition: width 0.5s linear;
+}
+body.dark-mode-active .ride-timer-track {
+    background: rgba(255, 255, 255, 0.12);
+}
+
 
 </style>
 </head>
@@ -33102,7 +33125,8 @@ module.exports = L.Routing = {
         DRIVER_STATUS:   'DRIVER_STATUS',
         RIDE_REQUEST:    'RIDE_REQUEST',
         RIDE_ACCEPT:     'RIDE_ACCEPT',
-        RIDE_REJECT:     'RIDE_REJECT',
+        RIDE_REJECT:     'RIDE_REJECT',   // reasons: declined | taken | expired
+        RIDE_LOCKED:     'RIDE_LOCKED',   // Phase 13: passenger broadcast, first-accept-wins
         RIDE_CANCEL:     'RIDE_CANCEL',
         RIDE_STATUS:     'RIDE_STATUS',
         LOCATION_UPDATE: 'LOCATION_UPDATE',
@@ -33115,6 +33139,9 @@ module.exports = L.Routing = {
         CALL_INITIATE:   'CALL_INITIATE',
         CALL_END:        'CALL_END'
     });
+
+    // Phase 13: driver offer window — one constant, both sides agree.
+    const RIDE_OFFER_MS = 60000;
 
     /* ---------- geohash-4 (no dep) ---------- */
     const GH32 = '0123456789bcdefghjkmnpqrstuvwxyz';
@@ -33581,11 +33608,14 @@ module.exports = L.Routing = {
 
         peerCount() { return this.peers.size; },
 
+        RIDE_OFFER_MS,
+
         /* ---------- CONVENIENCE SENDERS ---------- */
 
         sendRideRequest(rideObj) { return this.broadcast(MSG_TYPES.RIDE_REQUEST, rideObj); },
         sendRideAccept(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_ACCEPT, payload); },
         sendRideReject(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_REJECT, payload); },
+        sendRideLocked(payload) { return this.broadcast(MSG_TYPES.RIDE_LOCKED, payload); },
         sendRideCancel(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_CANCEL, payload); },
         sendRideStatus(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_STATUS, payload); },
         sendLocationUpdate(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.LOCATION_UPDATE, payload); },
@@ -33599,6 +33629,11 @@ module.exports = L.Routing = {
         validateRideRequest(b) {
             if (!b || typeof b !== 'object') return false;
             if (!b.ride_id || typeof b.ride_id !== 'string') return false;
+            // Phase 13: requests are passenger-only (peer recheck layer).
+            if (b.role !== 'RIDER') return false;
+            // Phase 13: offer must carry a live expiry (30s clock-skew grace).
+            if (typeof b.expires_at !== 'number' || isNaN(b.expires_at)) return false;
+            if (b.expires_at - Date.now() < -30000) return false;
             const need = ['pickup_lat', 'pickup_lng', 'drop_lat', 'drop_lng', 'distance_km', 'capacity'];
             for (const k of need) { if (typeof b[k] !== 'number' || isNaN(b[k])) return false; }
             if (!this.validateCapacity(b.capacity)) return false;
@@ -33616,7 +33651,7 @@ module.exports = L.Routing = {
 
     global.LapeeetP2P = LapeeetP2P;
     global.LapeeetGeohash = geohash;
-    global.LapeeetGeo = { geohash, haversineKm, trunc3, MAX_TRIP_KM: 60 };
+    global.LapeeetGeo = { geohash, haversineKm, trunc3, MAX_TRIP_KM: 60, RIDE_OFFER_MS };
 })(window);
 
 </script>
@@ -35012,6 +35047,9 @@ module.exports = L.Routing = {
                             <ion-icon name="car-sport-outline"></ion-icon>
                             Request Ride
                         </button>
+                        <p class="small text-muted text-center mt-2 mb-0" id="reqRoleNote" style="display:none">
+                            Drivers can't request rides — switch to Passenger mode to book.
+                        </p>
                     </div>
 
                     <div class="text-center mt-3">
@@ -36496,7 +36534,15 @@ module.exports = L.Routing = {
         _bindMapScreenButtons() {
             const self = this;
             $('#btnOpenOm').off('click').on('click', () => LapeeetMap.launchOrganicMaps('route', {}));
+            // Phase 13: requesting is passenger-only (drivers get the request list instead).
+            const isRider = this.role === 'RIDER';
+            $('#btnRequestRide').toggle(isRider);
+            $('#reqRoleNote').toggle(!isRider);
             $('#btnRequestRide').off('click').on('click', () => {
+                if (self.role !== 'RIDER') {
+                    LapeeetUI.showToast('Switch to Passenger mode to request a ride', 'warning');
+                    return;
+                }
                 if (!LapeeetMap.pickupLatLng || !LapeeetMap.dropoffLatLng) {
                     LapeeetUI.showToast('Set pickup and dropoff on the map first', 'warning');
                     return;
@@ -36511,8 +36557,11 @@ module.exports = L.Routing = {
                 const min = (self._lastRoute && self._lastRoute.durationMin) || Math.max(1, Math.round(km * 2.8));
                 const cap = self.getCapacity ? self.getCapacity() : 1;
                 const rideId = 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+                const offerMs = (window.LapeeetP2P && LapeeetP2P.RIDE_OFFER_MS) || 60000;
                 const ride = {
                     ride_id: rideId,
+                    role: 'RIDER',
+                    expires_at: Date.now() + offerMs,
                     pickup_lat: LapeeetMap.pickupLatLng.lat, pickup_lng: LapeeetMap.pickupLatLng.lng,
                     drop_lat: LapeeetMap.dropoffLatLng.lat, drop_lng: LapeeetMap.dropoffLatLng.lng,
                     distance_km: Math.round(km * 10) / 10,
@@ -36527,6 +36576,8 @@ module.exports = L.Routing = {
                 } catch (e) { LapeeetUI.showToast('Could not save ride: ' + (e.message || e), 'danger'); return; }
                 const env = LapeeetP2P.sendRideRequest(ride);
                 if (env) {
+                    // Phase 13: open lock for first-accept-wins + expiry notice.
+                    this._openRideLock(rideId, ride.expires_at);
                     LapeeetUI.showToast(`Ride broadcast to ${LapeeetP2P.peerCount()} peer${LapeeetP2P.peerCount() === 1 ? '' : 's'} — waiting for drivers`, 'success');
                 } else {
                     LapeeetUI.showToast('Mesh offline — ride saved, retry when connected', 'warning');
@@ -36590,9 +36641,180 @@ module.exports = L.Routing = {
             });
         },
 
+        /* ---------- PHASE 13: FIRST-ACCEPT-WINS + DRIVER DIALOGS ---------- */
+
+        _rideLocks: {},       // ride_id -> { winner: null|identity, expires_at, timer }
+        _dialogQueue: [],     // ride_ids waiting for the kit notification dialog
+        _dialogActive: null,  // { rideId, expires_at, timer } currently displayed
+
+        _offerMs() {
+            return (window.LapeeetP2P && LapeeetP2P.RIDE_OFFER_MS) || 60000;
+        },
+
+        _openRideLock(rideId, expires_at) {
+            const old = this._rideLocks[rideId];
+            if (old && old.timer) { try { clearTimeout(old.timer); } catch (e) {} }
+            const ms = Math.max(0, expires_at - Date.now());
+            const timer = setTimeout(() => this._expireRideLock(rideId), ms);
+            this._rideLocks[rideId] = { winner: null, expires_at, timer };
+        },
+
+        _expireRideLock(rideId) {
+            const lock = this._rideLocks[rideId];
+            if (!lock || lock.winner) return;
+            delete this._rideLocks[rideId];
+            try {
+                LapeeetDB.upsertRide('RIDER', { id: rideId, status: 'expired', created_at: Date.now() });
+            } catch (e) {}
+            LapeeetUI.showToast('No drivers responded — adjust and request again', 'warning');
+        },
+
+        /**
+         * Pure lock decision (harness-covered). Returns:
+         * 'unknown' (untracked ride), 'accept' (open), 'duplicate' (same winner
+         * re-sent), 'taken' (another driver already won).
+         */
+        _lockDecision(rideId, fromId) {
+            const lock = this._rideLocks[rideId];
+            if (!lock) return 'unknown';
+            if (!lock.winner) return 'accept';
+            return lock.winner === fromId ? 'duplicate' : 'taken';
+        },
+
+        _lockRide(rideId, winnerId) {
+            const old = this._rideLocks[rideId];
+            if (old && old.timer) { try { clearTimeout(old.timer); } catch (e) {} }
+            this._rideLocks[rideId] = {
+                winner: winnerId,
+                expires_at: (old && old.expires_at) || (Date.now() + this._offerMs()),
+                timer: null
+            };
+        },
+
+        /* ----- driver notification dialog (Mobile Kit notification-box) ----- */
+
+        _queueRideDialog(rideId) {
+            if (this._dialogActive && this._dialogActive.rideId === rideId) return;
+            if (this._dialogQueue.indexOf(rideId) === -1) this._dialogQueue.push(rideId);
+            this._pumpRideDialog();
+        },
+
+        _pumpRideDialog() {
+            if (this._dialogActive || !this._dialogQueue.length) return;
+            if (typeof notification !== 'function') return; // kit base.js missing
+            const rideId = this._dialogQueue.shift();
+            const rec = LapeeetP2P.rideRequests.get(rideId);
+            if (!rec || !rec.body || (rec.body.expires_at || 0) < Date.now()) {
+                if (rec) LapeeetP2P.rideRequests.delete(rideId);
+                this._pumpRideDialog();
+                return;
+            }
+            const b = rec.body;
+            const secs = Math.max(1, Math.ceil((b.expires_at - Date.now()) / 1000));
+            let host = document.getElementById('rideDialogHost');
+            if (!host) {
+                host = document.createElement('div');
+                host.id = 'rideDialogHost';
+                document.body.appendChild(host);
+            }
+            host.innerHTML =
+                `<div id="rideDialogBox" class="notification-box" data-ride="${this._escapeAttr(rideId)}">` +
+                `<div class="notification-dialog android-style">` +
+                `<div class="notification-header"><div class="in">` +
+                `<img src="assets/img/marker_user.svg" alt="passenger" class="imaged w24 rounded">` +
+                `<strong>New ride request</strong><span id="rideDialogTimer">${secs}s</span>` +
+                `</div><a href="#" class="close-button" id="rideDialogClose">` +
+                `<ion-icon name="close"></ion-icon></a></div>` +
+                `<div class="notification-content"><div class="in">` +
+                `<h3 class="subtitle">${Number(b.distance_km || 0).toFixed(1)} km · ${LapeeetUI.formatCurrency(b.fare_php || 0)}</h3>` +
+                `<div class="text">${b.capacity || '?'} seat(s) · passenger ${this._shortId(rec.from)}</div>` +
+                `<div class="ride-timer-track"><div class="ride-timer-fill" id="rideDialogBar"></div></div>` +
+                `</div></div>` +
+                `<div class="notification-footer">` +
+                `<a href="#" class="notification-button" id="btnRideDeny">` +
+                `<ion-icon name="close-circle"></ion-icon> Deny</a>` +
+                `<a href="#" class="notification-button" id="btnRideApprove">` +
+                `<ion-icon name="checkmark-circle"></ion-icon> Approve</a>` +
+                `</div></div></div>`;
+            const self = this;
+            const total = Math.max(1, b.expires_at - Date.now());
+            const timer = setInterval(() => {
+                const left = (rec.body.expires_at || 0) - Date.now();
+                const el = document.getElementById('rideDialogTimer');
+                const bar = document.getElementById('rideDialogBar');
+                if (left <= 0) {
+                    self._dismissRideDialog(rideId, { expired: true });
+                    return;
+                }
+                if (el) el.textContent = Math.ceil(left / 1000) + 's';
+                if (bar) bar.style.width = Math.max(0, (left / total) * 100) + '%';
+            }, 500);
+            this._dialogActive = { rideId, expires_at: b.expires_at, timer };
+            $('#btnRideApprove').off('click.rideDlg').on('click.rideDlg', (e) => {
+                e.preventDefault();
+                self._dismissRideDialog(rideId, { next: false });
+                self._driverAccept(rideId);
+                self._pumpRideDialog();
+            });
+            $('#btnRideDeny').off('click.rideDlg').on('click.rideDlg', (e) => {
+                e.preventDefault();
+                self._declineRide(rideId, 'declined');
+            });
+            $('#rideDialogClose').off('click.rideDlg').on('click.rideDlg', (e) => {
+                e.preventDefault();
+                self._declineRide(rideId, 'declined'); // X = decline (explicit reject)
+            });
+            try { notification('rideDialogBox'); } catch (e) {}
+            this._renderDriverRequests();
+        },
+
+        _declineRide(rideId, reason) {
+            const rec = LapeeetP2P.rideRequests.get(rideId);
+            if (rec) {
+                try { LapeeetP2P.sendRideReject(rec.from, { ride_id: rideId, reason: reason || 'declined' }); } catch (e) {}
+                LapeeetP2P.rideRequests.delete(rideId);
+            }
+            this._dismissRideDialog(rideId);
+            this._renderDriverRequests();
+        },
+
+        _dismissRideDialog(rideId, opts) {
+            opts = opts || {};
+            if (this._dialogActive && this._dialogActive.rideId === rideId) {
+                try { clearInterval(this._dialogActive.timer); } catch (e) {}
+                this._dialogActive = null;
+            }
+            this._dialogQueue = this._dialogQueue.filter(id => id !== rideId);
+            try {
+                const box = document.getElementById('rideDialogBox');
+                if (box && box.getAttribute('data-ride') === rideId) {
+                    box.classList.remove('show');
+                    const host = document.getElementById('rideDialogHost');
+                    if (host) host.innerHTML = '';
+                }
+            } catch (e) {}
+            if (opts.expired) {
+                LapeeetP2P.rideRequests.delete(rideId);
+                LapeeetUI.showToast('Ride offer expired', 'warning');
+                this._renderDriverRequests();
+            }
+            if (opts.next !== false) this._pumpRideDialog();
+        },
+
         _driverAccept(rideId) {
             const rec = LapeeetP2P.rideRequests.get(rideId);
             if (!rec) { LapeeetUI.showToast('Request expired', 'warning'); return; }
+            if (rec.body && rec.body.expires_at && rec.body.expires_at < Date.now()) {
+                LapeeetP2P.rideRequests.delete(rideId);
+                this._dismissRideDialog(rideId);
+                this._renderDriverRequests();
+                LapeeetUI.showToast('Request expired', 'warning');
+                return;
+            }
+            if (LapeeetP2P.activeRide) {
+                LapeeetUI.showToast('Finish your current ride first', 'warning');
+                return;
+            }
             const b = rec.body;
             let bike = null;
             try {
@@ -36611,6 +36833,7 @@ module.exports = L.Routing = {
             } catch (e) {}
             LapeeetP2P.activeRide = { ride_id: rideId, peer_identity: rec.from, role: 'DRIVER' };
             LapeeetP2P.rideRequests.delete(rideId);
+            this._dismissRideDialog(rideId);
             LapeeetUI.showToast('Ride accepted — passenger notified', 'success');
             this._chatSelected = rec.from;
             this._renderDriverRequests();
@@ -36618,12 +36841,7 @@ module.exports = L.Routing = {
         },
 
         _driverReject(rideId) {
-            const rec = LapeeetP2P.rideRequests.get(rideId);
-            if (rec) {
-                LapeeetP2P.sendRideReject(rec.from, { ride_id: rideId });
-                LapeeetP2P.rideRequests.delete(rideId);
-            }
-            this._renderDriverRequests();
+            this._declineRide(rideId, 'declined');
         },
 
         _renderActiveRide() {
@@ -36806,16 +37024,23 @@ module.exports = L.Routing = {
                     if (this.role === 'DRIVER' && !evt.isSelf) {
                         LapeeetUI.showToast('New ride request nearby', 'info');
                         if (LapeeetUI.currentScreen === 'map') this._renderDriverRequests();
+                        this._queueRideDialog(evt.body.ride_id);
                     }
                     if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
                     break;
                 case T.RIDE_ACCEPT:
                     if (!evt.isSelf) this._onRideAccepted(evt);
                     break;
+                case T.RIDE_LOCKED:
+                    if (!evt.isSelf) this._onRideLocked(evt);
+                    break;
                 case T.RIDE_REJECT:
                     if (!evt.isSelf) {
-                        LapeeetUI.showToast('Driver declined — try another request', 'warning');
-                        try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'RIDE_REJECT', from_id: evt.from, body: evt.body }, ''); } catch (e) {}
+                        if (this.role === 'DRIVER') this._onRejectAsDriver(evt);
+                        else {
+                            LapeeetUI.showToast('Driver declined — try another request', 'warning');
+                            try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'RIDE_REJECT', from_id: evt.from, body: evt.body }, ''); } catch (e) {}
+                        }
                     }
                     break;
                 case T.RIDE_CANCEL:
@@ -36890,6 +37115,16 @@ module.exports = L.Routing = {
 
         _onRideAccepted(evt) {
             const b = evt.body || {};
+            // Phase 13 first-accept-wins: only the first arrival locks the ride.
+            const decision = this._lockDecision(b.ride_id, evt.from);
+            if (decision === 'taken') {
+                try { LapeeetP2P.sendRideReject(evt.from, { ride_id: b.ride_id, reason: 'taken' }); } catch (e) {}
+                try { LapeeetDB.appendEvent({ ride_id: b.ride_id, type: 'RIDE_REJECT', from_id: LapeeetP2P.connectId, body: { reason: 'taken-late-accept' } }, ''); } catch (e) {}
+                LapeeetUI.showToast('Another driver was first — late accept declined', 'info');
+                return;
+            }
+            if (decision === 'duplicate') return; // winner re-sent; ignore
+            this._lockRide(b.ride_id, evt.from);
             try {
                 LapeeetDB.upsertRide('RIDER', {
                     id: b.ride_id, status: 'accepted', peer_id: evt.from, created_at: Date.now()
@@ -36902,6 +37137,10 @@ module.exports = L.Routing = {
             LapeeetP2P.activeRide = { ride_id: b.ride_id, peer_identity: evt.from, role: 'RIDER' };
             this._chatSelected = evt.from;
             this._renderActiveRide();
+            try {
+                LapeeetDB.appendEvent({ ride_id: b.ride_id, type: 'RIDE_LOCKED', from_id: LapeeetP2P.connectId, body: { winner: evt.from } }, '');
+            } catch (e) {}
+            try { LapeeetP2P.sendRideLocked({ ride_id: b.ride_id, winner: evt.from }); } catch (e) {}
             const eb = b.ebike || {};
             LapeeetUI.openModal({
                 title: 'Driver found',
@@ -36919,6 +37158,52 @@ module.exports = L.Routing = {
                 else if (what === 'call') { try { LapeeetCall.startCall(evt.from, b.ride_id, true, true); } catch (err) {} }
                 else if (what === 'nav') { LapeeetMap.launchOrganicMaps('route', {}); }
             });
+        },
+
+        _onRideLocked(evt) {
+            const b = evt.body || {};
+            if (!b.ride_id) return;
+            try { LapeeetDB.appendEvent({ ride_id: b.ride_id, type: 'RIDE_LOCKED', from_id: evt.from, body: b }, ''); } catch (e) {}
+            const ar = LapeeetP2P.activeRide;
+            if (ar && ar.ride_id === b.ride_id) {
+                if (ar.peer_identity === b.winner || LapeeetP2P.connectId === b.winner) return; // I'm the winner
+                // Split-brain rollback: I accepted, someone else won.
+                LapeeetP2P.activeRide = null;
+                try { LapeeetDB.upsertRide('DRIVER', { id: b.ride_id, status: 'taken', created_at: Date.now() }); } catch (e) {}
+                this._dismissRideDialog(b.ride_id);
+                this._renderActiveRide();
+                this._renderDriverRequests();
+                LapeeetUI.showToast('Ride taken by another driver', 'warning');
+                return;
+            }
+            // Not mine: drop the request + dialog so it can't be accepted late.
+            if (LapeeetP2P.rideRequests.has(b.ride_id)) {
+                LapeeetP2P.rideRequests.delete(b.ride_id);
+                this._dismissRideDialog(b.ride_id);
+                this._renderDriverRequests();
+                if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
+                LapeeetUI.showToast('Ride taken by another driver', 'info');
+            }
+        },
+
+        _onRejectAsDriver(evt) {
+            const b = evt.body || {};
+            if (!b.ride_id) return;
+            try { LapeeetDB.appendEvent({ ride_id: b.ride_id, type: 'RIDE_REJECT', from_id: evt.from, body: b }, ''); } catch (e) {}
+            const ar = LapeeetP2P.activeRide;
+            const had = LapeeetP2P.rideRequests.has(b.ride_id);
+            if (ar && ar.ride_id === b.ride_id) {
+                // Late accept was declined (taken) — roll back to idle.
+                LapeeetP2P.activeRide = null;
+                try { LapeeetDB.upsertRide('DRIVER', { id: b.ride_id, status: 'taken', created_at: Date.now() }); } catch (e) {}
+                this._renderActiveRide();
+                this._renderDriverRequests();
+                LapeeetUI.showToast(b.reason === 'taken' ? 'Another driver was first' : 'Passenger cancelled the request', 'warning');
+            } else if (had) {
+                this._renderDriverRequests();
+            }
+            LapeeetP2P.rideRequests.delete(b.ride_id);
+            this._dismissRideDialog(b.ride_id);
         },
 
         _onRideStatus(evt) {

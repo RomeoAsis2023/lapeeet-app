@@ -17,5 +17,6 @@
   "15": "2.2 Developer Tools / Permanent Memory Layer (outside `www/`)",
   "16": "10. DB + Storage Change Manifest (NO SKIP)",
   "17": "1. Project Vision & Principles (UNCHANGED — Still Governs All Decisions)",
-  "18": "8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)"
+  "18": "8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)",
+  "19": "manifest.json"
 }

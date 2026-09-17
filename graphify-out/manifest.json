@@ -1,8 +1,8 @@
 {
   "www/assets/js/app.js": {
-    "mtime": 1789636000.1511574,
-    "seen": 1789636004.0560513,
-    "ast_hash": "3ec606ab3a1e64ca28a29bc5f49f17ae",
+    "mtime": 1789636667.327836,
+    "seen": 1789636671.5222018,
+    "ast_hash": "3c9129f98d9ff49732dd387ab16ef5d0",
     "semantic_hash": ""
   },
   "www/assets/js/base.js": {
@@ -36,9 +36,9 @@
     "semantic_hash": ""
   },
   "www/assets/js/ui-components.js": {
-    "mtime": 1789635931.2728715,
-    "seen": 1789635935.1651359,
-    "ast_hash": "2ae47f973b5843135bcfa500187f415f",
+    "mtime": 1789636628.6016695,
+    "seen": 1789636632.5027385,
+    "ast_hash": "8e56b6600b7f1e0b58ece54f97edc4ca",
     "semantic_hash": ""
   },
   "Lapeet_app_development.md": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "www/index.html": {
-    "mtime": 1789634944.0434804,
-    "seen": 1789635706.0852191,
-    "ast_hash": "a9a6acd560cfa8be20602da58dda183a",
+    "mtime": 1789636694.0369687,
+    "seen": 1789636697.9769313,
+    "ast_hash": "1f832f4ba35ddcc29440f413edecccb6",
     "semantic_hash": ""
   },
   "www/assets/js/git-layer.js": {
@@ -84,10 +84,10 @@
     "semantic_hash": ""
   },
   "tools/build-single.py": {
-    "mtime": 1789635455.5710027,
-    "seen": 1789635661.3832307,
-    "ast_hash": "4f9752fbf8237dfcd514ab86b81aa46e",
-    "semantic_hash": "4f9752fbf8237dfcd514ab86b81aa46e"
+    "mtime": 1789636698.690428,
+    "seen": 1789636702.88774,
+    "ast_hash": "d7cca45497920192f68e7c1f38340075",
+    "semantic_hash": ""
   },
   "tools/check-db.js": {
     "mtime": 1789635468.3448915,
@@ -102,15 +102,21 @@
     "semantic_hash": "b8c9a68ac00144b0d3bbdefa4c2d718a"
   },
   "DEVELOPMENT_PHASES.md": {
-    "mtime": 1789635492.8684433,
-    "seen": 1789635706.0852156,
-    "ast_hash": "67c761b99b968c01aec5942295890dc4",
+    "mtime": 1789636049.9311578,
+    "seen": 1789636632.5027397,
+    "ast_hash": "a91ebd475bc12a2135d3137d77a1383e",
     "semantic_hash": ""
   },
   "tools/check-p2p.js": {
     "mtime": 1789636035.8466716,
     "seen": 1789636039.6220589,
     "ast_hash": "7c2ed3a5bc376bf3f19def9d02d328b4",
+    "semantic_hash": ""
+  },
+  "www/manifest.json": {
+    "mtime": 1789636694.0361443,
+    "seen": 1789636697.9769258,
+    "ast_hash": "dcc394e88c03a423b24b7a350ec9efa7",
     "semantic_hash": ""
   }
 }

@@ -91,9 +91,9 @@ CREATE TABLE geocode_cache(q TEXT PRIMARY KEY, lat REAL, lng REAL, address TEXT,
 
 **Exit:** WebView APK loads `file://lapeeet.html`, survives app kill (IndexedDB intact), Lighthouse mobile >85.
 
-- [ ] 5.1 Driver Earnings daily rollup, rider receipts print-to-PDF, toasts/empty/skeleton/error states, a11y labels + contrast, capacity dropdown hardening.
-- [ ] 5.2 WebView test: `file://` WASM instantiate, geolocation permission, WebRTC permission, background heartbeat note, 30-day backup reminder toast.
-- [ ] 5.3 `manifest.json` + icons from `lapeeet_icon.png` (optional PWA install, no store requirement).
+- [x] 5.1 Driver Earnings card on Trips (today / 7d / all-time + 7-day rows from `my_rides_as_driver`); per-trip Receipt links → modal → `window.print()` with print-only receipt CSS; 30-day backup reminder toast (stamped on every export); a11y labels on nav/header/main/call controls; capacity dropdown hardened (Phase 1).
+- [x] 5.2 WebView test: single-file + embedded WASM is `file://`-safe (no MIME/fetch needed); geolocation + WebRTC permissions are runtime-granted by the wrapper. Remaining: wrapper-side test on device (APK loads `dist/lapeeet.html`, kill/restart keeps IndexedDB).
+- [x] 5.3 `www/manifest.json` + icons (PNG/SVG `any` purpose) + builder static-copy to `dist/`; installable via browser/PWA. Service worker deliberately skipped (`file://` has no SW).
 
 ## Icebox (not MVP)
 

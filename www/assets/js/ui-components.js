@@ -427,16 +427,19 @@
 
         _screenTrips() {
             let body;
+            let extra = '';
             try {
                 if (window.LapeeetDB && LapeeetDB.initialized) {
-                    const rides = LapeeetDB.listRides(this.currentRole, 50);
+                    const rides = LapeeetDB.listRides(this.currentRole, 500);
+                    if (this.currentRole === 'DRIVER') extra = this._earningsCard(rides);
                     if (!rides.length) {
                         body = '<li><div class="item"><div class="in"><div>No trips yet — book your first ride from the Map tab.</div></div></div></li>';
                     } else {
-                        body = rides.map(r => `
+                        body = rides.slice(0, 50).map(r => `
                             <li><div class="item"><div class="in"><div>
                                 <div style="color:var(--lapeeet-text-hi);font-weight:600;">${(Number(r.distance_km) || 0).toFixed(1)} km · ${this.formatCurrency(r.fare_php || 0)}</div>
                                 <span class="text-muted">${this._escapeHtml(r.status || '')} · ${new Date(r.created_at || Date.now()).toLocaleString()}</span>
+                                <div class="mt-1"><a href="javascript:;" data-receipt="${this._escapeAttr(r.id)}" class="small text-primary">Receipt</a></div>
                             </div></div></div></li>`).join('');
                     }
                 } else {
@@ -454,11 +457,42 @@
                     </div>
                 </div>
             </div>
+            ${extra}
             <div class="section mt-2">
                 <div class="card">
                     <ul class="listview image-listview flush">${body}</ul>
                 </div>
             </div>`;
+        },
+
+        _earningsCard(rides) {
+            const day = (ts) => { const d = new Date(ts || Date.now()); return d.toISOString().slice(0, 10); };
+            const today = day(Date.now());
+            const weekAgo = Date.now() - 7 * 86400000;
+            let tSum = 0, tN = 0, wSum = 0, wN = 0, allSum = 0;
+            const byDay = {};
+            rides.forEach(r => {
+                const fare = Number(r.fare_php) || 0;
+                allSum += fare;
+                const k = day(r.created_at);
+                byDay[k] = byDay[k] || { sum: 0, n: 0 };
+                byDay[k].sum += fare; byDay[k].n++;
+                if (k === today) { tSum += fare; tN++; }
+                if ((r.created_at || 0) >= weekAgo) { wSum += fare; wN++; }
+            });
+            const rows = Object.keys(byDay).sort().reverse().slice(0, 7).map(k =>
+                `<li><span>${k}</span><strong>${this.formatCurrency(byDay[k].sum)} · ${byDay[k].n} trip${byDay[k].n === 1 ? '' : 's'}</strong></li>`).join('');
+            return `
+            <div class="section mt-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle">Driver earnings</h6>
+                        <h5 class="card-title">Today: ${this.formatCurrency(tSum)}</h5>
+                        <p class="card-text small" style="color:var(--lapeeet-text-lo);">${tN} trip${tN === 1 ? '' : 's'} today · ${this.formatCurrency(wSum)} last 7 days (${wN}) · ${this.formatCurrency(allSum)} all-time</p>
+                    </div>
+                </div>
+            </div>
+            ${rows ? `<div class="section mt-2"><div class="card"><ul class="listview flush transparent simple-listview">${rows}</ul></div></div>` : ''}`;
         },
         _screenMessages() {
             const app = global.LapeeetApp || {};

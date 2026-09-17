@@ -52,6 +52,7 @@
                     if (s === 'profile') this._bindProfileScreen();
                     if (s === 'ebike') this._bindEbikeScreen();
                     if (s === 'messages') this._bindMessagesScreen();
+                    if (s === 'trips') this._bindTripsScreen();
                     if (s === 'onboarding') this._bindOnboardingScreen();
                 }
             });
@@ -63,7 +64,19 @@
                 LapeeetUI.showToast('Local database unavailable — Data features disabled', 'danger');
             }
 
-            // 2b. GIT LAYER (isomorphic-git@1.25.0 browser)
+            // 2b. Backup reminder: nudge export if tenant has data but no recent backup.
+            try {
+                if (LapeeetDB.initialized) {
+                    const hasData = LapeeetDB.listEbikes().length > 0 ||
+                        LapeeetDB.listRides('RIDER', 1).length > 0 ||
+                        LapeeetDB.listRides('DRIVER', 1).length > 0;
+                    const last = Number(localStorage.getItem('lapeeet::last_backup') || 0);
+                    if (hasData && Date.now() - last > 30 * 86400000) {
+                        setTimeout(() => LapeeetUI.showToast('Back up your data: Data tab → Export', 'warning', 6000), 4000);
+                    }
+                }
+            } catch (e) { /* ignore */ }
+            // 2c. GIT LAYER (dev-only: no-op in live single-file, window.LapeeetGit undefined)
             //     Runs atop LightningFS → IndexedDB. No backend required.
             //     If the ESM 'lapeeet:git-ready' event hasn't fired yet, our
             //     git-layer.js will init() on that event. For app start we
@@ -496,6 +509,40 @@
             this._chatSave(all);
         },
 
+        _findRide(id) {
+            try {
+                const tables = ['my_rides_as_rider', 'my_rides_as_driver'];
+                for (const t of tables) {
+                    const rows = LapeeetDB._all(`SELECT * FROM ${t} WHERE id = ?`, [id]);
+                    if (rows.length) return rows[0];
+                }
+            } catch (e) {}
+            return null;
+        },
+
+        _bindTripsScreen() {
+            $('#screen-root').off('click.receipt').on('click.receipt', 'a[data-receipt]', (e) => {
+                e.preventDefault();
+                const ride = this._findRide($(e.currentTarget).attr('data-receipt'));
+                if (!ride) { LapeeetUI.showToast('Receipt not found', 'warning'); return; }
+                const when = new Date(ride.created_at || Date.now()).toLocaleString();
+                LapeeetUI.openModal({
+                    title: 'Ride receipt',
+                    bodyHtml: `<div id="receiptBody">` +
+                        `<p><strong>Lapeeet</strong> · peer-to-peer e-bike receipt</p>` +
+                        `<ul class="listview flush transparent simple-listview">` +
+                        `<li>Ride <strong>${this._escapeAttr(ride.id)}</strong></li>` +
+                        `<li>Date <strong>${when}</strong></li>` +
+                        `<li>Distance <strong>${(Number(ride.distance_km) || 0).toFixed(1)} km</strong></li>` +
+                        `<li>Status <strong>${this._escapeAttr(ride.status || '')}</strong></li>` +
+                        `<li>Total <strong>${LapeeetUI.formatCurrency(ride.fare_php || 0)}</strong></li>` +
+                        `</ul></div>`,
+                    footerHtml: `<button class="btn btn-primary" id="btnPrintReceipt">Print / PDF</button>`
+                });
+                $('#btnPrintReceipt').off('click').on('click', () => window.print());
+            });
+        },
+
         _bindMessagesScreen() {
             if (this._chatSelected) this._chatMarkRead(this._chatSelected);
             $('#screen-root').off('click.chatPeer').on('click.chatPeer', 'a[data-chat-peer]', (e) => {
@@ -834,6 +881,7 @@
                     const bin = LapeeetDB.exportBinary();
                     this._downloadBlob(new Blob([bin], { type: 'application/x-sqlite3' }),
                         'lapeeet-tenant-' + new Date().toISOString().slice(0, 10) + '.db');
+                    try { localStorage.setItem('lapeeet::last_backup', String(Date.now())); } catch (e) {}
                     LapeeetUI.showToast('Tenant .db exported', 'success');
                 } catch (e) { LapeeetUI.showToast('Export failed: ' + (e.message || e), 'danger'); }
             });
@@ -842,6 +890,7 @@
                     const dump = LapeeetDB.exportJSON();
                     this._downloadBlob(new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' }),
                         'lapeeet-tenant-' + new Date().toISOString().slice(0, 10) + '.json');
+                    try { localStorage.setItem('lapeeet::last_backup', String(Date.now())); } catch (e) {}
                     LapeeetUI.showToast('Tenant JSON exported', 'success');
                 } catch (e) { LapeeetUI.showToast('Export failed: ' + (e.message || e), 'danger'); }
             });

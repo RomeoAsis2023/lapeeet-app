@@ -13,7 +13,7 @@
       "file_type": "code",
       "norm_label": "_calcfare()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1073"
+      "source_location": "L1122"
     },
     {
       "id": "www_assets_js_app_bindautocomplete",
@@ -25,7 +25,7 @@
       "file_type": "code",
       "norm_label": "_bindautocomplete()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1023"
+      "source_location": "L1072"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown",
@@ -37,7 +37,7 @@
       "file_type": "code",
       "norm_label": "_bindcapacitydropdown()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L681"
+      "source_location": "L728"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_applyfocus",
@@ -49,7 +49,7 @@
       "file_type": "code",
       "norm_label": "applyfocus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L713"
+      "source_location": "L760"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_close",
@@ -61,7 +61,7 @@
       "file_type": "code",
       "norm_label": "close()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L697"
+      "source_location": "L744"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_open",
@@ -73,7 +73,7 @@
       "file_type": "code",
       "norm_label": "open()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L703"
+      "source_location": "L750"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_setvalue",
@@ -85,7 +85,7 @@
       "file_type": "code",
       "norm_label": "setvalue()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L717"
+      "source_location": "L764"
     },
     {
       "id": "www_assets_js_app_binddatascreen",
@@ -97,7 +97,7 @@
       "file_type": "code",
       "norm_label": "_binddatascreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L822"
+      "source_location": "L869"
     },
     {
       "id": "www_assets_js_app_bindebikescreen",
@@ -109,7 +109,7 @@
       "file_type": "code",
       "norm_label": "_bindebikescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L913"
+      "source_location": "L962"
     },
     {
       "id": "www_assets_js_app_bindmapscreenbuttons",
@@ -121,7 +121,7 @@
       "file_type": "code",
       "norm_label": "_bindmapscreenbuttons()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L261"
+      "source_location": "L274"
     },
     {
       "id": "www_assets_js_app_bindmessagesscreen",
@@ -133,7 +133,7 @@
       "file_type": "code",
       "norm_label": "_bindmessagesscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L499"
+      "source_location": "L546"
     },
     {
       "id": "www_assets_js_app_bindonboardingscreen",
@@ -145,7 +145,7 @@
       "file_type": "code",
       "norm_label": "_bindonboardingscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L973"
+      "source_location": "L1022"
     },
     {
       "id": "www_assets_js_app_bindprofilescreen",
@@ -157,7 +157,19 @@
       "file_type": "code",
       "norm_label": "_bindprofilescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L882"
+      "source_location": "L931"
+    },
+    {
+      "id": "www_assets_js_app_bindtripsscreen",
+      "label": "_bindTripsScreen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "_bindtripsscreen()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L523"
     },
     {
       "id": "www_assets_js_app_brandselectwire",
@@ -169,7 +181,7 @@
       "file_type": "code",
       "norm_label": "_brandselectwire()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L895"
+      "source_location": "L944"
     },
     {
       "id": "www_assets_js_app_cancelactiveride",
@@ -181,7 +193,7 @@
       "file_type": "code",
       "norm_label": "_cancelactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L440"
+      "source_location": "L453"
     },
     {
       "id": "www_assets_js_app_chatload",
@@ -193,7 +205,7 @@
       "file_type": "code",
       "norm_label": "_chatload()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L455"
+      "source_location": "L468"
     },
     {
       "id": "www_assets_js_app_chatmarkread",
@@ -205,7 +217,7 @@
       "file_type": "code",
       "norm_label": "_chatmarkread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L492"
+      "source_location": "L505"
     },
     {
       "id": "www_assets_js_app_chatpeers",
@@ -217,7 +229,7 @@
       "file_type": "code",
       "norm_label": "_chatpeers()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L467"
+      "source_location": "L480"
     },
     {
       "id": "www_assets_js_app_chatpush",
@@ -229,7 +241,7 @@
       "file_type": "code",
       "norm_label": "_chatpush()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L486"
+      "source_location": "L499"
     },
     {
       "id": "www_assets_js_app_chatsave",
@@ -241,7 +253,7 @@
       "file_type": "code",
       "norm_label": "_chatsave()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L459"
+      "source_location": "L472"
     },
     {
       "id": "www_assets_js_app_chatthread",
@@ -253,7 +265,7 @@
       "file_type": "code",
       "norm_label": "_chatthread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L482"
+      "source_location": "L495"
     },
     {
       "id": "www_assets_js_app_downloadblob",
@@ -265,7 +277,7 @@
       "file_type": "code",
       "norm_label": "_downloadblob()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L812"
+      "source_location": "L859"
     },
     {
       "id": "www_assets_js_app_driveraccept",
@@ -277,7 +289,7 @@
       "file_type": "code",
       "norm_label": "_driveraccept()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L358"
+      "source_location": "L371"
     },
     {
       "id": "www_assets_js_app_driverreject",
@@ -289,7 +301,7 @@
       "file_type": "code",
       "norm_label": "_driverreject()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L385"
+      "source_location": "L398"
     },
     {
       "id": "www_assets_js_app_driversetstatus",
@@ -301,7 +313,7 @@
       "file_type": "code",
       "norm_label": "_driversetstatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L423"
+      "source_location": "L436"
     },
     {
       "id": "www_assets_js_app_escapeattr",
@@ -313,7 +325,19 @@
       "file_type": "code",
       "norm_label": "_escapeattr()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1067"
+      "source_location": "L1116"
+    },
+    {
+      "id": "www_assets_js_app_findride",
+      "label": "_findRide()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "_findride()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L512"
     },
     {
       "id": "www_assets_js_app_initmapdeferred",
@@ -325,31 +349,7 @@
       "file_type": "code",
       "norm_label": "_initmapdeferred()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L228"
-    },
-    {
-      "id": "www_assets_js_app_lockpermanentdarkmode",
-      "label": "_lockPermanentDarkMode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "app.js",
-      "file_type": "code",
-      "norm_label": "_lockpermanentdarkmode()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L130"
-    },
-    {
-      "id": "www_assets_js_app_lockpermanentdarkmodeuionly",
-      "label": "_lockPermanentDarkModeUIOnly()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "app.js",
-      "file_type": "code",
-      "norm_label": "_lockpermanentdarkmodeuionly()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L161"
+      "source_location": "L241"
     },
     {
       "id": "www_assets_js_app_onp2pevent",
@@ -361,7 +361,7 @@
       "file_type": "code",
       "norm_label": "_onp2pevent()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L521"
+      "source_location": "L568"
     },
     {
       "id": "www_assets_js_app_onrideaccepted",
@@ -373,7 +373,7 @@
       "file_type": "code",
       "norm_label": "_onrideaccepted()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L616"
+      "source_location": "L663"
     },
     {
       "id": "www_assets_js_app_onridestatus",
@@ -385,7 +385,7 @@
       "file_type": "code",
       "norm_label": "_onridestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L649"
+      "source_location": "L696"
     },
     {
       "id": "www_assets_js_app_populatehomestatus",
@@ -397,7 +397,7 @@
       "file_type": "code",
       "norm_label": "_populatehomestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L170"
+      "source_location": "L183"
     },
     {
       "id": "www_assets_js_app_populatesettingsgit",
@@ -409,7 +409,7 @@
       "file_type": "code",
       "norm_label": "_populatesettingsgit()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L186"
+      "source_location": "L199"
     },
     {
       "id": "www_assets_js_app_renderactiveride",
@@ -421,7 +421,7 @@
       "file_type": "code",
       "norm_label": "_renderactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L394"
+      "source_location": "L407"
     },
     {
       "id": "www_assets_js_app_renderdriverrequests",
@@ -433,7 +433,7 @@
       "file_type": "code",
       "norm_label": "_renderdriverrequests()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L329"
+      "source_location": "L342"
     },
     {
       "id": "www_assets_js_app_revealshell",
@@ -445,7 +445,7 @@
       "file_type": "code",
       "norm_label": "_revealshell()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L126"
+      "source_location": "L139"
     },
     {
       "id": "www_assets_js_app_shortid",
@@ -457,7 +457,7 @@
       "file_type": "code",
       "norm_label": "_shortid()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L324"
+      "source_location": "L337"
     },
     {
       "id": "www_assets_js_app_showratingmodal",
@@ -469,7 +469,7 @@
       "file_type": "code",
       "norm_label": "_showratingmodal()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L662"
+      "source_location": "L709"
     },
     {
       "id": "www_assets_js_app_start",
@@ -493,7 +493,7 @@
       "file_type": "code",
       "norm_label": "_truncate()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1061"
+      "source_location": "L1110"
     },
     {
       "id": "www_assets_js_base_addtohome",
@@ -1348,6 +1348,30 @@
       "source_location": "L304"
     },
     {
+      "id": "www_assets_js_app_lockpermanentdarkmode",
+      "label": "_lockPermanentDarkMode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "ui-components.js",
+      "file_type": "code",
+      "norm_label": "_lockpermanentdarkmode()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L143"
+    },
+    {
+      "id": "www_assets_js_app_lockpermanentdarkmodeuionly",
+      "label": "_lockPermanentDarkModeUIOnly()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "ui-components.js",
+      "file_type": "code",
+      "norm_label": "_lockpermanentdarkmodeuionly()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L174"
+    },
+    {
       "id": "www_assets_js_ui_components_bindscreenevents",
       "label": "_bindScreenEvents()",
       "_callable": true,
@@ -1357,7 +1381,7 @@
       "file_type": "code",
       "norm_label": "_bindscreenevents()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L844"
+      "source_location": "L878"
     },
     {
       "id": "www_assets_js_ui_components_closemodal",
@@ -1369,7 +1393,19 @@
       "file_type": "code",
       "norm_label": "closemodal()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L926"
+      "source_location": "L960"
+    },
+    {
+      "id": "www_assets_js_ui_components_earningscard",
+      "label": "_earningsCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "ui-components.js",
+      "file_type": "code",
+      "norm_label": "_earningscard()",
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L468"
     },
     {
       "id": "www_assets_js_ui_components_escapeattr",
@@ -1381,7 +1417,7 @@
       "file_type": "code",
       "norm_label": "_escapeattr()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L576"
+      "source_location": "L610"
     },
     {
       "id": "www_assets_js_ui_components_escapehtml",
@@ -1393,7 +1429,7 @@
       "file_type": "code",
       "norm_label": "_escapehtml()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L572"
+      "source_location": "L606"
     },
     {
       "id": "www_assets_js_ui_components_formatcurrency",
@@ -1405,7 +1441,7 @@
       "file_type": "code",
       "norm_label": "formatcurrency()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L871"
+      "source_location": "L905"
     },
     {
       "id": "www_assets_js_ui_components_init",
@@ -1441,7 +1477,7 @@
       "file_type": "code",
       "norm_label": "openmodal()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L920"
+      "source_location": "L954"
     },
     {
       "id": "www_assets_js_ui_components_placeholdercard",
@@ -1477,7 +1513,7 @@
       "file_type": "code",
       "norm_label": "_screendata()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L740"
+      "source_location": "L774"
     },
     {
       "id": "www_assets_js_ui_components_screenebike",
@@ -1489,7 +1525,7 @@
       "file_type": "code",
       "norm_label": "_screenebike()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L653"
+      "source_location": "L687"
     },
     {
       "id": "www_assets_js_ui_components_screenhome",
@@ -1525,7 +1561,7 @@
       "file_type": "code",
       "norm_label": "_screenmessages()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L463"
+      "source_location": "L497"
     },
     {
       "id": "www_assets_js_ui_components_screenonboarding",
@@ -1537,7 +1573,7 @@
       "file_type": "code",
       "norm_label": "_screenonboarding()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L581"
+      "source_location": "L615"
     },
     {
       "id": "www_assets_js_ui_components_screenprofile",
@@ -1549,7 +1585,7 @@
       "file_type": "code",
       "norm_label": "_screenprofile()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L507"
+      "source_location": "L541"
     },
     {
       "id": "www_assets_js_ui_components_screensettings",
@@ -1561,7 +1597,7 @@
       "file_type": "code",
       "norm_label": "_screensettings()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L786"
+      "source_location": "L820"
     },
     {
       "id": "www_assets_js_ui_components_screentrips",
@@ -1585,7 +1621,7 @@
       "file_type": "code",
       "norm_label": "showtoast()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L895"
+      "source_location": "L929"
     },
     {
       "id": "www_assets_js_ui_components_togglerole",
@@ -1597,7 +1633,7 @@
       "file_type": "code",
       "norm_label": "togglerole()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L846"
+      "source_location": "L880"
     },
     {
       "id": "www_assets_js_ui_components_updatescreentitle",
@@ -1621,7 +1657,7 @@
       "file_type": "code",
       "norm_label": "updatesidebar()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L858"
+      "source_location": "L892"
     },
     {
       "id": "www_assets_js_git_layer_clone",
@@ -1921,7 +1957,7 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "tools/build-single.py",
-      "source_location": "L178"
+      "source_location": "L186"
     },
     {
       "id": "www_assets_js_p2p_layer_broadcast",
@@ -2787,7 +2823,7 @@
       "source_location": "L1"
     },
     {
-      "id": "www_assets_js_app_rationale_118",
+      "id": "www_assets_js_app_rationale_131",
       "label": "NOTE: base.js already fades #loader after DOMContentLoaded. Here we just unhide\u2026",
       "_origin": "ast",
       "community": 1,
@@ -2795,7 +2831,7 @@
       "file_type": "rationale",
       "norm_label": "note: base.js already fades #loader after domcontentloaded. here we just unhide...",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L118"
+      "source_location": "L131"
     },
     {
       "id": "www_assets_js_base",
@@ -3313,6 +3349,138 @@
       "source_location": "L521"
     },
     {
+      "id": "www_manifest",
+      "label": "manifest.json",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "manifest.json",
+      "source_file": "www/manifest.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "www_manifest_background_color",
+      "label": "background_color",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "background_color",
+      "source_file": "www/manifest.json",
+      "source_location": "L9"
+    },
+    {
+      "id": "www_manifest_description",
+      "label": "description",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "description",
+      "source_file": "www/manifest.json",
+      "source_location": "L4"
+    },
+    {
+      "id": "www_manifest_display",
+      "label": "display",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "display",
+      "source_file": "www/manifest.json",
+      "source_location": "L7"
+    },
+    {
+      "id": "www_manifest_icons",
+      "label": "icons",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "icons",
+      "source_file": "www/manifest.json",
+      "source_location": "L12"
+    },
+    {
+      "id": "www_manifest_lang",
+      "label": "lang",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "lang",
+      "source_file": "www/manifest.json",
+      "source_location": "L11"
+    },
+    {
+      "id": "www_manifest_name",
+      "label": "name",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "name",
+      "source_file": "www/manifest.json",
+      "source_location": "L2"
+    },
+    {
+      "id": "www_manifest_orientation",
+      "label": "orientation",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "orientation",
+      "source_file": "www/manifest.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "www_manifest_scope",
+      "label": "scope",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "scope",
+      "source_file": "www/manifest.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "www_manifest_short_name",
+      "label": "short_name",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "short_name",
+      "source_file": "www/manifest.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "www_manifest_start_url",
+      "label": "start_url",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "start_url",
+      "source_file": "www/manifest.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "www_manifest_theme_color",
+      "label": "theme_color",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "manifest.json",
+      "file_type": "code",
+      "norm_label": "theme_color",
+      "source_file": "www/manifest.json",
+      "source_location": "L10"
+    },
+    {
       "id": "www_assets_js_db_layer",
       "label": "db-layer.js",
       "_origin": "ast",
@@ -3322,6 +3490,18 @@
       "norm_label": "db-layer.js",
       "source_file": "www/assets/js/db-layer.js",
       "source_location": "L1"
+    },
+    {
+      "id": "development_phases_phase_3_webconnect_js_p2p_core_ride_flow",
+      "label": "Phase 3 \u2014 webconnect.js P2P Core Ride Flow",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 3 \u2014 webconnect.js p2p core ride flow",
+      "source_file": "DEVELOPMENT_PHASES.md",
+      "source_location": "L71"
     },
     {
       "id": "www_assets_js_map_layer",
@@ -3429,18 +3609,6 @@
       "norm_label": "phase 2 \u2014 sql.js tenant db + onboarding + e-bikes",
       "source_file": "DEVELOPMENT_PHASES.md",
       "source_location": "L48"
-    },
-    {
-      "id": "development_phases_phase_3_webconnect_js_p2p_core_ride_flow",
-      "label": "Phase 3 \u2014 webconnect.js P2P Core Ride Flow",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "map-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 3 \u2014 webconnect.js p2p core ride flow",
-      "source_file": "DEVELOPMENT_PHASES.md",
-      "source_location": "L71"
     },
     {
       "id": "development_phases_phase_4_call_chat",
@@ -3959,7 +4127,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/build-single.py",
-      "source_location": "L186",
+      "source_location": "L194",
       "weight": 1.0
     },
     {
@@ -3971,7 +4139,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1040",
+      "source_location": "L1089",
       "weight": 1.0
     },
     {
@@ -3983,7 +4151,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1041",
+      "source_location": "L1090",
       "weight": 1.0
     },
     {
@@ -3995,7 +4163,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L709",
+      "source_location": "L756",
       "weight": 1.0
     },
     {
@@ -4007,7 +4175,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L835",
+      "source_location": "L882",
       "weight": 1.0
     },
     {
@@ -4019,7 +4187,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L914",
+      "source_location": "L963",
       "weight": 1.0
     },
     {
@@ -4031,7 +4199,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L316",
+      "source_location": "L329",
       "weight": 1.0
     },
     {
@@ -4043,7 +4211,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L319",
+      "source_location": "L332",
       "weight": 1.0
     },
     {
@@ -4055,7 +4223,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L320",
+      "source_location": "L333",
       "weight": 1.0
     },
     {
@@ -4067,7 +4235,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L321",
+      "source_location": "L334",
       "weight": 1.0
     },
     {
@@ -4079,7 +4247,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L500",
+      "source_location": "L547",
       "weight": 1.0
     },
     {
@@ -4091,7 +4259,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L511",
+      "source_location": "L558",
       "weight": 1.0
     },
     {
@@ -4103,7 +4271,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L976",
+      "source_location": "L1025",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_bindtripsscreen",
+      "target": "www_assets_js_app_findride",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L526",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_bindtripsscreen",
+      "target": "www_assets_js_app_escapeattr",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L534",
       "weight": 1.0
     },
     {
@@ -4115,7 +4307,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L448",
+      "source_location": "L461",
       "weight": 1.0
     },
     {
@@ -4127,7 +4319,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L494",
+      "source_location": "L507",
       "weight": 1.0
     },
     {
@@ -4139,7 +4331,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L496",
+      "source_location": "L509",
       "weight": 1.0
     },
     {
@@ -4151,7 +4343,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L468",
+      "source_location": "L481",
       "weight": 1.0
     },
     {
@@ -4163,7 +4355,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L488",
+      "source_location": "L501",
       "weight": 1.0
     },
     {
@@ -4175,7 +4367,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L490",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
@@ -4187,7 +4379,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L484",
+      "source_location": "L497",
       "weight": 1.0
     },
     {
@@ -4199,7 +4391,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L381",
+      "source_location": "L394",
       "weight": 1.0
     },
     {
@@ -4211,7 +4403,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L382",
+      "source_location": "L395",
       "weight": 1.0
     },
     {
@@ -4223,7 +4415,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L391",
+      "source_location": "L404",
       "weight": 1.0
     },
     {
@@ -4235,7 +4427,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L436",
+      "source_location": "L449",
       "weight": 1.0
     },
     {
@@ -4247,7 +4439,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L233",
+      "source_location": "L246",
       "weight": 1.0
     },
     {
@@ -4259,7 +4451,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L246",
+      "source_location": "L259",
       "weight": 1.0
     },
     {
@@ -4271,7 +4463,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L258",
+      "source_location": "L271",
       "weight": 1.0
     },
     {
@@ -4283,7 +4475,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L154",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -4295,7 +4487,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L528",
+      "source_location": "L575",
       "weight": 1.0
     },
     {
@@ -4307,7 +4499,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L529",
+      "source_location": "L576",
       "weight": 1.0
     },
     {
@@ -4319,7 +4511,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L538",
+      "source_location": "L585",
       "weight": 1.0
     },
     {
@@ -4331,7 +4523,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L552",
+      "source_location": "L599",
       "weight": 1.0
     },
     {
@@ -4343,7 +4535,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L557",
+      "source_location": "L604",
       "weight": 1.0
     },
     {
@@ -4355,7 +4547,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L584",
+      "source_location": "L631",
       "weight": 1.0
     },
     {
@@ -4367,7 +4559,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L629",
+      "source_location": "L676",
       "weight": 1.0
     },
     {
@@ -4379,7 +4571,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L634",
+      "source_location": "L681",
       "weight": 1.0
     },
     {
@@ -4391,7 +4583,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L657",
+      "source_location": "L704",
       "weight": 1.0
     },
     {
@@ -4403,7 +4595,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L658",
+      "source_location": "L705",
       "weight": 1.0
     },
     {
@@ -4415,7 +4607,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L175",
+      "source_location": "L188",
       "weight": 1.0
     },
     {
@@ -4427,7 +4619,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L403",
+      "source_location": "L416",
       "weight": 1.0
     },
     {
@@ -4439,7 +4631,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L346",
+      "source_location": "L359",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_start",
+      "target": "www_assets_js_app_onp2pevent",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L104",
       "weight": 1.0
     },
     {
@@ -4451,7 +4655,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L119",
+      "source_location": "L132",
       "weight": 1.0
     },
     {
@@ -4564,7 +4768,7 @@
     },
     {
       "source": "www_assets_js_app_start",
-      "target": "www_assets_js_app_bindonboardingscreen",
+      "target": "www_assets_js_app_bindtripsscreen",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4576,14 +4780,14 @@
     },
     {
       "source": "www_assets_js_app_start",
-      "target": "www_assets_js_app_onp2pevent",
+      "target": "www_assets_js_app_bindonboardingscreen",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L91",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -6603,6 +6807,18 @@
       "weight": 1.0
     },
     {
+      "source": "www_assets_js_ui_components_earningscard",
+      "target": "www_assets_js_ui_components_formatcurrency",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L484",
+      "weight": 1.0
+    },
+    {
       "source": "www_assets_js_ui_components_init",
       "target": "www_assets_js_ui_components_navigate",
       "relation": "calls",
@@ -6779,7 +6995,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L663",
+      "source_location": "L697",
       "weight": 1.0
     },
     {
@@ -6791,7 +7007,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L681",
+      "source_location": "L715",
       "weight": 1.0
     },
     {
@@ -6803,7 +7019,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L469",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
@@ -6815,7 +7031,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L471",
+      "source_location": "L505",
       "weight": 1.0
     },
     {
@@ -6827,7 +7043,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L583",
+      "source_location": "L617",
       "weight": 1.0
     },
     {
@@ -6839,7 +7055,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L583",
+      "source_location": "L617",
       "weight": 1.0
     },
     {
@@ -6851,7 +7067,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L528",
+      "source_location": "L562",
       "weight": 1.0
     },
     {
@@ -6863,7 +7079,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L542",
+      "source_location": "L576",
       "weight": 1.0
     },
     {
@@ -6875,7 +7091,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L553",
+      "source_location": "L587",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components_screentrips",
+      "target": "www_assets_js_ui_components_earningscard",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L434",
       "weight": 1.0
     },
     {
@@ -6887,7 +7115,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L438",
+      "source_location": "L440",
       "weight": 1.0
     },
     {
@@ -6899,7 +7127,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L439",
+      "source_location": "L441",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components_screentrips",
+      "target": "www_assets_js_ui_components_escapeattr",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L442",
       "weight": 1.0
     },
     {
@@ -6911,7 +7151,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L854",
+      "source_location": "L888",
       "weight": 1.0
     },
     {
@@ -6923,7 +7163,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L855",
+      "source_location": "L889",
       "weight": 1.0
     },
     {
@@ -6935,7 +7175,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L697",
+      "source_location": "L744",
       "weight": 1.0
     },
     {
@@ -6947,7 +7187,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L713",
+      "source_location": "L760",
       "weight": 1.0
     },
     {
@@ -6959,7 +7199,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L717",
+      "source_location": "L764",
       "weight": 1.0
     },
     {
@@ -7944,7 +8184,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-single.py",
-      "source_location": "L178",
+      "source_location": "L186",
       "weight": 1.0
     },
     {
@@ -8125,13 +8365,24 @@
     },
     {
       "source": "www_assets_js_app",
+      "target": "www_assets_js_app_bindonboardingscreen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1022",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
       "target": "www_assets_js_app_bindautocomplete",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1023",
+      "source_location": "L1072",
       "weight": 1.0
     },
     {
@@ -8142,7 +8393,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1061",
+      "source_location": "L1110",
       "weight": 1.0
     },
     {
@@ -8153,7 +8404,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1067",
+      "source_location": "L1116",
       "weight": 1.0
     },
     {
@@ -8164,7 +8415,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1073",
+      "source_location": "L1122",
       "weight": 1.0
     },
     {
@@ -8175,7 +8426,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L126",
+      "source_location": "L139",
       "weight": 1.0
     },
     {
@@ -8186,18 +8437,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L130",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_lockpermanentdarkmodeuionly",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L161",
+      "source_location": "L143",
       "weight": 1.0
     },
     {
@@ -8213,13 +8453,24 @@
     },
     {
       "source": "www_assets_js_app",
+      "target": "www_assets_js_app_lockpermanentdarkmodeuionly",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L174",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
       "target": "www_assets_js_app_populatehomestatus",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L170",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -8230,7 +8481,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L186",
+      "source_location": "L199",
       "weight": 1.0
     },
     {
@@ -8241,7 +8492,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L228",
+      "source_location": "L241",
       "weight": 1.0
     },
     {
@@ -8252,7 +8503,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L261",
+      "source_location": "L274",
       "weight": 1.0
     },
     {
@@ -8263,7 +8514,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L324",
+      "source_location": "L337",
       "weight": 1.0
     },
     {
@@ -8274,7 +8525,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L329",
+      "source_location": "L342",
       "weight": 1.0
     },
     {
@@ -8285,7 +8536,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L358",
+      "source_location": "L371",
       "weight": 1.0
     },
     {
@@ -8296,7 +8547,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L385",
+      "source_location": "L398",
       "weight": 1.0
     },
     {
@@ -8307,7 +8558,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L394",
+      "source_location": "L407",
       "weight": 1.0
     },
     {
@@ -8318,7 +8569,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L423",
+      "source_location": "L436",
       "weight": 1.0
     },
     {
@@ -8329,7 +8580,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L440",
+      "source_location": "L453",
       "weight": 1.0
     },
     {
@@ -8340,7 +8591,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L455",
+      "source_location": "L468",
       "weight": 1.0
     },
     {
@@ -8351,7 +8602,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L459",
+      "source_location": "L472",
       "weight": 1.0
     },
     {
@@ -8362,7 +8613,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L467",
+      "source_location": "L480",
       "weight": 1.0
     },
     {
@@ -8373,7 +8624,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L482",
+      "source_location": "L495",
       "weight": 1.0
     },
     {
@@ -8384,7 +8635,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L486",
+      "source_location": "L499",
       "weight": 1.0
     },
     {
@@ -8395,7 +8646,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L492",
+      "source_location": "L505",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_findride",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L512",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_bindtripsscreen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L523",
       "weight": 1.0
     },
     {
@@ -8406,7 +8679,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L499",
+      "source_location": "L546",
       "weight": 1.0
     },
     {
@@ -8417,7 +8690,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L521",
+      "source_location": "L568",
       "weight": 1.0
     },
     {
@@ -8428,7 +8701,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L616",
+      "source_location": "L663",
       "weight": 1.0
     },
     {
@@ -8439,7 +8712,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L649",
+      "source_location": "L696",
       "weight": 1.0
     },
     {
@@ -8450,7 +8723,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L662",
+      "source_location": "L709",
       "weight": 1.0
     },
     {
@@ -8461,7 +8734,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L681",
+      "source_location": "L728",
       "weight": 1.0
     },
     {
@@ -8472,7 +8745,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L812",
+      "source_location": "L859",
       "weight": 1.0
     },
     {
@@ -8483,7 +8756,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L822",
+      "source_location": "L869",
       "weight": 1.0
     },
     {
@@ -8494,7 +8767,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L882",
+      "source_location": "L931",
       "weight": 1.0
     },
     {
@@ -8505,7 +8778,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L895",
+      "source_location": "L944",
       "weight": 1.0
     },
     {
@@ -8516,18 +8789,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L913",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_bindonboardingscreen",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L973",
+      "source_location": "L962",
       "weight": 1.0
     },
     {
@@ -8538,7 +8800,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L703",
+      "source_location": "L750",
       "weight": 1.0
     },
     {
@@ -10171,13 +10433,24 @@
     },
     {
       "source": "www_assets_js_ui_components",
+      "target": "www_assets_js_ui_components_earningscard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L468",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_screenmessages",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L463",
+      "source_location": "L497",
       "weight": 1.0
     },
     {
@@ -10188,7 +10461,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L507",
+      "source_location": "L541",
       "weight": 1.0
     },
     {
@@ -10199,7 +10472,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L572",
+      "source_location": "L606",
       "weight": 1.0
     },
     {
@@ -10210,7 +10483,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L576",
+      "source_location": "L610",
       "weight": 1.0
     },
     {
@@ -10221,18 +10494,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L581",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_ui_components",
-      "target": "www_assets_js_ui_components_screenebike",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L653",
+      "source_location": "L615",
       "weight": 1.0
     },
     {
@@ -10248,13 +10510,24 @@
     },
     {
       "source": "www_assets_js_ui_components",
+      "target": "www_assets_js_ui_components_screenebike",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L687",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_screendata",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L740",
+      "source_location": "L774",
       "weight": 1.0
     },
     {
@@ -10276,7 +10549,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L786",
+      "source_location": "L820",
       "weight": 1.0
     },
     {
@@ -10298,7 +10571,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L844",
+      "source_location": "L878",
       "weight": 1.0
     },
     {
@@ -10309,7 +10582,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L846",
+      "source_location": "L880",
       "weight": 1.0
     },
     {
@@ -10320,7 +10593,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L858",
+      "source_location": "L892",
       "weight": 1.0
     },
     {
@@ -10331,7 +10604,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L871",
+      "source_location": "L905",
       "weight": 1.0
     },
     {
@@ -10342,7 +10615,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L895",
+      "source_location": "L929",
       "weight": 1.0
     },
     {
@@ -10353,7 +10626,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L920",
+      "source_location": "L954",
       "weight": 1.0
     },
     {
@@ -10364,7 +10637,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L926",
+      "source_location": "L960",
       "weight": 1.0
     },
     {
@@ -10379,6 +10652,127 @@
       "weight": 1.0
     },
     {
+      "source": "www_manifest",
+      "target": "www_manifest_theme_color",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_lang",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_icons",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_name",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_short_name",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_description",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_start_url",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_scope",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_display",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_orientation",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "www_manifest",
+      "target": "www_manifest_background_color",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/manifest.json",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
       "source": "tools_build_single_rationale_2",
       "target": "tools_build_single",
       "relation": "rationale_for",
@@ -10390,14 +10784,14 @@
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_app_rationale_118",
+      "source": "www_assets_js_app_rationale_131",
       "target": "www_assets_js_app",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L118",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
@@ -10634,9 +11028,21 @@
       "_origin": "ast",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
-      "context": "appendEvent()",
+      "context": "appendEvent",
       "source_file": "DEVELOPMENT_PHASES.md",
       "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "development_phases_phase_4_call_chat",
+      "target": "www_assets_js_call_layer_attachmesh",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "attachMesh()",
+      "source_file": "DEVELOPMENT_PHASES.md",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -10697,18 +11103,6 @@
       "context": "flyToCurrentLocation()",
       "source_file": "DEVELOPMENT_PHASES.md",
       "source_location": "L41",
-      "weight": 1.0
-    },
-    {
-      "source": "development_phases_phase_3_webconnect_js_p2p_core_ride_flow",
-      "target": "www_assets_js_ui_components_formatcurrency",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "formatCurrency()",
-      "source_file": "DEVELOPMENT_PHASES.md",
-      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -10773,6 +11167,18 @@
     },
     {
       "source": "development_phases_phase_3_webconnect_js_p2p_core_ride_flow",
+      "target": "www_assets_js_db_layer_upsertride",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "upsertRide",
+      "source_file": "DEVELOPMENT_PHASES.md",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "development_phases_phase_3_webconnect_js_p2p_core_ride_flow",
       "target": "www_assets_js_p2p_layer_validateriderequest",
       "relation": "references",
       "_origin": "ast",
@@ -10785,5 +11191,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9edd2c3939604cf3a882bca5fb839cf100428c9a"
+  "built_at_commit": "8ed5d16bf1159c5cd5b902e5ace84ecff5a6c4c2"
 }

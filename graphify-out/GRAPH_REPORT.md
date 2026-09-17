@@ -1,17 +1,17 @@
 # Graph Report - Lapeeet  (2026-09-17)
 
 ## Corpus Check
-- 14 files · ~29,933 words
+- 15 files · ~30,521 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: .css 5, (none) 2, .psd 1)
 
 ## Summary
-- 329 nodes · 596 edges · 19 communities
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 31 edges (avg confidence: 0.93)
+- 344 nodes · 617 edges · 20 communities
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9edd2c39`
+- Built from commit: `8ed5d16b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -35,11 +35,12 @@
 - 10. DB + Storage Change Manifest (NO SKIP)
 - 1. Project Vision & Principles (UNCHANGED — Still Governs All Decisions)
 - 8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)
+- manifest.json
 
 ## God Nodes (most connected - your core abstractions)
 1. `_needInit()` - 18 edges
 2. `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` - 16 edges
-3. `start()` - 13 edges
+3. `start()` - 14 edges
 4. `_render()` - 12 edges
 5. `sendDirect()` - 12 edges
 6. `Lapeeet — Development Phases (Single-File Live P2P)` - 12 edges
@@ -51,19 +52,19 @@
 ## Surprising Connections (you probably didn't know these)
 - `6.2 Trip Distance Cap (60 km max) — still valid 4-layer enforcement plan (Phase 1 impl partial)` --references--> `_calcFare()`  [INFERRED]
   Lapeet_app_development.md → www/assets/js/app.js
+- `Phase 4 — Call + Chat` --references--> `attachMesh()`  [INFERRED]
+  DEVELOPMENT_PHASES.md → www/assets/js/call-layer.js
+- `Phase 3 — webconnect.js P2P Core Ride Flow` --references--> `removeDriverPin()`  [INFERRED]
+  DEVELOPMENT_PHASES.md → www/assets/js/map-layer.js
 - `PHASE 5 — Finishing Touches & MVP Polish` --references--> `formatCurrency()`  [INFERRED]
   Lapeet_app_development.md → www/assets/js/ui-components.js
-- `4.3 Dark Mode — PERMANENT ON (NOT a toggle)` --references--> `_lockPermanentDarkMode()`  [INFERRED]
-  Lapeet_app_development.md → www/assets/js/app.js
 - `PHASE 0 — Project Scaffolding & Static Setup — **100% ✅ COMPLETED**` --references--> `_populateSettingsGit()`  [INFERRED]
   Lapeet_app_development.md → www/assets/js/app.js
-- `Phase 1 — Map + 60 km Gate + Organic Maps` --references--> `_initMapDeferred()`  [INFERRED]
-  DEVELOPMENT_PHASES.md → www/assets/js/app.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (19 total, 0 thin omitted)
+## Communities (20 total, 0 thin omitted)
 
 ### Community 0 - "7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)"
 Cohesion: 0.20
@@ -74,16 +75,16 @@ Cohesion: 0.11
 Nodes (39): _bindAutocomplete(), _bindCapacityDropdown(), applyFocus(), open(), _bindDataScreen(), _bindEbikeScreen(), _bindMapScreenButtons(), _bindMessagesScreen() (+31 more)
 
 ### Community 2 - "db-layer.js"
-Cohesion: 0.14
-Nodes (32): _all(), appendEvent(), b64ToU8(), createEbike(), deleteEbike(), exportBinary(), exportJSON(), geoGet() (+24 more)
+Cohesion: 0.13
+Nodes (33): Phase 3 — webconnect.js P2P Core Ride Flow, _all(), appendEvent(), b64ToU8(), createEbike(), deleteEbike(), exportBinary(), exportJSON() (+25 more)
 
 ### Community 3 - "map-layer.js"
 Cohesion: 0.09
-Nodes (38): 0. Live vs Dev separation (locked), Icebox (not MVP), Lapeeet — Development Phases (Single-File Live P2P), Ops (dev workstation only), Phase 0 — Single-File Shell, Phase 1 — Map + 60 km Gate + Organic Maps, Phase 2 — sql.js Tenant DB + Onboarding + E-Bikes, Phase 3 — webconnect.js P2P Core Ride Flow (+30 more)
+Nodes (37): 0. Live vs Dev separation (locked), Icebox (not MVP), Lapeeet — Development Phases (Single-File Live P2P), Ops (dev workstation only), Phase 0 — Single-File Shell, Phase 1 — Map + 60 km Gate + Organic Maps, Phase 2 — sql.js Tenant DB + Onboarding + E-Bikes, Phase 4 — Call + Chat (+29 more)
 
 ### Community 4 - "ui-components.js"
-Cohesion: 0.15
-Nodes (23): 4.1 Header — static logotext image, never overwritten by screen title, 4.2 Sidebar avatar — ZERO border, ZERO shadow, ZERO padding, transparent bg, 4.3 Dark Mode — PERMANENT ON (NOT a toggle), 4. Permanent UI Decisions (CONFirmed by code & tested live), _bindScreenEvents(), _escapeAttr(), _escapeHtml(), formatCurrency() (+15 more)
+Cohesion: 0.13
+Nodes (26): 4.1 Header — static logotext image, never overwritten by screen title, 4.2 Sidebar avatar — ZERO border, ZERO shadow, ZERO padding, transparent bg, 4.3 Dark Mode — PERMANENT ON (NOT a toggle), 4. Permanent UI Decisions (CONFirmed by code & tested live), _lockPermanentDarkMode(), _lockPermanentDarkModeUIOnly(), _bindScreenEvents(), _earningsCard() (+18 more)
 
 ### Community 5 - "git-layer.js"
 Cohesion: 0.12
@@ -141,24 +142,28 @@ Nodes (4): 1.1 What Is Lapeeet?, 1.2 Core Principles, 1.3 Target Use Cases, 1. P
 Cohesion: 0.50
 Nodes (4): 8.1 Application source files, 8.2 Vendor distribution files (downloaded, NOT edited), 8.3 Developer Tooling (graphifyy local install + memory graph), 8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)
 
+### Community 19 - "manifest.json"
+Cohesion: 0.17
+Nodes (11): background_color, description, display, icons, lang, name, orientation, scope (+3 more)
+
 ## Knowledge Gaps
-- **56 isolated node(s):** `fs`, `path`, `VL`, `fs`, `vm` (+51 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 99 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **66 isolated node(s):** `fs`, `path`, `VL`, `fs`, `vm` (+61 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 109 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Phase 3 — webconnect.js P2P Core Ride Flow` connect `map-layer.js` to `db-layer.js`, `ui-components.js`, `p2p-layer.js`?**
-  _High betweenness centrality (0.318) - this node is a cross-community bridge._
-- **Why does `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` connect `Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist` to `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)`, `ui-components.js`, `git-layer.js`, `3.1 Official Currency — Philippine Peso `₱ PHP``, `6. Feature Inventory & Scope (Updated with Completed Sub-items)`, `11. COMPLETE ACTIVITY REGISTER (NO SKIP — every command run, every manual action)`, `2.2 Developer Tools / Permanent Memory Layer (outside `www/`)`, `10. DB + Storage Change Manifest (NO SKIP)`, `1. Project Vision & Principles (UNCHANGED — Still Governs All Decisions)`, `8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)`?**
-  _High betweenness centrality (0.258) - this node is a cross-community bridge._
-- **Why does `formatCurrency()` connect `ui-components.js` to `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)`, `map-layer.js`?**
-  _High betweenness centrality (0.170) - this node is a cross-community bridge._
+- **Why does `Phase 1 — Map + 60 km Gate + Organic Maps` connect `map-layer.js` to `7. Development Phases & LIVE Checklists (FULLY UPDATED — No Skip)`, `app.js`?**
+  _High betweenness centrality (0.355) - this node is a cross-community bridge._
+- **Why does `Lapeeet — Development Phases (Single-File Live P2P)` connect `map-layer.js` to `db-layer.js`?**
+  _High betweenness centrality (0.334) - this node is a cross-community bridge._
+- **Why does `Phase 3 — webconnect.js P2P Core Ride Flow` connect `db-layer.js` to `map-layer.js`, `p2p-layer.js`?**
+  _High betweenness centrality (0.302) - this node is a cross-community bridge._
 - **What connects `fs`, `path`, `VL` to the rest of the system?**
-  _56 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _66 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.10685249709639953 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10801393728222997 - nodes in this community are weakly interconnected._
 - **Should `db-layer.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.13949579831932774 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1349206349206349 - nodes in this community are weakly interconnected._
 - **Should `map-layer.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.08826945412311266 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08902439024390243 - nodes in this community are weakly interconnected._

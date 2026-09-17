@@ -1,0 +1,26 @@
+{
+  "name": "Lapeeet — P2P E-Bike Ride-Hailing",
+  "short_name": "Lapeeet",
+  "description": "Peer-to-peer e-bike ride-hailing. No server. Your data. 60km short trips.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1324",
+  "theme_color": "#1E74FD",
+  "lang": "en-PH",
+  "icons": [
+    {
+      "src": "assets/img/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

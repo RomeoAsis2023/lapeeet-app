@@ -172,6 +172,14 @@ def build(out: Path, inline_imgs: bool, do_min: bool) -> dict:
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
     stats["out_bytes"] = out.stat().st_size
+    # Static companions that stay external by design (manifest + icons).
+    for rel in ("manifest.json", "assets/img/icon.png", "assets/img/icon.svg"):
+        src = WWW / rel
+        dst = out.parent / rel
+        if src.is_file():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_bytes(src.read_bytes())
+            print(f"  [static] copy {rel} ({src.stat().st_size}B)", file=sys.stderr)
     return stats
 
 

@@ -281,6 +281,28 @@ body.dark-mode-active #screen-root .form-button-group .btn,
     cursor: not-allowed;
 }
 
+/* ---------- PRINT — receipts only (Phase 5) ---------- */
+@media print {
+    body > *:not(#globalModal) { display: none !important; }
+    #globalModal {
+        position: static !important;
+        display: block !important;
+        opacity: 1 !important;
+        padding: 0 !important;
+    }
+    #globalModal .modal-dialog {
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+    #globalModal .modal-content {
+        border: none !important;
+        box-shadow: none !important;
+        color: #000 !important;
+    }
+    #globalModal .modal-content * { color: #000 !important; }
+    #globalModalFooter { display: none !important; }
+}
+
 /* ---------- TOAST HOST (new class) ---------- */
 #lp-toast-host .toast {
     min-width: 280px;

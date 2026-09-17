@@ -110,6 +110,30 @@
 
         /* ---------- MAP SETUP ---------- */
 
+        _tileLayer() {
+            return L.tileLayer(this.tilesUrl, {
+                maxZoom: 19,
+                attribution: this.tilesAttrib,
+                // Offline/blocked-tiles fallback: light grid tile so pins +
+                // distance gate keep working with zero network. (Phase 1.1)
+                errorTileUrl: 'data:image/svg+xml;utf8,' + encodeURIComponent(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256">' +
+                    '<rect width="256" height="256" fill="#dbe9ff"/>' +
+                    '<path d="M0 64H256M0 128H256M0 192H256M64 0V256M128 0V256M192 0V256" stroke="#b9c8e2" stroke-width="1"/>' +
+                    '</svg>'
+                )
+            });
+        },
+
+        _noteTilesOffline(map) {
+            // One-time notice if tiles fail (map still usable offline).
+            map.on('tileerror', () => {
+                if (this._tileOfflineNoted) return;
+                this._tileOfflineNoted = true;
+                if (window.LapeeetUI) LapeeetUI.showToast('Map tiles offline — pins + 60km check still work', 'warning');
+            });
+        },
+
         _createMap() {
             const mapEl = document.getElementById(this.containerId);
             if (!mapEl) {
@@ -123,24 +147,8 @@
                 gestureHandling: (typeof L !== 'undefined' && L.gestureHandling) ? true : false
             }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
 
-            L.tileLayer(this.tilesUrl, {
-                maxZoom: 19,
-                attribution: this.tilesAttrib,
-                // Offline/blocked-tiles fallback: light grid tile so pins +
-                // distance gate keep working with zero network. (Phase 1.1)
-                errorTileUrl: 'data:image/svg+xml;utf8,' + encodeURIComponent(
-                    '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256">' +
-                    '<rect width="256" height="256" fill="#dbe9ff"/>' +
-                    '<path d="M0 64H256M0 128H256M0 192H256M64 0V256M128 0V256M192 0V256" stroke="#b9c8e2" stroke-width="1"/>' +
-                    '</svg>'
-                )
-            }).addTo(map);
-            // One-time notice if tiles fail (map still usable offline).
-            map.on('tileerror', () => {
-                if (this._tileOfflineNoted) return;
-                this._tileOfflineNoted = true;
-                if (window.LapeeetUI) LapeeetUI.showToast('Map tiles offline — pins + 60km check still work', 'warning');
-            });
+            this._tileLayer().addTo(map);
+            this._noteTilesOffline(map);
 
             this.drawMaxRadius(DEFAULT_CENTER[0], DEFAULT_CENTER[1], MAX_TRIP_KM);
 
@@ -149,6 +157,88 @@
 
             this.map = map;
             setTimeout(() => { try { map.invalidateSize(); } catch (e) { /* noop */ } }, 120);
+        },
+
+        /* ---------- HOME MINI-MAP (second instance: nearby peers, radius search) ---------- */
+
+        homeMap: null,
+        homeMarkers: new Map(),   // key -> L.marker (keys: 'ref' | 'd:'+identity | 'r:'+identity)
+        homeCircle: null,
+        homeRef: null,            // {lat, lng} reference point for radius filtering
+
+        initHome(containerId, center) {
+            this.destroyHome();
+            if (typeof L === 'undefined') return false;
+            const el = document.getElementById(containerId || 'homeMap');
+            if (!el) return false;
+            const c = center || { lat: DEFAULT_CENTER[0], lng: DEFAULT_CENTER[1] };
+            const map = L.map(el, {
+                zoomControl: true,
+                attributionControl: false,
+                gestureHandling: (typeof L !== 'undefined' && L.gestureHandling) ? true : false
+            }).setView([c.lat, c.lng], 12);
+            this._tileLayer().addTo(map);
+            this._noteTilesOffline(map);
+            this.homeMap = map;
+            this.setHomeRef(c.lat, c.lng, MAX_TRIP_KM);
+            setTimeout(() => { try { map.invalidateSize(); } catch (e) { /* noop */ } }, 120);
+            return true;
+        },
+
+        destroyHome() {
+            try {
+                if (this.homeMap) {
+                    this.homeMarkers.forEach(m => { try { this.homeMap.removeLayer(m); } catch (e) {} });
+                    this.homeMap.remove();
+                }
+            } catch (e) {}
+            this.homeMap = null;
+            this.homeMarkers = new Map();
+            this.homeCircle = null;
+        },
+
+        /** Move the radius reference point (search result or GPS); redraws the ring. */
+        setHomeRef(lat, lng, radiusKm) {
+            this.homeRef = { lat: Number(lat), lng: Number(lng) };
+            if (!this.homeMap) return;
+            if (this.homeCircle) { try { this.homeMap.removeLayer(this.homeCircle); } catch (e) {} }
+            const r = Math.min(Number(radiusKm) || MAX_TRIP_KM, MAX_TRIP_KM);
+            this.homeCircle = L.circle([this.homeRef.lat, this.homeRef.lng], {
+                radius: r * 1000,
+                color: '#1E74FD', weight: 1.2, opacity: 0.55,
+                fillColor: '#1E74FD', fillOpacity: 0.04, dashArray: '6 6'
+            }).addTo(this.homeMap);
+            // Reference pin (you / search point).
+            const old = this.homeMarkers.get('ref');
+            if (old) { try { this.homeMap.removeLayer(old); } catch (e) {} }
+            const ref = L.marker([this.homeRef.lat, this.homeRef.lng], {
+                icon: this._pinIcon('pickup'), title: 'Reference point', keyboard: false
+            }).addTo(this.homeMap);
+            this.homeMarkers.set('ref', ref);
+        },
+
+        upsertHomePin(key, lat, lng, kind, label) {
+            if (!this.homeMap) return;
+            const old = this.homeMarkers.get(key);
+            if (old) { try { this.homeMap.removeLayer(old); } catch (e) {} }
+            const m = L.marker([lat, lng], {
+                icon: this._pinIcon(kind === 'rider' ? 'driver' : 'dropoff'),
+                title: label || key
+            });
+            if (label) m.bindTooltip(String(label));
+            m.addTo(this.homeMap);
+            this.homeMarkers.set(key, m);
+        },
+
+        removeHomePin(key) {
+            const m = this.homeMarkers.get(key);
+            if (m && this.homeMap) { try { this.homeMap.removeLayer(m); } catch (e) {} }
+            this.homeMarkers.delete(key);
+        },
+
+        focusHome(lat, lng, zoom) {
+            if (!this.homeMap) return;
+            try { this.homeMap.flyTo([lat, lng], zoom || 12, { duration: 0.8 }); } catch (e) {}
         },
 
         _onMapClick(ev) {
@@ -163,6 +253,29 @@
         },
 
         /* ---------- CURRENT LOCATION ---------- */
+
+        _locCache: null, // {lat, lng, ts}
+
+        /** Cached-first geolocation shared by home map, heartbeat and search. */
+        cachedLocation(maxAgeMs) {
+            const maxAge = maxAgeMs == null ? 60000 : maxAgeMs;
+            if (this._locCache && (Date.now() - this._locCache.ts) < maxAge) {
+                return Promise.resolve({ lat: this._locCache.lat, lng: this._locCache.lng });
+            }
+            if (!navigator.geolocation) return Promise.resolve(null);
+            return new Promise((resolve) => {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        this._locCache = { lat: pos.coords.latitude, lng: pos.coords.longitude, ts: Date.now() };
+                        resolve({ lat: this._locCache.lat, lng: this._locCache.lng });
+                    },
+                    () => resolve(this._locCache
+                        ? { lat: this._locCache.lat, lng: this._locCache.lng }
+                        : null),
+                    { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 }
+                );
+            });
+        },
 
         async flyToCurrentLocation() {
             if (!navigator.geolocation) {

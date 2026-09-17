@@ -344,15 +344,18 @@
             return { role: this._role, name };
         },
 
-        _sendHello(transportId) {
+        _sendHello(transportId, extra) {
             const snap = this._profileSnapshot();
-            const body = { pub: this.myPublicKey, role: snap.role, name: snap.name };
+            const body = Object.assign({ pub: this.myPublicKey, role: snap.role, name: snap.name }, extra || {});
             if (transportId) this.sendDirectByTransport(transportId, MSG_TYPES.HELLO, body);
             else this.broadcast(MSG_TYPES.HELLO, body);
         },
 
         _currentLoc() {
-            // Cached-first geolocation (cheap on 10s heartbeat).
+            // Shared cache with the map layer when available (cheap on 10s heartbeat).
+            try {
+                if (global.LapeeetMap && LapeeetMap.cachedLocation) return LapeeetMap.cachedLocation(60000);
+            } catch (e) {}
             return new Promise((resolve) => {
                 if (!navigator.geolocation) { resolve(null); return; }
                 navigator.geolocation.getCurrentPosition(
@@ -363,10 +366,23 @@
             });
         },
 
+        myLoc: null,            // last known own position {lat, lng, ts}
+        _lastRiderHello: 0,
+        RIDER_HELLO_MS: 15000,
+
         async _heartbeatTick() {
             if (!this.initialized || this.status !== 'online') return;
-            if (this._role !== 'DRIVER') return;
             const loc = await this._currentLoc();
+            if (loc) this.myLoc = { lat: loc.lat, lng: loc.lng, ts: Date.now() };
+            if (this._role !== 'DRIVER') {
+                // Passenger presence: truncated coords only (no name/phone/photo),
+                // so nearby drivers can discover them. Throttled to 15s.
+                if (loc && Date.now() - this._lastRiderHello > this.RIDER_HELLO_MS) {
+                    this._lastRiderHello = Date.now();
+                    this._sendHello(null, { tLat: trunc3(loc.lat), tLng: trunc3(loc.lng) });
+                }
+                return;
+            }
             let brand = '', model = '', capacity = 0;
             try {
                 if (global.LapeeetDB && LapeeetDB.initialized) {
@@ -497,4 +513,5 @@
 
     global.LapeeetP2P = LapeeetP2P;
     global.LapeeetGeohash = geohash;
+    global.LapeeetGeo = { geohash, haversineKm, trunc3, MAX_TRIP_KM: 60 };
 })(window);

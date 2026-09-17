@@ -123,6 +123,14 @@
 - [x] 11.3 Gate covers passkey OR PIN; lock screen shows enrolled methods only; onboarding step 4 gains inline PIN setup; Settings PIN set/change (current-PIN verified)/remove; progressive retry delay on lock screen
 - [x] 11.4 Harness 12/12 PIN checks (`tools/check-auth.js`); full suite green; rebuild + redeploy
 
+## Phase 12 — Home Nearby Map + Realtime Peer Discovery ✅ DONE (code; 2-device field test pending)
+
+- [x] 12.1 Home mini-map (second Leaflet instance, 60km ring, per-role pins, destroyed on leave); tile/error handling shared via `_tileLayer()`; shared cached GPS (`cachedLocation`)
+- [x] 12.2 Passenger presence: riders broadcast truncated coords via periodic HELLO (15s, no new message type, role-only — no names/phones/photos); drivers keep 10s heartbeat; `LapeeetGeo` helper export
+- [x] 12.3 Home search (Nominatim dropdown recenters + moves reference) + radius select 5–60km (hard-capped) + live nearby list sorted by distance; passenger→drivers, driver→passenger presence + live request pins
+- [x] 12.4 Realtime refresh on HELLO/DRIVER_STATUS/RIDE_REQUEST/join/leave while home is visible (stale pins pruned, cap 50)
+- [ ] 12.5 FIELD TEST: 2 devices, pins appear both ways within seconds, radius filter + search behave
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

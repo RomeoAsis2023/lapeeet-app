@@ -178,6 +178,45 @@
                     </div>
                 </div>
 
+                <!-- Nearby live map (realtime mesh peers around you) -->
+                <div class="card card-white mb-3">
+                    <div class="card-body">
+                        <div class="home-section-head mb-2">
+                            <h6 class="home-section-title">${isRider ? 'Drivers near you' : 'Passengers near you'}</h6>
+                            <span class="text-muted small-12" id="nearCount">locating…</span>
+                        </div>
+                        <div class="map-container home-map">
+                            <div id="homeMap"></div>
+                        </div>
+                        <div class="form-group boxed mt-2 mb-1">
+                            <div class="input-wrapper">
+                                <label class="label" for="nearSearch">Search area</label>
+                                <input type="text" class="form-control" id="nearSearch"
+                                       placeholder="City, barangay, landmark…">
+                                <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
+                            </div>
+                            <div id="nearSuggest" class="mt-1" style="max-height: 160px; overflow: auto;"></div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2" style="gap:8px">
+                            <button id="btnNearLocate" type="button" class="btn btn-sm btn-outline-primary">
+                                <ion-icon name="locate-outline"></ion-icon> My location
+                            </button>
+                            <label class="label mb-0 ml-1" for="nearRadius">Radius</label>
+                            <select class="form-control ml-1" id="nearRadius" style="max-width:110px">
+                                <option value="5">5 km</option>
+                                <option value="10" selected>10 km</option>
+                                <option value="20">20 km</option>
+                                <option value="40">40 km</option>
+                                <option value="60">60 km</option>
+                            </select>
+                        </div>
+                        <ul class="listview flush transparent simple-listview mt-2" id="nearList">
+                            <li class="small text-muted">Waiting for mesh peers…</li>
+                        </ul>
+                        <p class="small text-muted mb-0 mt-1">Live peer discovery — only approximate locations are shared${isRider ? ', drivers see the same of you while this tab is open' : ''}.</p>
+                    </div>
+                </div>
+
                 <!-- Status / System Indicators (white card) -->
                 <div class="card card-white mb-3">
                     <div class="card-body">

@@ -13,19 +13,7 @@
       "file_type": "code",
       "norm_label": "_calcfare()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1584"
-    },
-    {
-      "id": "www_assets_js_ui_components_screenmap",
-      "label": "_screenMap()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "code",
-      "norm_label": "_screenmap()",
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L226"
+      "source_location": "L1719"
     },
     {
       "id": "www_assets_js_app_bindautocomplete",
@@ -37,7 +25,7 @@
       "file_type": "code",
       "norm_label": "_bindautocomplete()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1534"
+      "source_location": "L1669"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown",
@@ -49,7 +37,7 @@
       "file_type": "code",
       "norm_label": "_bindcapacitydropdown()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1038"
+      "source_location": "L1173"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_applyfocus",
@@ -61,7 +49,7 @@
       "file_type": "code",
       "norm_label": "applyfocus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1070"
+      "source_location": "L1205"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_close",
@@ -73,7 +61,7 @@
       "file_type": "code",
       "norm_label": "close()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1054"
+      "source_location": "L1189"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_open",
@@ -85,7 +73,7 @@
       "file_type": "code",
       "norm_label": "open()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1060"
+      "source_location": "L1195"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_setvalue",
@@ -97,7 +85,7 @@
       "file_type": "code",
       "norm_label": "setvalue()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1074"
+      "source_location": "L1209"
     },
     {
       "id": "www_assets_js_app_binddatascreen",
@@ -109,7 +97,7 @@
       "file_type": "code",
       "norm_label": "_binddatascreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1179"
+      "source_location": "L1314"
     },
     {
       "id": "www_assets_js_app_bindebikescreen",
@@ -121,7 +109,31 @@
       "file_type": "code",
       "norm_label": "_bindebikescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1300"
+      "source_location": "L1435"
+    },
+    {
+      "id": "www_assets_js_app_bindhomescreen",
+      "label": "_bindHomeScreen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "_bindhomescreen()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L500"
+    },
+    {
+      "id": "www_assets_js_app_bindhomesearch",
+      "label": "_bindHomeSearch()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "_bindhomesearch()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L538"
     },
     {
       "id": "www_assets_js_app_bindlockscreen",
@@ -133,7 +145,7 @@
       "file_type": "code",
       "norm_label": "_bindlockscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L348"
+      "source_location": "L351"
     },
     {
       "id": "www_assets_js_app_bindmapscreenbuttons",
@@ -145,7 +157,7 @@
       "file_type": "code",
       "norm_label": "_bindmapscreenbuttons()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L584"
+      "source_location": "L713"
     },
     {
       "id": "www_assets_js_app_bindmessagesscreen",
@@ -157,7 +169,7 @@
       "file_type": "code",
       "norm_label": "_bindmessagesscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L856"
+      "source_location": "L985"
     },
     {
       "id": "www_assets_js_app_bindonboardingscreen",
@@ -169,7 +181,7 @@
       "file_type": "code",
       "norm_label": "_bindonboardingscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1360"
+      "source_location": "L1495"
     },
     {
       "id": "www_assets_js_app_bindprofilescreen",
@@ -181,7 +193,7 @@
       "file_type": "code",
       "norm_label": "_bindprofilescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1241"
+      "source_location": "L1376"
     },
     {
       "id": "www_assets_js_app_bindrecoverscreen",
@@ -193,7 +205,7 @@
       "file_type": "code",
       "norm_label": "_bindrecoverscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L290"
+      "source_location": "L293"
     },
     {
       "id": "www_assets_js_app_bindsettingsscreen",
@@ -205,7 +217,7 @@
       "file_type": "code",
       "norm_label": "_bindsettingsscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L199"
+      "source_location": "L202"
     },
     {
       "id": "www_assets_js_app_bindtripsscreen",
@@ -217,7 +229,7 @@
       "file_type": "code",
       "norm_label": "_bindtripsscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L833"
+      "source_location": "L962"
     },
     {
       "id": "www_assets_js_app_brandselectwire",
@@ -229,7 +241,7 @@
       "file_type": "code",
       "norm_label": "_brandselectwire()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1282"
+      "source_location": "L1417"
     },
     {
       "id": "www_assets_js_app_cancelactiveride",
@@ -241,7 +253,7 @@
       "file_type": "code",
       "norm_label": "_cancelactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L763"
+      "source_location": "L892"
     },
     {
       "id": "www_assets_js_app_chatload",
@@ -253,7 +265,7 @@
       "file_type": "code",
       "norm_label": "_chatload()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L778"
+      "source_location": "L907"
     },
     {
       "id": "www_assets_js_app_chatmarkread",
@@ -265,7 +277,7 @@
       "file_type": "code",
       "norm_label": "_chatmarkread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L815"
+      "source_location": "L944"
     },
     {
       "id": "www_assets_js_app_chatpeers",
@@ -277,7 +289,7 @@
       "file_type": "code",
       "norm_label": "_chatpeers()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L790"
+      "source_location": "L919"
     },
     {
       "id": "www_assets_js_app_chatpush",
@@ -289,7 +301,7 @@
       "file_type": "code",
       "norm_label": "_chatpush()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L809"
+      "source_location": "L938"
     },
     {
       "id": "www_assets_js_app_chatsave",
@@ -301,7 +313,7 @@
       "file_type": "code",
       "norm_label": "_chatsave()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L782"
+      "source_location": "L911"
     },
     {
       "id": "www_assets_js_app_chatthread",
@@ -313,7 +325,7 @@
       "file_type": "code",
       "norm_label": "_chatthread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L805"
+      "source_location": "L934"
     },
     {
       "id": "www_assets_js_app_dologout",
@@ -325,7 +337,7 @@
       "file_type": "code",
       "norm_label": "_dologout()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L330"
+      "source_location": "L333"
     },
     {
       "id": "www_assets_js_app_downloadblob",
@@ -337,7 +349,7 @@
       "file_type": "code",
       "norm_label": "_downloadblob()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1169"
+      "source_location": "L1304"
     },
     {
       "id": "www_assets_js_app_driveraccept",
@@ -349,7 +361,7 @@
       "file_type": "code",
       "norm_label": "_driveraccept()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L681"
+      "source_location": "L810"
     },
     {
       "id": "www_assets_js_app_driverreject",
@@ -361,7 +373,7 @@
       "file_type": "code",
       "norm_label": "_driverreject()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L708"
+      "source_location": "L837"
     },
     {
       "id": "www_assets_js_app_driversetstatus",
@@ -373,7 +385,7 @@
       "file_type": "code",
       "norm_label": "_driversetstatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L746"
+      "source_location": "L875"
     },
     {
       "id": "www_assets_js_app_escapeattr",
@@ -385,7 +397,7 @@
       "file_type": "code",
       "norm_label": "_escapeattr()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1578"
+      "source_location": "L1713"
     },
     {
       "id": "www_assets_js_app_findride",
@@ -397,7 +409,7 @@
       "file_type": "code",
       "norm_label": "_findride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L822"
+      "source_location": "L951"
     },
     {
       "id": "www_assets_js_app_gatetarget",
@@ -409,7 +421,7 @@
       "file_type": "code",
       "norm_label": "_gatetarget()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L178"
+      "source_location": "L181"
     },
     {
       "id": "www_assets_js_app_initmapdeferred",
@@ -421,7 +433,7 @@
       "file_type": "code",
       "norm_label": "_initmapdeferred()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L551"
+      "source_location": "L680"
     },
     {
       "id": "www_assets_js_app_installnavguard",
@@ -433,7 +445,7 @@
       "file_type": "code",
       "norm_label": "_installnavguard()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L189"
+      "source_location": "L192"
     },
     {
       "id": "www_assets_js_app_isregistered",
@@ -445,7 +457,7 @@
       "file_type": "code",
       "norm_label": "_isregistered()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L157"
+      "source_location": "L160"
     },
     {
       "id": "www_assets_js_app_lockpermanentdarkmode",
@@ -457,7 +469,7 @@
       "file_type": "code",
       "norm_label": "_lockpermanentdarkmode()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L453"
+      "source_location": "L456"
     },
     {
       "id": "www_assets_js_app_lockpermanentdarkmodeuionly",
@@ -469,7 +481,7 @@
       "file_type": "code",
       "norm_label": "_lockpermanentdarkmodeuionly()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L484"
+      "source_location": "L487"
     },
     {
       "id": "www_assets_js_app_modefromparam",
@@ -481,7 +493,7 @@
       "file_type": "code",
       "norm_label": "_modefromparam()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L418"
+      "source_location": "L421"
     },
     {
       "id": "www_assets_js_app_needsunlock",
@@ -493,7 +505,7 @@
       "file_type": "code",
       "norm_label": "_needsunlock()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L168"
+      "source_location": "L171"
     },
     {
       "id": "www_assets_js_app_onp2pevent",
@@ -505,7 +517,7 @@
       "file_type": "code",
       "norm_label": "_onp2pevent()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L878"
+      "source_location": "L1007"
     },
     {
       "id": "www_assets_js_app_onrideaccepted",
@@ -517,7 +529,7 @@
       "file_type": "code",
       "norm_label": "_onrideaccepted()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L973"
+      "source_location": "L1108"
     },
     {
       "id": "www_assets_js_app_onridestatus",
@@ -529,7 +541,7 @@
       "file_type": "code",
       "norm_label": "_onridestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1006"
+      "source_location": "L1141"
     },
     {
       "id": "www_assets_js_app_populatehomestatus",
@@ -541,7 +553,7 @@
       "file_type": "code",
       "norm_label": "_populatehomestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L493"
+      "source_location": "L622"
     },
     {
       "id": "www_assets_js_app_populatesettingsgit",
@@ -553,7 +565,19 @@
       "file_type": "code",
       "norm_label": "_populatesettingsgit()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L509"
+      "source_location": "L638"
+    },
+    {
+      "id": "www_assets_js_app_refreshhomepeers",
+      "label": "_refreshHomePeers()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "_refreshhomepeers()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L574"
     },
     {
       "id": "www_assets_js_app_renderactiveride",
@@ -565,7 +589,7 @@
       "file_type": "code",
       "norm_label": "_renderactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L717"
+      "source_location": "L846"
     },
     {
       "id": "www_assets_js_app_renderdriverrequests",
@@ -577,7 +601,7 @@
       "file_type": "code",
       "norm_label": "_renderdriverrequests()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L652"
+      "source_location": "L781"
     },
     {
       "id": "www_assets_js_app_resolveinitialrole",
@@ -589,7 +613,7 @@
       "file_type": "code",
       "norm_label": "resolveinitialrole()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L427"
+      "source_location": "L430"
     },
     {
       "id": "www_assets_js_app_revealshell",
@@ -601,7 +625,7 @@
       "file_type": "code",
       "norm_label": "_revealshell()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L449"
+      "source_location": "L452"
     },
     {
       "id": "www_assets_js_app_shortid",
@@ -613,7 +637,7 @@
       "file_type": "code",
       "norm_label": "_shortid()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L647"
+      "source_location": "L776"
     },
     {
       "id": "www_assets_js_app_showratingmodal",
@@ -625,7 +649,7 @@
       "file_type": "code",
       "norm_label": "_showratingmodal()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1019"
+      "source_location": "L1154"
     },
     {
       "id": "www_assets_js_app_start",
@@ -649,7 +673,7 @@
       "file_type": "code",
       "norm_label": "_syncmodeurl()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L441"
+      "source_location": "L444"
     },
     {
       "id": "www_assets_js_app_truncate",
@@ -661,7 +685,7 @@
       "file_type": "code",
       "norm_label": "_truncate()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1572"
+      "source_location": "L1707"
     },
     {
       "id": "www_assets_js_base_addtohome",
@@ -1765,7 +1789,7 @@
       "file_type": "code",
       "norm_label": "_afterpinchange()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L285"
+      "source_location": "L398"
     },
     {
       "id": "www_assets_js_map_layer_buildorganicmapsdeeplink",
@@ -1777,7 +1801,19 @@
       "file_type": "code",
       "norm_label": "buildorganicmapsdeeplink()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L525"
+      "source_location": "L638"
+    },
+    {
+      "id": "www_assets_js_map_layer_cachedlocation",
+      "label": "cachedLocation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "cachedlocation()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L260"
     },
     {
       "id": "www_assets_js_map_layer_calculateroute",
@@ -1789,7 +1825,7 @@
       "file_type": "code",
       "norm_label": "calculateroute()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L357"
+      "source_location": "L470"
     },
     {
       "id": "www_assets_js_map_layer_classifydistance",
@@ -1801,7 +1837,7 @@
       "file_type": "code",
       "norm_label": "classifydistance()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L344"
+      "source_location": "L457"
     },
     {
       "id": "www_assets_js_map_layer_clearpins",
@@ -1813,7 +1849,7 @@
       "file_type": "code",
       "norm_label": "clearpins()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L276"
+      "source_location": "L389"
     },
     {
       "id": "www_assets_js_map_layer_clearroute",
@@ -1825,7 +1861,7 @@
       "file_type": "code",
       "norm_label": "clearroute()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L400"
+      "source_location": "L513"
     },
     {
       "id": "www_assets_js_map_layer_createmap",
@@ -1837,7 +1873,7 @@
       "file_type": "code",
       "norm_label": "_createmap()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L113"
+      "source_location": "L137"
     },
     {
       "id": "www_assets_js_map_layer_destroy",
@@ -1852,6 +1888,18 @@
       "source_location": "L98"
     },
     {
+      "id": "www_assets_js_map_layer_destroyhome",
+      "label": "destroyHome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "destroyhome()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L188"
+    },
+    {
       "id": "www_assets_js_map_layer_drawmaxradius",
       "label": "drawMaxRadius()",
       "_callable": true,
@@ -1861,7 +1909,7 @@
       "file_type": "code",
       "norm_label": "drawmaxradius()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L325"
+      "source_location": "L438"
     },
     {
       "id": "www_assets_js_map_layer_flytocurrentlocation",
@@ -1873,7 +1921,19 @@
       "file_type": "code",
       "norm_label": "flytocurrentlocation()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L167"
+      "source_location": "L280"
+    },
+    {
+      "id": "www_assets_js_map_layer_focushome",
+      "label": "focusHome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "focushome()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L239"
     },
     {
       "id": "www_assets_js_map_layer_geocacheget",
@@ -1885,7 +1945,7 @@
       "file_type": "code",
       "norm_label": "_geocacheget()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L407"
+      "source_location": "L520"
     },
     {
       "id": "www_assets_js_map_layer_geocacheset",
@@ -1897,7 +1957,7 @@
       "file_type": "code",
       "norm_label": "_geocacheset()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L433"
+      "source_location": "L546"
     },
     {
       "id": "www_assets_js_map_layer_geothrottle",
@@ -1909,7 +1969,7 @@
       "file_type": "code",
       "norm_label": "_geothrottle()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L459"
+      "source_location": "L572"
     },
     {
       "id": "www_assets_js_map_layer_haversinekm",
@@ -1921,7 +1981,7 @@
       "file_type": "code",
       "norm_label": "haversinekm()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L569"
+      "source_location": "L682"
     },
     {
       "id": "www_assets_js_map_layer_init",
@@ -1936,6 +1996,18 @@
       "source_location": "L64"
     },
     {
+      "id": "www_assets_js_map_layer_inithome",
+      "label": "initHome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "inithome()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L169"
+    },
+    {
       "id": "www_assets_js_map_layer_isandroid",
       "label": "_isAndroid()",
       "_callable": true,
@@ -1945,7 +2017,7 @@
       "file_type": "code",
       "norm_label": "_isandroid()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L521"
+      "source_location": "L634"
     },
     {
       "id": "www_assets_js_map_layer_isdistanceallowed",
@@ -1957,7 +2029,7 @@
       "file_type": "code",
       "norm_label": "isdistanceallowed()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L351"
+      "source_location": "L464"
     },
     {
       "id": "www_assets_js_map_layer_isios",
@@ -1969,7 +2041,7 @@
       "file_type": "code",
       "norm_label": "_isios()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L518"
+      "source_location": "L631"
     },
     {
       "id": "www_assets_js_map_layer_launchorganicmaps",
@@ -1981,7 +2053,19 @@
       "file_type": "code",
       "norm_label": "launchorganicmaps()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L544"
+      "source_location": "L657"
+    },
+    {
+      "id": "www_assets_js_map_layer_notetilesoffline",
+      "label": "_noteTilesOffline()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "_notetilesoffline()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L128"
     },
     {
       "id": "www_assets_js_map_layer_onmapclick",
@@ -1993,7 +2077,7 @@
       "file_type": "code",
       "norm_label": "_onmapclick()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L154"
+      "source_location": "L244"
     },
     {
       "id": "www_assets_js_map_layer_pinicon",
@@ -2005,7 +2089,7 @@
       "file_type": "code",
       "norm_label": "_pinicon()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L191"
+      "source_location": "L304"
     },
     {
       "id": "www_assets_js_map_layer_removedriverpin",
@@ -2017,7 +2101,19 @@
       "file_type": "code",
       "norm_label": "removedriverpin()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L317"
+      "source_location": "L430"
+    },
+    {
+      "id": "www_assets_js_map_layer_removehomepin",
+      "label": "removeHomePin()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "removehomepin()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L233"
     },
     {
       "id": "www_assets_js_map_layer_removeradius",
@@ -2029,7 +2125,7 @@
       "file_type": "code",
       "norm_label": "removeradius()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L338"
+      "source_location": "L451"
     },
     {
       "id": "www_assets_js_map_layer_reversegeocode",
@@ -2041,7 +2137,7 @@
       "file_type": "code",
       "norm_label": "reversegeocode()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L493"
+      "source_location": "L606"
     },
     {
       "id": "www_assets_js_map_layer_searchaddress",
@@ -2053,7 +2149,7 @@
       "file_type": "code",
       "norm_label": "searchaddress()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L467"
+      "source_location": "L580"
     },
     {
       "id": "www_assets_js_map_layer_setdropoff",
@@ -2065,7 +2161,19 @@
       "file_type": "code",
       "norm_label": "setdropoff()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L256"
+      "source_location": "L369"
+    },
+    {
+      "id": "www_assets_js_map_layer_sethomeref",
+      "label": "setHomeRef()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "sethomeref()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L201"
     },
     {
       "id": "www_assets_js_map_layer_setpickup",
@@ -2077,7 +2185,19 @@
       "file_type": "code",
       "norm_label": "setpickup()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L236"
+      "source_location": "L349"
+    },
+    {
+      "id": "www_assets_js_map_layer_tilelayer",
+      "label": "_tileLayer()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "_tilelayer()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L113"
     },
     {
       "id": "www_assets_js_map_layer_upsertdriverpin",
@@ -2089,7 +2209,31 @@
       "file_type": "code",
       "norm_label": "upsertdriverpin()",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L304"
+      "source_location": "L417"
+    },
+    {
+      "id": "www_assets_js_map_layer_upserthomepin",
+      "label": "upsertHomePin()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "upserthomepin()",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L220"
+    },
+    {
+      "id": "www_assets_js_ui_components_showtoast",
+      "label": "showToast()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "code",
+      "norm_label": "showtoast()",
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L1164"
     },
     {
       "id": "www_assets_js_ui_components_bindscreenevents",
@@ -2101,7 +2245,7 @@
       "file_type": "code",
       "norm_label": "_bindscreenevents()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1074"
+      "source_location": "L1113"
     },
     {
       "id": "www_assets_js_ui_components_closemodal",
@@ -2113,7 +2257,7 @@
       "file_type": "code",
       "norm_label": "closemodal()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1156"
+      "source_location": "L1195"
     },
     {
       "id": "www_assets_js_ui_components_earningscard",
@@ -2125,7 +2269,7 @@
       "file_type": "code",
       "norm_label": "_earningscard()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L472"
+      "source_location": "L511"
     },
     {
       "id": "www_assets_js_ui_components_escapeattr",
@@ -2137,7 +2281,7 @@
       "file_type": "code",
       "norm_label": "_escapeattr()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L639"
+      "source_location": "L678"
     },
     {
       "id": "www_assets_js_ui_components_escapehtml",
@@ -2149,7 +2293,7 @@
       "file_type": "code",
       "norm_label": "_escapehtml()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L635"
+      "source_location": "L674"
     },
     {
       "id": "www_assets_js_ui_components_formatcurrency",
@@ -2161,7 +2305,7 @@
       "file_type": "code",
       "norm_label": "formatcurrency()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1101"
+      "source_location": "L1140"
     },
     {
       "id": "www_assets_js_ui_components_init",
@@ -2197,7 +2341,7 @@
       "file_type": "code",
       "norm_label": "openmodal()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1150"
+      "source_location": "L1189"
     },
     {
       "id": "www_assets_js_ui_components_placeholdercard",
@@ -2209,7 +2353,7 @@
       "file_type": "code",
       "norm_label": "_placeholdercard()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L413"
+      "source_location": "L452"
     },
     {
       "id": "www_assets_js_ui_components_renderscreen",
@@ -2233,7 +2377,7 @@
       "file_type": "code",
       "norm_label": "_screendata()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L920"
+      "source_location": "L959"
     },
     {
       "id": "www_assets_js_ui_components_screenebike",
@@ -2245,7 +2389,7 @@
       "file_type": "code",
       "norm_label": "_screenebike()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L833"
+      "source_location": "L872"
     },
     {
       "id": "www_assets_js_ui_components_screenhome",
@@ -2269,7 +2413,19 @@
       "file_type": "code",
       "norm_label": "_screenlock()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L762"
+      "source_location": "L801"
+    },
+    {
+      "id": "www_assets_js_ui_components_screenmap",
+      "label": "_screenMap()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "ui-components.js",
+      "file_type": "code",
+      "norm_label": "_screenmap()",
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L265"
     },
     {
       "id": "www_assets_js_ui_components_screenmessages",
@@ -2281,7 +2437,7 @@
       "file_type": "code",
       "norm_label": "_screenmessages()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L501"
+      "source_location": "L540"
     },
     {
       "id": "www_assets_js_ui_components_screenonboarding",
@@ -2293,7 +2449,7 @@
       "file_type": "code",
       "norm_label": "_screenonboarding()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L644"
+      "source_location": "L683"
     },
     {
       "id": "www_assets_js_ui_components_screenprofile",
@@ -2305,7 +2461,7 @@
       "file_type": "code",
       "norm_label": "_screenprofile()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L545"
+      "source_location": "L584"
     },
     {
       "id": "www_assets_js_ui_components_screenrecover",
@@ -2317,7 +2473,7 @@
       "file_type": "code",
       "norm_label": "_screenrecover()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L804"
+      "source_location": "L843"
     },
     {
       "id": "www_assets_js_ui_components_screensettings",
@@ -2329,7 +2485,7 @@
       "file_type": "code",
       "norm_label": "_screensettings()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L966"
+      "source_location": "L1005"
     },
     {
       "id": "www_assets_js_ui_components_screentrips",
@@ -2341,19 +2497,7 @@
       "file_type": "code",
       "norm_label": "_screentrips()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L432"
-    },
-    {
-      "id": "www_assets_js_ui_components_showtoast",
-      "label": "showToast()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "ui-components.js",
-      "file_type": "code",
-      "norm_label": "showtoast()",
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1125"
+      "source_location": "L471"
     },
     {
       "id": "www_assets_js_ui_components_togglerole",
@@ -2365,7 +2509,7 @@
       "file_type": "code",
       "norm_label": "togglerole()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1076"
+      "source_location": "L1115"
     },
     {
       "id": "www_assets_js_ui_components_updatescreentitle",
@@ -2389,7 +2533,7 @@
       "file_type": "code",
       "norm_label": "updatesidebar()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1088"
+      "source_location": "L1127"
     },
     {
       "id": "www_assets_js_git_layer_clone",
@@ -2725,7 +2869,7 @@
       "file_type": "code",
       "norm_label": "broadcast()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L431"
+      "source_location": "L447"
     },
     {
       "id": "www_assets_js_p2p_layer_canonical",
@@ -2737,7 +2881,7 @@
       "file_type": "code",
       "norm_label": "_canonical()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L396"
+      "source_location": "L412"
     },
     {
       "id": "www_assets_js_p2p_layer_currentloc",
@@ -2821,7 +2965,7 @@
       "file_type": "code",
       "norm_label": "_heartbeattick()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L366"
+      "source_location": "L373"
     },
     {
       "id": "www_assets_js_p2p_layer_idbget",
@@ -2917,7 +3061,7 @@
       "file_type": "code",
       "norm_label": "peercount()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L463"
+      "source_location": "L479"
     },
     {
       "id": "www_assets_js_p2p_layer_profilesnapshot",
@@ -2953,7 +3097,7 @@
       "file_type": "code",
       "norm_label": "sendchat()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L476"
+      "source_location": "L492"
     },
     {
       "id": "www_assets_js_p2p_layer_senddirect",
@@ -2965,7 +3109,7 @@
       "file_type": "code",
       "norm_label": "senddirect()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L457"
+      "source_location": "L473"
     },
     {
       "id": "www_assets_js_p2p_layer_senddirectbytransport",
@@ -2977,7 +3121,7 @@
       "file_type": "code",
       "norm_label": "senddirectbytransport()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L444"
+      "source_location": "L460"
     },
     {
       "id": "www_assets_js_p2p_layer_sendebikeinfo",
@@ -2989,7 +3133,7 @@
       "file_type": "code",
       "norm_label": "sendebikeinfo()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L473"
+      "source_location": "L489"
     },
     {
       "id": "www_assets_js_p2p_layer_sendhello",
@@ -3013,7 +3157,7 @@
       "file_type": "code",
       "norm_label": "sendlocationupdate()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L472"
+      "source_location": "L488"
     },
     {
       "id": "www_assets_js_p2p_layer_sendrating",
@@ -3025,7 +3169,7 @@
       "file_type": "code",
       "norm_label": "sendrating()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L475"
+      "source_location": "L491"
     },
     {
       "id": "www_assets_js_p2p_layer_sendrideaccept",
@@ -3037,7 +3181,7 @@
       "file_type": "code",
       "norm_label": "sendrideaccept()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L468"
+      "source_location": "L484"
     },
     {
       "id": "www_assets_js_p2p_layer_sendridecancel",
@@ -3049,7 +3193,7 @@
       "file_type": "code",
       "norm_label": "sendridecancel()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L470"
+      "source_location": "L486"
     },
     {
       "id": "www_assets_js_p2p_layer_sendridereject",
@@ -3061,7 +3205,7 @@
       "file_type": "code",
       "norm_label": "sendridereject()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L469"
+      "source_location": "L485"
     },
     {
       "id": "www_assets_js_p2p_layer_sendriderequest",
@@ -3073,7 +3217,7 @@
       "file_type": "code",
       "norm_label": "sendriderequest()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L467"
+      "source_location": "L483"
     },
     {
       "id": "www_assets_js_p2p_layer_sendriderinfo",
@@ -3085,7 +3229,7 @@
       "file_type": "code",
       "norm_label": "sendriderinfo()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L474"
+      "source_location": "L490"
     },
     {
       "id": "www_assets_js_p2p_layer_sendridestatus",
@@ -3097,7 +3241,7 @@
       "file_type": "code",
       "norm_label": "sendridestatus()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L471"
+      "source_location": "L487"
     },
     {
       "id": "www_assets_js_p2p_layer_setrole",
@@ -3133,7 +3277,7 @@
       "file_type": "code",
       "norm_label": "sign()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L410"
+      "source_location": "L426"
     },
     {
       "id": "www_assets_js_p2p_layer_signenvelope",
@@ -3145,7 +3289,7 @@
       "file_type": "code",
       "norm_label": "signenvelope()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L400"
+      "source_location": "L416"
     },
     {
       "id": "www_assets_js_p2p_layer_trunc3",
@@ -3169,7 +3313,7 @@
       "file_type": "code",
       "norm_label": "validatecapacity()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L493"
+      "source_location": "L509"
     },
     {
       "id": "www_assets_js_p2p_layer_validateriderequest",
@@ -3181,7 +3325,7 @@
       "file_type": "code",
       "norm_label": "validateriderequest()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L480"
+      "source_location": "L496"
     },
     {
       "id": "www_assets_js_p2p_layer_validenvelopeshape",
@@ -3205,7 +3349,7 @@
       "file_type": "code",
       "norm_label": "verify()",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L416"
+      "source_location": "L432"
     },
     {
       "id": "www_assets_js_call_layer_acceptincoming",
@@ -3436,18 +3580,6 @@
       "source_location": "L17"
     },
     {
-      "id": "lapeet_app_development_6_2_trip_distance_cap_60_km_max_still_valid_4_layer_enforcement_plan_phase_1_impl_partial",
-      "label": "6.2 Trip Distance Cap (60 km max) \u2014 still valid 4-layer enforcement plan (Phase 1 impl partial)",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6.2 trip distance cap (60 km max) \u2014 still valid 4-layer enforcement plan (phase 1 impl partial)",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L272"
-    },
-    {
       "id": "lapeet_app_development_7_development_phases_live_checklists_fully_updated_no_skip",
       "label": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
       "_origin": "ast",
@@ -3532,6 +3664,18 @@
       "source_location": "L487"
     },
     {
+      "id": "lapeet_app_development_phase_5_finishing_touches_mvp_polish",
+      "label": "PHASE 5 \u2014 Finishing Touches & MVP Polish",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 5 \u2014 finishing touches & mvp polish",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L493"
+    },
+    {
       "id": "lapeet_app_development_phase_6_icebox_future_enhancements",
       "label": "PHASE 6 \u2014 Icebox / Future Enhancements",
       "_origin": "ast",
@@ -3567,7 +3711,7 @@
       "source_location": "L79"
     },
     {
-      "id": "www_assets_js_app_rationale_144",
+      "id": "www_assets_js_app_rationale_147",
       "label": "NOTE: base.js already fades #loader after DOMContentLoaded. Here we just unhide\u2026",
       "_origin": "ast",
       "community": 1,
@@ -3575,7 +3719,7 @@
       "file_type": "rationale",
       "norm_label": "note: base.js already fades #loader after domcontentloaded. here we just unhide...",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L144"
+      "source_location": "L147"
     },
     {
       "id": "www_assets_js_base",
@@ -3634,7 +3778,7 @@
       "node_kind": "heading",
       "norm_label": "open decisions (need your call)",
       "source_file": "dev_phases.md",
-      "source_location": "L134"
+      "source_location": "L142"
     },
     {
       "id": "dev_phases_phase_0_single_file_shell_done_verified_2026_09_17_step_by_step",
@@ -3706,7 +3850,7 @@
       "node_kind": "heading",
       "norm_label": "risks",
       "source_file": "dev_phases.md",
-      "source_location": "L130"
+      "source_location": "L138"
     },
     {
       "id": "dev_phases_track_w_webview_wrapper_parallel_device_side",
@@ -3718,7 +3862,7 @@
       "node_kind": "heading",
       "norm_label": "track w \u2014 webview wrapper \u2b1c (parallel, device-side)",
       "source_file": "dev_phases.md",
-      "source_location": "L126"
+      "source_location": "L134"
     },
     {
       "id": "dev_phases_verification_log",
@@ -3730,7 +3874,7 @@
       "node_kind": "heading",
       "norm_label": "verification log",
       "source_file": "dev_phases.md",
-      "source_location": "L142"
+      "source_location": "L150"
     },
     {
       "id": "lapeet_app_development_3_1_1_canonical_formatter_one_location_all_code_calls_this",
@@ -3911,6 +4055,18 @@
       "norm_label": "6.1 e-bike registration \u2014 driver tenant (full seed data still confirmed \u2014 same as \u00a74.1 in original doc, no changes)",
       "source_file": "Lapeet_app_development.md",
       "source_location": "L267"
+    },
+    {
+      "id": "lapeet_app_development_6_2_trip_distance_cap_60_km_max_still_valid_4_layer_enforcement_plan_phase_1_impl_partial",
+      "label": "6.2 Trip Distance Cap (60 km max) \u2014 still valid 4-layer enforcement plan (Phase 1 impl partial)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6.2 trip distance cap (60 km max) \u2014 still valid 4-layer enforcement plan (phase 1 impl partial)",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L272"
     },
     {
       "id": "lapeet_app_development_6_3_organic_maps_integration_unchanged_deep_link_only_no_embedding_possible",
@@ -4966,6 +5122,17 @@
       "source_location": "L2"
     },
     {
+      "id": "tools_check_p2p_mnl_qc",
+      "label": "mnl_qc",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "check-p2p.js",
+      "file_type": "code",
+      "norm_label": "mnl_qc",
+      "source_file": "tools/check-p2p.js",
+      "source_location": "L41"
+    },
+    {
       "id": "tools_check_p2p_sandbox",
       "label": "sandbox",
       "_origin": "ast",
@@ -5107,6 +5274,18 @@
       "norm_label": "map-layer.js",
       "source_file": "www/assets/js/map-layer.js",
       "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_phase_12_home_nearby_map_realtime_peer_discovery_done_code_2_device_field_test_pending",
+      "label": "Phase 12 \u2014 Home Nearby Map + Realtime Peer Discovery \u2705 DONE (code; 2-device field test pending)",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 12 \u2014 home nearby map + realtime peer discovery \u2705 done (code; 2-device field test pending)",
+      "source_file": "dev_phases.md",
+      "source_location": "L126"
     },
     {
       "id": "dev_phases_phase_1_map_60km_gate_organic_maps_done",
@@ -5265,7 +5444,7 @@
       "source_location": "L102"
     },
     {
-      "id": "www_assets_js_map_layer_rationale_362",
+      "id": "www_assets_js_map_layer_rationale_475",
       "label": "NOTE: do NOT encodeURIComponent() the whole pair \u2014 OSRM needs",
       "_origin": "ast",
       "community": 3,
@@ -5273,7 +5452,7 @@
       "file_type": "rationale",
       "norm_label": "note: do not encodeuricomponent() the whole pair \u2014 osrm needs",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L362"
+      "source_location": "L475"
     },
     {
       "id": "www_assets_js_ui_components",
@@ -5333,18 +5512,6 @@
       "norm_label": "4. permanent ui decisions (confirmed by code & tested live)",
       "source_file": "Lapeet_app_development.md",
       "source_location": "L199"
-    },
-    {
-      "id": "lapeet_app_development_phase_5_finishing_touches_mvp_polish",
-      "label": "PHASE 5 \u2014 Finishing Touches & MVP Polish",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "ui-components.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 5 \u2014 finishing touches & mvp polish",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L493"
     },
     {
       "id": "www_assets_js_git_layer",
@@ -5798,7 +5965,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1551",
+      "source_location": "L1686",
       "weight": 1.0
     },
     {
@@ -5810,7 +5977,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1552",
+      "source_location": "L1687",
       "weight": 1.0
     },
     {
@@ -5822,7 +5989,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1066",
+      "source_location": "L1201",
       "weight": 1.0
     },
     {
@@ -5834,7 +6001,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1192",
+      "source_location": "L1327",
       "weight": 1.0
     },
     {
@@ -5846,7 +6013,67 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1301",
+      "source_location": "L1436",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_bindhomescreen",
+      "target": "www_assets_js_app_refreshhomepeers",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L517",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_bindhomescreen",
+      "target": "www_assets_js_app_bindhomesearch",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L534",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_bindhomesearch",
+      "target": "www_assets_js_app_escapeattr",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L556",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_bindhomesearch",
+      "target": "www_assets_js_app_truncate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L557",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_bindhomesearch",
+      "target": "www_assets_js_app_refreshhomepeers",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L568",
       "weight": 1.0
     },
     {
@@ -5858,7 +6085,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L639",
+      "source_location": "L768",
       "weight": 1.0
     },
     {
@@ -5870,7 +6097,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L642",
+      "source_location": "L771",
       "weight": 1.0
     },
     {
@@ -5882,7 +6109,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L643",
+      "source_location": "L772",
       "weight": 1.0
     },
     {
@@ -5894,7 +6121,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L644",
+      "source_location": "L773",
       "weight": 1.0
     },
     {
@@ -5906,7 +6133,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L857",
+      "source_location": "L986",
       "weight": 1.0
     },
     {
@@ -5918,7 +6145,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L868",
+      "source_location": "L997",
       "weight": 1.0
     },
     {
@@ -5930,7 +6157,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1365",
+      "source_location": "L1500",
       "weight": 1.0
     },
     {
@@ -5942,7 +6169,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1467",
+      "source_location": "L1602",
       "weight": 1.0
     },
     {
@@ -5954,7 +6181,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1242",
+      "source_location": "L1377",
       "weight": 1.0
     },
     {
@@ -5966,7 +6193,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L322",
+      "source_location": "L325",
       "weight": 1.0
     },
     {
@@ -5978,7 +6205,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L323",
+      "source_location": "L326",
       "weight": 1.0
     },
     {
@@ -5990,7 +6217,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L836",
+      "source_location": "L965",
       "weight": 1.0
     },
     {
@@ -6002,7 +6229,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L844",
+      "source_location": "L973",
       "weight": 1.0
     },
     {
@@ -6014,7 +6241,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L771",
+      "source_location": "L900",
       "weight": 1.0
     },
     {
@@ -6026,7 +6253,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L817",
+      "source_location": "L946",
       "weight": 1.0
     },
     {
@@ -6038,7 +6265,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L819",
+      "source_location": "L948",
       "weight": 1.0
     },
     {
@@ -6050,7 +6277,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L791",
+      "source_location": "L920",
       "weight": 1.0
     },
     {
@@ -6062,7 +6289,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L811",
+      "source_location": "L940",
       "weight": 1.0
     },
     {
@@ -6074,7 +6301,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L813",
+      "source_location": "L942",
       "weight": 1.0
     },
     {
@@ -6086,7 +6313,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L807",
+      "source_location": "L936",
       "weight": 1.0
     },
     {
@@ -6098,7 +6325,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L704",
+      "source_location": "L833",
       "weight": 1.0
     },
     {
@@ -6110,7 +6337,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L705",
+      "source_location": "L834",
       "weight": 1.0
     },
     {
@@ -6122,7 +6349,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L714",
+      "source_location": "L843",
       "weight": 1.0
     },
     {
@@ -6134,7 +6361,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L759",
+      "source_location": "L888",
       "weight": 1.0
     },
     {
@@ -6146,7 +6373,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L180",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -6158,7 +6385,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L183",
+      "source_location": "L186",
       "weight": 1.0
     },
     {
@@ -6170,7 +6397,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L556",
+      "source_location": "L685",
       "weight": 1.0
     },
     {
@@ -6182,7 +6409,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L569",
+      "source_location": "L698",
       "weight": 1.0
     },
     {
@@ -6194,7 +6421,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L581",
+      "source_location": "L710",
       "weight": 1.0
     },
     {
@@ -6206,7 +6433,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L194",
+      "source_location": "L197",
       "weight": 1.0
     },
     {
@@ -6218,7 +6445,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L477",
+      "source_location": "L480",
       "weight": 1.0
     },
     {
@@ -6230,7 +6457,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L885",
+      "source_location": "L1014",
       "weight": 1.0
     },
     {
@@ -6242,7 +6469,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L886",
+      "source_location": "L1015",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_onp2pevent",
+      "target": "www_assets_js_app_refreshhomepeers",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1016",
       "weight": 1.0
     },
     {
@@ -6254,7 +6493,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L895",
+      "source_location": "L1030",
       "weight": 1.0
     },
     {
@@ -6266,7 +6505,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L909",
+      "source_location": "L1044",
       "weight": 1.0
     },
     {
@@ -6278,7 +6517,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L914",
+      "source_location": "L1049",
       "weight": 1.0
     },
     {
@@ -6290,7 +6529,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L941",
+      "source_location": "L1076",
       "weight": 1.0
     },
     {
@@ -6302,7 +6541,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L986",
+      "source_location": "L1121",
       "weight": 1.0
     },
     {
@@ -6314,7 +6553,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L991",
+      "source_location": "L1126",
       "weight": 1.0
     },
     {
@@ -6326,7 +6565,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1014",
+      "source_location": "L1149",
       "weight": 1.0
     },
     {
@@ -6338,7 +6577,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1015",
+      "source_location": "L1150",
       "weight": 1.0
     },
     {
@@ -6350,7 +6589,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L498",
+      "source_location": "L627",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_refreshhomepeers",
+      "target": "www_assets_js_app_shortid",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L592",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_refreshhomepeers",
+      "target": "www_assets_js_app_escapeattr",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L618",
       "weight": 1.0
     },
     {
@@ -6362,7 +6625,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L726",
+      "source_location": "L855",
       "weight": 1.0
     },
     {
@@ -6374,7 +6637,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L669",
+      "source_location": "L798",
       "weight": 1.0
     },
     {
@@ -6386,7 +6649,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L430",
+      "source_location": "L433",
       "weight": 1.0
     },
     {
@@ -6398,7 +6661,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L108",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -6410,7 +6673,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L132",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -6422,7 +6685,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L133",
+      "source_location": "L136",
       "weight": 1.0
     },
     {
@@ -6434,7 +6697,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L134",
+      "source_location": "L137",
       "weight": 1.0
     },
     {
@@ -6446,7 +6709,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L136",
+      "source_location": "L139",
       "weight": 1.0
     },
     {
@@ -6458,7 +6721,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L145",
+      "source_location": "L148",
       "weight": 1.0
     },
     {
@@ -6523,6 +6786,18 @@
     },
     {
       "source": "www_assets_js_app_start",
+      "target": "www_assets_js_app_bindhomescreen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app_start",
       "target": "www_assets_js_app_populatehomestatus",
       "relation": "calls",
       "_origin": "ast",
@@ -6542,7 +6817,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L52",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -6554,7 +6829,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L52",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -6566,7 +6841,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L53",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -6578,7 +6853,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L54",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -6590,7 +6865,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L55",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -6602,7 +6877,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L56",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -6614,7 +6889,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L57",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -6626,7 +6901,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L58",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -6638,7 +6913,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L59",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -6650,7 +6925,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L60",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -8306,7 +8581,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L287",
+      "source_location": "L400",
       "weight": 1.0
     },
     {
@@ -8318,7 +8593,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L292",
+      "source_location": "L405",
       "weight": 1.0
     },
     {
@@ -8330,7 +8605,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L299",
+      "source_location": "L412",
       "weight": 1.0
     },
     {
@@ -8342,7 +8617,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L533",
+      "source_location": "L646",
       "weight": 1.0
     },
     {
@@ -8354,7 +8629,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L536",
+      "source_location": "L649",
       "weight": 1.0
     },
     {
@@ -8366,7 +8641,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L359",
+      "source_location": "L472",
       "weight": 1.0
     },
     {
@@ -8378,7 +8653,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L385",
+      "source_location": "L498",
       "weight": 1.0
     },
     {
@@ -8390,7 +8665,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L282",
+      "source_location": "L395",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_createmap",
+      "target": "www_assets_js_map_layer_tilelayer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_createmap",
+      "target": "www_assets_js_map_layer_notetilesoffline",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L151",
       "weight": 1.0
     },
     {
@@ -8402,7 +8701,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L145",
+      "source_location": "L153",
       "weight": 1.0
     },
     {
@@ -8414,7 +8713,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L148",
+      "source_location": "L156",
       "weight": 1.0
     },
     {
@@ -8430,6 +8729,54 @@
       "weight": 1.0
     },
     {
+      "source": "www_assets_js_map_layer_inithome",
+      "target": "www_assets_js_map_layer_destroyhome",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L170",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_inithome",
+      "target": "www_assets_js_map_layer_tilelayer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L180",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_inithome",
+      "target": "www_assets_js_map_layer_notetilesoffline",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L181",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_inithome",
+      "target": "www_assets_js_map_layer_sethomeref",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L183",
+      "weight": 1.0
+    },
+    {
       "source": "www_assets_js_map_layer_isdistanceallowed",
       "target": "www_assets_js_map_layer_classifydistance",
       "relation": "calls",
@@ -8438,7 +8785,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L352",
+      "source_location": "L465",
       "weight": 1.0
     },
     {
@@ -8450,7 +8797,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L545",
+      "source_location": "L658",
       "weight": 1.0
     },
     {
@@ -8462,7 +8809,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L550",
+      "source_location": "L663",
       "weight": 1.0
     },
     {
@@ -8474,7 +8821,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L551",
+      "source_location": "L664",
       "weight": 1.0
     },
     {
@@ -8486,144 +8833,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L157",
+      "source_location": "L247",
       "weight": 1.0
     },
     {
       "source": "www_assets_js_map_layer_onmapclick",
       "target": "www_assets_js_map_layer_setdropoff",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L160",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_reversegeocode",
-      "target": "www_assets_js_map_layer_geocacheget",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L495",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_reversegeocode",
-      "target": "www_assets_js_map_layer_geothrottle",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L498",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_reversegeocode",
-      "target": "www_assets_js_map_layer_geocacheset",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L509",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_searchaddress",
-      "target": "www_assets_js_map_layer_geocacheget",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L470",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_searchaddress",
-      "target": "www_assets_js_map_layer_geothrottle",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L472",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_searchaddress",
-      "target": "www_assets_js_map_layer_geocacheset",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L485",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_setdropoff",
-      "target": "www_assets_js_map_layer_pinicon",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L263",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_setdropoff",
-      "target": "www_assets_js_map_layer_setdropoff",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L270",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_setdropoff",
-      "target": "www_assets_js_map_layer_afterpinchange",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L273",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_setpickup",
-      "target": "www_assets_js_map_layer_pinicon",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L243",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer_setpickup",
-      "target": "www_assets_js_map_layer_setpickup",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8634,6 +8849,150 @@
       "weight": 1.0
     },
     {
+      "source": "www_assets_js_map_layer_reversegeocode",
+      "target": "www_assets_js_map_layer_geocacheget",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L608",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_reversegeocode",
+      "target": "www_assets_js_map_layer_geothrottle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L611",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_reversegeocode",
+      "target": "www_assets_js_map_layer_geocacheset",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L622",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_searchaddress",
+      "target": "www_assets_js_map_layer_geocacheget",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L583",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_searchaddress",
+      "target": "www_assets_js_map_layer_geothrottle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L585",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_searchaddress",
+      "target": "www_assets_js_map_layer_geocacheset",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L598",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_setdropoff",
+      "target": "www_assets_js_map_layer_pinicon",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L376",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_setdropoff",
+      "target": "www_assets_js_map_layer_setdropoff",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L383",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_setdropoff",
+      "target": "www_assets_js_map_layer_afterpinchange",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L386",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_sethomeref",
+      "target": "www_assets_js_map_layer_pinicon",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L215",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_setpickup",
+      "target": "www_assets_js_map_layer_pinicon",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L356",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_setpickup",
+      "target": "www_assets_js_map_layer_setpickup",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L363",
+      "weight": 1.0
+    },
+    {
       "source": "www_assets_js_map_layer_setpickup",
       "target": "www_assets_js_map_layer_afterpinchange",
       "relation": "calls",
@@ -8642,7 +9001,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L253",
+      "source_location": "L366",
       "weight": 1.0
     },
     {
@@ -8654,7 +9013,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L312",
+      "source_location": "L425",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer_upserthomepin",
+      "target": "www_assets_js_map_layer_pinicon",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L225",
       "weight": 1.0
     },
     {
@@ -8666,7 +9037,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L433",
+      "source_location": "L449",
       "weight": 1.0
     },
     {
@@ -8738,19 +9109,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L369",
+      "source_location": "L375",
       "weight": 1.0
     },
     {
       "source": "www_assets_js_p2p_layer_heartbeattick",
-      "target": "www_assets_js_p2p_layer_broadcast",
+      "target": "www_assets_js_p2p_layer_sendhello",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L377",
+      "source_location": "L382",
       "weight": 1.0
     },
     {
@@ -8762,7 +9133,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L379",
+      "source_location": "L382",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer_heartbeattick",
+      "target": "www_assets_js_p2p_layer_broadcast",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L393",
       "weight": 1.0
     },
     {
@@ -8774,7 +9157,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L386",
+      "source_location": "L402",
       "weight": 1.0
     },
     {
@@ -8978,7 +9361,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L476",
+      "source_location": "L492",
       "weight": 1.0
     },
     {
@@ -8990,7 +9373,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L460",
+      "source_location": "L476",
       "weight": 1.0
     },
     {
@@ -9002,7 +9385,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L446",
+      "source_location": "L462",
       "weight": 1.0
     },
     {
@@ -9014,7 +9397,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L473",
+      "source_location": "L489",
       "weight": 1.0
     },
     {
@@ -9062,7 +9445,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L472",
+      "source_location": "L488",
       "weight": 1.0
     },
     {
@@ -9074,7 +9457,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L475",
+      "source_location": "L491",
       "weight": 1.0
     },
     {
@@ -9086,7 +9469,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L468",
+      "source_location": "L484",
       "weight": 1.0
     },
     {
@@ -9098,7 +9481,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L470",
+      "source_location": "L486",
       "weight": 1.0
     },
     {
@@ -9110,7 +9493,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L469",
+      "source_location": "L485",
       "weight": 1.0
     },
     {
@@ -9122,7 +9505,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L467",
+      "source_location": "L483",
       "weight": 1.0
     },
     {
@@ -9134,7 +9517,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L474",
+      "source_location": "L490",
       "weight": 1.0
     },
     {
@@ -9146,7 +9529,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L471",
+      "source_location": "L487",
       "weight": 1.0
     },
     {
@@ -9158,7 +9541,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L404",
+      "source_location": "L420",
       "weight": 1.0
     },
     {
@@ -9170,7 +9553,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L485",
+      "source_location": "L501",
       "weight": 1.0
     },
     {
@@ -9182,7 +9565,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L487",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
@@ -9194,7 +9577,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L421",
+      "source_location": "L437",
       "weight": 1.0
     },
     {
@@ -9206,7 +9589,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L424",
+      "source_location": "L440",
       "weight": 1.0
     },
     {
@@ -9218,7 +9601,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L488",
+      "source_location": "L527",
       "weight": 1.0
     },
     {
@@ -9422,7 +9805,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L843",
+      "source_location": "L882",
       "weight": 1.0
     },
     {
@@ -9434,7 +9817,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L861",
+      "source_location": "L900",
       "weight": 1.0
     },
     {
@@ -9446,7 +9829,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L776",
+      "source_location": "L815",
       "weight": 1.0
     },
     {
@@ -9458,7 +9841,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L507",
+      "source_location": "L546",
       "weight": 1.0
     },
     {
@@ -9470,7 +9853,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L509",
+      "source_location": "L548",
       "weight": 1.0
     },
     {
@@ -9482,7 +9865,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L646",
+      "source_location": "L685",
       "weight": 1.0
     },
     {
@@ -9494,7 +9877,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L646",
+      "source_location": "L685",
       "weight": 1.0
     },
     {
@@ -9506,7 +9889,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L572",
+      "source_location": "L611",
       "weight": 1.0
     },
     {
@@ -9518,7 +9901,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L586",
+      "source_location": "L625",
       "weight": 1.0
     },
     {
@@ -9530,7 +9913,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L597",
+      "source_location": "L636",
       "weight": 1.0
     },
     {
@@ -9542,7 +9925,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L438",
+      "source_location": "L477",
       "weight": 1.0
     },
     {
@@ -9554,7 +9937,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L444",
+      "source_location": "L483",
       "weight": 1.0
     },
     {
@@ -9566,7 +9949,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L445",
+      "source_location": "L484",
       "weight": 1.0
     },
     {
@@ -9578,7 +9961,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L446",
+      "source_location": "L485",
       "weight": 1.0
     },
     {
@@ -9590,7 +9973,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1084",
+      "source_location": "L1123",
       "weight": 1.0
     },
     {
@@ -9602,7 +9985,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1085",
+      "source_location": "L1124",
       "weight": 1.0
     },
     {
@@ -9722,7 +10105,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1054",
+      "source_location": "L1189",
       "weight": 1.0
     },
     {
@@ -9734,7 +10117,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1070",
+      "source_location": "L1205",
       "weight": 1.0
     },
     {
@@ -9746,7 +10129,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1074",
+      "source_location": "L1209",
       "weight": 1.0
     },
     {
@@ -10191,7 +10574,7 @@
     },
     {
       "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_track_w_webview_wrapper_parallel_device_side",
+      "target": "dev_phases_phase_12_home_nearby_map_realtime_peer_discovery_done_code_2_device_field_test_pending",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10202,18 +10585,7 @@
     },
     {
       "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_risks",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dev_phases.md",
-      "source_location": "L130",
-      "weight": 1.0
-    },
-    {
-      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_open_decisions_need_your_call",
+      "target": "dev_phases_track_w_webview_wrapper_parallel_device_side",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10224,7 +10596,18 @@
     },
     {
       "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_verification_log",
+      "target": "dev_phases_risks",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dev_phases.md",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "target": "dev_phases_open_decisions_need_your_call",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10242,6 +10625,17 @@
       "confidence_score": 1.0,
       "source_file": "dev_phases.md",
       "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "target": "dev_phases_verification_log",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dev_phases.md",
+      "source_location": "L150",
       "weight": 1.0
     },
     {
@@ -11720,6 +12114,17 @@
     },
     {
       "source": "tools_check_p2p",
+      "target": "tools_check_p2p_mnl_qc",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-p2p.js",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_p2p",
       "target": "tools_check_p2p_sandbox",
       "relation": "contains",
       "_origin": "ast",
@@ -11907,13 +12312,35 @@
     },
     {
       "source": "www_assets_js_app",
+      "target": "www_assets_js_app_onp2pevent",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1007",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_onrideaccepted",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1108",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
       "target": "www_assets_js_app_onridestatus",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1006",
+      "source_location": "L1141",
       "weight": 1.0
     },
     {
@@ -11924,7 +12351,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1019",
+      "source_location": "L1154",
       "weight": 1.0
     },
     {
@@ -11935,7 +12362,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1038",
+      "source_location": "L1173",
       "weight": 1.0
     },
     {
@@ -11946,7 +12373,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1169",
+      "source_location": "L1304",
       "weight": 1.0
     },
     {
@@ -11957,7 +12384,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1179",
+      "source_location": "L1314",
       "weight": 1.0
     },
     {
@@ -11968,7 +12395,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1241",
+      "source_location": "L1376",
       "weight": 1.0
     },
     {
@@ -11979,7 +12406,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1282",
+      "source_location": "L1417",
       "weight": 1.0
     },
     {
@@ -11990,7 +12417,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1300",
+      "source_location": "L1435",
       "weight": 1.0
     },
     {
@@ -12001,18 +12428,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1360",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_bindautocomplete",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1534",
+      "source_location": "L1495",
       "weight": 1.0
     },
     {
@@ -12023,51 +12439,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L157",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
       "source": "www_assets_js_app",
-      "target": "www_assets_js_app_truncate",
+      "target": "www_assets_js_app_bindautocomplete",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1572",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_escapeattr",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1578",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_calcfare",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1584",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_needsunlock",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L168",
+      "source_location": "L1669",
       "weight": 1.0
     },
     {
@@ -12083,13 +12466,57 @@
     },
     {
       "source": "www_assets_js_app",
+      "target": "www_assets_js_app_truncate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1707",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_needsunlock",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L171",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_escapeattr",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1713",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_calcfare",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1719",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
       "target": "www_assets_js_app_gatetarget",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L178",
+      "source_location": "L181",
       "weight": 1.0
     },
     {
@@ -12100,7 +12527,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L189",
+      "source_location": "L192",
       "weight": 1.0
     },
     {
@@ -12111,7 +12538,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L199",
+      "source_location": "L202",
       "weight": 1.0
     },
     {
@@ -12122,7 +12549,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L290",
+      "source_location": "L293",
       "weight": 1.0
     },
     {
@@ -12133,7 +12560,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L330",
+      "source_location": "L333",
       "weight": 1.0
     },
     {
@@ -12144,7 +12571,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L348",
+      "source_location": "L351",
       "weight": 1.0
     },
     {
@@ -12155,7 +12582,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L418",
+      "source_location": "L421",
       "weight": 1.0
     },
     {
@@ -12166,7 +12593,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L427",
+      "source_location": "L430",
       "weight": 1.0
     },
     {
@@ -12177,7 +12604,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L441",
+      "source_location": "L444",
       "weight": 1.0
     },
     {
@@ -12188,7 +12615,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L449",
+      "source_location": "L452",
       "weight": 1.0
     },
     {
@@ -12199,7 +12626,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L453",
+      "source_location": "L456",
       "weight": 1.0
     },
     {
@@ -12210,7 +12637,40 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L484",
+      "source_location": "L487",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_bindhomescreen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L500",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_bindhomesearch",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L538",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_app",
+      "target": "www_assets_js_app_refreshhomepeers",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L574",
       "weight": 1.0
     },
     {
@@ -12221,7 +12681,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L493",
+      "source_location": "L622",
       "weight": 1.0
     },
     {
@@ -12232,7 +12692,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L509",
+      "source_location": "L638",
       "weight": 1.0
     },
     {
@@ -12243,7 +12703,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L551",
+      "source_location": "L680",
       "weight": 1.0
     },
     {
@@ -12254,7 +12714,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L584",
+      "source_location": "L713",
       "weight": 1.0
     },
     {
@@ -12265,7 +12725,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L647",
+      "source_location": "L776",
       "weight": 1.0
     },
     {
@@ -12276,7 +12736,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L652",
+      "source_location": "L781",
       "weight": 1.0
     },
     {
@@ -12287,7 +12747,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L681",
+      "source_location": "L810",
       "weight": 1.0
     },
     {
@@ -12298,7 +12758,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L708",
+      "source_location": "L837",
       "weight": 1.0
     },
     {
@@ -12309,7 +12769,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L717",
+      "source_location": "L846",
       "weight": 1.0
     },
     {
@@ -12320,7 +12780,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L746",
+      "source_location": "L875",
       "weight": 1.0
     },
     {
@@ -12331,7 +12791,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L763",
+      "source_location": "L892",
       "weight": 1.0
     },
     {
@@ -12342,7 +12802,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L778",
+      "source_location": "L907",
       "weight": 1.0
     },
     {
@@ -12353,7 +12813,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L782",
+      "source_location": "L911",
       "weight": 1.0
     },
     {
@@ -12364,7 +12824,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L790",
+      "source_location": "L919",
       "weight": 1.0
     },
     {
@@ -12375,7 +12835,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L805",
+      "source_location": "L934",
       "weight": 1.0
     },
     {
@@ -12386,7 +12846,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L809",
+      "source_location": "L938",
       "weight": 1.0
     },
     {
@@ -12397,7 +12857,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L815",
+      "source_location": "L944",
       "weight": 1.0
     },
     {
@@ -12408,7 +12868,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L822",
+      "source_location": "L951",
       "weight": 1.0
     },
     {
@@ -12419,7 +12879,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L833",
+      "source_location": "L962",
       "weight": 1.0
     },
     {
@@ -12430,29 +12890,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L856",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_onp2pevent",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L878",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_app",
-      "target": "www_assets_js_app_onrideaccepted",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L973",
+      "source_location": "L985",
       "weight": 1.0
     },
     {
@@ -12463,7 +12901,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1060",
+      "source_location": "L1195",
       "weight": 1.0
     },
     {
@@ -13579,7 +14017,7 @@
     },
     {
       "source": "www_assets_js_map_layer",
-      "target": "www_assets_js_map_layer_createmap",
+      "target": "www_assets_js_map_layer_tilelayer",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -13590,13 +14028,112 @@
     },
     {
       "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_notetilesoffline",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_createmap",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L137",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_inithome",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_destroyhome",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L188",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_sethomeref",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L201",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_upserthomepin",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L220",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_removehomepin",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L233",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_focushome",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L239",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
       "target": "www_assets_js_map_layer_onmapclick",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L154",
+      "source_location": "L244",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_cachedlocation",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L260",
       "weight": 1.0
     },
     {
@@ -13607,7 +14144,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L167",
+      "source_location": "L280",
       "weight": 1.0
     },
     {
@@ -13618,7 +14155,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L191",
+      "source_location": "L304",
       "weight": 1.0
     },
     {
@@ -13629,7 +14166,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L236",
+      "source_location": "L349",
       "weight": 1.0
     },
     {
@@ -13640,7 +14177,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L256",
+      "source_location": "L369",
       "weight": 1.0
     },
     {
@@ -13651,7 +14188,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L276",
+      "source_location": "L389",
       "weight": 1.0
     },
     {
@@ -13662,7 +14199,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L285",
+      "source_location": "L398",
       "weight": 1.0
     },
     {
@@ -13673,7 +14210,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L304",
+      "source_location": "L417",
       "weight": 1.0
     },
     {
@@ -13684,7 +14221,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L317",
+      "source_location": "L430",
       "weight": 1.0
     },
     {
@@ -13695,7 +14232,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L325",
+      "source_location": "L438",
       "weight": 1.0
     },
     {
@@ -13706,7 +14243,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L338",
+      "source_location": "L451",
       "weight": 1.0
     },
     {
@@ -13717,7 +14254,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L344",
+      "source_location": "L457",
       "weight": 1.0
     },
     {
@@ -13728,7 +14265,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L351",
+      "source_location": "L464",
       "weight": 1.0
     },
     {
@@ -13739,7 +14276,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L357",
+      "source_location": "L470",
       "weight": 1.0
     },
     {
@@ -13750,7 +14287,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L400",
+      "source_location": "L513",
       "weight": 1.0
     },
     {
@@ -13761,7 +14298,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L407",
+      "source_location": "L520",
       "weight": 1.0
     },
     {
@@ -13772,7 +14309,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L433",
+      "source_location": "L546",
       "weight": 1.0
     },
     {
@@ -13783,7 +14320,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L459",
+      "source_location": "L572",
       "weight": 1.0
     },
     {
@@ -13794,7 +14331,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L467",
+      "source_location": "L580",
       "weight": 1.0
     },
     {
@@ -13805,7 +14342,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L493",
+      "source_location": "L606",
       "weight": 1.0
     },
     {
@@ -13816,7 +14353,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L518",
+      "source_location": "L631",
       "weight": 1.0
     },
     {
@@ -13827,7 +14364,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L521",
+      "source_location": "L634",
       "weight": 1.0
     },
     {
@@ -13838,29 +14375,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L525",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer",
-      "target": "www_assets_js_map_layer_launchorganicmaps",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L544",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_map_layer",
-      "target": "www_assets_js_map_layer_haversinekm",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L569",
+      "source_location": "L638",
       "weight": 1.0
     },
     {
@@ -13872,6 +14387,28 @@
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
       "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_launchorganicmaps",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L657",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_map_layer",
+      "target": "www_assets_js_map_layer_haversinekm",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/map-layer.js",
+      "source_location": "L682",
       "weight": 1.0
     },
     {
@@ -14058,7 +14595,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L366",
+      "source_location": "L373",
       "weight": 1.0
     },
     {
@@ -14069,7 +14606,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L396",
+      "source_location": "L412",
       "weight": 1.0
     },
     {
@@ -14080,7 +14617,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L400",
+      "source_location": "L416",
       "weight": 1.0
     },
     {
@@ -14091,7 +14628,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L410",
+      "source_location": "L426",
       "weight": 1.0
     },
     {
@@ -14102,7 +14639,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L416",
+      "source_location": "L432",
       "weight": 1.0
     },
     {
@@ -14113,18 +14650,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L431",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_geohash",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L44",
+      "source_location": "L447",
       "weight": 1.0
     },
     {
@@ -14135,7 +14661,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L444",
+      "source_location": "L460",
       "weight": 1.0
     },
     {
@@ -14146,7 +14672,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L457",
+      "source_location": "L473",
       "weight": 1.0
     },
     {
@@ -14157,7 +14683,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L463",
+      "source_location": "L479",
       "weight": 1.0
     },
     {
@@ -14168,7 +14694,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L467",
+      "source_location": "L483",
       "weight": 1.0
     },
     {
@@ -14179,7 +14705,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L468",
+      "source_location": "L484",
       "weight": 1.0
     },
     {
@@ -14190,7 +14716,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L469",
+      "source_location": "L485",
       "weight": 1.0
     },
     {
@@ -14201,7 +14727,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L470",
+      "source_location": "L486",
       "weight": 1.0
     },
     {
@@ -14212,7 +14738,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L471",
+      "source_location": "L487",
       "weight": 1.0
     },
     {
@@ -14223,7 +14749,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L472",
+      "source_location": "L488",
       "weight": 1.0
     },
     {
@@ -14234,7 +14760,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L473",
+      "source_location": "L489",
       "weight": 1.0
     },
     {
@@ -14245,7 +14771,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L474",
+      "source_location": "L490",
       "weight": 1.0
     },
     {
@@ -14256,7 +14782,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L475",
+      "source_location": "L491",
       "weight": 1.0
     },
     {
@@ -14267,7 +14793,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L476",
+      "source_location": "L492",
       "weight": 1.0
     },
     {
@@ -14278,7 +14804,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L480",
+      "source_location": "L496",
       "weight": 1.0
     },
     {
@@ -14289,29 +14815,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L493",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_haversinekm",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L63",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_p2p_layer",
-      "target": "www_assets_js_p2p_layer_trunc3",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/p2p-layer.js",
-      "source_location": "L71",
+      "source_location": "L509",
       "weight": 1.0
     },
     {
@@ -14338,6 +14842,17 @@
     },
     {
       "source": "www_assets_js_ui_components",
+      "target": "www_assets_js_ui_components_screensettings",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L1005",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_screenhome",
       "relation": "contains",
       "_origin": "ast",
@@ -14355,7 +14870,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1074",
+      "source_location": "L1113",
       "weight": 1.0
     },
     {
@@ -14366,7 +14881,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1076",
+      "source_location": "L1115",
       "weight": 1.0
     },
     {
@@ -14377,7 +14892,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1088",
+      "source_location": "L1127",
       "weight": 1.0
     },
     {
@@ -14388,7 +14903,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1101",
+      "source_location": "L1140",
       "weight": 1.0
     },
     {
@@ -14399,7 +14914,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1125",
+      "source_location": "L1164",
       "weight": 1.0
     },
     {
@@ -14410,7 +14925,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1150",
+      "source_location": "L1189",
       "weight": 1.0
     },
     {
@@ -14421,7 +14936,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1156",
+      "source_location": "L1195",
       "weight": 1.0
     },
     {
@@ -14432,7 +14947,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L226",
+      "source_location": "L265",
       "weight": 1.0
     },
     {
@@ -14443,7 +14958,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L413",
+      "source_location": "L452",
       "weight": 1.0
     },
     {
@@ -14454,18 +14969,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L432",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_ui_components",
-      "target": "www_assets_js_ui_components_earningscard",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L472",
+      "source_location": "L471",
       "weight": 1.0
     },
     {
@@ -14481,13 +14985,24 @@
     },
     {
       "source": "www_assets_js_ui_components",
+      "target": "www_assets_js_ui_components_earningscard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L511",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_screenmessages",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L501",
+      "source_location": "L540",
       "weight": 1.0
     },
     {
@@ -14498,7 +15013,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L545",
+      "source_location": "L584",
       "weight": 1.0
     },
     {
@@ -14509,7 +15024,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L635",
+      "source_location": "L674",
       "weight": 1.0
     },
     {
@@ -14520,7 +15035,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L639",
+      "source_location": "L678",
       "weight": 1.0
     },
     {
@@ -14531,7 +15046,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L644",
+      "source_location": "L683",
       "weight": 1.0
     },
     {
@@ -14547,17 +15062,6 @@
     },
     {
       "source": "www_assets_js_ui_components",
-      "target": "www_assets_js_ui_components_screenlock",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L762",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_updatescreentitle",
       "relation": "contains",
       "_origin": "ast",
@@ -14569,24 +15073,24 @@
     },
     {
       "source": "www_assets_js_ui_components",
+      "target": "www_assets_js_ui_components_screenlock",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L801",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_screenrecover",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L804",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_ui_components",
-      "target": "www_assets_js_ui_components_screenebike",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L833",
+      "source_location": "L843",
       "weight": 1.0
     },
     {
@@ -14602,24 +15106,24 @@
     },
     {
       "source": "www_assets_js_ui_components",
+      "target": "www_assets_js_ui_components_screenebike",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L872",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_screendata",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L920",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_ui_components",
-      "target": "www_assets_js_ui_components_screensettings",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L966",
+      "source_location": "L959",
       "weight": 1.0
     },
     {
@@ -14766,25 +15270,25 @@
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_app_rationale_144",
+      "source": "www_assets_js_app_rationale_147",
       "target": "www_assets_js_app",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L144",
+      "source_location": "L147",
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_map_layer_rationale_362",
+      "source": "www_assets_js_map_layer_rationale_475",
       "target": "www_assets_js_map_layer",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/map-layer.js",
-      "source_location": "L362",
+      "source_location": "L475",
       "weight": 1.0
     },
     {
@@ -14929,6 +15433,42 @@
       "context": "collection",
       "source_file": "www/assets/js/auth-layer.js",
       "source_location": "L440",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_geohash",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "collection",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L516",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_haversinekm",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "collection",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L516",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_p2p_layer",
+      "target": "www_assets_js_p2p_layer_trunc3",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "collection",
+      "source_file": "www/assets/js/p2p-layer.js",
+      "source_location": "L516",
       "weight": 1.0
     },
     {
@@ -15124,6 +15664,18 @@
       "weight": 1.0
     },
     {
+      "source": "dev_phases_phase_12_home_nearby_map_realtime_peer_discovery_done_code_2_device_field_test_pending",
+      "target": "www_assets_js_map_layer_tilelayer",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "_tileLayer()",
+      "source_file": "dev_phases.md",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
       "source": "lapeet_app_development_4_1_header_static_logotext_image_never_overwritten_by_screen_title",
       "target": "www_assets_js_ui_components_updatescreentitle",
       "relation": "references",
@@ -15217,6 +15769,18 @@
       "context": "buildOrganicMapsDeepLink",
       "source_file": "DEVELOPMENT_PHASES.md",
       "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "dev_phases_phase_12_home_nearby_map_realtime_peer_discovery_done_code_2_device_field_test_pending",
+      "target": "www_assets_js_map_layer_cachedlocation",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "cachedLocation",
+      "source_file": "dev_phases.md",
+      "source_location": "L128",
       "weight": 1.0
     },
     {
@@ -15569,5 +16133,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ea4a452a5c96f946efb54c9fa4833622cc6c1dda"
+  "built_at_commit": "8d03a80fb3c7322b93417830783c1a05e9a192c4"
 }

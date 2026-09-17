@@ -35,5 +35,13 @@ ok('spoofed distance rejected', !P2P.validateRideRequest(req({ distance_km: 1 })
 ok('missing ride_id rejected', !P2P.validateRideRequest(req({ ride_id: null })));
 ok('16 message types incl CHAT', Object.keys(P2P.MSG_TYPES).length === 16 && !!P2P.MSG_TYPES.CHAT);
 ok('channel naming', ('lapeeet-' + gh(14.5995, 120.9842, 4)) === 'lapeeet-wdw5');
+// LapeeetGeo bundle (home nearby filtering)
+const G = sandbox.LapeeetGeo;
+ok('geo bundle exported', !!(G && G.haversineKm && G.trunc3 && G.geohash));
+const mnl_qc = G.haversineKm(14.5995, 120.9842, 14.65, 121.05);
+ok('haversine Manila-QC ~9km', mnl_qc > 8 && mnl_qc < 11);
+ok('haversine zero', G.haversineKm(0, 0, 0, 0) === 0);
+ok('trunc3 rounds', G.trunc3(14.59955) === 14.6 && G.trunc3(-0.0004) === -0);
+ok('geo cap constant 60', G.MAX_TRIP_KM === 60);
 
 process.exit(fails ? 1 : 0);

@@ -1,8 +1,8 @@
 {
   "www/assets/js/app.js": {
-    "mtime": 1789647577.376167,
-    "seen": 1789647583.0049686,
-    "ast_hash": "bd4fe173befbf1fab8ee1a17c0746277",
+    "mtime": 1789648171.9688272,
+    "seen": 1789648178.053134,
+    "ast_hash": "d4bd4c60f1fde765ef71d01b1a226de2",
     "semantic_hash": ""
   },
   "www/assets/js/base.js": {
@@ -24,21 +24,21 @@
     "semantic_hash": ""
   },
   "www/assets/js/map-layer.js": {
-    "mtime": 1789635429.7916198,
-    "seen": 1789635661.3836844,
-    "ast_hash": "46b0aa79e51b075d8ce186394a22d538",
-    "semantic_hash": "46b0aa79e51b075d8ce186394a22d538"
+    "mtime": 1789647991.014193,
+    "seen": 1789647997.0483024,
+    "ast_hash": "eaae962980d092f3220b66bf4b06dc4f",
+    "semantic_hash": ""
   },
   "www/assets/js/p2p-layer.js": {
-    "mtime": 1789647564.3593118,
-    "seen": 1789647569.2700515,
-    "ast_hash": "dfa6f927772ccf28d390c9e4c1a518d2",
+    "mtime": 1789648021.8434038,
+    "seen": 1789648027.805246,
+    "ast_hash": "ce3fe67f331209df12e26c3bc68feb10",
     "semantic_hash": ""
   },
   "www/assets/js/ui-components.js": {
-    "mtime": 1789647537.402606,
-    "seen": 1789647542.4328425,
-    "ast_hash": "14f8624548555abdc89cbd3ed07b4137",
+    "mtime": 1789648042.3317611,
+    "seen": 1789648047.9426715,
+    "ast_hash": "b8dcfbf34d17e0708ebc29a546865698",
     "semantic_hash": ""
   },
   "Lapeet_app_development.md": {
@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "tools/check-p2p.js": {
-    "mtime": 1789636035.8466716,
-    "seen": 1789636039.6220589,
-    "ast_hash": "7c2ed3a5bc376bf3f19def9d02d328b4",
+    "mtime": 1789648186.1840703,
+    "seen": 1789648192.3517942,
+    "ast_hash": "037669e79a419929d68762a773f98f9c",
     "semantic_hash": ""
   },
   "www/manifest.json": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "dev_phases.md": {
-    "mtime": 1789646772.2073402,
-    "seen": 1789646784.6354132,
-    "ast_hash": "b3d5149dd60e9012a1061c5f374d990e",
+    "mtime": 1789648291.8320844,
+    "seen": 1789648304.611846,
+    "ast_hash": "88cf0c0b66f026fa6110b6a858f7ed25",
     "semantic_hash": ""
   },
   "tools/check-mode.js": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "tools/check-wiring.js": {
-    "mtime": 1789647102.379479,
-    "seen": 1789647107.3486142,
-    "ast_hash": "bd4ed9a1f8e9340d95d86dd35f05e802",
+    "mtime": 1789648186.1845946,
+    "seen": 1789648192.3517988,
+    "ast_hash": "c45c7ab19c33ff03103d0859f022e36d",
     "semantic_hash": ""
   },
   "tools/check-guard.js": {

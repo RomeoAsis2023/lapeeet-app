@@ -48,7 +48,10 @@
                             }, 40);
                         }
                     }
-                    if (s === 'home') this._populateHomeStatus();
+                    if (s === 'home') { this._populateHomeStatus(); this._bindHomeScreen(); }
+                    else if (window.LapeeetMap && LapeeetMap.homeMap) {
+                        try { LapeeetMap.destroyHome(); } catch (e) {}
+                    }
                     if (s === 'settings') { this._populateSettingsGit(); this._bindSettingsScreen(); }
                     if (s === 'data') this._bindDataScreen();
                     if (s === 'profile') this._bindProfileScreen();
@@ -490,6 +493,132 @@
             });
         },
 
+        /* ---------- HOME NEARBY MAP (realtime mesh peers + radius search) ---------- */
+
+        _homeRadiusKm: 10,
+
+        async _bindHomeScreen() {
+            const self = this;
+            // (Re)create the mini-map; the old instance is destroyed on leave.
+            let center = null;
+            try { center = await LapeeetMap.cachedLocation(120000); } catch (e) {}
+            if (!LapeeetMap.homeMap) {
+                LapeeetMap.initHome('homeMap', center || undefined);
+            }
+            if (center) {
+                LapeeetMap.setHomeRef(center.lat, center.lng, this._homeRadiusKm);
+                LapeeetMap.focusHome(center.lat, center.lng, 12);
+            } else {
+                // No GPS yet: keep default center, refresh silently in background.
+                LapeeetMap.cachedLocation(0).then(p => {
+                    if (!p || LapeeetUI.currentScreen !== 'home') return;
+                    LapeeetMap.setHomeRef(p.lat, p.lng, self._homeRadiusKm);
+                    LapeeetMap.focusHome(p.lat, p.lng, 12);
+                    self._refreshHomePeers();
+                }).catch(() => {});
+            }
+            $('#nearRadius').off('change').on('change', function () {
+                self._homeRadiusKm = Math.min(60, Number($(this).val()) || 10);
+                const ref = LapeeetMap.homeRef;
+                if (ref) LapeeetMap.setHomeRef(ref.lat, ref.lng, self._homeRadiusKm);
+                self._refreshHomePeers();
+            });
+            $('#btnNearLocate').off('click').on('click', async () => {
+                const p = await LapeeetMap.cachedLocation(0);
+                if (!p) { LapeeetUI.showToast('Could not determine your location', 'warning'); return; }
+                LapeeetMap.setHomeRef(p.lat, p.lng, self._homeRadiusKm);
+                LapeeetMap.focusHome(p.lat, p.lng, 12);
+                $('#nearSearch').val('');
+                self._refreshHomePeers();
+            });
+            this._bindHomeSearch();
+            this._refreshHomePeers();
+        },
+
+        _bindHomeSearch() {
+            const self = this;
+            let debounce = null;
+            const $input = $('#nearSearch');
+            const $box = $('#nearSuggest');
+            if (!$input.length) return;
+            $input.off('input keyup focus').on('input keyup focus', function () {
+                const q = $(this).val();
+                if (debounce) clearTimeout(debounce);
+                if (!q || q.length < 3) { $box.empty(); return; }
+                debounce = setTimeout(async () => {
+                    const rows = await LapeeetMap.searchAddress(q);
+                    if (!rows || !rows.length) {
+                        $box.html('<div class="small text-muted p-1">No results — peers show around your location</div>');
+                        return;
+                    }
+                    const html = rows.slice(0, 5).map(r => `
+                        <a href="javascript:;" class="list-group-item list-group-item-action p-2 small d-block"
+                           data-lat="${r.lat}" data-lng="${r.lng}" data-addr="${self._escapeAttr(r.address)}">
+                             ${self._truncate(r.address, 120)}
+                        </a>`).join('');
+                    $box.html('<div class="list-group">' + html + '</div>');
+                    $box.find('a[data-lat]').off('click').on('click', function () {
+                        const lat = parseFloat($(this).attr('data-lat'));
+                        const lng = parseFloat($(this).attr('data-lng'));
+                        const addr = $(this).attr('data-addr') || '';
+                        LapeeetMap.setHomeRef(lat, lng, self._homeRadiusKm);
+                        LapeeetMap.focusHome(lat, lng, 12);
+                        $('#nearSearch').val(self._truncate(addr, 120));
+                        $box.empty();
+                        self._refreshHomePeers();
+                    });
+                }, 380);
+            });
+        },
+
+        _refreshHomePeers() {
+            if (!window.LapeeetUI || !window.LapeeetP2P || !window.LapeeetMap) return;
+            if (LapeeetUI.currentScreen !== 'home' || !$('#nearList').length) return;
+            const isRider = this.role === 'RIDER';
+            const ref = LapeeetMap.homeRef || LapeeetP2P.myLoc || { lat: 14.5995, lng: 120.9842 };
+            const R = Math.min(60, this._homeRadiusKm || 10);
+            const rows = [];
+            const push = (key, lat, lng, label, kind) => {
+                if (lat === undefined || lat === null || lng === undefined || lng === null) return;
+                const km = LapeeetMap.haversineKm(ref.lat, ref.lng, Number(lat), Number(lng));
+                if (km <= R) rows.push({ key, lat: Number(lat), lng: Number(lng), km, label, kind });
+            };
+            if (isRider) {
+                // Passengers discover nearby DRIVERS from heartbeats.
+                LapeeetP2P.peers.forEach((p, id) => {
+                    if ((p.role || '') !== 'DRIVER') return;
+                    const bike = ((p.brand || '') + ' ' + (p.model || '')).trim();
+                    push('d:' + id, p.tLat, p.tLng,
+                        (bike || ('Driver ' + this._shortId(id))) + (p.capacity ? ' · ' + p.capacity + ' seats' : ''),
+                        'driver');
+                });
+            } else {
+                // Drivers discover nearby PASSENGERS from presence + live requests.
+                LapeeetP2P.peers.forEach((p, id) => {
+                    if ((p.role || '') === 'DRIVER') return;
+                    push('r:' + id, p.tLat, p.tLng, (p.name || ('Passenger ' + this._shortId(id))), 'rider');
+                });
+                LapeeetP2P.rideRequests.forEach((r, rideId) => {
+                    const b = r.body || {};
+                    push('q:' + rideId, b.pickup_lat, b.pickup_lng,
+                        'Request · ' + Number(b.distance_km || 0).toFixed(1) + ' km · ' + (b.capacity || '?') + ' seat(s)',
+                        'rider');
+                });
+            }
+            rows.sort((a, b) => a.km - b.km);
+            const shown = rows.slice(0, 50);
+            const want = new Set(shown.map(r => r.key));
+            Array.from(LapeeetMap.homeMarkers.keys()).forEach(k => {
+                if (k !== 'ref' && !want.has(k)) LapeeetMap.removeHomePin(k);
+            });
+            shown.forEach(r => LapeeetMap.upsertHomePin(r.key, r.lat, r.lng, r.kind,
+                r.label + ' · ' + r.km.toFixed(1) + ' km'));
+            $('#nearCount').text(shown.length + ' within ' + R + ' km');
+            $('#nearList').html(shown.length ? shown.map(r =>
+                `<li><span>${this._escapeAttr(r.label)}</span><strong>${r.km.toFixed(1)} km</strong></li>`
+            ).join('') : '<li class="small text-muted">No peers in range yet — mesh is still discovering.</li>');
+        },
+
         _populateHomeStatus() {
             $('#dbStatus').html( LapeeetDB.initialized   ? '<span class="text-success">Ready</span>' : '<span class="text-warning">Phase 2 stub</span>');
             const peerN = (LapeeetP2P.peerCount) ? LapeeetP2P.peerCount() : 0;
@@ -884,12 +1013,18 @@
                 case '__peer-leave':
                     this._populateHomeStatus();
                     if (LapeeetUI.currentScreen === 'map') this._renderDriverRequests();
+                    if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
+                    break;
+                case T.HELLO:
+                case T.DRIVER_STATUS:
+                    if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
                     break;
                 case T.RIDE_REQUEST:
                     if (this.role === 'DRIVER' && !evt.isSelf) {
                         LapeeetUI.showToast('New ride request nearby', 'info');
                         if (LapeeetUI.currentScreen === 'map') this._renderDriverRequests();
                     }
+                    if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
                     break;
                 case T.RIDE_ACCEPT:
                     if (!evt.isSelf) this._onRideAccepted(evt);

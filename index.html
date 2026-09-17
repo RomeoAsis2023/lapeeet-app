@@ -33459,6 +33459,13 @@ module.exports = L.Routing = {
         _onReceive(data, transportId) {
             if (!data || typeof data !== 'object') return;
             if (!this._validEnvelopeShape(data)) return;
+            // Phase 16 room check (fail-open for legacy cached builds without
+            // the stamp; drops only present-but-mismatched rooms).
+            if (data.room !== undefined && data.room !== null &&
+                this.channel && data.room !== this.channel) {
+                try { this._mlog('dropped cross-room msg ' + data.type); } catch (e) {}
+                return;
+            }
             if (this._seen(data.id)) return;
             this._markSeen(data.id);
             // Bind transport <-> identity on every verified message.
@@ -33481,7 +33488,8 @@ module.exports = L.Routing = {
             return e && typeof e.id === 'string' && typeof e.type === 'string' &&
                 e.body !== undefined && typeof e.from === 'string' &&
                 typeof e.pub === 'string' && typeof e.ts === 'number' &&
-                typeof e.sig === 'string' && e.from === e.pub;
+                typeof e.sig === 'string' && e.from === e.pub &&
+                (e.room === undefined || e.room === null || typeof e.room === 'string');
         },
 
         _seen(id) { return this._seenIds.indexOf(id) !== -1; },
@@ -33755,7 +33763,9 @@ module.exports = L.Routing = {
             const id = util.encodeBase64(global.nacl.randomBytes(12));
             const msg = this._canonical(type, body, ts, id, this.connectId);
             const sig = global.nacl.sign.detached(util.decodeUTF8(msg), this.mySecretKey);
-            return { v: 1, id, type, body, from: this.connectId, pub: this.myPublicKey, ts, sig: util.encodeBase64(sig) };
+            // Phase 16 room stamp: UNSIGNED routing metadata (trust comes from
+            // the signature + channel join, never from this field).
+            return { v: 1, id, type, body, from: this.connectId, pub: this.myPublicKey, ts, sig: util.encodeBase64(sig), room: this.channel || null };
         },
 
         /** Sign an arbitrary object (compat helper). Returns base64 signature. */
@@ -34646,8 +34656,24 @@ module.exports = L.Routing = {
         /* ---------- INCOMING ---------- */
 
         _handleIncoming(envelopeBody, fromIdentity, transportId) {
-            // Busy? auto-reject with CALL_END so the caller isn't left hanging.
-            if (this.state !== 'idle' && this.state !== 'ended') {
+            // Phase 16 glare tie-break: we ALSO have an outgoing call to this
+            // same peer (mutual dial). Lower stable identity stays initiator;
+            // the loser silently stands down and answers instead of both sides
+            // busy-rejecting each other.
+            if (this.state === 'outgoing' && this.peerIdentity === fromIdentity) {
+                const mine = (global.LapeeetP2P && LapeeetP2P.connectId) || '';
+                if (String(mine) < String(fromIdentity)) {
+                    return; // I win: keep my outgoing leg, ignore their initiate.
+                }
+                // I lose: stop my outgoing media, fall through and answer theirs.
+                try {
+                    if (this.localStream) {
+                        this.localStream.getTracks().forEach(t => { try { t.stop(); } catch (e) {} });
+                    }
+                } catch (e) {}
+                this.localStream = null;
+            } else if (this.state !== 'idle' && this.state !== 'ended') {
+                // Busy? auto-reject with CALL_END so the caller isn't left hanging.
                 try {
                     LapeeetP2P.sendDirect(fromIdentity, LapeeetP2P.MSG_TYPES.CALL_END,
                         { ride_id: envelopeBody.ride_id, reason: 'busy' });
@@ -34772,9 +34798,11 @@ module.exports = L.Routing = {
             }
             this._modalOpen = true;
             const title = { outgoing: 'Calling…', ringing: 'Incoming call', 'in-call': 'In call', error: 'Call failed', ended: 'Call ended' }[this.state] || this.state;
+            const line = this._connLine();
             modal.innerHTML =
                 '<div style="width:100%;max-width:360px;background:#121d35;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden">' +
-                '<div style="padding:14px 16px;color:#fff;font-weight:700">' + title + '</div>' +
+                '<div style="padding:14px 16px 2px;color:#fff;font-weight:700">' + title + '</div>' +
+                '<div id="callConnState" style="padding:0 16px 10px;font-size:12px;color:' + line.color + '">' + line.text + '</div>' +
                 '<video id="callRemoteVideo" autoplay playsinline style="width:100%;max-height:240px;background:#000;display:block"></video>' +
                 '<audio id="callRemoteAudio" autoplay style="display:none"></audio>' +
                 '<video id="callLocalVideo" autoplay playsinline muted style="width:110px;height:82px;background:#000;border-radius:10px;margin:10px 0 0 16px"></video>' +
@@ -34796,6 +34824,35 @@ module.exports = L.Routing = {
             on('callHang', () => this.endCall());
         },
 
+        /* ---------- CONNECTION NARRATION (Phase 16) ---------- */
+
+        _connLine() {
+            // Returns {text, color} describing media state for the modal.
+            if (this.state === 'in-call' && this.remoteStream) {
+                return { text: '● Connected', color: '#7fe3b0' };
+            }
+            if (this.state === 'in-call' || this.state === 'outgoing') {
+                return { text: '◌ Connecting media…', color: '#ffc96a' };
+            }
+            if (this.state === 'ringing') {
+                return { text: 'Incoming — accept or reject', color: '#8cbeff' };
+            }
+            if (this.state === 'error') {
+                return { text: 'Media failed — chat still works, try re-call', color: '#ff9aa2' };
+            }
+            return { text: '', color: '#b9c8e2' };
+        },
+
+        _updateConnLine() {
+            try {
+                const el = document.getElementById('callConnState');
+                if (!el) return;
+                const line = this._connLine();
+                el.textContent = line.text;
+                el.style.color = line.color;
+            } catch (e) {}
+        },
+
         _attachLocal() {
             try {
                 const el = document.getElementById('callLocalVideo');
@@ -34809,6 +34866,7 @@ module.exports = L.Routing = {
                 if (v && this.remoteStream) v.srcObject = this.remoteStream;
                 if (a && this.remoteStream) a.srcObject = this.remoteStream;
             } catch (e) {}
+            this._updateConnLine();
         },
         _closeModal() {
             const modal = document.getElementById('callModalLive');
@@ -35856,6 +35914,18 @@ module.exports = L.Routing = {
                             <label class="custom-control-label" for="darkmodeswitch"></label>
                         </div>
                     </div>
+                    <div class="card-body d-flex justify-content-between align-items-end" style="border-top:1px solid var(--lapeeet-border)">
+                        <div>
+                            <h6 class="card-subtitle">Alerts</h6>
+                            <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                                Ride Sound <span class="text-muted small ml-1">(Ringtone + Vibrate)</span>
+                            </h5>
+                        </div>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="soundswitch" checked>
+                            <label class="custom-control-label" for="soundswitch"></label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="section full mt-2 mb-2">
@@ -36061,6 +36131,12 @@ module.exports = L.Routing = {
             // 0. LOCK PERMANENT DARK MODE (body class + localStorage + guard handler)
             this._lockPermanentDarkMode();
 
+            // 0a. Pre-warm the WebAudio context on first tap so later alert
+            // beeps are not blocked by mobile autoplay policies (Phase 16).
+            try {
+                document.addEventListener('pointerdown', () => this._unlockAudio(), { once: true });
+            } catch (e) {}
+
             // 0b. Resolve tenant role: ?mode= URL param > saved role > RIDER.
             // (Phase 6 deep links: ?mode=driver | ?mode=passenger, case-insensitive.)
             this.role = this.resolveInitialRole();
@@ -36258,6 +36334,17 @@ module.exports = L.Routing = {
             };
             refreshMeshDiag();
             $('#btnMeshRefresh').off('click').on('click', () => { refreshMeshDiag(); this._populateHomeStatus(); });
+            // Phase 16 ride-sound toggle (ringtone + vibrate), default ON.
+            try {
+                const sw = $('#soundswitch');
+                if (sw.length) {
+                    sw.prop('checked', this._soundEnabled());
+                    sw.off('change').on('change', () => {
+                        this.setSoundEnabled(sw.is(':checked'));
+                        if (sw.is(':checked')) this._alertChat(); // instant preview
+                    });
+                }
+            } catch (e) {}
             $('#btnMeshRejoin').off('click').on('click', async () => {
                 LapeeetUI.showToast('Rejoining mesh…', 'info');
                 try { await LapeeetP2P.rejoin(); } catch (e) {}
@@ -36916,6 +37003,94 @@ module.exports = L.Routing = {
         /* ---------- PHASE 13: FIRST-ACCEPT-WINS + DRIVER DIALOGS ---------- */
 
         _rideLocks: {},       // ride_id -> { winner: null|identity, expires_at, timer }
+        /* ---------- ALERTS: ringtone + vibrate (Phase 16) ----------
+           All original: WebAudio oscillator patterns, no audio assets.
+           Everything is guarded — missing APIs or a locked context simply
+           means silence instead of a crash. */
+
+        _audioCtx: null,
+
+        _soundEnabled() {
+            try { return localStorage.getItem('lapeeet::sound') !== 'off'; } catch (e) { return true; }
+        },
+
+        setSoundEnabled(on) {
+            try { localStorage.setItem('lapeeet::sound', on ? 'on' : 'off'); } catch (e) {}
+        },
+
+        _unlockAudio() {
+            try {
+                const AC = window.AudioContext || window.webkitAudioContext;
+                if (!AC) return;
+                if (!this._audioCtx) this._audioCtx = new AC();
+                if (this._audioCtx && this._audioCtx.state === 'suspended') this._audioCtx.resume();
+            } catch (e) {}
+        },
+
+        _beep(freq, t0, dur, vol) {
+            try {
+                const ctx = this._audioCtx;
+                if (!ctx || typeof ctx.createOscillator !== 'function') return;
+                const o = ctx.createOscillator(), g = ctx.createGain();
+                o.type = 'sine';
+                o.frequency.value = freq;
+                g.gain.setValueAtTime(0.0001, t0);
+                g.gain.exponentialRampToValueAtTime(vol || 0.2, t0 + 0.02);
+                g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+                o.connect(g);
+                g.connect(ctx.destination);
+                o.start(t0);
+                o.stop(t0 + dur + 0.05);
+            } catch (e) {}
+        },
+
+        _vibrate(pattern) {
+            try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
+        },
+
+        // Driver: ride request arrived — 3 ascending beeps + double buzz.
+        _alertRideRequest() {
+            if (!this._soundEnabled()) return;
+            this._unlockAudio();
+            try {
+                const ctx = this._audioCtx;
+                if (ctx && typeof ctx.currentTime === 'number') {
+                    const t = ctx.currentTime + 0.05;
+                    [660, 880, 1174].forEach((f, i) => this._beep(f, t + i * 0.16, 0.14, 0.25));
+                }
+            } catch (e) {}
+            this._vibrate([200, 100, 200]);
+        },
+
+        // Chat arrived while on another screen — one soft beep.
+        _alertChat() {
+            if (!this._soundEnabled()) return;
+            this._unlockAudio();
+            try {
+                const ctx = this._audioCtx;
+                if (ctx && typeof ctx.currentTime === 'number') {
+                    this._beep(880, ctx.currentTime + 0.05, 0.1, 0.15);
+                }
+            } catch (e) {}
+        },
+
+        // Incoming call — classic two-tone ring x3 + long vibrate.
+        _alertCall() {
+            if (!this._soundEnabled()) return;
+            this._unlockAudio();
+            try {
+                const ctx = this._audioCtx;
+                if (ctx && typeof ctx.currentTime === 'number') {
+                    const t = ctx.currentTime + 0.05;
+                    for (let i = 0; i < 3; i++) {
+                        this._beep(440, t + i * 0.8, 0.35, 0.25);
+                        this._beep(480, t + i * 0.8 + 0.4, 0.35, 0.25);
+                    }
+                }
+            } catch (e) {}
+            this._vibrate([400, 200, 400, 200, 400]);
+        },
+
         _dialogQueue: [],     // ride_ids waiting for the kit notification dialog
         _dialogActive: null,  // { rideId, expires_at, timer } currently displayed
 
@@ -37037,6 +37212,7 @@ module.exports = L.Routing = {
                 self._declineRide(rideId, 'declined'); // X = decline (explicit reject)
             });
             try { notification('rideDialogBox'); } catch (e) {}
+            this._alertRideRequest();
             this._renderDriverRequests();
         },
 
@@ -37359,7 +37535,7 @@ module.exports = L.Routing = {
                     if (!evt.isSelf && evt.body.text) {
                         this._chatPush(evt.from, evt.body.text, false);
                         if (LapeeetUI.currentScreen === 'messages') LapeeetUI.navigate('messages');
-                        else LapeeetUI.showToast('New P2P message', 'info');
+                        else { LapeeetUI.showToast('New P2P message', 'info'); this._alertChat(); }
                     }
                     break;
                 case T.DB_SYNC_REQ:
@@ -37379,7 +37555,10 @@ module.exports = L.Routing = {
                     if (!evt.isSelf) console.info('[APP] peer DB summary:', evt.body);
                     break;
                 case T.CALL_INITIATE:
-                    if (!evt.isSelf && window.LapeeetCall) LapeeetCall._handleIncoming(evt.body, evt.from, evt.transportId);
+                    if (!evt.isSelf && window.LapeeetCall) {
+                        this._alertCall();
+                        LapeeetCall._handleIncoming(evt.body, evt.from, evt.transportId);
+                    }
                     break;
                 case T.CALL_END:
                     if (!evt.isSelf && window.LapeeetCall) LapeeetCall._handleRemoteEnd();

@@ -632,13 +632,21 @@
                         <form onsubmit="event.preventDefault();">
                         <div class="ob-step" data-step="1">
                             <div class="section-title">1 · Choose your role</div>
-                            <div class="form-group boxed"><div class="input-wrapper">
-                                <label class="label" for="obRole">I will use Lapeeet as a…</label>
-                                <select class="form-control" id="obRole">
-                                    <option value="RIDER">Rider (book e-bike rides)</option>
-                                    <option value="DRIVER">Driver (offer rides with my e-bike)</option>
-                                </select>
-                            </div></div>
+                            <input type="hidden" id="obRole" value="RIDER">
+                            <div class="role-pick" id="rolePickGroup" role="radiogroup" aria-label="Choose your role">
+                                <div class="role-card" role="radio" tabindex="0" data-role="RIDER" aria-checked="true" aria-label="Register as rider">
+                                    <span class="role-check"><ion-icon name="checkmark"></ion-icon></span>
+                                    <img src="assets/img/marker_user.svg" alt="Rider marker">
+                                    <div class="role-card-title">Rider</div>
+                                    <div class="role-card-sub">Book e-bike rides near you</div>
+                                </div>
+                                <div class="role-card" role="radio" tabindex="0" data-role="DRIVER" aria-checked="false" aria-label="Register as driver">
+                                    <span class="role-check"><ion-icon name="checkmark"></ion-icon></span>
+                                    <img src="assets/img/marker_driver.svg" alt="Driver marker">
+                                    <div class="role-card-title">Driver</div>
+                                    <div class="role-card-sub">Offer rides with my e-bike</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="ob-step" data-step="2" style="display:none">
                             <div class="section-title">2 · Your profile</div>

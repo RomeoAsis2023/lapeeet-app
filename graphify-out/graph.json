@@ -13,7 +13,7 @@
       "file_type": "code",
       "norm_label": "_bindautocomplete()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1285"
+      "source_location": "L1304"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown",
@@ -205,7 +205,7 @@
       "file_type": "code",
       "norm_label": "_calcfare()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1335"
+      "source_location": "L1354"
     },
     {
       "id": "www_assets_js_app_cancelactiveride",
@@ -349,7 +349,7 @@
       "file_type": "code",
       "norm_label": "_escapeattr()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1329"
+      "source_location": "L1348"
     },
     {
       "id": "www_assets_js_app_findride",
@@ -625,7 +625,7 @@
       "file_type": "code",
       "norm_label": "_truncate()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1323"
+      "source_location": "L1342"
     },
     {
       "id": "www_assets_js_base_addtohome",
@@ -1765,7 +1765,7 @@
       "file_type": "code",
       "norm_label": "showtoast()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L998"
+      "source_location": "L1006"
     },
     {
       "id": "www_assets_js_ui_components_bindscreenevents",
@@ -1777,7 +1777,7 @@
       "file_type": "code",
       "norm_label": "_bindscreenevents()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L947"
+      "source_location": "L955"
     },
     {
       "id": "www_assets_js_ui_components_closemodal",
@@ -1789,7 +1789,7 @@
       "file_type": "code",
       "norm_label": "closemodal()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1029"
+      "source_location": "L1037"
     },
     {
       "id": "www_assets_js_ui_components_earningscard",
@@ -1837,7 +1837,7 @@
       "file_type": "code",
       "norm_label": "formatcurrency()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L974"
+      "source_location": "L982"
     },
     {
       "id": "www_assets_js_ui_components_init",
@@ -1873,7 +1873,7 @@
       "file_type": "code",
       "norm_label": "openmodal()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1023"
+      "source_location": "L1031"
     },
     {
       "id": "www_assets_js_ui_components_placeholdercard",
@@ -1909,7 +1909,7 @@
       "file_type": "code",
       "norm_label": "_screendata()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L820"
+      "source_location": "L828"
     },
     {
       "id": "www_assets_js_ui_components_screenebike",
@@ -1921,7 +1921,7 @@
       "file_type": "code",
       "norm_label": "_screenebike()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L733"
+      "source_location": "L741"
     },
     {
       "id": "www_assets_js_ui_components_screenhome",
@@ -1945,7 +1945,7 @@
       "file_type": "code",
       "norm_label": "_screenlock()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L704"
+      "source_location": "L712"
     },
     {
       "id": "www_assets_js_ui_components_screenmap",
@@ -2005,7 +2005,7 @@
       "file_type": "code",
       "norm_label": "_screensettings()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L866"
+      "source_location": "L874"
     },
     {
       "id": "www_assets_js_ui_components_screentrips",
@@ -2029,7 +2029,7 @@
       "file_type": "code",
       "norm_label": "togglerole()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L949"
+      "source_location": "L957"
     },
     {
       "id": "www_assets_js_ui_components_updatescreentitle",
@@ -2053,7 +2053,7 @@
       "file_type": "code",
       "norm_label": "updatesidebar()",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L961"
+      "source_location": "L969"
     },
     {
       "id": "www_assets_js_git_layer_clone",
@@ -5128,7 +5128,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1302",
+      "source_location": "L1321",
       "weight": 1.0
     },
     {
@@ -5140,7 +5140,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1303",
+      "source_location": "L1322",
       "weight": 1.0
     },
     {
@@ -5272,7 +5272,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1243",
+      "source_location": "L1262",
       "weight": 1.0
     },
     {
@@ -8488,7 +8488,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L743",
+      "source_location": "L751",
       "weight": 1.0
     },
     {
@@ -8500,7 +8500,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L761",
+      "source_location": "L769",
       "weight": 1.0
     },
     {
@@ -8512,7 +8512,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L718",
+      "source_location": "L726",
       "weight": 1.0
     },
     {
@@ -8656,7 +8656,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L957",
+      "source_location": "L965",
       "weight": 1.0
     },
     {
@@ -8668,7 +8668,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L958",
+      "source_location": "L966",
       "weight": 1.0
     },
     {
@@ -10520,7 +10520,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1285",
+      "source_location": "L1304",
       "weight": 1.0
     },
     {
@@ -10531,7 +10531,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1323",
+      "source_location": "L1342",
       "weight": 1.0
     },
     {
@@ -10542,7 +10542,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1329",
+      "source_location": "L1348",
       "weight": 1.0
     },
     {
@@ -10553,7 +10553,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1335",
+      "source_location": "L1354",
       "weight": 1.0
     },
     {
@@ -12736,13 +12736,24 @@
     },
     {
       "source": "www_assets_js_ui_components",
+      "target": "www_assets_js_ui_components_showtoast",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/ui-components.js",
+      "source_location": "L1006",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_ui_components",
       "target": "www_assets_js_ui_components_openmodal",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1023",
+      "source_location": "L1031",
       "weight": 1.0
     },
     {
@@ -12753,7 +12764,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L1029",
+      "source_location": "L1037",
       "weight": 1.0
     },
     {
@@ -12885,7 +12896,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L704",
+      "source_location": "L712",
       "weight": 1.0
     },
     {
@@ -12896,7 +12907,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L733",
+      "source_location": "L741",
       "weight": 1.0
     },
     {
@@ -12918,7 +12929,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L820",
+      "source_location": "L828",
       "weight": 1.0
     },
     {
@@ -12940,7 +12951,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L866",
+      "source_location": "L874",
       "weight": 1.0
     },
     {
@@ -12951,7 +12962,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L947",
+      "source_location": "L955",
       "weight": 1.0
     },
     {
@@ -12962,7 +12973,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L949",
+      "source_location": "L957",
       "weight": 1.0
     },
     {
@@ -12973,7 +12984,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L961",
+      "source_location": "L969",
       "weight": 1.0
     },
     {
@@ -12984,18 +12995,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L974",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_ui_components",
-      "target": "www_assets_js_ui_components_showtoast",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "www/assets/js/ui-components.js",
-      "source_location": "L998",
+      "source_location": "L982",
       "weight": 1.0
     },
     {
@@ -13849,5 +13849,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "fce8fadee14a5c7a42cdaa514ac7386d8bafb2b1"
+  "built_at_commit": "21d1a79b7e7e39f4da542acdcbf6b8cbda33463f"
 }

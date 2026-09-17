@@ -1180,8 +1180,27 @@
             let step = 1;
             const TOTAL = 5;
             const resolveBrand = this._brandSelectWire('#obBrand', '#obBrandOtherWrap', '#obBrandOther');
-            // Pre-fill role from resolved boot role (?mode= / saved).
-            try { $('#obRole').val(this.role); } catch (e) {}
+            // Role cards (step 1): sync hidden #obRole + visual states; pre-fill from boot role.
+            const syncRoleCards = (role) => {
+                const r = (role === 'DRIVER') ? 'DRIVER' : 'RIDER';
+                $('#obRole').val(r);
+                $('#rolePickGroup .role-card').each(function () {
+                    const same = $(this).attr('data-role') === r;
+                    $(this).toggleClass('is-selected', same).attr('aria-checked', same ? 'true' : 'false');
+                });
+            };
+            const pickRole = (role) => {
+                syncRoleCards(role);
+                // Live-update step-5 review if already rendered.
+                if (typeof step !== 'undefined' && step === TOTAL) show();
+            };
+            syncRoleCards(this.role);
+            $('#rolePickGroup').off('click.rolePick').on('click.rolePick', '.role-card', function () {
+                pickRole($(this).attr('data-role'));
+            });
+            $('#rolePickGroup').off('keydown.rolePick').on('keydown.rolePick', '.role-card', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickRole($(this).attr('data-role')); }
+            });
             // Restore in-progress passkey state label.
             const refreshPasskeyLabel = () => {
                 try {

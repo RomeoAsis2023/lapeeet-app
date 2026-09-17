@@ -1201,3 +1201,67 @@ body.dark-mode-active.auth-mode #appCapsule {
     box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
+/* ---------- ROLE PICK CARDS (registration step 1 — white cards, dark text) ---------- */
+.role-pick {
+    display: flex;
+    gap: 12px;
+}
+.role-card {
+    flex: 1 1 0;
+    position: relative;
+    background: #ffffff !important;
+    border: 2px solid rgba(15, 28, 47, 0.12) !important;
+    border-radius: 16px !important;
+    padding: 16px 8px 14px !important;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+.role-card:active { transform: scale(0.97); }
+.role-card:focus {
+    outline: none !important;
+    border-color: rgba(30, 116, 253, 0.7) !important;
+    box-shadow: 0 0 0 3px rgba(30, 116, 253, 0.25);
+}
+.role-card img {
+    width: 56px;
+    height: 70px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 8px;
+    pointer-events: none;
+}
+.role-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #141515 !important;
+    line-height: 1.2;
+}
+.role-card-sub {
+    font-size: 11px;
+    line-height: 1.35;
+    color: #5a6b82 !important;
+    margin-top: 3px;
+}
+.role-card .role-check {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--lapeeet-primary);
+    color: #fff;
+    font-size: 14px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(30, 116, 253, 0.5);
+}
+.role-card.is-selected {
+    border-color: var(--lapeeet-primary) !important;
+    box-shadow: 0 0 0 3px rgba(30, 116, 253, 0.18), 0 10px 24px rgba(30, 116, 253, 0.22) !important;
+}
+.role-card.is-selected .role-check { display: inline-flex; }
+

@@ -87,7 +87,8 @@
 
 **Site live:** https://romeoasis2023.github.io/lapeeet-app/ (source `gh-pages` / root). Verified: `/` serves app shell, `/manifest.json` valid, `/?mode=driver` serves 200.
 - [x] 7.1 `tools/deploy-pages.ps1`: rebuild → publish `dist/` to `gh-pages` (preserves history on re-runs); `dist/` stays git-ignored.
-- [x] 7.2 Manifest `start_url/scope` relative (subpath-safe); publish root = `index.html` + `manifest.json` + `assets/img/`
+- [x] 7.2 Manifest `start_url/scope` relative (subpath-safe); publish root = `index.html` + `manifest.json` + `assets/img/` + `leaflet-images/` + `routing-images/`
+- [x] 7.2b Layout+images fix (2026-09-17): builder now resolves local CSS `@import`s (Bootstrap/owl were 404ing → layout collapse), ships full `assets/img/` (logotext + map pins were 404ing), vendors Leaflet/routing control sprites; deploy script mirrors all of `dist/` and uses explicit remote URL (git-2.54 nickname bug workaround)
 - [ ] 7.3 Mixed-content CI guard (deferred — add when Actions CI lands)
 - [ ] 7.4 Device check left: open live URL on phone browser, confirm boot + map + `?mode=` both roles with zero console errors (fetch-based check can't execute JS)
 

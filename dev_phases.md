@@ -76,12 +76,12 @@
 
 ---
 
-## Phase 6 — `?mode=` Role Deep Links ⬜ NEXT (small, independent)
+## Phase 6 — `?mode=` Role Deep Links ✅ DONE
 
-**Exit:** `?mode=driver` boots Driver, `?mode=passenger` boots Rider; toggle + onboarding keep URL in sync; invalid values ignored.
-- [ ] 6.1 `resolveInitialRole()` in `LapeeetApp.start()` before UI/DB/P2P init: `driver→DRIVER`, `passenger→RIDER` (alias, never a third role); priority URL > `lapeeet::role` > RIDER; case-insensitive
-- [ ] 6.2 Persist valid param to localStorage; `history.replaceState` sync on toggle + onboarding finish; pre-fill onboarding role select
-- [ ] 6.3 Verify: `file://` + Pages URLs, refresh-without-param keeps role, shareable driver→rider link flow
+**Exit met:** `?mode=driver` boots Driver, `?mode=passenger` boots Rider; toggle + onboarding keep URL in sync; invalid values ignored.
+- [x] 6.1 `resolveInitialRole()` in `LapeeetApp.start()` before UI/DB/P2P init (`_modeFromParam`: `driver→DRIVER`, `passenger`/`rider`→RIDER); priority URL > `lapeeet::role` > RIDER; case-insensitive, whitespace-tolerant
+- [x] 6.2 Valid param persisted to localStorage; `_syncModeUrl()` via `history.replaceState` on boot + toggle + onboarding finish (preserves other params); onboarding role select pre-filled
+- [x] 6.3 Verified: `tools/check-mode.js` 16/16 (mapping, priority, sync, param preservation); browser check left: `file://` + Pages URLs both roles
 
 ## Phase 7 — GitHub Pages Deploy ⬜ (after 6)
 

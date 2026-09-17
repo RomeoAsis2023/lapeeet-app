@@ -20,11 +20,11 @@
             // 0. LOCK PERMANENT DARK MODE (body class + localStorage + guard handler)
             this._lockPermanentDarkMode();
 
-            // 0b. Restore saved tenant role (single DB, role gates UI only).
-            try {
-                const savedRole = localStorage.getItem('lapeeet::role');
-                if (savedRole === 'RIDER' || savedRole === 'DRIVER') this.role = savedRole;
-            } catch (e) { /* ignore */ }
+            // 0b. Resolve tenant role: ?mode= URL param > saved role > RIDER.
+            // (Phase 6 deep links: ?mode=driver | ?mode=passenger, case-insensitive.)
+            this.role = this.resolveInitialRole();
+            try { localStorage.setItem('lapeeet::role', this.role); } catch (e) { /* ignore */ }
+            this._syncModeUrl();
 
             // 1. UI COMPONENTS FIRST (router needs to be ready for screen renders)
             LapeeetUI.init({
@@ -33,6 +33,7 @@
                     this.role = newRole;
                     try { localStorage.setItem('lapeeet::role', newRole); } catch (e) { /* ignore */ }
                     try { if (window.LapeeetP2P) LapeeetP2P.setRole(newRole); } catch (e) {}
+                    this._syncModeUrl();
                     console.info('[APP] Role changed to', newRole);
                 },
                 onScreenChange: (s) => {
@@ -134,6 +135,40 @@
             this.started = true;
             console.info(`[APP] Lapeeet v${APP_VERSION} ready. Role = ${this.role}.`);
             LapeeetUI.showToast('Lapeeet started — Phase 0 scaffold complete', 'success');
+        },
+
+        /* ---------- PHASE 6: ?mode= ROLE DEEP LINKS ---------- */
+
+        /** Pure mapping: URL param value -> role (or null when absent/invalid). */
+        _modeFromParam(v) {
+            if (v === undefined || v === null) return null;
+            const s = String(v).trim().toLowerCase();
+            if (s === 'driver') return 'DRIVER';
+            if (s === 'passenger' || s === 'rider') return 'RIDER';
+            return null;
+        },
+
+        /** Boot role: ?mode= param wins, then saved role, then RIDER. */
+        resolveInitialRole() {
+            try {
+                const q = new URLSearchParams(window.location.search).get('mode');
+                const fromUrl = this._modeFromParam(q);
+                if (fromUrl) return fromUrl;
+            } catch (e) { /* file:// or odd env — fall through */ }
+            try {
+                const saved = localStorage.getItem('lapeeet::role');
+                if (saved === 'RIDER' || saved === 'DRIVER') return saved;
+            } catch (e) { /* ignore */ }
+            return 'RIDER';
+        },
+
+        /** Reflect current role into the URL (?mode=driver|passenger), no reload. */
+        _syncModeUrl() {
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('mode', this.role === 'DRIVER' ? 'driver' : 'passenger');
+                window.history.replaceState(null, '', url.toString());
+            } catch (e) { /* non-browser env — ignore */ }
         },
 
         _revealShell() {
@@ -1023,6 +1058,8 @@
             let step = 1;
             const TOTAL = 4;
             const resolveBrand = this._brandSelectWire('#obBrand', '#obBrandOtherWrap', '#obBrandOther');
+            // Pre-fill role from resolved boot role (?mode= / saved).
+            try { $('#obRole').val(this.role); } catch (e) {}
             const show = () => {
                 $('.ob-step').each(function () {
                     $(this).toggle(Number($(this).attr('data-step')) === step);
@@ -1048,6 +1085,7 @@
                     const role = $('#obRole').val() === 'DRIVER' ? 'DRIVER' : 'RIDER';
                     if (role !== this.role) LapeeetUI.toggleRole();
                     try { localStorage.setItem('lapeeet::role', this.role); } catch (e) {}
+                    this._syncModeUrl();
                     const saved = LapeeetDB.saveProfile({
                         name: ($('#obName').val() || '').trim().slice(0, 60) || 'Guest User',
                         phone: ($('#obPhone').val() || '').trim().slice(0, 20)

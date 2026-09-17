@@ -954,11 +954,11 @@ body.dark-mode-active .status-icon {
    bar and adjusted capsule spacing at load time.
    ============================================================= */
 
-/* Solid LIGHT header bar (pure white surface)
-   UI kit sets .appHeader.scrolled.bg-primary = transparent pre-scroll.
-   We override to LIGHT white at SPA mount (matches new light footer for uniform
-   shell chrome above/below dark home-screen content). */
-.appHeader.scrolled.bg-primary {
+/* Solid LIGHT header bar (pure white surface, always — no .scrolled / .is-active
+   scroll animation by design). ID selectors beat both the UI kit base rules
+   and its dark-mode overrides, so the header stays light while body content
+   stays permanent-dark. */
+#appHeader.appHeader.bg-primary {
     background-color: #ffffff !important;
     min-height: 56px;
     border-bottom: 1px solid rgba(15, 28, 47, 0.08) !important;
@@ -967,15 +967,15 @@ body.dark-mode-active .status-icon {
       0 1px 3px rgba(0, 0, 0, 0.06),
       inset 0 -1px 0 rgba(15, 28, 47, 0.04);
 }
-.appHeader.scrolled.bg-primary .pageTitle,
-.appHeader.scrolled.bg-primary .headerButton,
-.appHeader.scrolled.bg-primary .headerButton ion-icon {
+#appHeader.appHeader.bg-primary .pageTitle,
+#appHeader.appHeader.bg-primary .headerButton,
+#appHeader.appHeader.bg-primary .headerButton ion-icon {
     color: rgba(20, 21, 21, 0.82) !important;
 }
-.appHeader.scrolled.bg-primary .pageTitle { opacity: 1 !important; }
+#appHeader.appHeader.bg-primary .pageTitle { opacity: 1 !important; }
 /* Logo on light header: render the original blue logo SVG with NO CSS filter
    (user explicitly requested filter removal — native brand color restored). */
-.appHeader.scrolled.bg-primary .pageTitle .header-logo {
+#appHeader.appHeader.bg-primary .pageTitle .header-logo {
     filter: none !important;
 }
 

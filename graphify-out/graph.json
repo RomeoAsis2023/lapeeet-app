@@ -505,7 +505,7 @@
       "file_type": "code",
       "norm_label": "addtohome()",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L432"
+      "source_location": "L428"
     },
     {
       "id": "www_assets_js_base_animatedheader",
@@ -517,7 +517,7 @@
       "file_type": "code",
       "norm_label": "animatedheader()",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L291"
+      "source_location": "L292"
     },
     {
       "id": "www_assets_js_base_godownbutton",
@@ -553,7 +553,7 @@
       "file_type": "code",
       "norm_label": "offlinemode()",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L365"
+      "source_location": "L361"
     },
     {
       "id": "www_assets_js_base_offlinemodetoast",
@@ -565,7 +565,7 @@
       "file_type": "code",
       "norm_label": "offlinemodetoast()",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L330"
+      "source_location": "L326"
     },
     {
       "id": "www_assets_js_base_onlinemode",
@@ -577,7 +577,7 @@
       "file_type": "code",
       "norm_label": "onlinemode()",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L346"
+      "source_location": "L342"
     },
     {
       "id": "www_assets_js_base_onlinemodetoast",
@@ -589,7 +589,7 @@
       "file_type": "code",
       "norm_label": "onlinemodetoast()",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L314"
+      "source_location": "L310"
     },
     {
       "id": "www_assets_js_base_toastbox",
@@ -4799,7 +4799,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L373",
+      "source_location": "L369",
       "weight": 1.0
     },
     {
@@ -4811,7 +4811,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L341",
+      "source_location": "L337",
       "weight": 1.0
     },
     {
@@ -4823,7 +4823,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L357",
+      "source_location": "L353",
       "weight": 1.0
     },
     {
@@ -4835,7 +4835,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L325",
+      "source_location": "L321",
       "weight": 1.0
     },
     {
@@ -7211,7 +7211,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L291",
+      "source_location": "L292",
       "weight": 1.0
     },
     {
@@ -8833,7 +8833,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/base.js",
-      "source_location": "L314",
+      "source_location": "L310",
       "weight": 1.0
     },
     {
@@ -8844,7 +8844,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/base.js",
-      "source_location": "L330",
+      "source_location": "L326",
       "weight": 1.0
     },
     {
@@ -8855,7 +8855,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/base.js",
-      "source_location": "L432",
+      "source_location": "L428",
       "weight": 1.0
     },
     {
@@ -10850,7 +10850,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L381",
+      "source_location": "L377",
       "weight": 1.0
     },
     {
@@ -10862,7 +10862,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "www/assets/js/base.js",
-      "source_location": "L382",
+      "source_location": "L378",
       "weight": 1.0
     },
     {
@@ -11191,5 +11191,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8ed5d16bf1159c5cd5b902e5ace84ecff5a6c4c2"
+  "built_at_commit": "1156b37057908433bf2a8b4fe24bebaeae20b825"
 }

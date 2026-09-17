@@ -286,15 +286,11 @@ $(".toast-box.tap-to-close").click(function () {
 
 
 ///////////////////////////////////////////////////////////////////////////
-// Header Scrolled
-// Animated header style
+// Header Scrolled — DISABLED for Lapeeet (static header, no scroll animation).
+// The UI kit toggles .is-active on .appHeader.scrolled past 20px scroll;
+// our header carries neither class by design, so this is a permanent no-op.
 function animatedHeader() {
-    var scrollS = $(this).scrollTop();
-    if (scrollS > 20) {
-        $(".appHeader.scrolled").addClass("is-active");
-    } else {
-        $(".appHeader.scrolled").removeClass("is-active");
-    }
+    return;
 }
 animatedHeader();
 $(window).scroll(function () {

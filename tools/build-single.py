@@ -12,6 +12,7 @@ import argparse
 import base64
 import mimetypes
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -78,7 +79,35 @@ def build(out: Path, inline_imgs: bool, do_min: bool) -> dict:
     index = WWW / "index.html"
     html = index.read_text(encoding="utf-8")
 
-    # 1. Inline local stylesheets.
+    # 1. Inline local stylesheets. Local @import url(...) inside the CSS are
+    # resolved and inlined too (they 404 when the CSS is inlined at site root).
+    # Remote (http) imports are hoisted to the top of the <style> so they stay valid.
+    IMPORT_RE = re.compile(r'@import\s+url\(["\']?([^"\')]+)["\']?\)\s*;?')
+
+    def resolve_css_imports(css_text, css_dir):
+        http_imports = []
+
+        def imp_repl(m):
+            url = m.group(1)
+            if url.startswith(('http://', 'https://', '//', 'data:')):
+                http_imports.append(m.group(0).rstrip(';') + ';')
+                return ''
+            target = (css_dir / url.split('?')[0].split('#')[0]).resolve()
+            try:
+                target.relative_to(WWW.resolve())
+            except ValueError:
+                print(f"  [css] import outside www: {url}", file=sys.stderr)
+                return ''
+            if not target.is_file():
+                print(f"  [css] import MISSING: {url}", file=sys.stderr)
+                return ''
+            print(f"  [css] inline @import {url} ({target.stat().st_size}B)", file=sys.stderr)
+            return '\n' + target.read_text(encoding='utf-8', errors='replace') + '\n'
+
+        body = IMPORT_RE.sub(imp_repl, css_text)
+        head = '\n'.join(http_imports) + ('\n' if http_imports else '')
+        return head, body
+
     def css_repl(m):
         href = m.group(1)
         if href.startswith("http"):
@@ -88,9 +117,10 @@ def build(out: Path, inline_imgs: bool, do_min: bool) -> dict:
             print(f"  [css] MISSING {href}", file=sys.stderr)
             return m.group(0)
         css = f.read_text(encoding="utf-8", errors="replace")
+        head, body = resolve_css_imports(css, f.parent)
         stats["inlined_css"] += 1
         print(f"  [css] inline {href} ({len(css)} chars)", file=sys.stderr)
-        return f"<style>/* inlined: {href} */\n{css}\n</style>"
+        return f"<style>/* inlined: {href} */\n{head}{body}\n</style>"
 
     html = re.sub(
         r'<link\s+rel="stylesheet"\s+href="(assets/[^"]+\.css)"[^>]*>',
@@ -172,14 +202,28 @@ def build(out: Path, inline_imgs: bool, do_min: bool) -> dict:
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
     stats["out_bytes"] = out.stat().st_size
-    # Static companions that stay external by design (manifest + icons).
-    for rel in ("manifest.json", "assets/img/icon.png", "assets/img/icon.svg"):
+    # Static companions that stay external by design:
+    # manifest + icons, full app image dir, leaflet control sprites.
+    for rel in ("manifest.json",):
         src = WWW / rel
         dst = out.parent / rel
         if src.is_file():
             dst.parent.mkdir(parents=True, exist_ok=True)
             dst.write_bytes(src.read_bytes())
             print(f"  [static] copy {rel} ({src.stat().st_size}B)", file=sys.stderr)
+    for rel in ("assets/img", "assets/vendor-live/leaflet-images", "assets/vendor-live/routing-images"):
+        src = WWW / rel
+        # Publish flattened next to index.html: assets/img/* stays, but the
+        # inlined CSS references leaflet-images/* and routing-images/* at root.
+        dst = out.parent / ("leaflet-images" if rel.endswith("leaflet-images")
+                            else "routing-images" if rel.endswith("routing-images")
+                            else rel)
+        if src.is_dir():
+            if dst.exists():
+                shutil.rmtree(dst)
+            shutil.copytree(src, dst)
+            n = sum(1 for _ in dst.rglob('*') if _.is_file())
+            print(f"  [static] copy dir {rel} -> {dst.name}/ ({n} files)", file=sys.stderr)
     return stats
 
 

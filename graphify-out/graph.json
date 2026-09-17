@@ -561,7 +561,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "addtohome()",
       "source_file": "www/assets/js/base.js",
@@ -573,7 +573,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "animatedheader()",
       "source_file": "www/assets/js/base.js",
@@ -585,7 +585,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "godownbutton()",
       "source_file": "www/assets/js/base.js",
@@ -597,7 +597,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "notification()",
       "source_file": "www/assets/js/base.js",
@@ -609,7 +609,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "offlinemode()",
       "source_file": "www/assets/js/base.js",
@@ -621,7 +621,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "offlinemodetoast()",
       "source_file": "www/assets/js/base.js",
@@ -633,7 +633,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "onlinemode()",
       "source_file": "www/assets/js/base.js",
@@ -645,7 +645,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "onlinemodetoast()",
       "source_file": "www/assets/js/base.js",
@@ -657,11 +657,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "toastbox()",
       "source_file": "www/assets/js/base.js",
       "source_location": "L263"
+    },
+    {
+      "id": "www_assets_js_db_layer_processphoto",
+      "label": "processPhoto()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "code",
+      "norm_label": "processphoto()",
+      "source_file": "www/assets/js/db-layer.js",
+      "source_location": "L390"
     },
     {
       "id": "www_assets_js_db_layer_all",
@@ -1905,11 +1917,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "build()",
       "source_file": "tools/build-single.py",
-      "source_location": "L75"
+      "source_location": "L76"
     },
     {
       "id": "tools_build_single_build_css_repl",
@@ -1917,11 +1929,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "css_repl()",
       "source_file": "tools/build-single.py",
-      "source_location": "L82"
+      "source_location": "L111"
     },
     {
       "id": "tools_build_single_build_js_repl",
@@ -1929,11 +1941,35 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "js_repl()",
       "source_file": "tools/build-single.py",
-      "source_location": "L102"
+      "source_location": "L132"
+    },
+    {
+      "id": "tools_build_single_build_resolve_css_imports",
+      "label": "resolve_css_imports()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "build-single.py",
+      "file_type": "code",
+      "norm_label": "resolve_css_imports()",
+      "source_file": "tools/build-single.py",
+      "source_location": "L87"
+    },
+    {
+      "id": "tools_build_single_build_resolve_css_imports_imp_repl",
+      "label": "imp_repl()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "build-single.py",
+      "file_type": "code",
+      "norm_label": "imp_repl()",
+      "source_file": "tools/build-single.py",
+      "source_location": "L90"
     },
     {
       "id": "tools_build_single_data_uri",
@@ -1941,11 +1977,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "data_uri()",
       "source_file": "tools/build-single.py",
-      "source_location": "L45"
+      "source_location": "L46"
     },
     {
       "id": "tools_build_single_inline_images",
@@ -1953,11 +1989,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "inline_images()",
       "source_file": "tools/build-single.py",
-      "source_location": "L53"
+      "source_location": "L54"
     },
     {
       "id": "tools_build_single_inline_images_repl",
@@ -1965,11 +2001,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "repl()",
       "source_file": "tools/build-single.py",
-      "source_location": "L57"
+      "source_location": "L58"
     },
     {
       "id": "tools_build_single_main",
@@ -1977,23 +2013,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "tools/build-single.py",
-      "source_location": "L186"
-    },
-    {
-      "id": "www_assets_js_db_layer_processphoto",
-      "label": "processPhoto()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "processphoto()",
-      "source_file": "www/assets/js/db-layer.js",
-      "source_location": "L390"
+      "source_location": "L230"
     },
     {
       "id": "www_assets_js_p2p_layer_broadcast",
@@ -2910,23 +2934,155 @@
       "label": "base.js",
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "code",
       "norm_label": "base.js",
       "source_file": "www/assets/js/base.js",
       "source_location": "L1"
     },
     {
+      "id": "dev_phases",
+      "label": "dev_phases.md",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "dev_phases.md",
+      "source_file": "dev_phases.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "label": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "source_file": "dev_phases.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_live_vs_dev_separation_locked",
+      "label": "Live vs Dev separation (locked)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "live vs dev separation (locked)",
+      "source_file": "dev_phases.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "dev_phases_open_decisions_need_your_call",
+      "label": "Open decisions (need your call)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "open decisions (need your call)",
+      "source_file": "dev_phases.md",
+      "source_location": "L112"
+    },
+    {
       "id": "dev_phases_phase_0_single_file_shell_done_verified_2026_09_17_step_by_step",
       "label": "Phase 0 \u2014 Single-File Shell \u2705 DONE (verified 2026-09-17, step by step)",
       "_origin": "ast",
       "community": 10,
-      "community_name": "base.js",
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "phase 0 \u2014 single-file shell \u2705 done (verified 2026-09-17, step by step)",
       "source_file": "dev_phases.md",
       "source_location": "L26"
+    },
+    {
+      "id": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
+      "label": "Phase 2 \u2014 sql.js Tenant DB + Onboarding + E-Bikes \u2705 DONE",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 2 \u2014 sql.js tenant db + onboarding + e-bikes \u2705 done",
+      "source_file": "dev_phases.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "dev_phases_phase_5_polish_manifest_done_code_device_test_pending",
+      "label": "Phase 5 \u2014 Polish + Manifest \u2705 DONE (code; device test pending)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 5 \u2014 polish + manifest \u2705 done (code; device test pending)",
+      "source_file": "dev_phases.md",
+      "source_location": "L70"
+    },
+    {
+      "id": "dev_phases_phase_7_github_pages_deploy_live",
+      "label": "Phase 7 \u2014 GitHub Pages Deploy \u2705 LIVE",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 7 \u2014 github pages deploy \u2705 live",
+      "source_file": "dev_phases.md",
+      "source_location": "L86"
+    },
+    {
+      "id": "dev_phases_phase_8_orbitdb_full_replacement_track_after_7_gates_each_step",
+      "label": "Phase 8 \u2014 OrbitDB Full Replacement \u2b1c TRACK (after 7; gates each step)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 8 \u2014 orbitdb full replacement \u2b1c track (after 7; gates each step)",
+      "source_file": "dev_phases.md",
+      "source_location": "L94"
+    },
+    {
+      "id": "dev_phases_risks",
+      "label": "Risks",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "risks",
+      "source_file": "dev_phases.md",
+      "source_location": "L108"
+    },
+    {
+      "id": "dev_phases_track_w_webview_wrapper_parallel_device_side",
+      "label": "Track W \u2014 WebView Wrapper \u2b1c (parallel, device-side)",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "track w \u2014 webview wrapper \u2b1c (parallel, device-side)",
+      "source_file": "dev_phases.md",
+      "source_location": "L104"
+    },
+    {
+      "id": "dev_phases_verification_log",
+      "label": "Verification log",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "verification log",
+      "source_file": "dev_phases.md",
+      "source_location": "L120"
     },
     {
       "id": "lapeet_app_development_3_1_1_canonical_formatter_one_location_all_code_calls_this",
@@ -3730,6 +3886,18 @@
       "source_location": "L71"
     },
     {
+      "id": "development_phases_phase_4_call_chat",
+      "label": "Phase 4 \u2014 Call + Chat",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "map-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 4 \u2014 call + chat",
+      "source_file": "DEVELOPMENT_PHASES.md",
+      "source_location": "L83"
+    },
+    {
       "id": "development_phases_phase_5_polish_webview_wrap",
       "label": "Phase 5 \u2014 Polish + WebView Wrap",
       "_origin": "ast",
@@ -3887,7 +4055,7 @@
       "label": "Path",
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "path",
       "source_file": "",
@@ -3898,150 +4066,18 @@
       "label": "build-single.py",
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "code",
       "norm_label": "build-single.py",
       "source_file": "tools/build-single.py",
       "source_location": "L1"
     },
     {
-      "id": "dev_phases",
-      "label": "dev_phases.md",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "dev_phases.md",
-      "source_file": "dev_phases.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "label": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "source_file": "dev_phases.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "dev_phases_live_vs_dev_separation_locked",
-      "label": "Live vs Dev separation (locked)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "live vs dev separation (locked)",
-      "source_file": "dev_phases.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "dev_phases_open_decisions_need_your_call",
-      "label": "Open decisions (need your call)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "open decisions (need your call)",
-      "source_file": "dev_phases.md",
-      "source_location": "L112"
-    },
-    {
-      "id": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
-      "label": "Phase 2 \u2014 sql.js Tenant DB + Onboarding + E-Bikes \u2705 DONE",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 2 \u2014 sql.js tenant db + onboarding + e-bikes \u2705 done",
-      "source_file": "dev_phases.md",
-      "source_location": "L46"
-    },
-    {
-      "id": "dev_phases_phase_5_polish_manifest_done_code_device_test_pending",
-      "label": "Phase 5 \u2014 Polish + Manifest \u2705 DONE (code; device test pending)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 5 \u2014 polish + manifest \u2705 done (code; device test pending)",
-      "source_file": "dev_phases.md",
-      "source_location": "L70"
-    },
-    {
-      "id": "dev_phases_phase_7_github_pages_deploy_after_6",
-      "label": "Phase 7 \u2014 GitHub Pages Deploy \u2b1c (after 6)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 7 \u2014 github pages deploy \u2b1c (after 6)",
-      "source_file": "dev_phases.md",
-      "source_location": "L86"
-    },
-    {
-      "id": "dev_phases_phase_8_orbitdb_full_replacement_track_after_7_gates_each_step",
-      "label": "Phase 8 \u2014 OrbitDB Full Replacement \u2b1c TRACK (after 7; gates each step)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 8 \u2014 orbitdb full replacement \u2b1c track (after 7; gates each step)",
-      "source_file": "dev_phases.md",
-      "source_location": "L94"
-    },
-    {
-      "id": "dev_phases_risks",
-      "label": "Risks",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "risks",
-      "source_file": "dev_phases.md",
-      "source_location": "L108"
-    },
-    {
-      "id": "dev_phases_track_w_webview_wrapper_parallel_device_side",
-      "label": "Track W \u2014 WebView Wrapper \u2b1c (parallel, device-side)",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "track w \u2014 webview wrapper \u2b1c (parallel, device-side)",
-      "source_file": "dev_phases.md",
-      "source_location": "L104"
-    },
-    {
-      "id": "dev_phases_verification_log",
-      "label": "Verification log",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "verification log",
-      "source_file": "dev_phases.md",
-      "source_location": "L120"
-    },
-    {
       "id": "tools_build_single_rationale_2",
       "label": "Lapeeet single-file builder \u2014 Phase 0.1/0.2. Reads www/index.html, inlines\u2026",
       "_origin": "ast",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "file_type": "rationale",
       "norm_label": "lapeeet single-file builder \u2014 phase 0.1/0.2. reads www/index.html, inlines...",
       "source_file": "tools/build-single.py",
@@ -4080,18 +4116,6 @@
       "norm_label": "phase 4 \u2014 call + chat \u2705 done (code; field test pending)",
       "source_file": "dev_phases.md",
       "source_location": "L64"
-    },
-    {
-      "id": "development_phases_phase_4_call_chat",
-      "label": "Phase 4 \u2014 Call + Chat",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "call-layer.js",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 4 \u2014 call + chat",
-      "source_file": "DEVELOPMENT_PHASES.md",
-      "source_location": "L83"
     },
     {
       "id": "tools_check_db",
@@ -4362,7 +4386,7 @@
       "label": "argparse",
       "_origin": "semantic",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "argparse",
@@ -4374,7 +4398,7 @@
       "label": "base64",
       "_origin": "semantic",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "base64",
@@ -4386,7 +4410,7 @@
       "label": "mimetypes",
       "_origin": "semantic",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "mimetypes",
@@ -4398,7 +4422,7 @@
       "label": "pathlib",
       "_origin": "semantic",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "pathlib",
@@ -4410,7 +4434,7 @@
       "label": "re",
       "_origin": "semantic",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "re",
@@ -4422,7 +4446,7 @@
       "label": "sys",
       "_origin": "semantic",
       "community": 6,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "build-single.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "sys",
@@ -4464,6 +4488,17 @@
       "norm_label": "ref_vm",
       "source_file": "",
       "type": "external"
+    },
+    {
+      "id": "shutil",
+      "label": "shutil",
+      "community": 6,
+      "community_name": "build-single.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "shutil",
+      "source_file": "",
+      "type": "external"
     }
   ],
   "links": [
@@ -4476,7 +4511,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/build-single.py",
-      "source_location": "L166",
+      "source_location": "L196",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_single_build_css_repl",
+      "target": "tools_build_single_build_resolve_css_imports",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/build-single.py",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -4488,7 +4535,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/build-single.py",
-      "source_location": "L70",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -4500,7 +4547,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/build-single.py",
-      "source_location": "L194",
+      "source_location": "L238",
       "weight": 1.0
     },
     {
@@ -7697,7 +7744,7 @@
     },
     {
       "source": "tools_build_single",
-      "target": "sys",
+      "target": "shutil",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7709,6 +7756,18 @@
     },
     {
       "source": "tools_build_single",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tools/build-single.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_single",
       "target": "pathlib",
       "relation": "imports_from",
       "_origin": "ast",
@@ -7716,7 +7775,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tools/build-single.py",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -7824,7 +7883,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "tools/build-single.py",
-      "source_location": "L75",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -7836,7 +7895,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "tools/build-single.py",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -7848,7 +7907,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "tools/build-single.py",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -7996,7 +8055,7 @@
     },
     {
       "source": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "target": "dev_phases_phase_7_github_pages_deploy_after_6",
+      "target": "dev_phases_phase_7_github_pages_deploy_live",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8794,7 +8853,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-single.py",
-      "source_location": "L186",
+      "source_location": "L230",
       "weight": 1.0
     },
     {
@@ -8805,7 +8864,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-single.py",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -8816,7 +8875,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-single.py",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -8827,7 +8886,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-single.py",
-      "source_location": "L75",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_single_build",
+      "target": "tools_build_single_build_resolve_css_imports",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/build-single.py",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -11571,18 +11641,6 @@
     },
     {
       "source": "tools_build_single_build",
-      "target": "tools_build_single_build_js_repl",
-      "relation": "indirect_call",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "argument",
-      "source_file": "tools/build-single.py",
-      "source_location": "L135",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_build_single_build",
       "target": "tools_build_single_build_css_repl",
       "relation": "indirect_call",
       "_origin": "ast",
@@ -11590,7 +11648,31 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "tools/build-single.py",
-      "source_location": "L97",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_single_build",
+      "target": "tools_build_single_build_js_repl",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "tools/build-single.py",
+      "source_location": "L165",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_single_build_resolve_css_imports",
+      "target": "tools_build_single_build_resolve_css_imports_imp_repl",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "tools/build-single.py",
+      "source_location": "L107",
       "weight": 1.0
     },
     {
@@ -11602,7 +11684,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "tools/build-single.py",
-      "source_location": "L72",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -12002,18 +12084,6 @@
       "weight": 1.0
     },
     {
-      "source": "dev_phases_phase_7_github_pages_deploy_after_6",
-      "target": "tools_build_single_main",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "context": "main",
-      "source_file": "dev_phases.md",
-      "source_location": "L88",
-      "weight": 1.0
-    },
-    {
       "source": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
       "target": "www_assets_js_db_layer_processphoto",
       "relation": "references",
@@ -12147,5 +12217,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9ac967c6e77b29bb1ca22c07ea08b4ff2b1d5770"
+  "built_at_commit": "ad90618fbf3439f3c2e5981b8b332c31b22a4d78"
 }

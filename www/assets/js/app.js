@@ -578,6 +578,10 @@
             const ref = LapeeetMap.homeRef || LapeeetP2P.myLoc || { lat: 14.5995, lng: 120.9842 };
             const R = Math.min(60, this._homeRadiusKm || 10);
             const rows = [];
+            const pending = []; // connected but no coords yet (no pin possible)
+            const STALE_MS = 120000; // silent >2min: mesh-gone, hide but keep for directs
+            const now = Date.now();
+            const fresh = (p) => (now - (p.lastSeen || 0)) <= STALE_MS;
             const push = (key, lat, lng, label, kind) => {
                 if (lat === undefined || lat === null || lng === undefined || lng === null) return;
                 const km = LapeeetMap.haversineKm(ref.lat, ref.lng, Number(lat), Number(lng));
@@ -586,19 +590,23 @@
             if (isRider) {
                 // Passengers discover nearby DRIVERS from heartbeats.
                 LapeeetP2P.peers.forEach((p, id) => {
-                    if ((p.role || '') !== 'DRIVER') return;
+                    if ((p.role || '') !== 'DRIVER' || !fresh(p)) return;
                     const bike = ((p.brand || '') + ' ' + (p.model || '')).trim();
-                    push('d:' + id, p.tLat, p.tLng,
-                        (bike || ('Driver ' + this._shortId(id))) + (p.capacity ? ' · ' + p.capacity + ' seats' : ''),
-                        'driver');
+                    const label = (bike || ('Driver ' + this._shortId(id))) + (p.capacity ? ' · ' + p.capacity + ' seats' : '');
+                    if (p.tLat === undefined || p.tLng === undefined) {
+                        pending.push({ key: 'd:' + id, label });
+                        return;
+                    }
+                    push('d:' + id, p.tLat, p.tLng, label, 'driver');
                 });
             } else {
                 // Drivers discover nearby PASSENGERS from presence + live requests.
                 LapeeetP2P.peers.forEach((p, id) => {
-                    if ((p.role || '') === 'DRIVER') return;
+                    if ((p.role || '') === 'DRIVER' || !fresh(p)) return;
                     push('r:' + id, p.tLat, p.tLng, (p.name || ('Passenger ' + this._shortId(id))), 'rider');
                 });
                 LapeeetP2P.rideRequests.forEach((r, rideId) => {
+                    if (now - (r.ts || 0) > 600000) return; // 10-min request window
                     const b = r.body || {};
                     push('q:' + rideId, b.pickup_lat, b.pickup_lng,
                         'Request · ' + Number(b.distance_km || 0).toFixed(1) + ' km · ' + (b.capacity || '?') + ' seat(s)',
@@ -613,10 +621,14 @@
             });
             shown.forEach(r => LapeeetMap.upsertHomePin(r.key, r.lat, r.lng, r.kind,
                 r.label + ' · ' + r.km.toFixed(1) + ' km'));
-            $('#nearCount').text(shown.length + ' within ' + R + ' km');
-            $('#nearList').html(shown.length ? shown.map(r =>
+            const pendHtml = pending.slice(0, 10).map(p =>
+                `<li><span>${this._escapeAttr(p.label)}</span><strong class="text-muted">locating…</strong></li>`
+            ).join('');
+            const total = shown.length + pending.length;
+            $('#nearCount').text(total + ' within ' + R + ' km');
+            $('#nearList').html((shown.length || pending.length) ? shown.map(r =>
                 `<li><span>${this._escapeAttr(r.label)}</span><strong>${r.km.toFixed(1)} km</strong></li>`
-            ).join('') : '<li class="small text-muted">No peers in range yet — mesh is still discovering.</li>');
+            ).join('') + pendHtml : '<li class="small text-muted">No peers in range yet — mesh is still discovering.</li>');
         },
 
         _populateHomeStatus() {

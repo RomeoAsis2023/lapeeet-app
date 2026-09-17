@@ -129,6 +129,7 @@
 - [x] 12.2 Passenger presence: riders broadcast truncated coords via periodic HELLO (15s, no new message type, role-only — no names/phones/photos); drivers keep 10s heartbeat; `LapeeetGeo` helper export
 - [x] 12.3 Home search (Nominatim dropdown recenters + moves reference) + radius select 5–60km (hard-capped) + live nearby list sorted by distance; passenger→drivers, driver→passenger presence + live request pins
 - [x] 12.4 Realtime refresh on HELLO/DRIVER_STATUS/RIDE_REQUEST/join/leave while home is visible (stale pins pruned, cap 50)
+- [x] 12.6 Guaranteed driver visibility: drivers answer any rider HELLO instantly (`_sendDriverStatusNow`, no 10s wait); connected-but-unlocated drivers show as "locating…" list rows; 120s staleness cutoff (requests 10-min window); solicit behavior harness-covered
 - [ ] 12.5 FIELD TEST: 2 devices, pins appear both ways within seconds, radius filter + search behave
 
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)

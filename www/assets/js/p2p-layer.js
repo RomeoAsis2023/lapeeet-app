@@ -278,6 +278,15 @@
                         cur.transportId = transportId;
                         cur.lastSeen = Date.now();
                         this.peers.set(env.from, cur);
+                        // Instant presence solicit: a rider just appeared — answer
+                        // immediately instead of making them wait for the 10s tick,
+                        // so passengers see ALL connected drivers within ~1-2s.
+                        if (this._role === 'DRIVER' && cur.role !== 'DRIVER') {
+                            try {
+                                const r = this._sendDriverStatusNow();
+                                if (r && r.catch) r.catch(() => {});
+                            } catch (e) {}
+                        }
                     }
                     break;
                 }
@@ -390,12 +399,7 @@
                     if (bike) { brand = bike.brand; model = bike.model; capacity = bike.capacity; }
                 }
             } catch (e) {}
-            this.broadcast(MSG_TYPES.DRIVER_STATUS, {
-                online: true,
-                tLat: loc ? trunc3(loc.lat) : undefined,
-                tLng: loc ? trunc3(loc.lng) : undefined,
-                capacity, brand, model
-            });
+            await this._sendDriverStatusNow(loc, { brand, model, capacity });
             // Exact live location goes ONLY to the matched passenger (direct).
             try {
                 if (this.activeRide && this.activeRide.peer_identity && loc) {
@@ -405,6 +409,28 @@
                     });
                 }
             } catch (e) {}
+        },
+
+        /** Broadcast one DRIVER_STATUS now (heartbeat tick + instant solicit). */
+        async _sendDriverStatusNow(knownLoc, knownBike) {
+            const loc = knownLoc || await this._currentLoc();
+            let brand = '', model = '', capacity = 0;
+            if (knownBike) {
+                brand = knownBike.brand || ''; model = knownBike.model || ''; capacity = knownBike.capacity || 0;
+            } else {
+                try {
+                    if (global.LapeeetDB && LapeeetDB.initialized) {
+                        const bike = LapeeetDB.getPrimaryEbike() || (LapeeetDB.listEbikes()[0] || null);
+                        if (bike) { brand = bike.brand; model = bike.model; capacity = bike.capacity; }
+                    }
+                } catch (e) {}
+            }
+            return this.broadcast(MSG_TYPES.DRIVER_STATUS, {
+                online: true,
+                tLat: loc ? trunc3(loc.lat) : undefined,
+                tLng: loc ? trunc3(loc.lng) : undefined,
+                capacity, brand, model
+            });
         },
 
         /* ---------- SIGNING ---------- */

@@ -44,4 +44,33 @@ ok('haversine zero', G.haversineKm(0, 0, 0, 0) === 0);
 ok('trunc3 rounds', G.trunc3(14.59955) === 14.6 && G.trunc3(-0.0004) === -0);
 ok('geo cap constant 60', G.MAX_TRIP_KM === 60);
 
-process.exit(fails ? 1 : 0);
+// Presence solicit: a DRIVER answers a rider HELLO instantly (no 10s wait).
+(async () => {
+  const sent = [];
+  P2P._role = 'DRIVER';
+  P2P.initialized = true;
+  P2P.status = 'online';
+  P2P.connectId = 'me';
+  P2P._currentLoc = () => Promise.resolve({ lat: 14.6, lng: 121.0 });
+  P2P.broadcast = (t, b) => { sent.push({ t, b }); return { mocked: true }; };
+  P2P.peers = new Map();
+  const hello = (from, role) => ({
+    id: 'h-' + from, type: 'HELLO', body: { role }, from, pub: from, ts: Date.now(), sig: 'x',
+  });
+  P2P._dispatch(hello('rider1', 'RIDER'), 't-rider1', false);
+  await new Promise((r) => setTimeout(r, 30));
+  ok('driver solicits on rider HELLO',
+    sent.length === 1 && sent[0].t === 'DRIVER_STATUS' && sent[0].b.online === true);
+  sent.length = 0;
+  P2P._dispatch(hello('driver2', 'DRIVER'), 't-driver2', false);
+  await new Promise((r) => setTimeout(r, 30));
+  ok('no solicit for fellow drivers', sent.length === 0);
+  P2P._dispatch(hello('me', 'RIDER'), 't-self', true);
+  await new Promise((r) => setTimeout(r, 30));
+  ok('no solicit for own HELLO', sent.length === 0);
+  P2P._role = 'RIDER';
+  P2P._dispatch(hello('rider2', 'RIDER'), 't-rider2', false);
+  await new Promise((r) => setTimeout(r, 30));
+  ok('riders never solicit', sent.length === 0);
+  process.exit(fails ? 1 : 0);
+})().catch((e) => { console.error('HARNESS FAIL:', e.message); process.exit(1); });

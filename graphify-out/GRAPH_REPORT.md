@@ -1,17 +1,17 @@
 # Graph Report - Lapeeet  (2026-09-17)
 
 ## Corpus Check
-- 23 files · ~42,981 words
+- 23 files · ~43,446 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: .css 5, (none) 2, .psd 1)
 
 ## Summary
-- 497 nodes · 891 edges · 28 communities (27 shown, 1 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 70 edges (avg confidence: 0.93)
+- 498 nodes · 897 edges · 28 communities (27 shown, 1 thin omitted)
+- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 71 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8d03a80f`
+- Built from commit: `bea88881`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -103,7 +103,7 @@ Nodes (16): argparse, base64, mimetypes, Path, pathlib, re, shutil, sys (+8 more
 
 ### Community 7 - "p2p-layer.js"
 Cohesion: 0.10
-Nodes (38): broadcast(), _canonical(), _currentLoc(), _dispatch(), _emit(), _ensureKeys(), geohash(), haversineKm() (+30 more)
+Nodes (39): broadcast(), _canonical(), _currentLoc(), _dispatch(), _emit(), _ensureKeys(), geohash(), haversineKm() (+31 more)
 
 ### Community 8 - "call-layer.js"
 Cohesion: 0.26
@@ -190,11 +190,11 @@ Nodes (9): ref_crypto, createGate, fs, getGate, nodeCrypto, sandbox, src, vm (+1
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Lapeeet — dev_phases.md (master plan, no skips)` connect `Lapeeet — dev_phases.md (master plan, no skips)` to `app.js`, `db-layer.js`, `map-layer.js`, `build-single.py`, `call-layer.js`, `auth-layer.js`?**
-  _High betweenness centrality (0.372) - this node is a cross-community bridge._
+  _High betweenness centrality (0.377) - this node is a cross-community bridge._
 - **Why does `rpId()` connect `auth-layer.js` to `check-webauthn.js`?**
   _High betweenness centrality (0.288) - this node is a cross-community bridge._
 - **Why does `Phase 9 — Phone Registration Gate + WebAuthn Passkeys ✅ DONE (code; ceremony field test pending)` connect `auth-layer.js` to `app.js`, `Lapeeet — dev_phases.md (master plan, no skips)`?**
-  _High betweenness centrality (0.278) - this node is a cross-community bridge._
+  _High betweenness centrality (0.279) - this node is a cross-community bridge._
 - **What connects `fs`, `vm`, `nodeCrypto` to the rest of the system?**
   _122 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**

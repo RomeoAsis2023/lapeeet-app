@@ -32173,7 +32173,8 @@ module.exports = L.Routing = {
         passkey_json TEXT DEFAULT '',
         first_name TEXT DEFAULT '',
         last_name TEXT DEFAULT '',
-        email TEXT DEFAULT ''
+        email TEXT DEFAULT '',
+        pin_json TEXT DEFAULT ''
     );
     CREATE TABLE IF NOT EXISTS my_ebikes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32275,7 +32276,7 @@ module.exports = L.Routing = {
             // Migrations for pre-existing tenant DBs (each guarded; repeat-safe).
             try { this.db.exec('ALTER TABLE my_profile ADD COLUMN passkey_json TEXT DEFAULT ' + "''"); }
             catch (e) { /* column already exists — ignore */ }
-            ['first_name', 'last_name', 'email'].forEach(col => {
+            ['first_name', 'last_name', 'email', 'pin_json'].forEach(col => {
                 try { this.db.exec(`ALTER TABLE my_profile ADD COLUMN ${col} TEXT DEFAULT ''`); }
                 catch (e) { /* already exists — ignore */ }
             });
@@ -32379,6 +32380,21 @@ module.exports = L.Routing = {
             this._needInit();
             const val = recordOrSkip === 'SKIP' ? 'SKIP' : JSON.stringify(recordOrSkip || {});
             this._run('UPDATE my_profile SET passkey_json = ? WHERE id = 1', [val]);
+        },
+        /** Device PIN record {salt, hash, iter} object, or null. Never stores the PIN. */
+        getPin() {
+            this._needInit();
+            const raw = (this.getProfile().pin_json || '').trim();
+            if (!raw) return null;
+            try {
+                const rec = JSON.parse(raw);
+                return (rec && rec.salt && rec.hash) ? rec : null;
+            } catch (e) { return null; }
+        },
+        setPin(recordOrNull) {
+            this._needInit();
+            this._run('UPDATE my_profile SET pin_json = ? WHERE id = 1',
+                [recordOrNull ? JSON.stringify(recordOrNull) : '']);
         },
         setIdentity(connectId, pubkey) {
             this._needInit();
@@ -32614,8 +32630,15 @@ module.exports = L.Routing = {
     const AUTH_VERSION = '9.0.0-phase9';
 
     /* ---------- base64url ---------- */
+    function isArrayBufferLike(b) {
+        if (!b || typeof b !== 'object') return false;
+        if (b instanceof ArrayBuffer) return true;
+        // Cross-realm safe (vm harnesses, WebView bridges): instanceof lies across realms.
+        try { return Object.prototype.toString.call(b) === '[object ArrayBuffer]'; }
+        catch (e) { return false; }
+    }
     function b64urlEncode(buf) {
-        const bytes = buf instanceof ArrayBuffer ? new Uint8Array(buf) : buf;
+        const bytes = isArrayBufferLike(buf) ? new Uint8Array(buf) : buf;
         let s = '';
         for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
         return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -32773,6 +32796,60 @@ module.exports = L.Routing = {
 
         isValidPHMobile(raw) {
             return this.normalizePHMobile(raw) !== null;
+        },
+
+        /* ---------- device PIN fallback (local device lock, NOT account security) ----------
+           A memorized secret verified with PBKDF2-SHA256. Honest limits: anyone with a
+           copy of the tenant file can brute-force it offline, so this is a casual gate
+           for devices without a platform authenticator — never presented as encryption
+           or server-grade authentication. */
+
+        PIN_ITERATIONS: 600000,
+        PIN_MIN_LEN: 4,
+        PIN_MAX_LEN: 12,
+
+        isValidPinFormat(pin) {
+            return typeof pin === 'string' && new RegExp(`^\\d{${this.PIN_MIN_LEN},${this.PIN_MAX_LEN}}$`).test(pin);
+        },
+
+        /** Hash a PIN with a fresh random salt. Returns {salt, hash, iter} (all b64url/plain). */
+        async hashPin(pin) {
+            if (!this.isValidPinFormat(pin)) {
+                throw new Error(`PIN must be ${this.PIN_MIN_LEN}–${this.PIN_MAX_LEN} digits`);
+            }
+            const salt = new Uint8Array(32);
+            (crypto.getRandomValues ? crypto.getRandomValues(salt)
+                : salt.map(() => Math.floor(Math.random() * 256)));
+            const key = await crypto.subtle.importKey(
+                'raw', new TextEncoder().encode('lapeeet-pin:' + pin),
+                { name: 'PBKDF2' }, false, ['deriveBits']
+            );
+            const bits = await crypto.subtle.deriveBits(
+                { name: 'PBKDF2', salt, iterations: this.PIN_ITERATIONS, hash: 'SHA-256' },
+                key, 256
+            );
+            return { salt: b64urlEncode(salt), hash: b64urlEncode(bits), iter: this.PIN_ITERATIONS };
+        },
+
+        /** Returns true iff pin reproduces the stored record. */
+        async verifyPin(pin, record) {
+            if (!record || !record.salt || !record.hash) return false;
+            if (!this.isValidPinFormat(pin)) return false;
+            const iter = Number(record.iter) || this.PIN_ITERATIONS;
+            const key = await crypto.subtle.importKey(
+                'raw', new TextEncoder().encode('lapeeet-pin:' + pin),
+                { name: 'PBKDF2' }, false, ['deriveBits']
+            );
+            const bits = await crypto.subtle.deriveBits(
+                { name: 'PBKDF2', salt: b64urlDecode(record.salt), iterations: iter, hash: 'SHA-256' },
+                key, 256
+            );
+            const a = b64urlEncode(bits);
+            const b = String(record.hash);
+            if (a.length !== b.length) return false;
+            let diff = 0;
+            for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+            return diff === 0;
         },
 
         /* ---------- passkey enrollment ---------- */
@@ -35052,6 +35129,26 @@ module.exports = L.Routing = {
                             </div>
                             <div class="text-center mt-2">
                                 <a href="javascript:;" id="obPasskeySkip" class="small text-muted">Skip for now</a>
+                                <span class="small text-muted"> · </span>
+                                <a href="javascript:;" id="obPinUse" class="small text-primary">Use a device PIN instead</a>
+                            </div>
+                            <div id="obPinSetup" style="display:none">
+                                <div class="form-group boxed mt-2"><div class="input-wrapper">
+                                    <label class="label" for="obPin">Device PIN (4–12 digits)</label>
+                                    <input type="password" class="form-control" id="obPin"
+                                        inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Choose PIN">
+                                </div></div>
+                                <div class="form-group boxed"><div class="input-wrapper">
+                                    <label class="label" for="obPin2">Confirm PIN</label>
+                                    <input type="password" class="form-control" id="obPin2"
+                                        inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Repeat PIN">
+                                </div></div>
+                                <p class="small" id="obPinState" style="color:var(--lapeeet-text-lo);">A simple device lock for phones without passkeys. It does not encrypt your data.</p>
+                                <div class="form-button-group">
+                                    <button id="obPinSave" type="button" class="btn btn-outline-primary btn-block">
+                                        Save Device PIN
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="ob-step" data-step="5" style="display:none">
@@ -35084,10 +35181,22 @@ module.exports = L.Routing = {
                         <h5 class="auth-title">Welcome back${name ? ', ' + this._escapeHtml(name) : ''}</h5>
                         <p class="auth-sub">Unlock with your passkey to continue</p>
                         <p class="card-text small text-danger text-center" id="lockError" style="display:none"></p>
-                        <div class="form-button-group">
+                        <div class="form-button-group" id="lockPkWrap">
                             <button id="btnUnlock" type="button" class="btn btn-primary btn-block shadowed">
                                 <ion-icon name="finger-print-outline"></ion-icon> Unlock with Passkey
                             </button>
+                        </div>
+                        <div id="lockPinWrap" style="display:none">
+                            <div class="form-group boxed mt-2"><div class="input-wrapper">
+                                <label class="label" for="lockPin">Device PIN</label>
+                                <input type="password" class="form-control" id="lockPin"
+                                    inputmode="numeric" maxlength="12" autocomplete="off" placeholder="Enter PIN">
+                            </div></div>
+                            <div class="form-button-group">
+                                <button id="btnPinUnlock" type="button" class="btn btn-outline-primary btn-block">
+                                    Unlock with PIN
+                                </button>
+                            </div>
                         </div>
                         <div class="text-center mt-3">
                             <a href="javascript:;" id="btnLockRecover" class="small text-primary d-block mb-2">Recover from a backup file</a>
@@ -35296,6 +35405,7 @@ module.exports = L.Routing = {
                 <div class="wide-block pt-2 pb-2 pl-3 pr-3">
                     <ul class="listview flush transparent simple-listview">
                         <li>Passkey <strong id="settingsPasskeyState">checking…</strong></li>
+                        <li>Device PIN <strong id="settingsPinState">checking…</strong></li>
                     </ul>
                     <div class="form-button-group mt-2">
                         <button id="btnPasskeyAdd" type="button" class="btn btn-primary btn-block shadowed">
@@ -35305,6 +35415,31 @@ module.exports = L.Routing = {
                     <div class="form-button-group mt-2">
                         <button id="btnPasskeyRemove" type="button" class="btn btn-outline-secondary btn-block">
                             Remove Passkey
+                        </button>
+                    </div>
+                    <div class="form-group boxed mt-2" id="pinCurWrap" style="display:none"><div class="input-wrapper">
+                        <label class="label" for="settingsPinCur">Current PIN</label>
+                        <input type="password" class="form-control" id="settingsPinCur"
+                            inputmode="numeric" maxlength="12" autocomplete="off" placeholder="Current PIN">
+                    </div></div>
+                    <div class="form-group boxed mt-2" id="pinSetWrap" style="display:none"><div class="input-wrapper">
+                        <label class="label" for="settingsPin1">New device PIN (4–12 digits)</label>
+                        <input type="password" class="form-control" id="settingsPin1"
+                            inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Choose PIN">
+                    </div></div>
+                    <div class="form-group boxed" id="pinSetWrap2" style="display:none"><div class="input-wrapper">
+                        <label class="label" for="settingsPin2">Confirm PIN</label>
+                        <input type="password" class="form-control" id="settingsPin2"
+                            inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Repeat PIN">
+                    </div></div>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPinSet" type="button" class="btn btn-outline-primary btn-block">
+                            Set / Change Device PIN
+                        </button>
+                    </div>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPinRemove" type="button" class="btn btn-outline-secondary btn-block">
+                            Remove Device PIN
                         </button>
                     </div>
                     <p class="text-muted smaller mt-3 mb-0" style="color:var(--lapeeet-text-mute);">
@@ -35572,13 +35707,14 @@ module.exports = L.Routing = {
             } catch (e) { return false; }
         },
 
-        /** Lock needed = passkey enrolled (not skipped) and not yet unlocked this session. */
+        /** Lock needed = passkey enrolled or device PIN set (and not unlocked). */
         _needsUnlock() {
             if (this._unlocked) return false;
             try {
                 if (!(window.LapeeetDB && LapeeetDB.initialized)) return false;
                 const pk = LapeeetDB.getPasskey();
-                return !!(pk && pk !== 'SKIP');
+                if (pk && pk !== 'SKIP') return true;
+                return !!LapeeetDB.getPin();
             } catch (e) { return false; }
         },
 
@@ -35633,6 +35769,53 @@ module.exports = L.Routing = {
                     LapeeetDB.setPasskey('SKIP');
                     LapeeetUI.showToast('Passkey removed — lock screen off', 'info');
                     refresh();
+                } catch (e) { LapeeetUI.showToast('Remove failed: ' + (e.message || e), 'danger'); }
+            });
+            const refreshPin = () => {
+                const el = $('#settingsPinState');
+                if (!el.length) return;
+                try {
+                    el.html(LapeeetDB.getPin()
+                        ? '<span class="text-success">Set on this device</span>'
+                        : '<span class="text-muted">Not set</span>');
+                } catch (e) { el.text('—'); }
+            };
+            refreshPin();
+            $('#btnPinSet').off('click').on('click', async () => {
+                const w0 = $('#pinCurWrap'), w1 = $('#pinSetWrap'), w2 = $('#pinSetWrap2');
+                const existing = (() => { try { return LapeeetDB.getPin(); } catch (e) { return null; } })();
+                if (!w1.is(':visible')) {
+                    w0.toggle(!!existing);
+                    w1.show(); w2.show();
+                    (existing ? $('#settingsPinCur') : $('#settingsPin1')).focus();
+                    return;
+                }
+                const p1 = ($('#settingsPin1').val() || '').trim();
+                const p2 = ($('#settingsPin2').val() || '').trim();
+                if (!LapeeetAuth.isValidPinFormat(p1) || p1 !== p2) {
+                    LapeeetUI.showToast('PINs must match and be 4–12 digits', 'warning');
+                    return;
+                }
+                try {
+                    if (existing) {
+                        const cur = ($('#settingsPinCur').val() || '').trim();
+                        if (!(await LapeeetAuth.verifyPin(cur, existing))) {
+                            LapeeetUI.showToast('Current PIN is wrong', 'danger');
+                            return;
+                        }
+                    }
+                    LapeeetDB.setPin(await LapeeetAuth.hashPin(p1));
+                    $('#settingsPinCur, #settingsPin1, #settingsPin2').val('');
+                    w0.hide(); w1.hide(); w2.hide();
+                    LapeeetUI.showToast('Device PIN saved', 'success');
+                    refreshPin();
+                } catch (e) { LapeeetUI.showToast('PIN save failed: ' + (e.message || e), 'danger'); }
+            });
+            $('#btnPinRemove').off('click').on('click', () => {
+                try {
+                    LapeeetDB.setPin(null);
+                    LapeeetUI.showToast('Device PIN removed', 'info');
+                    refreshPin();
                 } catch (e) { LapeeetUI.showToast('Remove failed: ' + (e.message || e), 'danger'); }
             });
         },
@@ -35692,8 +35875,42 @@ module.exports = L.Routing = {
             LapeeetUI.showToast('No passkey on this device — add one in Settings to enable lock', 'warning');
         },
 
+        _pinAttempts: 0,
+        _pinLockUntil: 0,
+
         _bindLockScreen() {
             $('#btnLockRecover').off('click').on('click', () => LapeeetUI.navigate('recover'));
+            // Show only the unlock methods actually enrolled on this device.
+            try {
+                const hasPk = (() => { const pk = LapeeetDB.getPasskey(); return !!(pk && pk !== 'SKIP'); })();
+                const hasPin = !!LapeeetDB.getPin();
+                $('#lockPkWrap').toggle(hasPk);
+                $('#lockPinWrap').toggle(hasPin);
+            } catch (e) {}
+            $('#btnPinUnlock').off('click').on('click', async () => {
+                const errBox = $('#lockError');
+                errBox.hide();
+                const now = Date.now();
+                if (now < this._pinLockUntil) {
+                    const s = Math.ceil((this._pinLockUntil - now) / 1000);
+                    errBox.text(`Too many tries — wait ${s}s`).show();
+                    return;
+                }
+                try {
+                    const okPin = await LapeeetAuth.verifyPin(($('#lockPin').val() || '').trim(), LapeeetDB.getPin());
+                    if (!okPin) throw new Error('Wrong PIN');
+                    this._pinAttempts = 0;
+                    this._pinLockUntil = 0;
+                    this._unlocked = true;
+                    LapeeetUI.showToast('Unlocked — welcome back', 'success');
+                    LapeeetUI.navigate('home');
+                } catch (e) {
+                    this._pinAttempts++;
+                    this._pinLockUntil = Date.now() + Math.min(this._pinAttempts * 2000, 15000);
+                    errBox.text('Unlock failed: ' + (e.message || e)).show();
+                    try { $('#lockPin').val(''); } catch (err) {}
+                }
+            });
             $('#btnUnlock').off('click').on('click', async () => {
                 const btn = $('#btnUnlock');
                 if (btn.prop('disabled')) return; // double-tap guard (one ceremony at a time)
@@ -36821,6 +37038,28 @@ module.exports = L.Routing = {
                 try { LapeeetDB.setPasskey('SKIP'); } catch (e) {}
                 $('#obPasskeyState').text('Skipped — you can add one later from Settings.');
                 step++; show();
+            });
+            $('#obPinUse').off('click').on('click', () => {
+                $('#obPinSetup').toggle();
+            });
+            $('#obPinSave').off('click').on('click', async () => {
+                const p1 = ($('#obPin').val() || '').trim();
+                const p2 = ($('#obPin2').val() || '').trim();
+                if (!LapeeetAuth.isValidPinFormat(p1)) {
+                    $('#obPinState').text('PIN must be 4–12 digits.');
+                    return;
+                }
+                if (p1 !== p2) {
+                    $('#obPinState').text('PINs do not match — try again.');
+                    return;
+                }
+                try {
+                    LapeeetDB.setPin(await LapeeetAuth.hashPin(p1));
+                    $('#obPinState').text('Device PIN saved on this device.');
+                    LapeeetUI.showToast('Device PIN saved', 'success');
+                } catch (e) {
+                    $('#obPinState').text('Could not save PIN: ' + (e.message || e));
+                }
             });
             show();
         },

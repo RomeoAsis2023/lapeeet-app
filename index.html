@@ -34880,8 +34880,7 @@ module.exports = L.Routing = {
                             </div></div>
                         </div>
                         <div class="ob-step" data-step="3" style="display:none">
-                            <div class="section-title">3 · Your e-bike (drivers)</div>
-                            <p class="small text-muted">Riders can skip this step.</p>
+                            <div class="section-title">3 · Your e-bike</div>
                             <div class="form-group boxed"><div class="input-wrapper">
                                 <label class="label" for="obBrand">Brand</label>
                                 <select class="form-control" id="obBrand">${brandOpts}</select>
@@ -36417,7 +36416,9 @@ module.exports = L.Routing = {
 
         _bindOnboardingScreen() {
             let step = 1;
-            const TOTAL = 5;
+            // Passengers skip the e-bike step: RIDER [1,2,4,5], DRIVER [1,2,3,4,5].
+            const flowSteps = () => ($('#obRole').val() === 'DRIVER') ? [1, 2, 3, 4, 5] : [1, 2, 4, 5];
+            const goStep = (s) => { step = s; show(); };
             const resolveBrand = this._brandSelectWire('#obBrand', '#obBrandOtherWrap', '#obBrandOther');
             // Role cards (step 1): sync hidden #obRole + visual states; pre-fill from boot role.
             const syncRoleCards = (role) => {
@@ -36430,8 +36431,10 @@ module.exports = L.Routing = {
             };
             const pickRole = (role) => {
                 syncRoleCards(role);
-                // Live-update step-5 review if already rendered.
-                if (typeof step !== 'undefined' && step === TOTAL) show();
+                // Role change reshapes the flow: leaving step 3 as a rider
+                // moves forward to step 4; everything else just re-renders.
+                if (step === 3 && role !== 'DRIVER') step = 4;
+                show();
             };
             syncRoleCards(this.role);
             $('#rolePickGroup').off('click.rolePick').on('click.rolePick', '.role-card', function () {
@@ -36455,15 +36458,18 @@ module.exports = L.Routing = {
                 } catch (e) {}
             };
             const show = () => {
+                const flow = flowSteps();
+                if (flow.indexOf(step) === -1) step = flow[0];
+                const pos = flow.indexOf(step);
                 $('.ob-step').each(function () {
                     $(this).toggle(Number($(this).attr('data-step')) === step);
                 });
-                $('#obProgress').text(`Step ${step} of ${TOTAL}`);
-                $('#obDots').html(Array.from({ length: TOTAL }, (_, i) =>
-                    `<span class="${i + 1 < step ? 'done' : (i + 1 === step ? 'now' : '')}"></span>`).join(''));
-                $('#obBack').prop('disabled', step === 1);
-                $('#obNext').text(step === TOTAL ? 'Finish Setup' : 'Next');
-                if (step === TOTAL) {
+                $('#obProgress').text(`Step ${pos + 1} of ${flow.length}`);
+                $('#obDots').html(flow.map((s, i) =>
+                    `<span class="${i < pos ? 'done' : (i === pos ? 'now' : '')}"></span>`).join(''));
+                $('#obBack').prop('disabled', pos === 0);
+                $('#obNext').text(pos === flow.length - 1 ? 'Finish Setup' : 'Next');
+                if (pos === flow.length - 1) {
                     const role = $('#obRole').val();
                     const name = ($('#obName').val() || '').trim() || 'Guest User';
                     const brand = role === 'DRIVER' ? resolveBrand() : '—';
@@ -36473,7 +36479,11 @@ module.exports = L.Routing = {
                         (role === 'DRIVER' ? `<br>E-bike: <strong>${$('<div>').text(brand + ' ' + model).html()}</strong>` : ''));
                 }
             };
-            $('#obBack').off('click').on('click', () => { if (step > 1) { step--; show(); } });
+            $('#obBack').off('click').on('click', () => {
+                const flow = flowSteps();
+                const pos = flow.indexOf(step);
+                if (pos > 0) goStep(flow[pos - 1]);
+            });
             const validPhoneOrWarn = () => {
                 const norm = window.LapeeetAuth ? LapeeetAuth.normalizePHMobile($('#obPhone').val()) : null;
                 if (!norm) {
@@ -36485,7 +36495,14 @@ module.exports = L.Routing = {
             $('#obNext').off('click').on('click', () => {
                 // Leaving step 2 requires a valid mobile number (registration gate).
                 if (step === 2 && !validPhoneOrWarn()) return;
-                if (step < TOTAL) { step++; if (step === 4) refreshPasskeyLabel(); show(); return; }
+                const flow = flowSteps();
+                const pos = flow.indexOf(step);
+                if (pos < flow.length - 1) {
+                    const next = flow[pos + 1];
+                    if (next === 4) refreshPasskeyLabel();
+                    goStep(next);
+                    return;
+                }
                 // Finish: persist role + profile (+ first e-bike for drivers).
                 try {
                     const phone = validPhoneOrWarn();

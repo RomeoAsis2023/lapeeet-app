@@ -28,5 +28,8 @@
   "26": "check-p2p.js",
   "27": "check-guard.js",
   "28": "converge.js",
-  "29": "8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)"
+  "29": "8. COMPLETE FILE CHANGE MANIFEST — Every file modified or created (NO SKIP)",
+  "30": "check-call16.js",
+  "31": "_bindCapacityDropdown",
+  "32": "StubAC"
 }

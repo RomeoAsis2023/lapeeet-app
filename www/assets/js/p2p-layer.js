@@ -359,6 +359,13 @@
         _onReceive(data, transportId) {
             if (!data || typeof data !== 'object') return;
             if (!this._validEnvelopeShape(data)) return;
+            // Phase 16 room check (fail-open for legacy cached builds without
+            // the stamp; drops only present-but-mismatched rooms).
+            if (data.room !== undefined && data.room !== null &&
+                this.channel && data.room !== this.channel) {
+                try { this._mlog('dropped cross-room msg ' + data.type); } catch (e) {}
+                return;
+            }
             if (this._seen(data.id)) return;
             this._markSeen(data.id);
             // Bind transport <-> identity on every verified message.
@@ -381,7 +388,8 @@
             return e && typeof e.id === 'string' && typeof e.type === 'string' &&
                 e.body !== undefined && typeof e.from === 'string' &&
                 typeof e.pub === 'string' && typeof e.ts === 'number' &&
-                typeof e.sig === 'string' && e.from === e.pub;
+                typeof e.sig === 'string' && e.from === e.pub &&
+                (e.room === undefined || e.room === null || typeof e.room === 'string');
         },
 
         _seen(id) { return this._seenIds.indexOf(id) !== -1; },
@@ -655,7 +663,9 @@
             const id = util.encodeBase64(global.nacl.randomBytes(12));
             const msg = this._canonical(type, body, ts, id, this.connectId);
             const sig = global.nacl.sign.detached(util.decodeUTF8(msg), this.mySecretKey);
-            return { v: 1, id, type, body, from: this.connectId, pub: this.myPublicKey, ts, sig: util.encodeBase64(sig) };
+            // Phase 16 room stamp: UNSIGNED routing metadata (trust comes from
+            // the signature + channel join, never from this field).
+            return { v: 1, id, type, body, from: this.connectId, pub: this.myPublicKey, ts, sig: util.encodeBase64(sig), room: this.channel || null };
         },
 
         /** Sign an arbitrary object (compat helper). Returns base64 signature. */

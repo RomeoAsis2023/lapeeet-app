@@ -165,6 +165,15 @@
 - [x] 15.4 Settings Mesh Diagnostics card (stats + log + Refresh + Force Rejoin); harness 10/10 (STUN list, rejoin decision, state reset, stats shape, log cap); full suite green; rebuild + redeploy
 - [ ] 15.5 FIELD TEST: 2 devices on the reported setup — read the diagnostics card on both sides to isolate signaling vs NAT
 
+## Phase 16 — Moderntown Call/Chat Deltas (glare tie-break + alerts + narration + room check) ✅ DONE (code; field test pending)
+
+- [x] 16.1 Call-glare tie-break: mutual `CALL_INITIATE` no longer busy-rejects both sides — lower `connectId` keeps its outgoing leg, loser stops own media and answers; third-party incoming still gets `CALL_END busy`
+- [x] 16.2 Ride ringtone + vibrate (original WebAudio patterns, zero assets): ride request 3 ascending beeps + double buzz, chat soft beep, call two-tone ring ×3 + long vibrate; Settings Ride Sound toggle (`lapeeet::sound`, default ON, instant preview); AudioContext pre-warmed on first tap for mobile autoplay
+- [x] 16.3 Call modal narrates media state (`Connecting media…` / `● Connected` / `Incoming — accept or reject` / `Media failed — chat still works, try re-call`), updated live on stream attach
+- [x] 16.4 `room` stamp on every envelope (unsigned metadata) + receive-side drop of present-but-mismatched rooms; fail-open for legacy cached builds without the stamp
+- [x] 16.5 Harness `tools/check-call16.js` 23/23 (tie-break winner/loser/busy, 5 narration lines, room drop/pass/legacy, sound persist, vibrate w/o AudioContext, 10-beep schedule, silence when off, missing-API survival); full suite green; rebuilt `dist/lapeeet.html` (3,351,551 B) + redeployed to Pages
+- [ ] 16.6 FIELD TEST: 2 devices call each other simultaneously (one leg survives), ride request rings + buzzes, call modal shows Connected, sound toggle silences
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

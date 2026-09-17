@@ -20,6 +20,12 @@
             // 0. LOCK PERMANENT DARK MODE (body class + localStorage + guard handler)
             this._lockPermanentDarkMode();
 
+            // 0a. Pre-warm the WebAudio context on first tap so later alert
+            // beeps are not blocked by mobile autoplay policies (Phase 16).
+            try {
+                document.addEventListener('pointerdown', () => this._unlockAudio(), { once: true });
+            } catch (e) {}
+
             // 0b. Resolve tenant role: ?mode= URL param > saved role > RIDER.
             // (Phase 6 deep links: ?mode=driver | ?mode=passenger, case-insensitive.)
             this.role = this.resolveInitialRole();
@@ -217,6 +223,17 @@
             };
             refreshMeshDiag();
             $('#btnMeshRefresh').off('click').on('click', () => { refreshMeshDiag(); this._populateHomeStatus(); });
+            // Phase 16 ride-sound toggle (ringtone + vibrate), default ON.
+            try {
+                const sw = $('#soundswitch');
+                if (sw.length) {
+                    sw.prop('checked', this._soundEnabled());
+                    sw.off('change').on('change', () => {
+                        this.setSoundEnabled(sw.is(':checked'));
+                        if (sw.is(':checked')) this._alertChat(); // instant preview
+                    });
+                }
+            } catch (e) {}
             $('#btnMeshRejoin').off('click').on('click', async () => {
                 LapeeetUI.showToast('Rejoining mesh…', 'info');
                 try { await LapeeetP2P.rejoin(); } catch (e) {}
@@ -875,6 +892,94 @@
         /* ---------- PHASE 13: FIRST-ACCEPT-WINS + DRIVER DIALOGS ---------- */
 
         _rideLocks: {},       // ride_id -> { winner: null|identity, expires_at, timer }
+        /* ---------- ALERTS: ringtone + vibrate (Phase 16) ----------
+           All original: WebAudio oscillator patterns, no audio assets.
+           Everything is guarded — missing APIs or a locked context simply
+           means silence instead of a crash. */
+
+        _audioCtx: null,
+
+        _soundEnabled() {
+            try { return localStorage.getItem('lapeeet::sound') !== 'off'; } catch (e) { return true; }
+        },
+
+        setSoundEnabled(on) {
+            try { localStorage.setItem('lapeeet::sound', on ? 'on' : 'off'); } catch (e) {}
+        },
+
+        _unlockAudio() {
+            try {
+                const AC = window.AudioContext || window.webkitAudioContext;
+                if (!AC) return;
+                if (!this._audioCtx) this._audioCtx = new AC();
+                if (this._audioCtx && this._audioCtx.state === 'suspended') this._audioCtx.resume();
+            } catch (e) {}
+        },
+
+        _beep(freq, t0, dur, vol) {
+            try {
+                const ctx = this._audioCtx;
+                if (!ctx || typeof ctx.createOscillator !== 'function') return;
+                const o = ctx.createOscillator(), g = ctx.createGain();
+                o.type = 'sine';
+                o.frequency.value = freq;
+                g.gain.setValueAtTime(0.0001, t0);
+                g.gain.exponentialRampToValueAtTime(vol || 0.2, t0 + 0.02);
+                g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+                o.connect(g);
+                g.connect(ctx.destination);
+                o.start(t0);
+                o.stop(t0 + dur + 0.05);
+            } catch (e) {}
+        },
+
+        _vibrate(pattern) {
+            try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
+        },
+
+        // Driver: ride request arrived — 3 ascending beeps + double buzz.
+        _alertRideRequest() {
+            if (!this._soundEnabled()) return;
+            this._unlockAudio();
+            try {
+                const ctx = this._audioCtx;
+                if (ctx && typeof ctx.currentTime === 'number') {
+                    const t = ctx.currentTime + 0.05;
+                    [660, 880, 1174].forEach((f, i) => this._beep(f, t + i * 0.16, 0.14, 0.25));
+                }
+            } catch (e) {}
+            this._vibrate([200, 100, 200]);
+        },
+
+        // Chat arrived while on another screen — one soft beep.
+        _alertChat() {
+            if (!this._soundEnabled()) return;
+            this._unlockAudio();
+            try {
+                const ctx = this._audioCtx;
+                if (ctx && typeof ctx.currentTime === 'number') {
+                    this._beep(880, ctx.currentTime + 0.05, 0.1, 0.15);
+                }
+            } catch (e) {}
+        },
+
+        // Incoming call — classic two-tone ring x3 + long vibrate.
+        _alertCall() {
+            if (!this._soundEnabled()) return;
+            this._unlockAudio();
+            try {
+                const ctx = this._audioCtx;
+                if (ctx && typeof ctx.currentTime === 'number') {
+                    const t = ctx.currentTime + 0.05;
+                    for (let i = 0; i < 3; i++) {
+                        this._beep(440, t + i * 0.8, 0.35, 0.25);
+                        this._beep(480, t + i * 0.8 + 0.4, 0.35, 0.25);
+                    }
+                }
+            } catch (e) {}
+            this._vibrate([400, 200, 400, 200, 400]);
+        },
+
         _dialogQueue: [],     // ride_ids waiting for the kit notification dialog
         _dialogActive: null,  // { rideId, expires_at, timer } currently displayed
 
@@ -996,6 +1101,7 @@
                 self._declineRide(rideId, 'declined'); // X = decline (explicit reject)
             });
             try { notification('rideDialogBox'); } catch (e) {}
+            this._alertRideRequest();
             this._renderDriverRequests();
         },
 
@@ -1318,7 +1424,7 @@
                     if (!evt.isSelf && evt.body.text) {
                         this._chatPush(evt.from, evt.body.text, false);
                         if (LapeeetUI.currentScreen === 'messages') LapeeetUI.navigate('messages');
-                        else LapeeetUI.showToast('New P2P message', 'info');
+                        else { LapeeetUI.showToast('New P2P message', 'info'); this._alertChat(); }
                     }
                     break;
                 case T.DB_SYNC_REQ:
@@ -1338,7 +1444,10 @@
                     if (!evt.isSelf) console.info('[APP] peer DB summary:', evt.body);
                     break;
                 case T.CALL_INITIATE:
-                    if (!evt.isSelf && window.LapeeetCall) LapeeetCall._handleIncoming(evt.body, evt.from, evt.transportId);
+                    if (!evt.isSelf && window.LapeeetCall) {
+                        this._alertCall();
+                        LapeeetCall._handleIncoming(evt.body, evt.from, evt.transportId);
+                    }
                     break;
                 case T.CALL_END:
                     if (!evt.isSelf && window.LapeeetCall) LapeeetCall._handleRemoteEnd();

@@ -1021,6 +1021,18 @@
                             <label class="custom-control-label" for="darkmodeswitch"></label>
                         </div>
                     </div>
+                    <div class="card-body d-flex justify-content-between align-items-end" style="border-top:1px solid var(--lapeeet-border)">
+                        <div>
+                            <h6 class="card-subtitle">Alerts</h6>
+                            <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                                Ride Sound <span class="text-muted small ml-1">(Ringtone + Vibrate)</span>
+                            </h5>
+                        </div>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="soundswitch" checked>
+                            <label class="custom-control-label" for="soundswitch"></label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="section full mt-2 mb-2">

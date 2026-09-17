@@ -84,8 +84,24 @@
         /* ---------- INCOMING ---------- */
 
         _handleIncoming(envelopeBody, fromIdentity, transportId) {
-            // Busy? auto-reject with CALL_END so the caller isn't left hanging.
-            if (this.state !== 'idle' && this.state !== 'ended') {
+            // Phase 16 glare tie-break: we ALSO have an outgoing call to this
+            // same peer (mutual dial). Lower stable identity stays initiator;
+            // the loser silently stands down and answers instead of both sides
+            // busy-rejecting each other.
+            if (this.state === 'outgoing' && this.peerIdentity === fromIdentity) {
+                const mine = (global.LapeeetP2P && LapeeetP2P.connectId) || '';
+                if (String(mine) < String(fromIdentity)) {
+                    return; // I win: keep my outgoing leg, ignore their initiate.
+                }
+                // I lose: stop my outgoing media, fall through and answer theirs.
+                try {
+                    if (this.localStream) {
+                        this.localStream.getTracks().forEach(t => { try { t.stop(); } catch (e) {} });
+                    }
+                } catch (e) {}
+                this.localStream = null;
+            } else if (this.state !== 'idle' && this.state !== 'ended') {
+                // Busy? auto-reject with CALL_END so the caller isn't left hanging.
                 try {
                     LapeeetP2P.sendDirect(fromIdentity, LapeeetP2P.MSG_TYPES.CALL_END,
                         { ride_id: envelopeBody.ride_id, reason: 'busy' });
@@ -210,9 +226,11 @@
             }
             this._modalOpen = true;
             const title = { outgoing: 'Calling…', ringing: 'Incoming call', 'in-call': 'In call', error: 'Call failed', ended: 'Call ended' }[this.state] || this.state;
+            const line = this._connLine();
             modal.innerHTML =
                 '<div style="width:100%;max-width:360px;background:#121d35;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden">' +
-                '<div style="padding:14px 16px;color:#fff;font-weight:700">' + title + '</div>' +
+                '<div style="padding:14px 16px 2px;color:#fff;font-weight:700">' + title + '</div>' +
+                '<div id="callConnState" style="padding:0 16px 10px;font-size:12px;color:' + line.color + '">' + line.text + '</div>' +
                 '<video id="callRemoteVideo" autoplay playsinline style="width:100%;max-height:240px;background:#000;display:block"></video>' +
                 '<audio id="callRemoteAudio" autoplay style="display:none"></audio>' +
                 '<video id="callLocalVideo" autoplay playsinline muted style="width:110px;height:82px;background:#000;border-radius:10px;margin:10px 0 0 16px"></video>' +
@@ -234,6 +252,35 @@
             on('callHang', () => this.endCall());
         },
 
+        /* ---------- CONNECTION NARRATION (Phase 16) ---------- */
+
+        _connLine() {
+            // Returns {text, color} describing media state for the modal.
+            if (this.state === 'in-call' && this.remoteStream) {
+                return { text: '● Connected', color: '#7fe3b0' };
+            }
+            if (this.state === 'in-call' || this.state === 'outgoing') {
+                return { text: '◌ Connecting media…', color: '#ffc96a' };
+            }
+            if (this.state === 'ringing') {
+                return { text: 'Incoming — accept or reject', color: '#8cbeff' };
+            }
+            if (this.state === 'error') {
+                return { text: 'Media failed — chat still works, try re-call', color: '#ff9aa2' };
+            }
+            return { text: '', color: '#b9c8e2' };
+        },
+
+        _updateConnLine() {
+            try {
+                const el = document.getElementById('callConnState');
+                if (!el) return;
+                const line = this._connLine();
+                el.textContent = line.text;
+                el.style.color = line.color;
+            } catch (e) {}
+        },
+
         _attachLocal() {
             try {
                 const el = document.getElementById('callLocalVideo');
@@ -247,6 +294,7 @@
                 if (v && this.remoteStream) v.srcObject = this.remoteStream;
                 if (a && this.remoteStream) a.srcObject = this.remoteStream;
             } catch (e) {}
+            this._updateConnLine();
         },
         _closeModal() {
             const modal = document.getElementById('callModalLive');

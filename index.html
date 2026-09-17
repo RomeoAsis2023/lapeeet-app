@@ -10113,6 +10113,14 @@ body.dark-mode-active.auth-mode #appCapsule {
                             </a>
                         </li>
                         <li>
+                            <a href="javascript:;" class="item" id="btnLogout">
+                                <div class="icon-box bg-danger">
+                                    <ion-icon name="log-out-outline"></ion-icon>
+                                </div>
+                                <div class="in">Log out</div>
+                            </a>
+                        </li>
+                        <li>
                             <div class="divider mb-0 mt-2"></div>
                             <div class="p-2 text-left small text-muted mt-1">
                                 <div><strong>Peer ID:</strong> <span id="sidebarPeerId"
@@ -34251,7 +34259,8 @@ module.exports = L.Routing = {
         EBIKE:      'ebike',
         DATA:       'data',
         SETTINGS:   'settings',
-        LOCK:       'lock'
+        LOCK:       'lock',
+        RECOVER:    'recover'
     });
 
     const LapeeetUI = {
@@ -34314,6 +34323,7 @@ module.exports = L.Routing = {
                 case SCREENS.DATA:       return this._screenData();
                 case SCREENS.SETTINGS:   return this._screenSettings();
                 case SCREENS.LOCK:       return this._screenLock();
+                case SCREENS.RECOVER:    return this._screenRecover();
                 default:                 return this._screenHome();
             }
         },
@@ -34820,6 +34830,11 @@ module.exports = L.Routing = {
                                 Save Profile
                             </button>
                         </div>
+                        <div class="form-button-group mt-2">
+                            <button id="btnProfileLogout" type="button" class="btn btn-outline-secondary btn-block">
+                                <ion-icon name="log-out-outline"></ion-icon> Log out
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>`;
@@ -34950,7 +34965,37 @@ module.exports = L.Routing = {
                             </button>
                         </div>
                         <div class="text-center mt-3">
+                            <a href="javascript:;" id="btnLockRecover" class="small text-primary d-block mb-2">Recover from a backup file</a>
                             <a href="javascript:;" id="btnLockErase" class="small" style="color:#ff9aa2">Lost access? Erase this device and start over</a>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        },
+        _screenRecover() {
+            return `
+            <div class="auth-page">
+                <img src="assets/img/logo-full.png" alt="Lapeeet" class="auth-logo">
+                <p class="auth-tagline">Locked out? Your account lives in your backup file</p>
+                <div class="card auth-card">
+                    <div class="card-body">
+                        <div class="auth-icon-ring"><ion-icon name="key-outline"></ion-icon></div>
+                        <h5 class="auth-title">Recover Account</h5>
+                        <p class="auth-sub">Lapeeet has no passwords and no servers — a backup file <em>is</em> your recovery key</p>
+                        <p class="card-text small text-danger text-center" id="recoverError" style="display:none"></p>
+                        <div class="form-button-group">
+                            <button id="btnRecoverImport" type="button" class="btn btn-primary btn-block shadowed">
+                                <ion-icon name="cloud-upload-outline"></ion-icon> Restore from Backup File
+                            </button>
+                            <input type="file" id="fileRecoverDb" accept=".db,.sqlite,.sqlite3" style="display:none">
+                        </div>
+                        <div class="form-button-group mt-2">
+                            <button id="btnRecoverFresh" type="button" class="btn btn-outline-secondary btn-block">
+                                No backup — start fresh
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="javascript:;" id="btnRecoverBack" class="small text-muted">Back</a>
                         </div>
                     </div>
                 </div>
@@ -35276,7 +35321,7 @@ module.exports = L.Routing = {
                 },
                 onScreenChange: (s) => {
                     console.debug('[APP] Screen →', s);
-                    try { document.body.classList.toggle('auth-mode', s === 'onboarding' || s === 'lock'); } catch (e) {}
+                    try { document.body.classList.toggle('auth-mode', s === 'onboarding' || s === 'lock' || s === 'recover'); } catch (e) {}
                     if (s === 'map') {
                         if (!LapeeetMap.initialized) this._initMapDeferred();
                         else {
@@ -35294,6 +35339,7 @@ module.exports = L.Routing = {
                     if (s === 'messages') this._bindMessagesScreen();
                     if (s === 'trips') this._bindTripsScreen();
                     if (s === 'lock') this._bindLockScreen();
+                    if (s === 'recover') this._bindRecoverScreen();
                     if (s === 'onboarding') this._bindOnboardingScreen();
                 }
             });
@@ -35368,6 +35414,7 @@ module.exports = L.Routing = {
             // 5b. REGISTRATION GATE (Phase 9): install navigate guard, then
             // redirect first-run users to onboarding and locked users to lock.
             this._installNavGuard();
+            $('#btnLogout').off('click').on('click', () => this._doLogout());
             if (!this._isRegistered()) {
                 LapeeetUI.navigate('onboarding');
             } else if (this._needsUnlock()) {
@@ -35411,11 +35458,12 @@ module.exports = L.Routing = {
         },
 
         _gateTarget(screen) {
+            const FREE = ['onboarding', 'lock', 'recover'];
             if (!this._isRegistered()) {
-                return (screen === 'onboarding') ? null : 'onboarding';
+                return (FREE.indexOf(screen) !== -1) ? null : 'onboarding';
             }
             if (this._needsUnlock()) {
-                return (screen === 'lock') ? null : 'lock';
+                return (screen === 'lock' || screen === 'recover') ? null : 'lock';
             }
             return (screen === 'lock') ? 'home' : null; // unlocked users never see lock
         },
@@ -35460,7 +35508,64 @@ module.exports = L.Routing = {
             });
         },
 
+        _bindRecoverScreen() {
+            const errBox = $('#recoverError');
+            $('#btnRecoverImport').off('click').on('click', () => $('#fileRecoverDb').click());
+            $('#fileRecoverDb').off('change').on('change', (e) => {
+                const f = e.target.files && e.target.files[0];
+                if (!f) return;
+                errBox.hide();
+                const rd = new FileReader();
+                rd.onload = async () => {
+                    try {
+                        await LapeeetDB.importBinary(new Uint8Array(rd.result));
+                        // Passkeys are device-bound: a backup's enrollment can never
+                        // verify on a new device, so clear it and let the user re-enroll.
+                        try { LapeeetDB.setPasskey(''); } catch (err) {}
+                        this._unlocked = true;
+                        const prof = LapeeetDB.getProfile() || {};
+                        LapeeetUI.updateSidebar({ name: prof.name || 'Guest User' });
+                        LapeeetUI.showToast('Account recovered — add a fresh passkey in Settings', 'success');
+                        LapeeetUI.navigate('home');
+                    } catch (err) {
+                        errBox.text('Recovery failed: ' + (err.message || err)).show();
+                    }
+                    e.target.value = '';
+                };
+                rd.onerror = () => errBox.text('Could not read file').show();
+                rd.readAsArrayBuffer(f);
+            });
+            $('#btnRecoverFresh').off('click').on('click', async () => {
+                try { await LapeeetDB.wipe(); } catch (e) {}
+                try { localStorage.removeItem('lapeeet::role'); } catch (e) {}
+                window.location.reload();
+            });
+            $('#btnRecoverBack').off('click').on('click', () => {
+                if (!this._isRegistered()) LapeeetUI.navigate('onboarding');
+                else if (this._needsUnlock()) LapeeetUI.navigate('lock');
+                else LapeeetUI.navigate('home');
+            });
+        },
+
+        /* ---------- LOGOUT (session lock) ---------- */
+
+        _doLogout() {
+            this._unlocked = false;
+            try {
+                const pk = (window.LapeeetDB && LapeeetDB.initialized) ? LapeeetDB.getPasskey() : null;
+                if (pk && pk !== 'SKIP') {
+                    try { $('#sidebarPanel').modal('hide'); } catch (e) {}
+                    LapeeetUI.showToast('Locked — passkey required', 'info');
+                    LapeeetUI.navigate('lock');
+                    return;
+                }
+            } catch (e) {}
+            try { $('#sidebarPanel').modal('hide'); } catch (e) {}
+            LapeeetUI.showToast('No passkey on this device — add one in Settings to enable lock', 'warning');
+        },
+
         _bindLockScreen() {
+            $('#btnLockRecover').off('click').on('click', () => LapeeetUI.navigate('recover'));
             $('#btnUnlock').off('click').on('click', async () => {
                 const errBox = $('#lockError');
                 errBox.hide();
@@ -36318,6 +36423,7 @@ module.exports = L.Routing = {
         },
 
         _bindProfileScreen() {
+            $('#btnProfileLogout').off('click').on('click', () => this._doLogout());
             $('#btnSaveProfile').off('click').on('click', () => {
                 try {
                     const phoneRaw = ($('#profilePhone').val() || '').trim();

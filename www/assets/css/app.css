@@ -1104,12 +1104,16 @@ body.auth-mode #appBottomMenu.appBottomMenu,
 body.auth-mode #appBottomMenu {
     display: none !important;
 }
+body.auth-mode #appHeader.appHeader,
+body.auth-mode #appHeader {
+    display: none !important;
+}
 body.auth-mode #appCapsule,
 body.dark-mode-active.auth-mode #appCapsule {
     padding-bottom: 24px !important;
 }
 .auth-page {
-    min-height: calc(100vh - 140px);
+    min-height: calc(100vh - 48px);
     display: flex;
     flex-direction: column;
     align-items: center;

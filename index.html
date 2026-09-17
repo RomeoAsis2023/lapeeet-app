@@ -32733,6 +32733,7 @@ module.exports = L.Routing = {
     const LapeeetAuth = {
         version: AUTH_VERSION,
         _pendingChallenge: null, // b64url of last issued challenge (same-session ceremony binding)
+        _ceremonyKind: null,     // 'create' | 'get' while a browser prompt is outstanding
 
         /* ---------- environment ---------- */
 
@@ -32781,7 +32782,10 @@ module.exports = L.Routing = {
          * after client-side verification of the attestation ceremony.
          */
         async registerPasskey(opts) {
-            opts = opts || {};
+            return this._guarded('create', async () => this._registerInner(opts || {}));
+        },
+
+        async _registerInner(opts) {
             const reason = this.supportReason();
             if (reason !== 'ok') throw new Error(reason);
             const rpId = this.rpId();
@@ -32849,6 +32853,10 @@ module.exports = L.Routing = {
          * {credIdB64, pubKeySpkiB64, signCount}. Returns updated record.
          */
         async unlockWithPasskey(enrolled) {
+            return this._guarded('get', async () => this._unlockInner(enrolled));
+        },
+
+        async _unlockInner(enrolled) {
             const reason = this.supportReason();
             if (reason !== 'ok') throw new Error(reason);
             if (!enrolled || !enrolled.credIdB64 || !enrolled.pubKeySpkiB64) {
@@ -32905,9 +32913,27 @@ module.exports = L.Routing = {
             return enrolled;
         },
 
+        /* ---------- in-flight guard (browsers allow ONE pending ceremony) ---------- */
+
+        async _guarded(kind, fn) {
+            if (this._ceremonyKind) {
+                throw new Error('A passkey prompt is already open — complete or cancel it first.');
+            }
+            this._ceremonyKind = kind;
+            try {
+                return await fn();
+            } finally {
+                this._ceremonyKind = null;
+            }
+        },
+
         /* ---------- error mapping (raw DOMExceptions confuse users) ---------- */
 
         friendlyError(e, ceremony) {
+            const msg = (e && e.message) || '';
+            if (/already (open|pending)/i.test(msg)) {
+                return 'A passkey prompt is already open — complete or cancel it first, then retry.';
+            }
             const name = (e && e.name) || '';
             const where = ceremony === 'unlock' ? 'unlock' : 'create';
             if (name === 'NotAllowedError') {
@@ -35590,6 +35616,9 @@ module.exports = L.Routing = {
             };
             refresh();
             $('#btnPasskeyAdd').off('click').on('click', async () => {
+                const btn = $('#btnPasskeyAdd');
+                if (btn.prop('disabled')) return;
+                btn.prop('disabled', true);
                 try {
                     const prof = LapeeetDB.getProfile();
                     const rec = await LapeeetAuth.registerPasskey({ name: LapeeetDB.displayName() || 'Lapeeet User', phone: prof.phone });
@@ -35597,6 +35626,7 @@ module.exports = L.Routing = {
                     LapeeetUI.showToast('Passkey enrolled', 'success');
                     refresh();
                 } catch (e) { LapeeetUI.showToast('Passkey failed: ' + LapeeetAuth.friendlyError(e, 'create'), 'danger'); }
+                btn.prop('disabled', false);
             });
             $('#btnPasskeyRemove').off('click').on('click', () => {
                 try {
@@ -35665,6 +35695,9 @@ module.exports = L.Routing = {
         _bindLockScreen() {
             $('#btnLockRecover').off('click').on('click', () => LapeeetUI.navigate('recover'));
             $('#btnUnlock').off('click').on('click', async () => {
+                const btn = $('#btnUnlock');
+                if (btn.prop('disabled')) return; // double-tap guard (one ceremony at a time)
+                btn.prop('disabled', true);
                 const errBox = $('#lockError');
                 errBox.hide();
                 try {
@@ -35676,6 +35709,7 @@ module.exports = L.Routing = {
                     LapeeetUI.navigate('home');
                 } catch (e) {
                     errBox.text('Unlock failed: ' + LapeeetAuth.friendlyError(e, 'unlock')).show();
+                    btn.prop('disabled', false);
                 }
             });
             $('#btnLockErase').off('click').on('click', () => {

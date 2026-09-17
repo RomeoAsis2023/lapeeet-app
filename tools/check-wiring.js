@@ -23,6 +23,8 @@ const DYNAMIC = new Set([
   'btnPrintReceipt', 'lockEraseCancel', 'lockEraseGo',          // modal-injected
   'dbStatus', 'gitStatus', 'keyStatus', 'mapStatus',            // home status rows
   'p2pStatus', 'peerId',                                        // rendered via ${r.id}
+  'rideDialogHost', 'rideDialogBox', 'rideDialogTimer',        // Phase 13 injected dialog
+  'rideDialogBar', 'btnRideApprove', 'btnRideDeny', 'rideDialogClose',
 ]);
 let fails = 0;
 for (const id of [...used].sort()) {
@@ -40,7 +42,7 @@ for (const id of ['btnUnlock', 'btnLockErase', 'btnLockRecover', 'btnLogout',
   'btnRecoverBack', 'recoverError', 'obPasskeyBtn', 'obPasskeySkip', 'obPasskeyState',
   'btnPasskeyAdd', 'btnPasskeyRemove', 'settingsPasskeyState', 'settingsAuthDiag',
   'homeMap', 'nearSearch', 'nearSuggest', 'nearRadius', 'nearCount', 'nearList',
-  'btnNearLocate', 'fileImportDb',
+  'btnNearLocate', 'reqRoleNote', 'fileImportDb',
   'capacityGroup', 'capacityValue', 'btnRequestRide']) {
   const where = (html.includes(`id="${id}"`) ? 'index' : '') +
     (ui.includes(`id="${id}"`) ? ' ui' : '');

@@ -419,6 +419,9 @@
                             <ion-icon name="car-sport-outline"></ion-icon>
                             Request Ride
                         </button>
+                        <p class="small text-muted text-center mt-2 mb-0" id="reqRoleNote" style="display:none">
+                            Drivers can't request rides — switch to Passenger mode to book.
+                        </p>
                     </div>
 
                     <div class="text-center mt-3">

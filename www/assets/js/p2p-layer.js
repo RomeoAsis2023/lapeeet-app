@@ -25,7 +25,8 @@
         DRIVER_STATUS:   'DRIVER_STATUS',
         RIDE_REQUEST:    'RIDE_REQUEST',
         RIDE_ACCEPT:     'RIDE_ACCEPT',
-        RIDE_REJECT:     'RIDE_REJECT',
+        RIDE_REJECT:     'RIDE_REJECT',   // reasons: declined | taken | expired
+        RIDE_LOCKED:     'RIDE_LOCKED',   // Phase 13: passenger broadcast, first-accept-wins
         RIDE_CANCEL:     'RIDE_CANCEL',
         RIDE_STATUS:     'RIDE_STATUS',
         LOCATION_UPDATE: 'LOCATION_UPDATE',
@@ -38,6 +39,9 @@
         CALL_INITIATE:   'CALL_INITIATE',
         CALL_END:        'CALL_END'
     });
+
+    // Phase 13: driver offer window — one constant, both sides agree.
+    const RIDE_OFFER_MS = 60000;
 
     /* ---------- geohash-4 (no dep) ---------- */
     const GH32 = '0123456789bcdefghjkmnpqrstuvwxyz';
@@ -504,11 +508,14 @@
 
         peerCount() { return this.peers.size; },
 
+        RIDE_OFFER_MS,
+
         /* ---------- CONVENIENCE SENDERS ---------- */
 
         sendRideRequest(rideObj) { return this.broadcast(MSG_TYPES.RIDE_REQUEST, rideObj); },
         sendRideAccept(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_ACCEPT, payload); },
         sendRideReject(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_REJECT, payload); },
+        sendRideLocked(payload) { return this.broadcast(MSG_TYPES.RIDE_LOCKED, payload); },
         sendRideCancel(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_CANCEL, payload); },
         sendRideStatus(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.RIDE_STATUS, payload); },
         sendLocationUpdate(identityB64, payload) { return this.sendDirect(identityB64, MSG_TYPES.LOCATION_UPDATE, payload); },
@@ -522,6 +529,11 @@
         validateRideRequest(b) {
             if (!b || typeof b !== 'object') return false;
             if (!b.ride_id || typeof b.ride_id !== 'string') return false;
+            // Phase 13: requests are passenger-only (peer recheck layer).
+            if (b.role !== 'RIDER') return false;
+            // Phase 13: offer must carry a live expiry (30s clock-skew grace).
+            if (typeof b.expires_at !== 'number' || isNaN(b.expires_at)) return false;
+            if (b.expires_at - Date.now() < -30000) return false;
             const need = ['pickup_lat', 'pickup_lng', 'drop_lat', 'drop_lng', 'distance_km', 'capacity'];
             for (const k of need) { if (typeof b[k] !== 'number' || isNaN(b[k])) return false; }
             if (!this.validateCapacity(b.capacity)) return false;
@@ -539,5 +551,5 @@
 
     global.LapeeetP2P = LapeeetP2P;
     global.LapeeetGeohash = geohash;
-    global.LapeeetGeo = { geohash, haversineKm, trunc3, MAX_TRIP_KM: 60 };
+    global.LapeeetGeo = { geohash, haversineKm, trunc3, MAX_TRIP_KM: 60, RIDE_OFFER_MS };
 })(window);

@@ -24,7 +24,8 @@ ok('capacity whitelist ok', [1, 2, 3, 6, 8, 10, 12, 15].every(c => P2P.validateC
 ok('capacity rejects 0/4/5/7/16', [0, 4, 5, 7, 16, 'x'].every(c => !P2P.validateCapacity(c)));
 
 const req = (over) => Object.assign({
-  ride_id: 'r1', pickup_lat: 14.5995, pickup_lng: 120.9842,
+  ride_id: 'r1', role: 'RIDER', expires_at: Date.now() + 60000,
+  pickup_lat: 14.5995, pickup_lng: 120.9842,
   drop_lat: 14.65, drop_lng: 121.05, distance_km: 9.2, capacity: 2
 }, over || {});
 ok('valid request passes', P2P.validateRideRequest(req()));
@@ -33,7 +34,13 @@ ok('far-coords rejected', !P2P.validateRideRequest(req({ drop_lat: 15.5, drop_ln
 ok('cap-4 rejected', !P2P.validateRideRequest(req({ capacity: 4 })));
 ok('spoofed distance rejected', !P2P.validateRideRequest(req({ distance_km: 1 })));
 ok('missing ride_id rejected', !P2P.validateRideRequest(req({ ride_id: null })));
-ok('16 message types incl CHAT', Object.keys(P2P.MSG_TYPES).length === 16 && !!P2P.MSG_TYPES.CHAT);
+ok('non-passenger role rejected', !P2P.validateRideRequest(req({ role: 'DRIVER' })));
+ok('missing role rejected', !P2P.validateRideRequest(req({ role: undefined })));
+ok('missing expiry rejected', !P2P.validateRideRequest(req({ expires_at: undefined })));
+ok('long-expired offer rejected', !P2P.validateRideRequest(req({ expires_at: Date.now() - 120000 })));
+ok('fresh offer passes', P2P.validateRideRequest(req({ expires_at: Date.now() + 1000 })));
+ok('17 message types incl RIDE_LOCKED', Object.keys(P2P.MSG_TYPES).length === 17 && !!P2P.MSG_TYPES.RIDE_LOCKED);
+ok('offer window 60000', P2P.RIDE_OFFER_MS === 60000);
 ok('channel naming', ('lapeeet-' + gh(14.5995, 120.9842, 4)) === 'lapeeet-wdw5');
 // LapeeetGeo bundle (home nearby filtering)
 const G = sandbox.LapeeetGeo;

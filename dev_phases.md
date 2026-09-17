@@ -132,6 +132,15 @@
 - [x] 12.6 Guaranteed driver visibility: drivers answer any rider HELLO instantly (`_sendDriverStatusNow`, no 10s wait); connected-but-unlocated drivers show as "locating…" list rows; 120s staleness cutoff (requests 10-min window); solicit behavior harness-covered
 - [ ] 12.5 FIELD TEST: 2 devices, pins appear both ways within seconds, radius filter + search behave
 
+## Phase 13 — Passenger-Only Requests + Driver Offer Dialogs + First-Accept-Wins ✅ DONE (code; 3-device field test pending)
+
+- [x] 13.0 Protocol: `RIDE_LOCKED` broadcast type (17th), `RIDE_OFFER_MS=60000` single constant, `RIDE_REJECT` reasons (`declined|taken`); `validateRideRequest` enforces passenger-only sender + live `expires_at` (30s skew grace)
+- [x] 13.1 Passenger gate: button hidden + notice for drivers, click-handler guard, `role`+`expires_at` stamped on requests
+- [x] 13.2 Driver kit `notification-box` dialog (passenger header, fare/distance, Approve/Deny footer, countdown + timer bar); queue (kit shows one at a time); delegated wiring (kit binds at load only); X = decline; expiry auto-dismisses
+- [x] 13.3 First-accept-wins: passenger `_rideLocks` (open → locked), late accepts get `taken`-reject, `RIDE_LOCKED` broadcast converges winners/losers/rollback, expiry toast + re-request; drivers can't double-accept mid-ride
+- [x] 13.4 Harness: lock-ordering (first/duplicate/taken/unknown), validation (role/expiry), wiring 113 IDs; full suite green; rebuild + redeploy
+- [ ] 13.5 FIELD TEST: 1 passenger + 2 drivers — both notified with timers, first Approve wins, loser sees taken, passenger sees match
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

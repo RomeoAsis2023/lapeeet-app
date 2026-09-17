@@ -1281,3 +1281,26 @@ body.dark-mode-active.auth-mode #appCapsule {
 }
 .role-card.is-selected .role-check { display: inline-flex; }
 
+/* ---------- PHASE 13: ride offer dialog timer ---------- */
+#rideDialogTimer {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+.ride-timer-track {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(140, 160, 190, 0.25);
+    overflow: hidden;
+    margin-top: 10px;
+}
+.ride-timer-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #1E74FD, #5aa1ff);
+    transition: width 0.5s linear;
+}
+body.dark-mode-active .ride-timer-track {
+    background: rgba(255, 255, 255, 0.12);
+}
+

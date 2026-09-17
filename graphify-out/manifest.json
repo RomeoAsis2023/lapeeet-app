@@ -1,8 +1,8 @@
 {
   "www/assets/js/app.js": {
-    "mtime": 1789644480.768655,
-    "seen": 1789644485.7361343,
-    "ast_hash": "f28a6295b68a9c1acb238223023cd886",
+    "mtime": 1789645447.3960643,
+    "seen": 1789645453.2920396,
+    "ast_hash": "397660b6d4e4f9f666f0bc0b852cdb28",
     "semantic_hash": ""
   },
   "www/assets/js/base.js": {
@@ -138,9 +138,9 @@
     "semantic_hash": ""
   },
   "www/assets/js/auth-layer.js": {
-    "mtime": 1789644460.3635833,
-    "seen": 1789644466.0677924,
-    "ast_hash": "75dbe38563300a1dfb84ad3547384c6d",
+    "mtime": 1789645432.7592158,
+    "seen": 1789645438.321015,
+    "ast_hash": "e862c2c14a22ace830af67860d413189",
     "semantic_hash": ""
   },
   "tools/check-auth.js": {
@@ -159,6 +159,12 @@
     "mtime": 1789644443.0428324,
     "seen": 1789644447.7037048,
     "ast_hash": "62dad832f36931460f4d5f27cd89cdc8",
+    "semantic_hash": ""
+  },
+  "tools/check-guard.js": {
+    "mtime": 1789645507.5886393,
+    "seen": 1789645512.2485166,
+    "ast_hash": "d2ddc7c122d999b194d9767ef7c4307b",
     "semantic_hash": ""
   }
 }

@@ -9,7 +9,7 @@
   "7": "p2p-layer.js",
   "8": "call-layer.js",
   "9": "ref_fs",
-  "10": "Lapeeet — dev_phases.md (master plan, no skips)",
+  "10": "base.js",
   "11": "3.1 Official Currency — Philippine Peso `₱ PHP`",
   "12": "Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist",
   "13": "6. Feature Inventory & Scope (Updated with Completed Sub-items)",
@@ -25,5 +25,6 @@
   "23": "check-webauthn.js",
   "24": "check-mode.js",
   "25": "check-wiring.js",
-  "26": "check-p2p.js"
+  "26": "check-p2p.js",
+  "27": "check-guard.js"
 }

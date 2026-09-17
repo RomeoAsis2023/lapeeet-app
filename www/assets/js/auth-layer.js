@@ -135,6 +135,7 @@
     const LapeeetAuth = {
         version: AUTH_VERSION,
         _pendingChallenge: null, // b64url of last issued challenge (same-session ceremony binding)
+        _ceremonyKind: null,     // 'create' | 'get' while a browser prompt is outstanding
 
         /* ---------- environment ---------- */
 
@@ -183,7 +184,10 @@
          * after client-side verification of the attestation ceremony.
          */
         async registerPasskey(opts) {
-            opts = opts || {};
+            return this._guarded('create', async () => this._registerInner(opts || {}));
+        },
+
+        async _registerInner(opts) {
             const reason = this.supportReason();
             if (reason !== 'ok') throw new Error(reason);
             const rpId = this.rpId();
@@ -251,6 +255,10 @@
          * {credIdB64, pubKeySpkiB64, signCount}. Returns updated record.
          */
         async unlockWithPasskey(enrolled) {
+            return this._guarded('get', async () => this._unlockInner(enrolled));
+        },
+
+        async _unlockInner(enrolled) {
             const reason = this.supportReason();
             if (reason !== 'ok') throw new Error(reason);
             if (!enrolled || !enrolled.credIdB64 || !enrolled.pubKeySpkiB64) {
@@ -307,9 +315,27 @@
             return enrolled;
         },
 
+        /* ---------- in-flight guard (browsers allow ONE pending ceremony) ---------- */
+
+        async _guarded(kind, fn) {
+            if (this._ceremonyKind) {
+                throw new Error('A passkey prompt is already open — complete or cancel it first.');
+            }
+            this._ceremonyKind = kind;
+            try {
+                return await fn();
+            } finally {
+                this._ceremonyKind = null;
+            }
+        },
+
         /* ---------- error mapping (raw DOMExceptions confuse users) ---------- */
 
         friendlyError(e, ceremony) {
+            const msg = (e && e.message) || '';
+            if (/already (open|pending)/i.test(msg)) {
+                return 'A passkey prompt is already open — complete or cancel it first, then retry.';
+            }
             const name = (e && e.name) || '';
             const where = ceremony === 'unlock' ? 'unlock' : 'create';
             if (name === 'NotAllowedError') {

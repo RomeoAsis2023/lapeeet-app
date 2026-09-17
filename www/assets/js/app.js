@@ -208,6 +208,9 @@
             };
             refresh();
             $('#btnPasskeyAdd').off('click').on('click', async () => {
+                const btn = $('#btnPasskeyAdd');
+                if (btn.prop('disabled')) return;
+                btn.prop('disabled', true);
                 try {
                     const prof = LapeeetDB.getProfile();
                     const rec = await LapeeetAuth.registerPasskey({ name: LapeeetDB.displayName() || 'Lapeeet User', phone: prof.phone });
@@ -215,6 +218,7 @@
                     LapeeetUI.showToast('Passkey enrolled', 'success');
                     refresh();
                 } catch (e) { LapeeetUI.showToast('Passkey failed: ' + LapeeetAuth.friendlyError(e, 'create'), 'danger'); }
+                btn.prop('disabled', false);
             });
             $('#btnPasskeyRemove').off('click').on('click', () => {
                 try {
@@ -283,6 +287,9 @@
         _bindLockScreen() {
             $('#btnLockRecover').off('click').on('click', () => LapeeetUI.navigate('recover'));
             $('#btnUnlock').off('click').on('click', async () => {
+                const btn = $('#btnUnlock');
+                if (btn.prop('disabled')) return; // double-tap guard (one ceremony at a time)
+                btn.prop('disabled', true);
                 const errBox = $('#lockError');
                 errBox.hide();
                 try {
@@ -294,6 +301,7 @@
                     LapeeetUI.navigate('home');
                 } catch (e) {
                     errBox.text('Unlock failed: ' + LapeeetAuth.friendlyError(e, 'unlock')).show();
+                    btn.prop('disabled', false);
                 }
             });
             $('#btnLockErase').off('click').on('click', () => {

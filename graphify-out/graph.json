@@ -4,18 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "id": "www_assets_js_app_calcfare",
-      "label": "_calcFare()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "code",
-      "norm_label": "_calcfare()",
-      "source_file": "www/assets/js/app.js",
-      "source_location": "L1462"
-    },
-    {
       "id": "www_assets_js_app_bindautocomplete",
       "label": "_bindAutocomplete()",
       "_callable": true,
@@ -25,7 +13,7 @@
       "file_type": "code",
       "norm_label": "_bindautocomplete()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1412"
+      "source_location": "L1420"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown",
@@ -37,7 +25,7 @@
       "file_type": "code",
       "norm_label": "_bindcapacitydropdown()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L938"
+      "source_location": "L946"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_applyfocus",
@@ -49,7 +37,7 @@
       "file_type": "code",
       "norm_label": "applyfocus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L970"
+      "source_location": "L978"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_close",
@@ -61,7 +49,7 @@
       "file_type": "code",
       "norm_label": "close()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L954"
+      "source_location": "L962"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_open",
@@ -73,7 +61,7 @@
       "file_type": "code",
       "norm_label": "open()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L960"
+      "source_location": "L968"
     },
     {
       "id": "www_assets_js_app_bindcapacitydropdown_setvalue",
@@ -85,7 +73,7 @@
       "file_type": "code",
       "norm_label": "setvalue()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L974"
+      "source_location": "L982"
     },
     {
       "id": "www_assets_js_app_binddatascreen",
@@ -97,7 +85,7 @@
       "file_type": "code",
       "norm_label": "_binddatascreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1079"
+      "source_location": "L1087"
     },
     {
       "id": "www_assets_js_app_bindebikescreen",
@@ -109,7 +97,7 @@
       "file_type": "code",
       "norm_label": "_bindebikescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1200"
+      "source_location": "L1208"
     },
     {
       "id": "www_assets_js_app_bindlockscreen",
@@ -121,7 +109,7 @@
       "file_type": "code",
       "norm_label": "_bindlockscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L283"
+      "source_location": "L287"
     },
     {
       "id": "www_assets_js_app_bindmapscreenbuttons",
@@ -133,7 +121,7 @@
       "file_type": "code",
       "norm_label": "_bindmapscreenbuttons()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L484"
+      "source_location": "L492"
     },
     {
       "id": "www_assets_js_app_bindmessagesscreen",
@@ -145,7 +133,7 @@
       "file_type": "code",
       "norm_label": "_bindmessagesscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L756"
+      "source_location": "L764"
     },
     {
       "id": "www_assets_js_app_bindonboardingscreen",
@@ -157,7 +145,7 @@
       "file_type": "code",
       "norm_label": "_bindonboardingscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1260"
+      "source_location": "L1268"
     },
     {
       "id": "www_assets_js_app_bindprofilescreen",
@@ -169,7 +157,7 @@
       "file_type": "code",
       "norm_label": "_bindprofilescreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1141"
+      "source_location": "L1149"
     },
     {
       "id": "www_assets_js_app_bindrecoverscreen",
@@ -181,7 +169,7 @@
       "file_type": "code",
       "norm_label": "_bindrecoverscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L228"
+      "source_location": "L232"
     },
     {
       "id": "www_assets_js_app_bindsettingsscreen",
@@ -205,7 +193,7 @@
       "file_type": "code",
       "norm_label": "_bindtripsscreen()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L733"
+      "source_location": "L741"
     },
     {
       "id": "www_assets_js_app_brandselectwire",
@@ -217,7 +205,19 @@
       "file_type": "code",
       "norm_label": "_brandselectwire()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1182"
+      "source_location": "L1190"
+    },
+    {
+      "id": "www_assets_js_app_calcfare",
+      "label": "_calcFare()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "code",
+      "norm_label": "_calcfare()",
+      "source_file": "www/assets/js/app.js",
+      "source_location": "L1470"
     },
     {
       "id": "www_assets_js_app_cancelactiveride",
@@ -229,7 +229,7 @@
       "file_type": "code",
       "norm_label": "_cancelactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L663"
+      "source_location": "L671"
     },
     {
       "id": "www_assets_js_app_chatload",
@@ -241,7 +241,7 @@
       "file_type": "code",
       "norm_label": "_chatload()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L678"
+      "source_location": "L686"
     },
     {
       "id": "www_assets_js_app_chatmarkread",
@@ -253,7 +253,7 @@
       "file_type": "code",
       "norm_label": "_chatmarkread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L715"
+      "source_location": "L723"
     },
     {
       "id": "www_assets_js_app_chatpeers",
@@ -265,7 +265,7 @@
       "file_type": "code",
       "norm_label": "_chatpeers()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L690"
+      "source_location": "L698"
     },
     {
       "id": "www_assets_js_app_chatpush",
@@ -277,7 +277,7 @@
       "file_type": "code",
       "norm_label": "_chatpush()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L709"
+      "source_location": "L717"
     },
     {
       "id": "www_assets_js_app_chatsave",
@@ -289,7 +289,7 @@
       "file_type": "code",
       "norm_label": "_chatsave()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L682"
+      "source_location": "L690"
     },
     {
       "id": "www_assets_js_app_chatthread",
@@ -301,7 +301,7 @@
       "file_type": "code",
       "norm_label": "_chatthread()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L705"
+      "source_location": "L713"
     },
     {
       "id": "www_assets_js_app_dologout",
@@ -313,7 +313,7 @@
       "file_type": "code",
       "norm_label": "_dologout()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L268"
+      "source_location": "L272"
     },
     {
       "id": "www_assets_js_app_downloadblob",
@@ -325,7 +325,7 @@
       "file_type": "code",
       "norm_label": "_downloadblob()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1069"
+      "source_location": "L1077"
     },
     {
       "id": "www_assets_js_app_driveraccept",
@@ -337,7 +337,7 @@
       "file_type": "code",
       "norm_label": "_driveraccept()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L581"
+      "source_location": "L589"
     },
     {
       "id": "www_assets_js_app_driverreject",
@@ -349,7 +349,7 @@
       "file_type": "code",
       "norm_label": "_driverreject()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L608"
+      "source_location": "L616"
     },
     {
       "id": "www_assets_js_app_driversetstatus",
@@ -361,7 +361,7 @@
       "file_type": "code",
       "norm_label": "_driversetstatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L646"
+      "source_location": "L654"
     },
     {
       "id": "www_assets_js_app_escapeattr",
@@ -373,7 +373,7 @@
       "file_type": "code",
       "norm_label": "_escapeattr()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1456"
+      "source_location": "L1464"
     },
     {
       "id": "www_assets_js_app_findride",
@@ -385,7 +385,7 @@
       "file_type": "code",
       "norm_label": "_findride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L722"
+      "source_location": "L730"
     },
     {
       "id": "www_assets_js_app_gatetarget",
@@ -409,7 +409,7 @@
       "file_type": "code",
       "norm_label": "_initmapdeferred()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L451"
+      "source_location": "L459"
     },
     {
       "id": "www_assets_js_app_installnavguard",
@@ -445,7 +445,7 @@
       "file_type": "code",
       "norm_label": "_lockpermanentdarkmode()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L353"
+      "source_location": "L361"
     },
     {
       "id": "www_assets_js_app_lockpermanentdarkmodeuionly",
@@ -457,7 +457,7 @@
       "file_type": "code",
       "norm_label": "_lockpermanentdarkmodeuionly()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L384"
+      "source_location": "L392"
     },
     {
       "id": "www_assets_js_app_modefromparam",
@@ -469,7 +469,7 @@
       "file_type": "code",
       "norm_label": "_modefromparam()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L318"
+      "source_location": "L326"
     },
     {
       "id": "www_assets_js_app_needsunlock",
@@ -493,7 +493,7 @@
       "file_type": "code",
       "norm_label": "_onp2pevent()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L778"
+      "source_location": "L786"
     },
     {
       "id": "www_assets_js_app_onrideaccepted",
@@ -505,7 +505,7 @@
       "file_type": "code",
       "norm_label": "_onrideaccepted()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L873"
+      "source_location": "L881"
     },
     {
       "id": "www_assets_js_app_onridestatus",
@@ -517,7 +517,7 @@
       "file_type": "code",
       "norm_label": "_onridestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L906"
+      "source_location": "L914"
     },
     {
       "id": "www_assets_js_app_populatehomestatus",
@@ -529,7 +529,7 @@
       "file_type": "code",
       "norm_label": "_populatehomestatus()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L393"
+      "source_location": "L401"
     },
     {
       "id": "www_assets_js_app_populatesettingsgit",
@@ -541,7 +541,7 @@
       "file_type": "code",
       "norm_label": "_populatesettingsgit()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L409"
+      "source_location": "L417"
     },
     {
       "id": "www_assets_js_app_renderactiveride",
@@ -553,7 +553,7 @@
       "file_type": "code",
       "norm_label": "_renderactiveride()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L617"
+      "source_location": "L625"
     },
     {
       "id": "www_assets_js_app_renderdriverrequests",
@@ -565,7 +565,7 @@
       "file_type": "code",
       "norm_label": "_renderdriverrequests()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L552"
+      "source_location": "L560"
     },
     {
       "id": "www_assets_js_app_resolveinitialrole",
@@ -577,7 +577,7 @@
       "file_type": "code",
       "norm_label": "resolveinitialrole()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L327"
+      "source_location": "L335"
     },
     {
       "id": "www_assets_js_app_revealshell",
@@ -589,7 +589,7 @@
       "file_type": "code",
       "norm_label": "_revealshell()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L349"
+      "source_location": "L357"
     },
     {
       "id": "www_assets_js_app_shortid",
@@ -601,7 +601,7 @@
       "file_type": "code",
       "norm_label": "_shortid()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L547"
+      "source_location": "L555"
     },
     {
       "id": "www_assets_js_app_showratingmodal",
@@ -613,7 +613,7 @@
       "file_type": "code",
       "norm_label": "_showratingmodal()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L919"
+      "source_location": "L927"
     },
     {
       "id": "www_assets_js_app_start",
@@ -637,7 +637,7 @@
       "file_type": "code",
       "norm_label": "_syncmodeurl()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L341"
+      "source_location": "L349"
     },
     {
       "id": "www_assets_js_app_truncate",
@@ -649,7 +649,7 @@
       "file_type": "code",
       "norm_label": "_truncate()",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1450"
+      "source_location": "L1458"
     },
     {
       "id": "www_assets_js_base_addtohome",
@@ -657,7 +657,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "addtohome()",
       "source_file": "www/assets/js/base.js",
@@ -669,7 +669,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "animatedheader()",
       "source_file": "www/assets/js/base.js",
@@ -681,7 +681,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "godownbutton()",
       "source_file": "www/assets/js/base.js",
@@ -693,7 +693,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "notification()",
       "source_file": "www/assets/js/base.js",
@@ -705,7 +705,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "offlinemode()",
       "source_file": "www/assets/js/base.js",
@@ -717,7 +717,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "offlinemodetoast()",
       "source_file": "www/assets/js/base.js",
@@ -729,7 +729,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "onlinemode()",
       "source_file": "www/assets/js/base.js",
@@ -741,7 +741,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "onlinemodetoast()",
       "source_file": "www/assets/js/base.js",
@@ -753,23 +753,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "toastbox()",
       "source_file": "www/assets/js/base.js",
       "source_location": "L263"
-    },
-    {
-      "id": "www_assets_js_db_layer_processphoto",
-      "label": "processPhoto()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "code",
-      "norm_label": "processphoto()",
-      "source_file": "www/assets/js/db-layer.js",
-      "source_location": "L430"
     },
     {
       "id": "www_assets_js_db_layer_all",
@@ -1132,6 +1120,18 @@
       "source_location": "L461"
     },
     {
+      "id": "www_assets_js_db_layer_processphoto",
+      "label": "processPhoto()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "code",
+      "norm_label": "processphoto()",
+      "source_file": "www/assets/js/db-layer.js",
+      "source_location": "L430"
+    },
+    {
       "id": "www_assets_js_db_layer_run",
       "label": "_run()",
       "_callable": true,
@@ -1309,7 +1309,19 @@
       "file_type": "code",
       "norm_label": "friendlyerror()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L312"
+      "source_location": "L334"
+    },
+    {
+      "id": "www_assets_js_auth_layer_guarded",
+      "label": "_guarded()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "auth-layer.js",
+      "file_type": "code",
+      "norm_label": "_guarded()",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L320"
     },
     {
       "id": "www_assets_js_auth_layer_issupported",
@@ -1321,7 +1333,7 @@
       "file_type": "code",
       "norm_label": "issupported()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L148"
+      "source_location": "L149"
     },
     {
       "id": "www_assets_js_auth_layer_isvalidphmobile",
@@ -1333,7 +1345,7 @@
       "file_type": "code",
       "norm_label": "isvalidphmobile()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L175"
+      "source_location": "L176"
     },
     {
       "id": "www_assets_js_auth_layer_normalizephmobile",
@@ -1345,7 +1357,7 @@
       "file_type": "code",
       "norm_label": "normalizephmobile()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L166"
+      "source_location": "L167"
     },
     {
       "id": "www_assets_js_auth_layer_parseauthdata",
@@ -1360,6 +1372,18 @@
       "source_location": "L112"
     },
     {
+      "id": "www_assets_js_auth_layer_registerinner",
+      "label": "_registerInner()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "auth-layer.js",
+      "file_type": "code",
+      "norm_label": "_registerinner()",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L190"
+    },
+    {
       "id": "www_assets_js_auth_layer_registerpasskey",
       "label": "registerPasskey()",
       "_callable": true,
@@ -1369,7 +1393,7 @@
       "file_type": "code",
       "norm_label": "registerpasskey()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L185"
+      "source_location": "L186"
     },
     {
       "id": "www_assets_js_auth_layer_rpid",
@@ -1381,7 +1405,7 @@
       "file_type": "code",
       "norm_label": "rpid()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L141"
+      "source_location": "L142"
     },
     {
       "id": "www_assets_js_auth_layer_sha256",
@@ -1405,7 +1429,19 @@
       "file_type": "code",
       "norm_label": "supportreason()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L154"
+      "source_location": "L155"
+    },
+    {
+      "id": "www_assets_js_auth_layer_unlockinner",
+      "label": "_unlockInner()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "auth-layer.js",
+      "file_type": "code",
+      "norm_label": "_unlockinner()",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L261"
     },
     {
       "id": "www_assets_js_auth_layer_unlockwithpasskey",
@@ -1417,7 +1453,7 @@
       "file_type": "code",
       "norm_label": "unlockwithpasskey()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L253"
+      "source_location": "L257"
     },
     {
       "id": "www_assets_js_auth_layer_verifyassertion",
@@ -1429,7 +1465,7 @@
       "file_type": "code",
       "norm_label": "_verifyassertion()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L277"
+      "source_location": "L285"
     },
     {
       "id": "www_assets_js_auth_layer_verifyattestation",
@@ -1441,7 +1477,7 @@
       "file_type": "code",
       "norm_label": "_verifyattestation()",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L219"
+      "source_location": "L223"
     },
     {
       "id": "tools_check_auth_fe",
@@ -1610,6 +1646,30 @@
       "norm_label": "req()",
       "source_file": "tools/check-p2p.js",
       "source_location": "L26"
+    },
+    {
+      "id": "tools_check_guard_deferred",
+      "label": "deferred()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "deferred()",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L10"
+    },
+    {
+      "id": "tools_check_guard_ok",
+      "label": "ok()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "ok()",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L46"
     },
     {
       "id": "www_assets_js_map_layer_afterpinchange",
@@ -3292,18 +3352,6 @@
       "source_location": "L161"
     },
     {
-      "id": "lapeet_app_development_0_executive_summary_of_work_done_so_far",
-      "label": "0. Executive Summary of Work Done So Far",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "0. executive summary of work done so far",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L17"
-    },
-    {
       "id": "lapeet_app_development_7_development_phases_live_checklists_fully_updated_no_skip",
       "label": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
       "_origin": "ast",
@@ -3326,30 +3374,6 @@
       "norm_label": "phase 0.5 \u2014 currency, localisation, permanent theme, brand fixes \u2014 100% \u2705",
       "source_file": "Lapeet_app_development.md",
       "source_location": "L426"
-    },
-    {
-      "id": "lapeet_app_development_phase_0_project_scaffolding_static_setup_100_completed",
-      "label": "PHASE 0 \u2014 Project Scaffolding & Static Setup \u2014 **100% \u2705 COMPLETED**",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 0 \u2014 project scaffolding & static setup \u2014 **100% \u2705 completed**",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L386"
-    },
-    {
-      "id": "lapeet_app_development_phase_1_map_layer_60_km_cap_organic_maps_deep_links_partially_started",
-      "label": "PHASE 1 \u2014 Map Layer + 60 km Cap + Organic Maps Deep Links \u2014 \ud83d\udea7 PARTIALLY STARTED",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "7. Development Phases & LIVE Checklists (FULLY UPDATED \u2014 No Skip)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 1 \u2014 map layer + 60 km cap + organic maps deep links \u2014 \ud83d\udea7 partially started",
-      "source_file": "Lapeet_app_development.md",
-      "source_location": "L441"
     },
     {
       "id": "lapeet_app_development_phase_2_sql_js_tenant_database_e_bike_registration_db_stub_only",
@@ -3435,6 +3459,30 @@
       "source_location": "L79"
     },
     {
+      "id": "lapeet_app_development_phase_0_project_scaffolding_static_setup_100_completed",
+      "label": "PHASE 0 \u2014 Project Scaffolding & Static Setup \u2014 **100% \u2705 COMPLETED**",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 0 \u2014 project scaffolding & static setup \u2014 **100% \u2705 completed**",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L386"
+    },
+    {
+      "id": "lapeet_app_development_phase_1_map_layer_60_km_cap_organic_maps_deep_links_partially_started",
+      "label": "PHASE 1 \u2014 Map Layer + 60 km Cap + Organic Maps Deep Links \u2014 \ud83d\udea7 PARTIALLY STARTED",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 1 \u2014 map layer + 60 km cap + organic maps deep links \u2014 \ud83d\udea7 partially started",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L441"
+    },
+    {
       "id": "www_assets_js_app_rationale_144",
       "label": "NOTE: base.js already fades #loader after DOMContentLoaded. Here we just unhide\u2026",
       "_origin": "ast",
@@ -3450,155 +3498,23 @@
       "label": "base.js",
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "code",
       "norm_label": "base.js",
       "source_file": "www/assets/js/base.js",
       "source_location": "L1"
     },
     {
-      "id": "dev_phases",
-      "label": "dev_phases.md",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "dev_phases.md",
-      "source_file": "dev_phases.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
-      "label": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "source_file": "dev_phases.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "dev_phases_live_vs_dev_separation_locked",
-      "label": "Live vs Dev separation (locked)",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "live vs dev separation (locked)",
-      "source_file": "dev_phases.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "dev_phases_open_decisions_need_your_call",
-      "label": "Open decisions (need your call)",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "open decisions (need your call)",
-      "source_file": "dev_phases.md",
-      "source_location": "L127"
-    },
-    {
       "id": "dev_phases_phase_0_single_file_shell_done_verified_2026_09_17_step_by_step",
       "label": "Phase 0 \u2014 Single-File Shell \u2705 DONE (verified 2026-09-17, step by step)",
       "_origin": "ast",
       "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "community_name": "base.js",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "phase 0 \u2014 single-file shell \u2705 done (verified 2026-09-17, step by step)",
       "source_file": "dev_phases.md",
       "source_location": "L26"
-    },
-    {
-      "id": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
-      "label": "Phase 2 \u2014 sql.js Tenant DB + Onboarding + E-Bikes \u2705 DONE",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 2 \u2014 sql.js tenant db + onboarding + e-bikes \u2705 done",
-      "source_file": "dev_phases.md",
-      "source_location": "L46"
-    },
-    {
-      "id": "dev_phases_phase_5_polish_manifest_done_code_device_test_pending",
-      "label": "Phase 5 \u2014 Polish + Manifest \u2705 DONE (code; device test pending)",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 5 \u2014 polish + manifest \u2705 done (code; device test pending)",
-      "source_file": "dev_phases.md",
-      "source_location": "L70"
-    },
-    {
-      "id": "dev_phases_phase_7_github_pages_deploy_live",
-      "label": "Phase 7 \u2014 GitHub Pages Deploy \u2705 LIVE",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 7 \u2014 github pages deploy \u2705 live",
-      "source_file": "dev_phases.md",
-      "source_location": "L86"
-    },
-    {
-      "id": "dev_phases_phase_8_orbitdb_full_replacement_track_after_7_gates_each_step",
-      "label": "Phase 8 \u2014 OrbitDB Full Replacement \u2b1c TRACK (after 7; gates each step)",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "phase 8 \u2014 orbitdb full replacement \u2b1c track (after 7; gates each step)",
-      "source_file": "dev_phases.md",
-      "source_location": "L95"
-    },
-    {
-      "id": "dev_phases_risks",
-      "label": "Risks",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "risks",
-      "source_file": "dev_phases.md",
-      "source_location": "L123"
-    },
-    {
-      "id": "dev_phases_track_w_webview_wrapper_parallel_device_side",
-      "label": "Track W \u2014 WebView Wrapper \u2b1c (parallel, device-side)",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "track w \u2014 webview wrapper \u2b1c (parallel, device-side)",
-      "source_file": "dev_phases.md",
-      "source_location": "L119"
-    },
-    {
-      "id": "dev_phases_verification_log",
-      "label": "Verification log",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "verification log",
-      "source_file": "dev_phases.md",
-      "source_location": "L135"
     },
     {
       "id": "lapeet_app_development_3_1_1_canonical_formatter_one_location_all_code_calls_this",
@@ -3683,6 +3599,18 @@
       "norm_label": "lapeet_app_development.md",
       "source_file": "Lapeet_app_development.md",
       "source_location": "L1"
+    },
+    {
+      "id": "lapeet_app_development_0_executive_summary_of_work_done_so_far",
+      "label": "0. Executive Summary of Work Done So Far",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Lapeeet \u2014 E-Bike Ride-Hailing P2P App \u2014 Development Plan & LIVE Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "0. executive summary of work done so far",
+      "source_file": "Lapeet_app_development.md",
+      "source_location": "L17"
     },
     {
       "id": "lapeet_app_development_12_questions_open_decisions_from_original_8_all_resolved_6_8_2_still_open",
@@ -4248,6 +4176,54 @@
       "source_location": "L1"
     },
     {
+      "id": "dev_phases",
+      "label": "dev_phases.md",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "dev_phases.md",
+      "source_file": "dev_phases.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_lapeeet_dev_phases_md_master_plan_no_skips",
+      "label": "Lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "lapeeet \u2014 dev_phases.md (master plan, no skips)",
+      "source_file": "dev_phases.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "dev_phases_live_vs_dev_separation_locked",
+      "label": "Live vs Dev separation (locked)",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "live vs dev separation (locked)",
+      "source_file": "dev_phases.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "dev_phases_open_decisions_need_your_call",
+      "label": "Open decisions (need your call)",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "open decisions (need your call)",
+      "source_file": "dev_phases.md",
+      "source_location": "L127"
+    },
+    {
       "id": "dev_phases_phase_10_rich_profile_avatar_first_last_email_done",
       "label": "Phase 10 \u2014 Rich Profile (avatar + first/last + email) \u2705 DONE",
       "_origin": "ast",
@@ -4260,6 +4236,18 @@
       "source_location": "L113"
     },
     {
+      "id": "dev_phases_phase_2_sql_js_tenant_db_onboarding_e_bikes_done",
+      "label": "Phase 2 \u2014 sql.js Tenant DB + Onboarding + E-Bikes \u2705 DONE",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 2 \u2014 sql.js tenant db + onboarding + e-bikes \u2705 done",
+      "source_file": "dev_phases.md",
+      "source_location": "L46"
+    },
+    {
       "id": "dev_phases_phase_3_webconnect_js_p2p_ride_flow_done_code_field_test_pending",
       "label": "Phase 3 \u2014 webconnect.js P2P Ride Flow \u2705 DONE (code; field test pending)",
       "_origin": "ast",
@@ -4270,6 +4258,78 @@
       "norm_label": "phase 3 \u2014 webconnect.js p2p ride flow \u2705 done (code; field test pending)",
       "source_file": "dev_phases.md",
       "source_location": "L53"
+    },
+    {
+      "id": "dev_phases_phase_5_polish_manifest_done_code_device_test_pending",
+      "label": "Phase 5 \u2014 Polish + Manifest \u2705 DONE (code; device test pending)",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 5 \u2014 polish + manifest \u2705 done (code; device test pending)",
+      "source_file": "dev_phases.md",
+      "source_location": "L70"
+    },
+    {
+      "id": "dev_phases_phase_7_github_pages_deploy_live",
+      "label": "Phase 7 \u2014 GitHub Pages Deploy \u2705 LIVE",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 7 \u2014 github pages deploy \u2705 live",
+      "source_file": "dev_phases.md",
+      "source_location": "L86"
+    },
+    {
+      "id": "dev_phases_phase_8_orbitdb_full_replacement_track_after_7_gates_each_step",
+      "label": "Phase 8 \u2014 OrbitDB Full Replacement \u2b1c TRACK (after 7; gates each step)",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "phase 8 \u2014 orbitdb full replacement \u2b1c track (after 7; gates each step)",
+      "source_file": "dev_phases.md",
+      "source_location": "L95"
+    },
+    {
+      "id": "dev_phases_risks",
+      "label": "Risks",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "risks",
+      "source_file": "dev_phases.md",
+      "source_location": "L123"
+    },
+    {
+      "id": "dev_phases_track_w_webview_wrapper_parallel_device_side",
+      "label": "Track W \u2014 WebView Wrapper \u2b1c (parallel, device-side)",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "track w \u2014 webview wrapper \u2b1c (parallel, device-side)",
+      "source_file": "dev_phases.md",
+      "source_location": "L119"
+    },
+    {
+      "id": "dev_phases_verification_log",
+      "label": "Verification log",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "db-layer.js",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "verification log",
+      "source_file": "dev_phases.md",
+      "source_location": "L135"
     },
     {
       "id": "tools_deploy_pages",
@@ -4856,6 +4916,105 @@
       "source_location": "L3"
     },
     {
+      "id": "tools_check_guard",
+      "label": "check-guard.js",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "check-guard.js",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tools_check_guard_creategate",
+      "label": "createGate",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "creategate",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L18"
+    },
+    {
+      "id": "tools_check_guard_fs",
+      "label": "fs",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "tools_check_guard_getgate",
+      "label": "getGate",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "getgate",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L19"
+    },
+    {
+      "id": "tools_check_guard_nodecrypto",
+      "label": "nodeCrypto",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "nodecrypto",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "tools_check_guard_sandbox",
+      "label": "sandbox",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "sandbox",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L26"
+    },
+    {
+      "id": "tools_check_guard_src",
+      "label": "src",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "src",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "tools_check_guard_vm",
+      "label": "vm",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "vm",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "tools_check_guard_win",
+      "label": "win",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "check-guard.js",
+      "file_type": "code",
+      "norm_label": "win",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L21"
+    },
+    {
       "id": "www_assets_js_map_layer",
       "label": "map-layer.js",
       "_origin": "ast",
@@ -5321,8 +5480,8 @@
       "id": "ref_crypto",
       "label": "ref_crypto",
       "_origin": "semantic",
-      "community": 23,
-      "community_name": "check-webauthn.js",
+      "community": 27,
+      "community_name": "check-guard.js",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_crypto",
@@ -5544,7 +5703,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1429",
+      "source_location": "L1437",
       "weight": 1.0
     },
     {
@@ -5556,7 +5715,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1430",
+      "source_location": "L1438",
       "weight": 1.0
     },
     {
@@ -5568,7 +5727,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L966",
+      "source_location": "L974",
       "weight": 1.0
     },
     {
@@ -5580,7 +5739,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1092",
+      "source_location": "L1100",
       "weight": 1.0
     },
     {
@@ -5592,7 +5751,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1201",
+      "source_location": "L1209",
       "weight": 1.0
     },
     {
@@ -5604,7 +5763,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L539",
+      "source_location": "L547",
       "weight": 1.0
     },
     {
@@ -5616,7 +5775,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L542",
+      "source_location": "L550",
       "weight": 1.0
     },
     {
@@ -5628,7 +5787,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L543",
+      "source_location": "L551",
       "weight": 1.0
     },
     {
@@ -5640,7 +5799,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L544",
+      "source_location": "L552",
       "weight": 1.0
     },
     {
@@ -5652,7 +5811,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L757",
+      "source_location": "L765",
       "weight": 1.0
     },
     {
@@ -5664,7 +5823,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L768",
+      "source_location": "L776",
       "weight": 1.0
     },
     {
@@ -5676,7 +5835,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1265",
+      "source_location": "L1273",
       "weight": 1.0
     },
     {
@@ -5688,7 +5847,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1367",
+      "source_location": "L1375",
       "weight": 1.0
     },
     {
@@ -5700,7 +5859,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1142",
+      "source_location": "L1150",
       "weight": 1.0
     },
     {
@@ -5712,7 +5871,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L260",
+      "source_location": "L264",
       "weight": 1.0
     },
     {
@@ -5724,7 +5883,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L261",
+      "source_location": "L265",
       "weight": 1.0
     },
     {
@@ -5736,7 +5895,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L736",
+      "source_location": "L744",
       "weight": 1.0
     },
     {
@@ -5748,7 +5907,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L744",
+      "source_location": "L752",
       "weight": 1.0
     },
     {
@@ -5760,7 +5919,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L671",
+      "source_location": "L679",
       "weight": 1.0
     },
     {
@@ -5772,7 +5931,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L717",
+      "source_location": "L725",
       "weight": 1.0
     },
     {
@@ -5784,7 +5943,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L719",
+      "source_location": "L727",
       "weight": 1.0
     },
     {
@@ -5796,7 +5955,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L691",
+      "source_location": "L699",
       "weight": 1.0
     },
     {
@@ -5808,7 +5967,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L711",
+      "source_location": "L719",
       "weight": 1.0
     },
     {
@@ -5820,7 +5979,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L713",
+      "source_location": "L721",
       "weight": 1.0
     },
     {
@@ -5832,7 +5991,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L707",
+      "source_location": "L715",
       "weight": 1.0
     },
     {
@@ -5844,7 +6003,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L604",
+      "source_location": "L612",
       "weight": 1.0
     },
     {
@@ -5856,7 +6015,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L605",
+      "source_location": "L613",
       "weight": 1.0
     },
     {
@@ -5868,7 +6027,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L614",
+      "source_location": "L622",
       "weight": 1.0
     },
     {
@@ -5880,7 +6039,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L659",
+      "source_location": "L667",
       "weight": 1.0
     },
     {
@@ -5916,7 +6075,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L456",
+      "source_location": "L464",
       "weight": 1.0
     },
     {
@@ -5928,7 +6087,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L469",
+      "source_location": "L477",
       "weight": 1.0
     },
     {
@@ -5940,7 +6099,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L481",
+      "source_location": "L489",
       "weight": 1.0
     },
     {
@@ -5964,7 +6123,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L377",
+      "source_location": "L385",
       "weight": 1.0
     },
     {
@@ -5976,7 +6135,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L785",
+      "source_location": "L793",
       "weight": 1.0
     },
     {
@@ -5988,7 +6147,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L786",
+      "source_location": "L794",
       "weight": 1.0
     },
     {
@@ -6000,7 +6159,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L795",
+      "source_location": "L803",
       "weight": 1.0
     },
     {
@@ -6012,7 +6171,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L809",
+      "source_location": "L817",
       "weight": 1.0
     },
     {
@@ -6024,7 +6183,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L814",
+      "source_location": "L822",
       "weight": 1.0
     },
     {
@@ -6036,7 +6195,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L841",
+      "source_location": "L849",
       "weight": 1.0
     },
     {
@@ -6048,7 +6207,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L886",
+      "source_location": "L894",
       "weight": 1.0
     },
     {
@@ -6060,7 +6219,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L891",
+      "source_location": "L899",
       "weight": 1.0
     },
     {
@@ -6072,7 +6231,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L914",
+      "source_location": "L922",
       "weight": 1.0
     },
     {
@@ -6084,7 +6243,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L915",
+      "source_location": "L923",
       "weight": 1.0
     },
     {
@@ -6096,7 +6255,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L398",
+      "source_location": "L406",
       "weight": 1.0
     },
     {
@@ -6108,7 +6267,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L626",
+      "source_location": "L634",
       "weight": 1.0
     },
     {
@@ -6120,7 +6279,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L569",
+      "source_location": "L577",
       "weight": 1.0
     },
     {
@@ -6132,7 +6291,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L330",
+      "source_location": "L338",
       "weight": 1.0
     },
     {
@@ -6456,7 +6615,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L176",
+      "source_location": "L177",
       "weight": 1.0
     },
     {
@@ -6472,8 +6631,56 @@
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_auth_layer_registerpasskey",
+      "source": "www_assets_js_auth_layer_registerinner",
       "target": "www_assets_js_auth_layer_supportreason",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L191",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_registerinner",
+      "target": "www_assets_js_auth_layer_rpid",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L193",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_registerinner",
+      "target": "www_assets_js_auth_layer_b64urlencode",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L196",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_registerinner",
+      "target": "www_assets_js_auth_layer_verifyattestation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L220",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_registerpasskey",
+      "target": "www_assets_js_auth_layer_guarded",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6485,38 +6692,14 @@
     },
     {
       "source": "www_assets_js_auth_layer_registerpasskey",
-      "target": "www_assets_js_auth_layer_rpid",
+      "target": "www_assets_js_auth_layer_registerinner",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L189",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_auth_layer_registerpasskey",
-      "target": "www_assets_js_auth_layer_b64urlencode",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L192",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_auth_layer_registerpasskey",
-      "target": "www_assets_js_auth_layer_verifyattestation",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L216",
+      "source_location": "L187",
       "weight": 1.0
     },
     {
@@ -6528,7 +6711,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L155",
+      "source_location": "L156",
       "weight": 1.0
     },
     {
@@ -6540,36 +6723,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L159",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_auth_layer_unlockwithpasskey",
+      "source": "www_assets_js_auth_layer_unlockinner",
       "target": "www_assets_js_auth_layer_supportreason",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L254",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_auth_layer_unlockwithpasskey",
-      "target": "www_assets_js_auth_layer_rpid",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L259",
-      "weight": 1.0
-    },
-    {
-      "source": "www_assets_js_auth_layer_unlockwithpasskey",
-      "target": "www_assets_js_auth_layer_b64urlencode",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6580,7 +6739,31 @@
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_auth_layer_unlockwithpasskey",
+      "source": "www_assets_js_auth_layer_unlockinner",
+      "target": "www_assets_js_auth_layer_rpid",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L267",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_unlockinner",
+      "target": "www_assets_js_auth_layer_b64urlencode",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L270",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_unlockinner",
       "target": "www_assets_js_auth_layer_b64urldecode",
       "relation": "calls",
       "_origin": "ast",
@@ -6588,11 +6771,11 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L268",
+      "source_location": "L276",
       "weight": 1.0
     },
     {
-      "source": "www_assets_js_auth_layer_unlockwithpasskey",
+      "source": "www_assets_js_auth_layer_unlockinner",
       "target": "www_assets_js_auth_layer_verifyassertion",
       "relation": "calls",
       "_origin": "ast",
@@ -6600,7 +6783,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L274",
+      "source_location": "L282",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_unlockwithpasskey",
+      "target": "www_assets_js_auth_layer_guarded",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L258",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer_unlockwithpasskey",
+      "target": "www_assets_js_auth_layer_unlockinner",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L258",
       "weight": 1.0
     },
     {
@@ -6612,7 +6819,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L283",
+      "source_location": "L291",
       "weight": 1.0
     },
     {
@@ -6624,7 +6831,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L285",
+      "source_location": "L293",
       "weight": 1.0
     },
     {
@@ -6636,7 +6843,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L298",
+      "source_location": "L306",
       "weight": 1.0
     },
     {
@@ -6648,7 +6855,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L222",
+      "source_location": "L226",
       "weight": 1.0
     },
     {
@@ -6660,7 +6867,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L231",
+      "source_location": "L235",
       "weight": 1.0
     },
     {
@@ -6672,7 +6879,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L234",
+      "source_location": "L238",
       "weight": 1.0
     },
     {
@@ -6684,7 +6891,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L238",
+      "source_location": "L242",
       "weight": 1.0
     },
     {
@@ -6696,7 +6903,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L241",
+      "source_location": "L245",
       "weight": 1.0
     },
     {
@@ -9184,6 +9391,30 @@
       "weight": 1.0
     },
     {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_deferred",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_ok",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
       "source": "tools_check_webauthn",
       "target": "tools_check_webauthn_cboruint",
       "relation": "contains",
@@ -9264,7 +9495,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L954",
+      "source_location": "L962",
       "weight": 1.0
     },
     {
@@ -9276,7 +9507,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L970",
+      "source_location": "L978",
       "weight": 1.0
     },
     {
@@ -9288,7 +9519,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "www/assets/js/app.js",
-      "source_location": "L974",
+      "source_location": "L982",
       "weight": 1.0
     },
     {
@@ -9493,6 +9724,42 @@
       "context": "import",
       "source_file": "tools/check-dist.js",
       "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "ref_fs",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "ref_vm",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "ref_crypto",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tools/check-guard.js",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -10949,6 +11216,94 @@
       "weight": 1.0
     },
     {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_creategate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_getgate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_win",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_sandbox",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_fs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_vm",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_nodecrypto",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_check_guard",
+      "target": "tools_check_guard_src",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/check-guard.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
       "source": "tools_check_mode",
       "target": "tools_check_mode_fs",
       "relation": "contains",
@@ -11308,7 +11663,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1069",
+      "source_location": "L1077",
       "weight": 1.0
     },
     {
@@ -11319,7 +11674,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1079",
+      "source_location": "L1087",
       "weight": 1.0
     },
     {
@@ -11330,7 +11685,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1141",
+      "source_location": "L1149",
       "weight": 1.0
     },
     {
@@ -11341,7 +11696,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1182",
+      "source_location": "L1190",
       "weight": 1.0
     },
     {
@@ -11352,7 +11707,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1200",
+      "source_location": "L1208",
       "weight": 1.0
     },
     {
@@ -11363,7 +11718,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1260",
+      "source_location": "L1268",
       "weight": 1.0
     },
     {
@@ -11374,7 +11729,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1412",
+      "source_location": "L1420",
       "weight": 1.0
     },
     {
@@ -11385,7 +11740,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1450",
+      "source_location": "L1458",
       "weight": 1.0
     },
     {
@@ -11396,7 +11751,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1456",
+      "source_location": "L1464",
       "weight": 1.0
     },
     {
@@ -11407,7 +11762,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L1462",
+      "source_location": "L1470",
       "weight": 1.0
     },
     {
@@ -11484,7 +11839,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L228",
+      "source_location": "L232",
       "weight": 1.0
     },
     {
@@ -11495,7 +11850,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L268",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -11506,7 +11861,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L283",
+      "source_location": "L287",
       "weight": 1.0
     },
     {
@@ -11517,7 +11872,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L318",
+      "source_location": "L326",
       "weight": 1.0
     },
     {
@@ -11528,7 +11883,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L327",
+      "source_location": "L335",
       "weight": 1.0
     },
     {
@@ -11539,7 +11894,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L341",
+      "source_location": "L349",
       "weight": 1.0
     },
     {
@@ -11550,7 +11905,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L349",
+      "source_location": "L357",
       "weight": 1.0
     },
     {
@@ -11561,7 +11916,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L353",
+      "source_location": "L361",
       "weight": 1.0
     },
     {
@@ -11572,7 +11927,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L384",
+      "source_location": "L392",
       "weight": 1.0
     },
     {
@@ -11583,7 +11938,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L393",
+      "source_location": "L401",
       "weight": 1.0
     },
     {
@@ -11594,7 +11949,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L409",
+      "source_location": "L417",
       "weight": 1.0
     },
     {
@@ -11605,7 +11960,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L451",
+      "source_location": "L459",
       "weight": 1.0
     },
     {
@@ -11616,7 +11971,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L484",
+      "source_location": "L492",
       "weight": 1.0
     },
     {
@@ -11627,7 +11982,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L547",
+      "source_location": "L555",
       "weight": 1.0
     },
     {
@@ -11638,7 +11993,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L552",
+      "source_location": "L560",
       "weight": 1.0
     },
     {
@@ -11649,7 +12004,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L581",
+      "source_location": "L589",
       "weight": 1.0
     },
     {
@@ -11660,7 +12015,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L608",
+      "source_location": "L616",
       "weight": 1.0
     },
     {
@@ -11671,7 +12026,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L617",
+      "source_location": "L625",
       "weight": 1.0
     },
     {
@@ -11682,7 +12037,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L646",
+      "source_location": "L654",
       "weight": 1.0
     },
     {
@@ -11693,7 +12048,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L663",
+      "source_location": "L671",
       "weight": 1.0
     },
     {
@@ -11704,7 +12059,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L678",
+      "source_location": "L686",
       "weight": 1.0
     },
     {
@@ -11715,7 +12070,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L682",
+      "source_location": "L690",
       "weight": 1.0
     },
     {
@@ -11726,7 +12081,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L690",
+      "source_location": "L698",
       "weight": 1.0
     },
     {
@@ -11737,7 +12092,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L705",
+      "source_location": "L713",
       "weight": 1.0
     },
     {
@@ -11748,7 +12103,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L709",
+      "source_location": "L717",
       "weight": 1.0
     },
     {
@@ -11759,7 +12114,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L715",
+      "source_location": "L723",
       "weight": 1.0
     },
     {
@@ -11770,7 +12125,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L722",
+      "source_location": "L730",
       "weight": 1.0
     },
     {
@@ -11781,7 +12136,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L733",
+      "source_location": "L741",
       "weight": 1.0
     },
     {
@@ -11792,7 +12147,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L756",
+      "source_location": "L764",
       "weight": 1.0
     },
     {
@@ -11803,7 +12158,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L778",
+      "source_location": "L786",
       "weight": 1.0
     },
     {
@@ -11814,7 +12169,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L873",
+      "source_location": "L881",
       "weight": 1.0
     },
     {
@@ -11825,7 +12180,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L906",
+      "source_location": "L914",
       "weight": 1.0
     },
     {
@@ -11836,7 +12191,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L919",
+      "source_location": "L927",
       "weight": 1.0
     },
     {
@@ -11847,7 +12202,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L938",
+      "source_location": "L946",
       "weight": 1.0
     },
     {
@@ -11858,7 +12213,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/app.js",
-      "source_location": "L960",
+      "source_location": "L968",
       "weight": 1.0
     },
     {
@@ -11880,7 +12235,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L141",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -11891,7 +12246,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L148",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
@@ -11902,7 +12257,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L154",
+      "source_location": "L155",
       "weight": 1.0
     },
     {
@@ -11913,7 +12268,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L166",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -11924,7 +12279,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L175",
+      "source_location": "L176",
       "weight": 1.0
     },
     {
@@ -11935,7 +12290,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L185",
+      "source_location": "L186",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer",
+      "target": "www_assets_js_auth_layer_registerinner",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L190",
       "weight": 1.0
     },
     {
@@ -11946,7 +12312,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L219",
+      "source_location": "L223",
       "weight": 1.0
     },
     {
@@ -11957,7 +12323,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L253",
+      "source_location": "L257",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer",
+      "target": "www_assets_js_auth_layer_unlockinner",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L261",
       "weight": 1.0
     },
     {
@@ -11968,7 +12345,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L277",
+      "source_location": "L285",
+      "weight": 1.0
+    },
+    {
+      "source": "www_assets_js_auth_layer",
+      "target": "www_assets_js_auth_layer_guarded",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "www/assets/js/auth-layer.js",
+      "source_location": "L320",
       "weight": 1.0
     },
     {
@@ -11979,7 +12367,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L312",
+      "source_location": "L334",
       "weight": 1.0
     },
     {
@@ -14176,7 +14564,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L333",
+      "source_location": "L359",
       "weight": 1.0
     },
     {
@@ -14188,7 +14576,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L334",
+      "source_location": "L360",
       "weight": 1.0
     },
     {
@@ -14200,7 +14588,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L335",
+      "source_location": "L361",
       "weight": 1.0
     },
     {
@@ -14212,7 +14600,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L336",
+      "source_location": "L362",
       "weight": 1.0
     },
     {
@@ -14224,7 +14612,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "www/assets/js/auth-layer.js",
-      "source_location": "L337",
+      "source_location": "L363",
       "weight": 1.0
     },
     {
@@ -14817,5 +15205,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6204c76ce83042da7cc21d4e9479e43d36b33412"
+  "built_at_commit": "a7f2273f2aab829c361701f89a59126f4bb88080"
 }

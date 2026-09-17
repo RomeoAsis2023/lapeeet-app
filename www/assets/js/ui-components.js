@@ -661,8 +661,7 @@
                             </div></div>
                         </div>
                         <div class="ob-step" data-step="3" style="display:none">
-                            <div class="section-title">3 · Your e-bike (drivers)</div>
-                            <p class="small text-muted">Riders can skip this step.</p>
+                            <div class="section-title">3 · Your e-bike</div>
                             <div class="form-group boxed"><div class="input-wrapper">
                                 <label class="label" for="obBrand">Brand</label>
                                 <select class="form-control" id="obBrand">${brandOpts}</select>

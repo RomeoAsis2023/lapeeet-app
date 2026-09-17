@@ -105,14 +105,14 @@
                 ? [
                     { icon: 'map-outline', color: 'primary', title: 'Book a Ride', sub: 'Pickup, dropoff, go.', screen: 'map' },
                     { icon: 'reorder-four-outline', color: 'warning', title: 'My Trips', sub: 'Ride history & receipts', screen: 'trips' },
-                    { icon: 'chatbubble-ellipses-outline', color: 'info', title: 'Messages', sub: 'Driver & rider chats', screen: 'messages' },
+                    { icon: 'chatbubble-ellipses-outline', color: 'info', title: 'Messages', sub: 'Driver & passenger chats', screen: 'messages' },
                     { icon: 'person-outline', color: 'success', title: 'My Profile', sub: 'Settings & saved places', screen: 'profile' }
                   ]
                 : [
-                    { icon: 'map-outline', color: 'primary', title: 'Ride Requests', sub: 'Nearby riders seeking pickup', screen: 'map' },
+                    { icon: 'map-outline', color: 'primary', title: 'Ride Requests', sub: 'Nearby passengers seeking pickup', screen: 'map' },
                     { icon: 'bicycle-outline', color: 'success', title: 'My E-Bikes', sub: 'Fleet, capacity, battery', screen: 'ebike' },
                     { icon: 'reorder-four-outline', color: 'warning', title: 'Drives', sub: 'Trip history & earnings', screen: 'trips' },
-                    { icon: 'chatbubble-ellipses-outline', color: 'info', title: 'Messages', sub: 'Rider support chat', screen: 'messages' }
+                    { icon: 'chatbubble-ellipses-outline', color: 'info', title: 'Messages', sub: 'Passenger support chat', screen: 'messages' }
                   ];
             const statusRows = [
                 { id: 'p2pStatus',  icon: 'globe-outline',       label: 'P2P Mesh',         initial: 'Initialising...' },
@@ -133,7 +133,7 @@
                             <div>
                                 <span class="badge badge-${isRider ? 'primary' : 'success'} role-badge role-${isRider ? 'rider' : 'driver'}">
                                     <ion-icon name="${isRider ? 'person-outline' : 'bicycle-outline'}"></ion-icon>
-                                    ${isRider ? 'Rider Mode' : 'Driver Mode'}
+                                    ${isRider ? 'Passenger Mode' : 'Driver Mode'}
                                 </span>
                                 <h2 class="home-title mt-2 mb-1 font-weight-bold">
                                     ${isRider ? 'Where to today?' : 'Ready to drive?'}
@@ -456,7 +456,7 @@
             <div class="section mt-2">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-subtitle">${this.currentRole === 'RIDER' ? 'Rider' : 'Driver'} Tenant</h6>
+                        <h6 class="card-subtitle">${this.currentRole === 'RIDER' ? 'Passenger' : 'Driver'} Tenant</h6>
                         <h5 class="card-title">My Trips</h5>
                     </div>
                 </div>
@@ -570,10 +570,10 @@
                     </div>
                     <div class="in">
                         <h3 class="name">${this._escapeHtml(display)}</h3>
-                        <h5 class="subtext">${this.currentRole === 'RIDER' ? 'Rider' : 'E-Bike Driver'} Mode</h5>
+                        <h5 class="subtext">${this.currentRole === 'RIDER' ? 'Passenger' : 'E-Bike Driver'} Mode</h5>
                         <span class="role-badge ${this.currentRole === 'RIDER' ? 'role-rider' : 'role-driver'}" style="margin-top:8px;">
                             <ion-icon name="${this.currentRole === 'RIDER' ? 'person-outline' : 'bicycle-outline'}"></ion-icon>
-                            ${this.currentRole === 'RIDER' ? 'Rider Account' : 'Driver Tenant'}
+                            ${this.currentRole === 'RIDER' ? 'Passenger Account' : 'Driver Tenant'}
                         </span>
                     </div>
                 </div>
@@ -661,10 +661,10 @@
                             <div class="section-title">1 · Choose your role</div>
                             <input type="hidden" id="obRole" value="RIDER">
                             <div class="role-pick" id="rolePickGroup" role="radiogroup" aria-label="Choose your role">
-                                <div class="role-card" role="radio" tabindex="0" data-role="RIDER" aria-checked="true" aria-label="Register as rider">
+                                <div class="role-card" role="radio" tabindex="0" data-role="RIDER" aria-checked="true" aria-label="Register as passenger">
                                     <span class="role-check"><ion-icon name="checkmark"></ion-icon></span>
-                                    <img src="assets/img/marker_user.svg" alt="Rider marker">
-                                    <div class="role-card-title">Rider</div>
+                                    <img src="assets/img/marker_user.svg" alt="Passenger marker">
+                                    <div class="role-card-title">Passenger</div>
                                     <div class="role-card-sub">Book e-bike rides near you</div>
                                 </div>
                                 <div class="role-card" role="radio" tabindex="0" data-role="DRIVER" aria-checked="false" aria-label="Register as driver">
@@ -688,7 +688,7 @@
                             <div class="form-group boxed"><div class="input-wrapper">
                                 <label class="label" for="obPhone">Mobile number (required)</label>
                                 <input type="tel" class="form-control" id="obPhone" placeholder="09xxxxxxxxx or +63 ..." maxlength="20" autocomplete="tel">
-                                <small class="form-text" style="color:var(--lapeeet-text-mute);">Philippine mobile. Stored on this device only — shared with your matched driver/rider only.</small>
+                                <small class="form-text" style="color:var(--lapeeet-text-mute);">Philippine mobile. Stored on this device only — shared with your matched driver/passenger only.</small>
                             </div></div>
                         </div>
                         <div class="ob-step" data-step="3" style="display:none">
@@ -1078,11 +1078,11 @@
             $('#roleIcon').attr('name', this.currentRole === 'RIDER' ? 'person-outline' : 'bicycle-outline');
             $('#sidebarRole').html(
                 `<ion-icon name="${this.currentRole === 'RIDER' ? 'person-outline' : 'bicycle-outline'}"></ion-icon> ` +
-                (this.currentRole === 'RIDER' ? 'Rider' : 'Driver')
+                (this.currentRole === 'RIDER' ? 'Passenger' : 'Driver')
             );
             if (this.onRoleChange) this.onRoleChange(this.currentRole);
             if (this.currentScreen === SCREENS.HOME || this.currentScreen === SCREENS.PROFILE) this.navigate(this.currentScreen);
-            this.showToast(`Switched to ${this.currentRole === 'RIDER' ? 'Rider' : 'Driver'} Mode`, 'info');
+            this.showToast(`Switched to ${this.currentRole === 'RIDER' ? 'Passenger' : 'Driver'} Mode`, 'info');
         },
 
         updateSidebar({ name, peerId, role, p2pStatus } = {}) {

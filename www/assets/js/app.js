@@ -666,7 +666,7 @@
                 const b = r.body;
                 return `<li><div class="d-flex justify-content-between align-items-center w-100">
                     <div><strong>${Number(b.distance_km).toFixed(1)} km · ${LapeeetUI.formatCurrency(b.fare_php || 0)}</strong>
-                    <div class="small text-muted">${b.capacity} seat${b.capacity > 1 ? 's' : ''} · rider ${this._shortId(r.from)}</div></div>
+                    <div class="small text-muted">${b.capacity} seat${b.capacity > 1 ? 's' : ''} · passenger ${this._shortId(r.from)}</div></div>
                     <div><button class="btn btn-sm btn-success mr-1" data-req-accept="${rideId}">Accept</button>` +
                     `<button class="btn btn-sm btn-outline-secondary" data-req-reject="${rideId}">Reject</button></div>
                 </div></li>`;
@@ -699,7 +699,7 @@
             } catch (e) {}
             LapeeetP2P.activeRide = { ride_id: rideId, peer_identity: rec.from, role: 'DRIVER' };
             LapeeetP2P.rideRequests.delete(rideId);
-            LapeeetUI.showToast('Ride accepted — rider notified', 'success');
+            LapeeetUI.showToast('Ride accepted — passenger notified', 'success');
             this._chatSelected = rec.from;
             this._renderDriverRequests();
             this._renderActiveRide();
@@ -926,7 +926,7 @@
                     break;
                 case T.RIDER_INFO:
                     if (!evt.isSelf) {
-                        LapeeetUI.showToast(`Rider: ${evt.body.name || 'guest'}`.trim(), 'info');
+                        LapeeetUI.showToast(`Passenger: ${evt.body.name || 'guest'}`.trim(), 'info');
                         try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'RIDER_INFO', from_id: evt.from, body: { name: evt.body.name || '' } }, ''); } catch (e) {}
                     }
                     break;
@@ -1374,7 +1374,7 @@
             };
             const pickRole = (role) => {
                 syncRoleCards(role);
-                // Role change reshapes the flow: leaving step 3 as a rider
+                // Role change reshapes the flow: leaving step 3 as a passenger
                 // moves forward to step 4; everything else just re-renders.
                 if (step === 3 && role !== 'DRIVER') step = 4;
                 show();

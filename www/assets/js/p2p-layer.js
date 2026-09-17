@@ -380,7 +380,7 @@
                 tLng: loc ? trunc3(loc.lng) : undefined,
                 capacity, brand, model
             });
-            // Exact live location goes ONLY to the matched rider (direct).
+            // Exact live location goes ONLY to the matched passenger (direct).
             try {
                 if (this.activeRide && this.activeRide.peer_identity && loc) {
                     this.sendDirect(this.activeRide.peer_identity, MSG_TYPES.LOCATION_UPDATE, {

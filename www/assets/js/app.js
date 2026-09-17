@@ -38,7 +38,7 @@
                 },
                 onScreenChange: (s) => {
                     console.debug('[APP] Screen →', s);
-                    try { document.body.classList.toggle('auth-mode', s === 'onboarding' || s === 'lock'); } catch (e) {}
+                    try { document.body.classList.toggle('auth-mode', s === 'onboarding' || s === 'lock' || s === 'recover'); } catch (e) {}
                     if (s === 'map') {
                         if (!LapeeetMap.initialized) this._initMapDeferred();
                         else {
@@ -56,6 +56,7 @@
                     if (s === 'messages') this._bindMessagesScreen();
                     if (s === 'trips') this._bindTripsScreen();
                     if (s === 'lock') this._bindLockScreen();
+                    if (s === 'recover') this._bindRecoverScreen();
                     if (s === 'onboarding') this._bindOnboardingScreen();
                 }
             });
@@ -130,6 +131,7 @@
             // 5b. REGISTRATION GATE (Phase 9): install navigate guard, then
             // redirect first-run users to onboarding and locked users to lock.
             this._installNavGuard();
+            $('#btnLogout').off('click').on('click', () => this._doLogout());
             if (!this._isRegistered()) {
                 LapeeetUI.navigate('onboarding');
             } else if (this._needsUnlock()) {
@@ -173,11 +175,12 @@
         },
 
         _gateTarget(screen) {
+            const FREE = ['onboarding', 'lock', 'recover'];
             if (!this._isRegistered()) {
-                return (screen === 'onboarding') ? null : 'onboarding';
+                return (FREE.indexOf(screen) !== -1) ? null : 'onboarding';
             }
             if (this._needsUnlock()) {
-                return (screen === 'lock') ? null : 'lock';
+                return (screen === 'lock' || screen === 'recover') ? null : 'lock';
             }
             return (screen === 'lock') ? 'home' : null; // unlocked users never see lock
         },
@@ -222,7 +225,64 @@
             });
         },
 
+        _bindRecoverScreen() {
+            const errBox = $('#recoverError');
+            $('#btnRecoverImport').off('click').on('click', () => $('#fileRecoverDb').click());
+            $('#fileRecoverDb').off('change').on('change', (e) => {
+                const f = e.target.files && e.target.files[0];
+                if (!f) return;
+                errBox.hide();
+                const rd = new FileReader();
+                rd.onload = async () => {
+                    try {
+                        await LapeeetDB.importBinary(new Uint8Array(rd.result));
+                        // Passkeys are device-bound: a backup's enrollment can never
+                        // verify on a new device, so clear it and let the user re-enroll.
+                        try { LapeeetDB.setPasskey(''); } catch (err) {}
+                        this._unlocked = true;
+                        const prof = LapeeetDB.getProfile() || {};
+                        LapeeetUI.updateSidebar({ name: prof.name || 'Guest User' });
+                        LapeeetUI.showToast('Account recovered — add a fresh passkey in Settings', 'success');
+                        LapeeetUI.navigate('home');
+                    } catch (err) {
+                        errBox.text('Recovery failed: ' + (err.message || err)).show();
+                    }
+                    e.target.value = '';
+                };
+                rd.onerror = () => errBox.text('Could not read file').show();
+                rd.readAsArrayBuffer(f);
+            });
+            $('#btnRecoverFresh').off('click').on('click', async () => {
+                try { await LapeeetDB.wipe(); } catch (e) {}
+                try { localStorage.removeItem('lapeeet::role'); } catch (e) {}
+                window.location.reload();
+            });
+            $('#btnRecoverBack').off('click').on('click', () => {
+                if (!this._isRegistered()) LapeeetUI.navigate('onboarding');
+                else if (this._needsUnlock()) LapeeetUI.navigate('lock');
+                else LapeeetUI.navigate('home');
+            });
+        },
+
+        /* ---------- LOGOUT (session lock) ---------- */
+
+        _doLogout() {
+            this._unlocked = false;
+            try {
+                const pk = (window.LapeeetDB && LapeeetDB.initialized) ? LapeeetDB.getPasskey() : null;
+                if (pk && pk !== 'SKIP') {
+                    try { $('#sidebarPanel').modal('hide'); } catch (e) {}
+                    LapeeetUI.showToast('Locked — passkey required', 'info');
+                    LapeeetUI.navigate('lock');
+                    return;
+                }
+            } catch (e) {}
+            try { $('#sidebarPanel').modal('hide'); } catch (e) {}
+            LapeeetUI.showToast('No passkey on this device — add one in Settings to enable lock', 'warning');
+        },
+
         _bindLockScreen() {
+            $('#btnLockRecover').off('click').on('click', () => LapeeetUI.navigate('recover'));
             $('#btnUnlock').off('click').on('click', async () => {
                 const errBox = $('#lockError');
                 errBox.hide();
@@ -1080,6 +1140,7 @@
         },
 
         _bindProfileScreen() {
+            $('#btnProfileLogout').off('click').on('click', () => this._doLogout());
             $('#btnSaveProfile').off('click').on('click', () => {
                 try {
                     const phoneRaw = ($('#profilePhone').val() || '').trim();

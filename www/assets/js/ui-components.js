@@ -30,7 +30,8 @@
         EBIKE:      'ebike',
         DATA:       'data',
         SETTINGS:   'settings',
-        LOCK:       'lock'
+        LOCK:       'lock',
+        RECOVER:    'recover'
     });
 
     const LapeeetUI = {
@@ -93,6 +94,7 @@
                 case SCREENS.DATA:       return this._screenData();
                 case SCREENS.SETTINGS:   return this._screenSettings();
                 case SCREENS.LOCK:       return this._screenLock();
+                case SCREENS.RECOVER:    return this._screenRecover();
                 default:                 return this._screenHome();
             }
         },
@@ -601,6 +603,11 @@
                                 Save Profile
                             </button>
                         </div>
+                        <div class="form-button-group mt-2">
+                            <button id="btnProfileLogout" type="button" class="btn btn-outline-secondary btn-block">
+                                <ion-icon name="log-out-outline"></ion-icon> Log out
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>`;
@@ -731,7 +738,37 @@
                             </button>
                         </div>
                         <div class="text-center mt-3">
+                            <a href="javascript:;" id="btnLockRecover" class="small text-primary d-block mb-2">Recover from a backup file</a>
                             <a href="javascript:;" id="btnLockErase" class="small" style="color:#ff9aa2">Lost access? Erase this device and start over</a>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        },
+        _screenRecover() {
+            return `
+            <div class="auth-page">
+                <img src="assets/img/logo-full.png" alt="Lapeeet" class="auth-logo">
+                <p class="auth-tagline">Locked out? Your account lives in your backup file</p>
+                <div class="card auth-card">
+                    <div class="card-body">
+                        <div class="auth-icon-ring"><ion-icon name="key-outline"></ion-icon></div>
+                        <h5 class="auth-title">Recover Account</h5>
+                        <p class="auth-sub">Lapeeet has no passwords and no servers — a backup file <em>is</em> your recovery key</p>
+                        <p class="card-text small text-danger text-center" id="recoverError" style="display:none"></p>
+                        <div class="form-button-group">
+                            <button id="btnRecoverImport" type="button" class="btn btn-primary btn-block shadowed">
+                                <ion-icon name="cloud-upload-outline"></ion-icon> Restore from Backup File
+                            </button>
+                            <input type="file" id="fileRecoverDb" accept=".db,.sqlite,.sqlite3" style="display:none">
+                        </div>
+                        <div class="form-button-group mt-2">
+                            <button id="btnRecoverFresh" type="button" class="btn btn-outline-secondary btn-block">
+                                No backup — start fresh
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="javascript:;" id="btnRecoverBack" class="small text-muted">Back</a>
                         </div>
                     </div>
                 </div>

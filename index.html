@@ -32943,16 +32943,32 @@ module.exports = L.Routing = {
             const challenge = new Uint8Array(32);
             crypto.getRandomValues(challenge);
             this._pendingChallenge = b64urlEncode(challenge);
+            const normB64 = (s) => String(s || '').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
-            const assertion = await navigator.credentials.get({
+            const tryGet = (allow) => navigator.credentials.get({
                 publicKey: {
                     challenge,
                     rpId,
-                    allowCredentials: [{ type: 'public-key', id: b64urlDecode(enrolled.credIdB64) }],
+                    allowCredentials: allow,
                     userVerification: 'preferred',
                     timeout: 60000
                 }
             });
+
+            let assertion;
+            try {
+                // Fast path: the exact enrolled credential.
+                assertion = await tryGet([{ type: 'public-key', id: b64urlDecode(enrolled.credIdB64) }]);
+            } catch (e) {
+                if (!(e && e.name === 'NotAllowedError')) throw e;
+                // Fallback: discoverable flow — let the user pick any resident
+                // passkey for this site, then match it against the enrollment.
+                assertion = await tryGet([]);
+                const picked = assertion && assertion.id ? normB64(assertion.id) : '';
+                if (!picked || picked !== normB64(enrolled.credIdB64)) {
+                    throw new Error('That passkey is not enrolled on this device');
+                }
+            }
             if (!assertion) throw new Error('No assertion returned');
             return this._verifyAssertion(assertion, enrolled, rpId);
         },
@@ -35406,6 +35422,7 @@ module.exports = L.Routing = {
                     <ul class="listview flush transparent simple-listview">
                         <li>Passkey <strong id="settingsPasskeyState">checking…</strong></li>
                         <li>Device PIN <strong id="settingsPinState">checking…</strong></li>
+                        <li>Auth setup <strong id="settingsAuthDiag" class="small">checking…</strong></li>
                     </ul>
                     <div class="form-button-group mt-2">
                         <button id="btnPasskeyAdd" type="button" class="btn btn-primary btn-block shadowed">
@@ -35781,6 +35798,16 @@ module.exports = L.Routing = {
                 } catch (e) { el.text('—'); }
             };
             refreshPin();
+            const diag = $('#settingsAuthDiag');
+            if (diag.length) {
+                try {
+                    const parts = [];
+                    parts.push('secure=' + (window.isSecureContext ? 'yes' : 'NO'));
+                    parts.push('host=' + (window.location.hostname || '(none — file?)'));
+                    parts.push('webauthn=' + (window.PublicKeyCredential ? 'yes' : 'NO'));
+                    diag.text(parts.join(' · '));
+                } catch (e) { diag.text('—'); }
+            }
             $('#btnPinSet').off('click').on('click', async () => {
                 const w0 = $('#pinCurWrap'), w1 = $('#pinSetWrap'), w2 = $('#pinSetWrap2');
                 const existing = (() => { try { return LapeeetDB.getPin(); } catch (e) { return null; } })();

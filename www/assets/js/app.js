@@ -214,7 +214,7 @@
                     LapeeetDB.setPasskey(rec);
                     LapeeetUI.showToast('Passkey enrolled', 'success');
                     refresh();
-                } catch (e) { LapeeetUI.showToast('Passkey failed: ' + (e.message || e), 'danger'); }
+                } catch (e) { LapeeetUI.showToast('Passkey failed: ' + LapeeetAuth.friendlyError(e, 'create'), 'danger'); }
             });
             $('#btnPasskeyRemove').off('click').on('click', () => {
                 try {
@@ -293,7 +293,7 @@
                     LapeeetUI.showToast('Unlocked — welcome back', 'success');
                     LapeeetUI.navigate('home');
                 } catch (e) {
-                    errBox.text('Unlock failed: ' + (e.message || e)).show();
+                    errBox.text('Unlock failed: ' + LapeeetAuth.friendlyError(e, 'unlock')).show();
                 }
             });
             $('#btnLockErase').off('click').on('click', () => {
@@ -1397,7 +1397,7 @@
                     $('#obPasskeyState').text('Passkey created on this device.');
                     LapeeetUI.showToast('Passkey created', 'success');
                 } catch (e) {
-                    $('#obPasskeyState').text('Could not create passkey: ' + (e.message || e));
+                    $('#obPasskeyState').text('Could not create passkey: ' + LapeeetAuth.friendlyError(e, 'create'));
                     btn.prop('disabled', false);
                 }
             });

@@ -1,8 +1,8 @@
 {
   "www/assets/js/app.js": {
-    "mtime": 1789642582.4800804,
-    "seen": 1789642587.9476619,
-    "ast_hash": "0cef9424387ddede897c71fcdb3c10d0",
+    "mtime": 1789644480.768655,
+    "seen": 1789644485.7361343,
+    "ast_hash": "f28a6295b68a9c1acb238223023cd886",
     "semantic_hash": ""
   },
   "www/assets/js/base.js": {
@@ -138,15 +138,27 @@
     "semantic_hash": ""
   },
   "www/assets/js/auth-layer.js": {
-    "mtime": 1789639302.8094437,
-    "seen": 1789639307.9650376,
-    "ast_hash": "cabda58205f6bf523f85ed285144319b",
+    "mtime": 1789644460.3635833,
+    "seen": 1789644466.0677924,
+    "ast_hash": "75dbe38563300a1dfb84ad3547384c6d",
     "semantic_hash": ""
   },
   "tools/check-auth.js": {
-    "mtime": 1789639565.34766,
-    "seen": 1789639569.7843735,
-    "ast_hash": "d636d2bd5a1f097d75b8a0cb2952ff6e",
+    "mtime": 1789644487.688404,
+    "seen": 1789644493.087985,
+    "ast_hash": "7c30be57cbf53e7c5caf91ff2b422520",
+    "semantic_hash": ""
+  },
+  "tools/check-webauthn.js": {
+    "mtime": 1789644392.455975,
+    "seen": 1789644397.4459333,
+    "ast_hash": "1cca2c198c7389d2ec6c69f3279b5d3b",
+    "semantic_hash": ""
+  },
+  "tools/check-wiring.js": {
+    "mtime": 1789644443.0428324,
+    "seen": 1789644447.7037048,
+    "ast_hash": "62dad832f36931460f4d5f27cd89cdc8",
     "semantic_hash": ""
   }
 }

@@ -74,4 +74,13 @@ ok('authdata attested parse', p2.credId.length === 16 && p2.signCount === 7 &&
   p2.coseKey['-2'].length === 32 && p2.coseKey[3] === -7);
 ok('authdata rejects short', (() => { try { A._parseAuthData(new Uint8Array(10)); return false; } catch (e) { return true; } })());
 
+// friendlyError mapping (pure, no browser needed)
+const fe = (n) => A.friendlyError({ name: n, message: 'raw-' + n }, 'create');
+ok('NotAllowed guides to screen lock', /screen lock/.test(fe('NotAllowedError')));
+ok('SecurityError guides to https', /https/.test(fe('SecurityError')));
+ok('NotSupportedError guides browser', /Chrome/.test(fe('NotSupportedError')));
+ok('InvalidStateError mentions retry', /retry/.test(fe('InvalidStateError')));
+ok('AbortError says cancelled', /cancelled/.test(A.friendlyError({ name: 'AbortError' }, 'unlock')));
+ok('unknown passes message through', A.friendlyError({ name: 'Weird', message: 'raw-Weird' }) === 'raw-Weird');
+
 process.exit(fails ? 1 : 0);

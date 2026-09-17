@@ -307,7 +307,29 @@
             return enrolled;
         },
 
-        /* ---------- test-exposed pure helpers ---------- */
+        /* ---------- error mapping (raw DOMExceptions confuse users) ---------- */
+
+        friendlyError(e, ceremony) {
+            const name = (e && e.name) || '';
+            const where = ceremony === 'unlock' ? 'unlock' : 'create';
+            if (name === 'NotAllowedError') {
+                return 'Passkey ' + where + ' was cancelled or timed out. ' +
+                    'If no fingerprint/face prompt appeared, set up a device screen lock first, then retry.';
+            }
+            if (name === 'SecurityError') {
+                return 'Browser blocked the passkey: open the hosted https page (GitHub Pages link), not a local file.';
+            }
+            if (name === 'NotSupportedError') {
+                return 'This browser or authenticator cannot do passkeys — update it or try Chrome, Edge, or Safari.';
+            }
+            if (name === 'InvalidStateError') {
+                return 'Authenticator is busy or a passkey already exists here — retry, or remove it first.';
+            }
+            if (name === 'AbortError') {
+                return 'Passkey ' + where + ' cancelled.';
+            }
+            return (e && e.message) || String(e);
+        },
         _b64urlEncode: b64urlEncode,
         _b64urlDecode: b64urlDecode,
         _cborDecode: cborDecode,

@@ -8,7 +8,7 @@
   "6": "build-single.py",
   "7": "p2p-layer.js",
   "8": "call-layer.js",
-  "9": "check-mode.js",
+  "9": "ref_fs",
   "10": "Lapeeet — dev_phases.md (master plan, no skips)",
   "11": "3.1 Official Currency — Philippine Peso `₱ PHP`",
   "12": "Lapeeet — E-Bike Ride-Hailing P2P App — Development Plan & LIVE Checklist",
@@ -22,8 +22,8 @@
   "20": "deploy-pages.ps1",
   "21": "auth-layer.js",
   "22": "check-auth.js",
-  "23": "_bindCapacityDropdown",
-  "24": "check-p2p.js",
-  "25": "check-db.js",
-  "26": "check-dist.js"
+  "23": "check-webauthn.js",
+  "24": "check-mode.js",
+  "25": "check-wiring.js",
+  "26": "check-p2p.js"
 }

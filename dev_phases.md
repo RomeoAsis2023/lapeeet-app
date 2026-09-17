@@ -110,6 +110,12 @@
 - [x] 9.3 Registration gate (`_isRegistered` name+valid mobile → onboarding lock; `_needsUnlock` → lock screen; nav guard; erase-and-restart hatch); onboarding 5 steps (role → profile+required PH mobile → ebike → passkey create/skip → confirm); profile phone validation; Settings Security card (add/replace/remove passkey); full-page auth UI (logo-full.png hero, step dots, auth-mode shell hides tab bar)
 - [ ] 9.4 FIELD TEST: real fingerprint/face enrollment + unlock on Pages URL (cannot run in Node); then `?mode=` + gate interplay on phone
 
+## Phase 10 — Rich Profile (avatar + first/last + email) ✅ DONE
+
+- [x] 10.1 `my_profile` gains `first_name/last_name/email` (SCHEMA + guarded ALTERs); `displayName()` (first+last → legacy name); legacy `name` auto-synced on edit
+- [x] 10.2 `processAvatar()` (256px square center-crop JPEG); tap-to-change avatar on Profile header; onboarding collects first/last; all name consumers (sidebar, lock, HELLO, RIDER_INFO) use `displayName()`; email format + phone re-validated on save
+- [x] 10.3 Harness 26/26 (`tools/check-db.js` incl. real `saveProfile`/`displayName` runs); rebuild + redeploy
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

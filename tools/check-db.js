@@ -63,6 +63,10 @@ const VL = path.join(__dirname, '..', 'www', 'assets', 'vendor-live');
   // Phase 9: passkey column present on fresh schema.
   const cols = db2.exec('PRAGMA table_info(my_profile)')[0].values.map(r => r[1]);
   console.log((cols.includes('passkey_json') ? 'PASS' : 'FAIL') + ' - my_profile.passkey_json column');
+  // Rich profile columns (first/last/email/avatar).
+  ['first_name', 'last_name', 'email'].forEach(c => {
+    console.log((cols.includes(c) ? 'PASS' : 'FAIL') + ' - my_profile.' + c + ' column');
+  });
   ok('passkey set/get round-trip', () => {
     db2.run('UPDATE my_profile SET passkey_json = ? WHERE id = 1', ['{"credIdB64":"abc"}']);
     const r = db2.exec("SELECT passkey_json FROM my_profile WHERE id = 1")[0].values[0][0];
@@ -84,4 +88,38 @@ const VL = path.join(__dirname, '..', 'www', 'assets', 'vendor-live');
   catch (e) { secondOk = /duplicate/i.test(e.message); }
   console.log((secondOk ? 'PASS' : 'FAIL') + ' - repeat migration safely rejected');
   db.close(); db2.close(); old.close();
+
+  // Drive the REAL db-layer.js saveProfile/displayName (vm + stubbed browser env).
+  const vm = require('vm');
+  const dblSrc = fs.readFileSync(path.join(__dirname, '..', 'www', 'assets', 'js', 'db-layer.js'), 'utf8');
+  const win = {};
+  const sandbox = {
+    window: win, console,
+    localStorage: { getItem: () => null, setItem: () => {}, removeItem: () => {} },
+    setTimeout: (fn) => 0, clearTimeout: () => {},
+  };
+  sandbox.window = sandbox;
+  sandbox.global = sandbox;
+  vm.createContext(sandbox);
+  vm.runInContext(dblSrc, sandbox);
+  const DBL = sandbox.LapeeetDB;
+  DBL.SQL = SQL;
+  DBL.db = new SQL.Database();
+  DBL.db.exec(schema);
+  DBL.db.exec('INSERT OR IGNORE INTO me(id) VALUES (1)');
+  DBL.db.exec('INSERT OR IGNORE INTO my_profile(id) VALUES (1)');
+  DBL.initialized = true;
+  const t = (name, cond) => console.log((cond ? 'PASS' : 'FAIL') + ' - ' + name);
+  t('displayName empty when blank', DBL.displayName() === '');
+  DBL.saveProfile({ first_name: 'Juan', last_name: 'Dela Cruz', email: 'juan@example.com', phone: '+639171234567' });
+  t('displayName joins first+last', DBL.displayName() === 'Juan Dela Cruz');
+  t('legacy name synced', DBL.getProfile().name === 'Juan Dela Cruz');
+  t('email stored', DBL.getProfile().email === 'juan@example.com');
+  DBL.saveProfile({ phone: '+639999999999' });
+  t('partial patch keeps names', DBL.displayName() === 'Juan Dela Cruz' && DBL.getProfile().phone === '+639999999999');
+  DBL.saveProfile({ avatar_url: 'data:image/jpeg;base64,AAA' });
+  t('avatar stored', DBL.getProfile().avatar_url === 'data:image/jpeg;base64,AAA');
+  // Legacy single-name profile still displays.
+  DBL.db.run("UPDATE my_profile SET first_name = '', last_name = '', name = 'Old Name' WHERE id = 1");
+  t('legacy name fallback', DBL.displayName() === 'Old Name');
 })().catch(e => { console.error('HARNESS FAIL:', e.message); process.exit(1); });

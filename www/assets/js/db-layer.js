@@ -76,7 +76,10 @@
         name TEXT DEFAULT '',
         phone TEXT DEFAULT '',
         avatar_url TEXT DEFAULT '',
-        passkey_json TEXT DEFAULT ''
+        passkey_json TEXT DEFAULT '',
+        first_name TEXT DEFAULT '',
+        last_name TEXT DEFAULT '',
+        email TEXT DEFAULT ''
     );
     CREATE TABLE IF NOT EXISTS my_ebikes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -175,9 +178,13 @@
                 this.db = new this.SQL.Database();
             }
             this.db.exec(SCHEMA);
-            // Phase 9 migration: passkey column on pre-existing tenant DBs.
+            // Migrations for pre-existing tenant DBs (each guarded; repeat-safe).
             try { this.db.exec('ALTER TABLE my_profile ADD COLUMN passkey_json TEXT DEFAULT ' + "''"); }
             catch (e) { /* column already exists — ignore */ }
+            ['first_name', 'last_name', 'email'].forEach(col => {
+                try { this.db.exec(`ALTER TABLE my_profile ADD COLUMN ${col} TEXT DEFAULT ''`); }
+                catch (e) { /* already exists — ignore */ }
+            });
             // Ensure singleton rows exist.
             this.db.exec("INSERT OR IGNORE INTO me(id) VALUES (1)");
             this.db.exec("INSERT OR IGNORE INTO my_profile(id) VALUES (1)");
@@ -245,11 +252,26 @@
                 name: patch.name !== undefined ? patch.name : (cur.name || ''),
                 phone: patch.phone !== undefined ? patch.phone : (cur.phone || ''),
                 avatar_url: patch.avatar_url !== undefined ? patch.avatar_url : (cur.avatar_url || ''),
-                passkey_json: patch.passkey_json !== undefined ? patch.passkey_json : (cur.passkey_json || '')
+                passkey_json: patch.passkey_json !== undefined ? patch.passkey_json : (cur.passkey_json || ''),
+                first_name: patch.first_name !== undefined ? patch.first_name : (cur.first_name || ''),
+                last_name: patch.last_name !== undefined ? patch.last_name : (cur.last_name || ''),
+                email: patch.email !== undefined ? patch.email : (cur.email || '')
             };
-            this._run('UPDATE my_profile SET name = ?, phone = ?, avatar_url = ?, passkey_json = ? WHERE id = 1',
-                [next.name, next.phone, next.avatar_url, next.passkey_json]);
+            // Keep legacy display name in sync when first/last are edited.
+            if (patch.first_name !== undefined || patch.last_name !== undefined) {
+                const full = (next.first_name + ' ' + next.last_name).trim();
+                if (full) next.name = full;
+            }
+            this._run('UPDATE my_profile SET name = ?, phone = ?, avatar_url = ?, passkey_json = ?, first_name = ?, last_name = ?, email = ? WHERE id = 1',
+                [next.name, next.phone, next.avatar_url, next.passkey_json, next.first_name, next.last_name, next.email]);
             return next;
+        },
+        /** Best display name: first+last, else legacy name, else ''. */
+        displayName() {
+            this._needInit();
+            const p = this.getProfile() || {};
+            const full = ((p.first_name || '') + ' ' + (p.last_name || '')).trim();
+            return full || (p.name || '').trim() || '';
         },
         /** Enrolled passkey record object, 'SKIP', or null. */
         getPasskey() {
@@ -426,6 +448,37 @@
                         canvas.width = w;
                         canvas.height = h;
                         canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        URL.revokeObjectURL(url);
+                        resolve(canvas.toDataURL('image/jpeg', QUALITY));
+                    } catch (e) { URL.revokeObjectURL(url); reject(e); }
+                };
+                img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Could not read image')); };
+                img.src = url;
+            });
+        },
+
+        /* ---------- AVATAR PIPELINE (256px square center-crop, JPEG q0.85) ---------- */
+        processAvatar(file) {
+            const SIZE = 256;
+            const QUALITY = 0.85;
+            return new Promise((resolve, reject) => {
+                if (!file || !file.type || file.type.indexOf('image/') !== 0) {
+                    reject(new Error('Not an image file'));
+                    return;
+                }
+                const url = URL.createObjectURL(file);
+                const img = new Image();
+                img.onload = () => {
+                    try {
+                        const w = img.naturalWidth || img.width;
+                        const h = img.naturalHeight || img.height;
+                        const side = Math.min(w, h);
+                        const sx = Math.round((w - side) / 2);
+                        const sy = Math.round((h - side) / 2);
+                        const canvas = document.createElement('canvas');
+                        canvas.width = SIZE;
+                        canvas.height = SIZE;
+                        canvas.getContext('2d').drawImage(img, sx, sy, side, side, 0, 0, SIZE, SIZE);
                         URL.revokeObjectURL(url);
                         resolve(canvas.toDataURL('image/jpeg', QUALITY));
                     } catch (e) { URL.revokeObjectURL(url); reject(e); }

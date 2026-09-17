@@ -117,8 +117,7 @@
             let sidebarName = 'Guest User';
             try {
                 if (LapeeetDB.initialized) {
-                    const prof = LapeeetDB.getProfile();
-                    if (prof && prof.name) sidebarName = prof.name;
+                    sidebarName = LapeeetDB.displayName() || sidebarName;
                 }
             } catch (e) { /* keep default */ }
             LapeeetUI.updateSidebar({
@@ -159,8 +158,9 @@
             try {
                 if (!(window.LapeeetDB && LapeeetDB.initialized)) return false;
                 const p = LapeeetDB.getProfile() || {};
-                return !!(p.name && p.name.trim() &&
-                    window.LapeeetAuth && LapeeetAuth.isValidPHMobile(p.phone));
+                const named = !!(((p.first_name || '').trim() || (p.name || '').trim()));
+                return named &&
+                    !!(window.LapeeetAuth && LapeeetAuth.isValidPHMobile(p.phone));
             } catch (e) { return false; }
         },
 
@@ -210,7 +210,7 @@
             $('#btnPasskeyAdd').off('click').on('click', async () => {
                 try {
                     const prof = LapeeetDB.getProfile();
-                    const rec = await LapeeetAuth.registerPasskey({ name: prof.name, phone: prof.phone });
+                    const rec = await LapeeetAuth.registerPasskey({ name: LapeeetDB.displayName() || 'Lapeeet User', phone: prof.phone });
                     LapeeetDB.setPasskey(rec);
                     LapeeetUI.showToast('Passkey enrolled', 'success');
                     refresh();
@@ -240,8 +240,7 @@
                         // verify on a new device, so clear it and let the user re-enroll.
                         try { LapeeetDB.setPasskey(''); } catch (err) {}
                         this._unlocked = true;
-                        const prof = LapeeetDB.getProfile() || {};
-                        LapeeetUI.updateSidebar({ name: prof.name || 'Guest User' });
+                        LapeeetUI.updateSidebar({ name: LapeeetDB.displayName() || 'Guest User' });
                         LapeeetUI.showToast('Account recovered — add a fresh passkey in Settings', 'success');
                         LapeeetUI.navigate('home');
                     } catch (err) {
@@ -880,7 +879,7 @@
                 LapeeetDB.appendEvent({ ride_id: b.ride_id, type: 'RIDE_ACCEPT', from_id: evt.from, body: b }, '');
                 const prof = LapeeetDB.getProfile();
                 LapeeetP2P.sendDirect(evt.from, LapeeetP2P.MSG_TYPES.RIDER_INFO,
-                    { ride_id: b.ride_id, name: prof.name || '', phone: prof.phone || '' });
+                    { ride_id: b.ride_id, name: LapeeetDB.displayName(), phone: prof.phone || '' });
             } catch (e) {}
             LapeeetP2P.activeRide = { ride_id: b.ride_id, peer_identity: evt.from, role: 'RIDER' };
             this._chatSelected = evt.from;
@@ -1141,6 +1140,18 @@
 
         _bindProfileScreen() {
             $('#btnProfileLogout').off('click').on('click', () => this._doLogout());
+            $('#avatarPick').off('click').on('click', (e) => { e.preventDefault(); $('#profileAvatarFile').click(); });
+            $('#profileAvatarFile').off('change').on('change', async (e) => {
+                const f = e.target.files && e.target.files[0];
+                if (!f) return;
+                try {
+                    const dataUrl = await LapeeetDB.processAvatar(f);
+                    LapeeetDB.saveProfile({ avatar_url: dataUrl });
+                    $('#profileAvatarImg').attr('src', dataUrl);
+                    LapeeetUI.showToast('Profile photo updated', 'success');
+                } catch (err) { LapeeetUI.showToast('Photo failed: ' + (err.message || err), 'danger'); }
+                e.target.value = '';
+            });
             $('#btnSaveProfile').off('click').on('click', () => {
                 try {
                     const phoneRaw = ($('#profilePhone').val() || '').trim();
@@ -1149,12 +1160,21 @@
                         LapeeetUI.showToast('Enter a valid PH mobile (09xxxxxxxxx)', 'warning');
                         return;
                     }
-                    const saved = LapeeetDB.saveProfile({
-                        name: ($('#profileName').val() || '').trim().slice(0, 60),
+                    const email = ($('#profileEmail').val() || '').trim().slice(0, 80);
+                    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        LapeeetUI.showToast('Enter a valid email address', 'warning');
+                        return;
+                    }
+                    LapeeetDB.saveProfile({
+                        first_name: ($('#profileFirst').val() || '').trim().slice(0, 40),
+                        last_name: ($('#profileLast').val() || '').trim().slice(0, 40),
+                        email,
                         phone: phone || ''
                     });
-                    LapeeetUI.updateSidebar({ name: saved.name || 'Guest User' });
+                    const display = LapeeetDB.displayName() || 'Guest User';
+                    LapeeetUI.updateSidebar({ name: display });
                     LapeeetUI.showToast('Profile saved', 'success');
+                    LapeeetUI.navigate('profile');
                 } catch (e) { LapeeetUI.showToast('Save failed: ' + (e.message || e), 'danger'); }
             });
         },
@@ -1294,7 +1314,12 @@
                 $('#obNext').text(pos === flow.length - 1 ? 'Finish Setup' : 'Next');
                 if (pos === flow.length - 1) {
                     const role = $('#obRole').val();
-                    const name = ($('#obName').val() || '').trim() || 'Guest User';
+                    const obFullName = () => {
+                        const fn = ($('#obFirst').val() || '').trim();
+                        const ln = ($('#obLast').val() || '').trim();
+                        return (fn + ' ' + ln).trim() || 'Guest User';
+                    };
+                    const name = obFullName();
                     const brand = role === 'DRIVER' ? resolveBrand() : '—';
                     const model = role === 'DRIVER' ? (($('#obModel').val() || '').trim() || '—') : '—';
                     $('#obReview').html(
@@ -1330,9 +1355,10 @@
                 try {
                     const phone = validPhoneOrWarn();
                     if (!phone) { step = 2; show(); return; }
-                    const name = ($('#obName').val() || '').trim().slice(0, 60);
-                    if (!name) {
-                        LapeeetUI.showToast('Enter your display name', 'warning');
+                    const first = ($('#obFirst').val() || '').trim().slice(0, 40);
+                    const last = ($('#obLast').val() || '').trim().slice(0, 40);
+                    if (!first) {
+                        LapeeetUI.showToast('Enter your first name', 'warning');
                         step = 2; show(); return;
                     }
                     const role = $('#obRole').val() === 'DRIVER' ? 'DRIVER' : 'RIDER';
@@ -1340,7 +1366,8 @@
                     try { localStorage.setItem('lapeeet::role', this.role); } catch (e) {}
                     this._syncModeUrl();
                     const saved = LapeeetDB.saveProfile({
-                        name,
+                        first_name: first,
+                        last_name: last,
                         phone
                     });
                     if (role === 'DRIVER') {
@@ -1352,7 +1379,7 @@
                             });
                         }
                     }
-                    LapeeetUI.updateSidebar({ name: saved.name || 'Guest User', role: this.role });
+                    LapeeetUI.updateSidebar({ name: LapeeetDB.displayName() || 'Guest User', role: this.role });
                     LapeeetUI.showToast('Setup complete — welcome!', 'success');
                     LapeeetUI.navigate('home');
                 } catch (e) { LapeeetUI.showToast('Setup failed: ' + (e.message || e), 'danger'); }
@@ -1361,7 +1388,9 @@
                 const btn = $('#obPasskeyBtn');
                 btn.prop('disabled', true);
                 try {
-                    const name = ($('#obName').val() || '').trim().slice(0, 60) || 'Lapeeet User';
+                    const fn = ($('#obFirst').val() || '').trim().slice(0, 40);
+                    const ln = ($('#obLast').val() || '').trim().slice(0, 40);
+                    const name = ((fn + ' ' + ln).trim() || 'Lapeeet User').slice(0, 60);
                     const phone = LapeeetAuth.normalizePHMobile($('#obPhone').val()) || '';
                     const rec = await LapeeetAuth.registerPasskey({ name, phone });
                     LapeeetDB.setPasskey(rec);

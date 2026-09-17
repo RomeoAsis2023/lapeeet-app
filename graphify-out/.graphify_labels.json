@@ -22,7 +22,8 @@
   "20": "deploy-pages.ps1",
   "21": "auth-layer.js",
   "22": "check-auth.js",
+  "23": "_bindCapacityDropdown",
   "24": "check-p2p.js",
-  "25": "ref_fs",
+  "25": "check-db.js",
   "26": "check-dist.js"
 }

@@ -338,7 +338,7 @@
             let name = '';
             try {
                 if (global.LapeeetDB && LapeeetDB.initialized) {
-                    name = (LapeeetDB.getProfile() || {}).name || '';
+                    name = LapeeetDB.displayName() || '';
                 }
             } catch (e) {}
             return { role: this._role, name };

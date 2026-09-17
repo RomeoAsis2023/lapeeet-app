@@ -544,10 +544,12 @@
         },
         _screenProfile() {
             let stats = { rides: 0, km: 0, money: 0 };
-            let prof = { name: 'Guest User', phone: '' };
+            let prof = { name: 'Guest User', phone: '', first_name: '', last_name: '', email: '', avatar_url: '' };
+            let display = 'Guest User';
             try {
                 if (window.LapeeetDB && LapeeetDB.initialized) {
                     prof = Object.assign(prof, LapeeetDB.getProfile());
+                    display = LapeeetDB.displayName() || 'Guest User';
                     const rides = LapeeetDB.listRides(this.currentRole, 500);
                     stats.rides = rides.length;
                     rides.forEach(r => {
@@ -556,14 +558,18 @@
                     });
                 }
             } catch (e) { /* show zeros */ }
+            const avatarSrc = prof.avatar_url || 'assets/img/icon.svg';
             return `
             <div class="section mt-2">
                 <div class="profile-head">
                     <div class="avatar">
-                        <img src="assets/img/icon.svg" alt="avatar" class="imaged w64 rounded">
+                        <a href="javascript:;" id="avatarPick" aria-label="Change profile photo">
+                            <img src="${avatarSrc}" alt="avatar" class="imaged w64 rounded" id="profileAvatarImg">
+                        </a>
+                        <input type="file" id="profileAvatarFile" accept="image/*" style="display:none">
                     </div>
                     <div class="in">
-                        <h3 class="name">${this._escapeHtml(prof.name || 'Guest User')}</h3>
+                        <h3 class="name">${this._escapeHtml(display)}</h3>
                         <h5 class="subtext">${this.currentRole === 'RIDER' ? 'Rider' : 'E-Bike Driver'} Mode</h5>
                         <span class="role-badge ${this.currentRole === 'RIDER' ? 'role-rider' : 'role-driver'}" style="margin-top:8px;">
                             <ion-icon name="${this.currentRole === 'RIDER' ? 'person-outline' : 'bicycle-outline'}"></ion-icon>
@@ -586,9 +592,23 @@
                     <form onsubmit="event.preventDefault();">
                         <div class="form-group boxed">
                             <div class="input-wrapper">
-                                <label class="label" for="profileName">Display name</label>
-                                <input type="text" class="form-control" id="profileName"
-                                    value="${this._escapeAttr(prof.name || '')}" placeholder="Your name" maxlength="60">
+                                <label class="label" for="profileFirst">First name</label>
+                                <input type="text" class="form-control" id="profileFirst"
+                                    value="${this._escapeAttr(prof.first_name || '')}" placeholder="First name" maxlength="40" autocomplete="given-name">
+                            </div>
+                        </div>
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="label" for="profileLast">Last name</label>
+                                <input type="text" class="form-control" id="profileLast"
+                                    value="${this._escapeAttr(prof.last_name || '')}" placeholder="Last name" maxlength="40" autocomplete="family-name">
+                            </div>
+                        </div>
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="label" for="profileEmail">Email</label>
+                                <input type="email" class="form-control" id="profileEmail"
+                                    value="${this._escapeAttr(prof.email || '')}" placeholder="you@example.com" maxlength="80" autocomplete="email">
                             </div>
                         </div>
                         <div class="form-group boxed">
@@ -658,8 +678,12 @@
                         <div class="ob-step" data-step="2" style="display:none">
                             <div class="section-title">2 · Your profile</div>
                             <div class="form-group boxed"><div class="input-wrapper">
-                                <label class="label" for="obName">Display name</label>
-                                <input type="text" class="form-control" id="obName" placeholder="Your name" maxlength="60">
+                                <label class="label" for="obFirst">First name</label>
+                                <input type="text" class="form-control" id="obFirst" placeholder="First name" maxlength="40" autocomplete="given-name">
+                            </div></div>
+                            <div class="form-group boxed"><div class="input-wrapper">
+                                <label class="label" for="obLast">Last name</label>
+                                <input type="text" class="form-control" id="obLast" placeholder="Last name" maxlength="40" autocomplete="family-name">
                             </div></div>
                             <div class="form-group boxed"><div class="input-wrapper">
                                 <label class="label" for="obPhone">Mobile number (required)</label>
@@ -719,7 +743,7 @@
             let name = '';
             try {
                 if (window.LapeeetDB && LapeeetDB.initialized) {
-                    name = (LapeeetDB.getProfile() || {}).name || '';
+                    name = LapeeetDB.displayName() || '';
                 }
             } catch (e) {}
             return `

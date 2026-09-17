@@ -31990,7 +31990,8 @@ module.exports = L.Routing = {
         id INTEGER PRIMARY KEY CHECK(id = 1),
         name TEXT DEFAULT '',
         phone TEXT DEFAULT '',
-        avatar_url TEXT DEFAULT ''
+        avatar_url TEXT DEFAULT '',
+        passkey_json TEXT DEFAULT ''
     );
     CREATE TABLE IF NOT EXISTS my_ebikes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32089,6 +32090,9 @@ module.exports = L.Routing = {
                 this.db = new this.SQL.Database();
             }
             this.db.exec(SCHEMA);
+            // Phase 9 migration: passkey column on pre-existing tenant DBs.
+            try { this.db.exec('ALTER TABLE my_profile ADD COLUMN passkey_json TEXT DEFAULT ' + "''"); }
+            catch (e) { /* column already exists — ignore */ }
             // Ensure singleton rows exist.
             this.db.exec("INSERT OR IGNORE INTO me(id) VALUES (1)");
             this.db.exec("INSERT OR IGNORE INTO my_profile(id) VALUES (1)");
@@ -32155,11 +32159,25 @@ module.exports = L.Routing = {
             const next = {
                 name: patch.name !== undefined ? patch.name : (cur.name || ''),
                 phone: patch.phone !== undefined ? patch.phone : (cur.phone || ''),
-                avatar_url: patch.avatar_url !== undefined ? patch.avatar_url : (cur.avatar_url || '')
+                avatar_url: patch.avatar_url !== undefined ? patch.avatar_url : (cur.avatar_url || ''),
+                passkey_json: patch.passkey_json !== undefined ? patch.passkey_json : (cur.passkey_json || '')
             };
-            this._run('UPDATE my_profile SET name = ?, phone = ?, avatar_url = ? WHERE id = 1',
-                [next.name, next.phone, next.avatar_url]);
+            this._run('UPDATE my_profile SET name = ?, phone = ?, avatar_url = ?, passkey_json = ? WHERE id = 1',
+                [next.name, next.phone, next.avatar_url, next.passkey_json]);
             return next;
+        },
+        /** Enrolled passkey record object, 'SKIP', or null. */
+        getPasskey() {
+            this._needInit();
+            const raw = (this.getProfile().passkey_json || '').trim();
+            if (!raw) return null;
+            if (raw === 'SKIP') return 'SKIP';
+            try { return JSON.parse(raw); } catch (e) { return null; }
+        },
+        setPasskey(recordOrSkip) {
+            this._needInit();
+            const val = recordOrSkip === 'SKIP' ? 'SKIP' : JSON.stringify(recordOrSkip || {});
+            this._run('UPDATE my_profile SET passkey_json = ? WHERE id = 1', [val]);
         },
         setIdentity(connectId, pubkey) {
             this._needInit();
@@ -32342,6 +32360,328 @@ module.exports = L.Routing = {
     };
 
     global.LapeeetDB = LapeeetDB;
+})(window);
+
+</script>
+    <script>/* inlined: assets/js/auth-layer.js */
+/* =============================================================
+   Lapeeet — Auth Layer (phone registration + WebAuthn passkeys)
+   Phase 9. No backend: all ceremony crypto runs client-side.
+   - PH mobile: normalize/validate only (no SMS OTP without a gateway).
+   - Passkeys: navigator.credentials create/get, attestation "none",
+     EdDSA-free ES256 (P-256) verification via WebCrypto.
+   - RP ID = current hostname. Works on https origins (Pages,
+     localhost). file:// has no host -> ceremonies fail there;
+     callers must degrade gracefully via isSupported()/rpId().
+   Requires: SecureContext + window.PublicKeyCredential.
+   ============================================================= */
+
+(function (global) {
+    'use strict';
+
+    const AUTH_VERSION = '9.0.0-phase9';
+
+    /* ---------- base64url ---------- */
+    function b64urlEncode(buf) {
+        const bytes = buf instanceof ArrayBuffer ? new Uint8Array(buf) : buf;
+        let s = '';
+        for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+        return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+    function b64urlDecode(str) {
+        let s = String(str).replace(/-/g, '+').replace(/_/g, '/');
+        while (s.length % 4) s += '=';
+        const bin = atob(s);
+        const out = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+        return out;
+    }
+
+    /* ---------- minimal CBOR decoder (maps/arrays/ints/bstr/tstr only) ---------- */
+    function cborDecode(bytes) {
+        let pos = 0;
+        function read(n) {
+            if (pos + n > bytes.length) throw new Error('CBOR truncated');
+            const sl = bytes.slice(pos, pos + n);
+            pos += n;
+            return sl;
+        }
+        function uint(ai) {
+            if (ai < 24) return ai;
+            if (ai === 24) return read(1)[0];
+            if (ai === 25) { const b = read(2); return (b[0] << 8) | b[1]; }
+            if (ai === 26) {
+                const b = read(4);
+                return (b[0] * 16777216) + ((b[1] << 16) | (b[2] << 8) | b[3]);
+            }
+            throw new Error('CBOR uint too large');
+        }
+        function item() {
+            const ib = read(1)[0];
+            const major = ib >> 5, ai = ib & 31;
+            if (major === 0) return uint(ai);
+            if (major === 1) return -1 - uint(ai);
+            if (major === 2 || major === 3) {
+                const len = uint(ai);
+                const raw = read(len);
+                if (major === 3) {
+                    let s = '';
+                    for (let i = 0; i < raw.length; i++) s += String.fromCharCode(raw[i]);
+                    return decodeURIComponent(escape(s));
+                }
+                return raw;
+            }
+            if (major === 4) {
+                const len = uint(ai), arr = [];
+                for (let i = 0; i < len; i++) arr.push(item());
+                return arr;
+            }
+            if (major === 5) {
+                const len = uint(ai), obj = {};
+                for (let i = 0; i < len; i++) {
+                    const k = item();
+                    obj[typeof k === 'string' ? k : JSON.stringify(k)] = item();
+                }
+                return obj;
+            }
+            throw new Error('CBOR unsupported major type ' + major);
+        }
+        const val = item();
+        return val;
+    }
+
+    /* SPKI DER prefix for P-256 uncompressed EC keys (0x2A...034200) */
+    const P256_SPKI_PREFIX = new Uint8Array([
+        0x30, 0x59, 0x30, 0x13, 0x06, 0x07, 0x2A, 0x86, 0x48, 0xCE, 0x3D, 0x02, 0x01,
+        0x06, 0x08, 0x2A, 0x86, 0x48, 0xCE, 0x3D, 0x03, 0x01, 0x07, 0x03, 0x42, 0x00
+    ]);
+
+    function coseToSpki(coseMap) {
+        // Expect COSE EC2 / ES256 / P-256: {1:2, 3:-7, -1:1, -2:x, -3:y}
+        const kty = coseMap['1'] !== undefined ? coseMap['1'] : coseMap[1];
+        const alg = coseMap['3'] !== undefined ? coseMap['3'] : coseMap[3];
+        const crv = coseMap['-1'] !== undefined ? coseMap['-1'] : coseMap[-1];
+        const x = coseMap['-2'] !== undefined ? coseMap['-2'] : coseMap[-2];
+        const y = coseMap['-3'] !== undefined ? coseMap['-3'] : coseMap[-3];
+        if (kty !== 2 || alg !== -7 || crv !== 1) throw new Error('Only COSE ES256/P-256 supported');
+        if (!x || x.length !== 32 || !y || y.length !== 32) throw new Error('Bad P-256 coordinates');
+        const point = new Uint8Array(65);
+        point[0] = 0x04;
+        point.set(x, 1);
+        point.set(y, 33);
+        const spki = new Uint8Array(P256_SPKI_PREFIX.length + 65);
+        spki.set(P256_SPKI_PREFIX, 0);
+        spki.set(point, P256_SPKI_PREFIX.length);
+        return spki;
+    }
+
+    function parseAuthData(authData) {
+        if (authData.length < 37) throw new Error('authData too short');
+        const rpIdHash = authData.slice(0, 32);
+        const flags = authData[32];
+        const signCount = (authData[33] << 24) | (authData[34] << 16) | (authData[35] << 8) | authData[36];
+        let credId = null, coseKey = null, rest = 37;
+        if (flags & 0x40) { // AT: attested credential data present
+            if (authData.length < rest + 18) throw new Error('attested data truncated');
+            rest += 16; // aaguid
+            const idLen = (authData[rest] << 8) | authData[rest + 1];
+            rest += 2;
+            credId = authData.slice(rest, rest + idLen);
+            rest += idLen;
+            const coseBytes = authData.slice(rest);
+            coseKey = cborDecode(coseBytes);
+        }
+        return { rpIdHash, flags, signCount, credId, coseKey };
+    }
+
+    async function sha256(data) {
+        return new Uint8Array(await crypto.subtle.digest('SHA-256', data));
+    }
+
+    const LapeeetAuth = {
+        version: AUTH_VERSION,
+        _pendingChallenge: null, // b64url of last issued challenge (same-session ceremony binding)
+
+        /* ---------- environment ---------- */
+
+        rpId() {
+            try {
+                const h = window.location.hostname;
+                return h || null; // null on file:// (no host) -> ceremonies will fail
+            } catch (e) { return null; }
+        },
+
+        isSupported() {
+            try {
+                return !!(window.PublicKeyCredential && window.isSecureContext && crypto.subtle);
+            } catch (e) { return false; }
+        },
+
+        supportReason() {
+            if (!this.isSupported()) {
+                if (!window.isSecureContext) return 'Passkeys need a secure https page (open the GitHub Pages link, not the local file).';
+                return 'This browser does not support passkeys (WebAuthn).';
+            }
+            if (!this.rpId()) return 'Passkeys need a hosted page with a hostname (open the GitHub Pages link, not the local file).';
+            return 'ok';
+        },
+
+        /* ---------- PH mobile numbers (format validation only — no SMS gateway) ---------- */
+
+        /** Normalize 09xx / 639xx / +639xx -> +63XXXXXXXXXX, or null. */
+        normalizePHMobile(raw) {
+            if (raw === undefined || raw === null) return null;
+            let s = String(raw).replace(/[\s\-().]/g, '');
+            if (/^0\d{10}$/.test(s)) s = '+63' + s.slice(1);
+            else if (/^63\d{10}$/.test(s)) s = '+' + s;
+            if (/^\+63\d{10}$/.test(s)) return s;
+            return null;
+        },
+
+        isValidPHMobile(raw) {
+            return this.normalizePHMobile(raw) !== null;
+        },
+
+        /* ---------- passkey enrollment ---------- */
+
+        /**
+         * Create a passkey for (name, phone). Returns {credIdB64, pubKeySpkiB64, signCount}
+         * after client-side verification of the attestation ceremony.
+         */
+        async registerPasskey(opts) {
+            opts = opts || {};
+            const reason = this.supportReason();
+            if (reason !== 'ok') throw new Error(reason);
+            const rpId = this.rpId();
+            const challenge = new Uint8Array(32);
+            crypto.getRandomValues(challenge);
+            this._pendingChallenge = b64urlEncode(challenge);
+            const userId = new Uint8Array(16);
+            crypto.getRandomValues(userId);
+
+            const cred = await navigator.credentials.create({
+                publicKey: {
+                    challenge,
+                    rp: { name: 'Lapeeet', id: rpId },
+                    user: {
+                        id: userId,
+                        name: opts.phone || 'lapeeet-user',
+                        displayName: opts.name || 'Lapeeet User'
+                    },
+                    pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
+                    authenticatorSelection: {
+                        residentKey: 'required',
+                        requireResidentKey: true,
+                        userVerification: 'preferred'
+                    },
+                    attestation: 'none',
+                    timeout: 60000
+                }
+            });
+            if (!cred) throw new Error('No credential created');
+            return this._verifyAttestation(cred, rpId);
+        },
+
+        async _verifyAttestation(cred, rpId) {
+            const resp = cred.response;
+            if (!resp.attestationObject) throw new Error('Missing attestationObject');
+            const att = cborDecode(new Uint8Array(resp.attestationObject));
+            if (!att || att.fmt !== 'none') throw new Error('Only none-attestation supported, got ' + (att && att.fmt));
+            // Challenge binding: clientDataJSON carries our challenge.
+            const clientData = JSON.parse(new TextDecoder().decode(resp.clientDataJSON));
+            if (clientData.challenge !== this._pendingChallenge) throw new Error('Challenge mismatch');
+            const origin = new URL(clientData.origin);
+            if (origin.hostname !== rpId) throw new Error('Origin mismatch');
+            if (clientData.type !== 'webauthn.create') throw new Error('Wrong ceremony type');
+            const authData = new Uint8Array(resp.authData || att.authData);
+            const parsed = parseAuthData(authData);
+            if (!(parsed.flags & 0x01)) throw new Error('User not present');
+            if (!parsed.credId || !parsed.coseKey) throw new Error('No attested credential in response');
+            const expectedRp = await sha256(new TextEncoder().encode(rpId));
+            for (let i = 0; i < 32; i++) {
+                if (expectedRp[i] !== parsed.rpIdHash[i]) throw new Error('RP ID hash mismatch');
+            }
+            const spki = coseToSpki(parsed.coseKey);
+            this._pendingChallenge = null;
+            return {
+                credIdB64: b64urlEncode(parsed.credId),
+                pubKeySpkiB64: b64urlEncode(spki),
+                signCount: parsed.signCount
+            };
+        },
+
+        /* ---------- passkey unlock (assertion) ---------- */
+
+        /**
+         * Verify a passkey assertion against an enrolled record
+         * {credIdB64, pubKeySpkiB64, signCount}. Returns updated record.
+         */
+        async unlockWithPasskey(enrolled) {
+            const reason = this.supportReason();
+            if (reason !== 'ok') throw new Error(reason);
+            if (!enrolled || !enrolled.credIdB64 || !enrolled.pubKeySpkiB64) {
+                throw new Error('No passkey enrolled on this device');
+            }
+            const rpId = this.rpId();
+            const challenge = new Uint8Array(32);
+            crypto.getRandomValues(challenge);
+            this._pendingChallenge = b64urlEncode(challenge);
+
+            const assertion = await navigator.credentials.get({
+                publicKey: {
+                    challenge,
+                    rpId,
+                    allowCredentials: [{ type: 'public-key', id: b64urlDecode(enrolled.credIdB64) }],
+                    userVerification: 'preferred',
+                    timeout: 60000
+                }
+            });
+            if (!assertion) throw new Error('No assertion returned');
+            return this._verifyAssertion(assertion, enrolled, rpId);
+        },
+
+        async _verifyAssertion(assertion, enrolled, rpId) {
+            const resp = assertion.response;
+            const clientData = JSON.parse(new TextDecoder().decode(resp.clientDataJSON));
+            if (clientData.challenge !== this._pendingChallenge) throw new Error('Challenge mismatch');
+            if (clientData.type !== 'webauthn.get') throw new Error('Wrong ceremony type');
+            const authData = new Uint8Array(resp.authenticatorData);
+            const parsed = parseAuthData(authData);
+            if (!(parsed.flags & 0x01)) throw new Error('User not present');
+            const expectedRp = await sha256(new TextEncoder().encode(rpId));
+            for (let i = 0; i < 32; i++) {
+                if (expectedRp[i] !== parsed.rpIdHash[i]) throw new Error('RP ID hash mismatch');
+            }
+            const storedCount = Number(enrolled.signCount) || 0;
+            if (storedCount > 0 && parsed.signCount <= storedCount) {
+                throw new Error('Possible cloned authenticator (signCount did not advance)');
+            }
+            const clientHash = await sha256(resp.clientDataJSON);
+            const signed = new Uint8Array(authData.length + clientHash.length);
+            signed.set(authData, 0);
+            signed.set(clientHash, authData.length);
+            const key = await crypto.subtle.importKey(
+                'spki', b64urlDecode(enrolled.pubKeySpkiB64),
+                { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']
+            );
+            const ok = await crypto.subtle.verify(
+                { name: 'ECDSA', hash: 'SHA-256' }, key, resp.signature, signed
+            );
+            if (!ok) throw new Error('Assertion signature invalid');
+            this._pendingChallenge = null;
+            enrolled.signCount = parsed.signCount;
+            return enrolled;
+        },
+
+        /* ---------- test-exposed pure helpers ---------- */
+        _b64urlEncode: b64urlEncode,
+        _b64urlDecode: b64urlDecode,
+        _cborDecode: cborDecode,
+        _coseToSpki: coseToSpki,
+        _parseAuthData: parseAuthData
+    };
+
+    global.LapeeetAuth = LapeeetAuth;
 })(window);
 
 </script>
@@ -33739,7 +34079,8 @@ module.exports = L.Routing = {
         ONBOARDING: 'onboarding',
         EBIKE:      'ebike',
         DATA:       'data',
-        SETTINGS:   'settings'
+        SETTINGS:   'settings',
+        LOCK:       'lock'
     });
 
     const LapeeetUI = {
@@ -33801,6 +34142,7 @@ module.exports = L.Routing = {
                 case SCREENS.EBIKE:      return this._screenEbike();
                 case SCREENS.DATA:       return this._screenData();
                 case SCREENS.SETTINGS:   return this._screenSettings();
+                case SCREENS.LOCK:       return this._screenLock();
                 default:                 return this._screenHome();
             }
         },
@@ -34332,7 +34674,7 @@ module.exports = L.Routing = {
                     <div class="card-body">
                         <h6 class="card-subtitle">First-time setup</h6>
                         <h5 class="card-title">Onboarding Wizard</h5>
-                        <p class="card-text small" id="obProgress" style="color:var(--lapeeet-text-lo);">Step 1 of 4</p>
+                        <p class="card-text small" id="obProgress" style="color:var(--lapeeet-text-lo);">Step 1 of 5</p>
                     </div>
                 </div>
             </div>
@@ -34356,8 +34698,9 @@ module.exports = L.Routing = {
                                 <input type="text" class="form-control" id="obName" placeholder="Your name" maxlength="60">
                             </div></div>
                             <div class="form-group boxed"><div class="input-wrapper">
-                                <label class="label" for="obPhone">Phone</label>
-                                <input type="tel" class="form-control" id="obPhone" placeholder="+63 ..." maxlength="20">
+                                <label class="label" for="obPhone">Mobile number (required)</label>
+                                <input type="tel" class="form-control" id="obPhone" placeholder="09xxxxxxxxx or +63 ..." maxlength="20" autocomplete="tel">
+                                <small class="form-text" style="color:var(--lapeeet-text-mute);">Philippine mobile. Stored on this device only — shared with your matched driver/rider only.</small>
                             </div></div>
                         </div>
                         <div class="ob-step" data-step="3" style="display:none">
@@ -34381,7 +34724,23 @@ module.exports = L.Routing = {
                             </div></div>
                         </div>
                         <div class="ob-step" data-step="4" style="display:none">
-                            <div class="section-title">4 · Confirm</div>
+                            <div class="section-title">4 · Passkey (passwordless login)</div>
+                            <p class="small" style="color:var(--lapeeet-text-lo);">
+                                Protect this account with your fingerprint, face, or device PIN.
+                                No passwords to remember or leak. Passkeys are tied to this site address.
+                            </p>
+                            <p class="small" id="obPasskeyState" style="color:var(--lapeeet-text-lo);">Not set up yet.</p>
+                            <div class="form-button-group">
+                                <button id="obPasskeyBtn" type="button" class="btn btn-primary btn-block shadowed">
+                                    <ion-icon name="finger-print-outline"></ion-icon> Create Passkey
+                                </button>
+                            </div>
+                            <div class="text-center mt-2">
+                                <a href="javascript:;" id="obPasskeySkip" class="small text-muted">Skip for now</a>
+                            </div>
+                        </div>
+                        <div class="ob-step" data-step="5" style="display:none">
+                            <div class="section-title">5 · Confirm</div>
                             <p class="small" id="obReview" style="color:var(--lapeeet-text-lo);"></p>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
@@ -34389,6 +34748,29 @@ module.exports = L.Routing = {
                             <button id="obNext" type="button" class="btn btn-primary shadowed" style="min-width:140px">Next</button>
                         </div>
                     </form>
+                </div>
+            </div>`;
+        },
+        _screenLock() {
+            return `
+            <div class="section mt-2">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div style="font-size:44px;color:#8cbeff"><ion-icon name="finger-print-outline"></ion-icon></div>
+                        <h5 class="card-title mt-2">Unlock Lapeeet</h5>
+                        <p class="card-text small" style="color:var(--lapeeet-text-lo);">
+                            This device is protected by a passkey. Verify it's you to continue.
+                        </p>
+                        <p class="card-text small text-danger" id="lockError" style="display:none"></p>
+                        <div class="form-button-group">
+                            <button id="btnUnlock" type="button" class="btn btn-primary btn-block shadowed">
+                                <ion-icon name="finger-print-outline"></ion-icon> Unlock with Passkey
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="javascript:;" id="btnLockErase" class="small" style="color:#ff9aa2">Lost access? Erase this device and start over</a>
+                        </div>
+                    </div>
                 </div>
             </div>`;
         },
@@ -34557,6 +34939,27 @@ module.exports = L.Routing = {
                         <li>Network <strong>webconnect.js P2P</strong></li>
                         <li>Navigation <strong>Organic Maps (deep link)</strong></li></ul>
                 </div>
+            </div><div class="section full mt-2 mb-2">
+                <div class="section-title">Security (Passkey)</div>
+                <div class="wide-block pt-2 pb-2 pl-3 pr-3">
+                    <ul class="listview flush transparent simple-listview">
+                        <li>Passkey <strong id="settingsPasskeyState">checking…</strong></li>
+                    </ul>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPasskeyAdd" type="button" class="btn btn-primary btn-block shadowed">
+                            <ion-icon name="finger-print-outline"></ion-icon> Add / Replace Passkey
+                        </button>
+                    </div>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPasskeyRemove" type="button" class="btn btn-outline-secondary btn-block">
+                            Remove Passkey
+                        </button>
+                    </div>
+                    <p class="text-muted smaller mt-3 mb-0" style="color:var(--lapeeet-text-mute);">
+                        Passwordless login with fingerprint, face, or device PIN.
+                        Tied to this site address; removing it disables the lock screen.
+                    </p>
+                </div>
             </div>`;
         },
 
@@ -34701,12 +35104,13 @@ module.exports = L.Routing = {
                         }
                     }
                     if (s === 'home') this._populateHomeStatus();
-                    if (s === 'settings') this._populateSettingsGit();
+                    if (s === 'settings') { this._populateSettingsGit(); this._bindSettingsScreen(); }
                     if (s === 'data') this._bindDataScreen();
                     if (s === 'profile') this._bindProfileScreen();
                     if (s === 'ebike') this._bindEbikeScreen();
                     if (s === 'messages') this._bindMessagesScreen();
                     if (s === 'trips') this._bindTripsScreen();
+                    if (s === 'lock') this._bindLockScreen();
                     if (s === 'onboarding') this._bindOnboardingScreen();
                 }
             });
@@ -34778,6 +35182,15 @@ module.exports = L.Routing = {
                 p2pStatus: LapeeetP2P.status || 'offline'
             });
 
+            // 5b. REGISTRATION GATE (Phase 9): install navigate guard, then
+            // redirect first-run users to onboarding and locked users to lock.
+            this._installNavGuard();
+            if (!this._isRegistered()) {
+                LapeeetUI.navigate('onboarding');
+            } else if (this._needsUnlock()) {
+                LapeeetUI.navigate('lock');
+            }
+
             // 6. Update home screen status indicators
             setTimeout(() => this._populateHomeStatus(), 200);
 
@@ -34788,6 +35201,111 @@ module.exports = L.Routing = {
             this.started = true;
             console.info(`[APP] Lapeeet v${APP_VERSION} ready. Role = ${this.role}.`);
             LapeeetUI.showToast('Lapeeet started — Phase 0 scaffold complete', 'success');
+        },
+
+        /* ---------- PHASE 9: REGISTRATION GATE + PASSKEY LOCK ---------- */
+
+        _unlocked: false, // session flag: true after passkey assertion (or no passkey enrolled)
+
+        /** Registered = profile has a name AND a valid PH mobile. */
+        _isRegistered() {
+            try {
+                if (!(window.LapeeetDB && LapeeetDB.initialized)) return false;
+                const p = LapeeetDB.getProfile() || {};
+                return !!(p.name && p.name.trim() &&
+                    window.LapeeetAuth && LapeeetAuth.isValidPHMobile(p.phone));
+            } catch (e) { return false; }
+        },
+
+        /** Lock needed = passkey enrolled (not skipped) and not yet unlocked this session. */
+        _needsUnlock() {
+            if (this._unlocked) return false;
+            try {
+                if (!(window.LapeeetDB && LapeeetDB.initialized)) return false;
+                const pk = LapeeetDB.getPasskey();
+                return !!(pk && pk !== 'SKIP');
+            } catch (e) { return false; }
+        },
+
+        _gateTarget(screen) {
+            if (!this._isRegistered()) {
+                return (screen === 'onboarding') ? null : 'onboarding';
+            }
+            if (this._needsUnlock()) {
+                return (screen === 'lock') ? null : 'lock';
+            }
+            return (screen === 'lock') ? 'home' : null; // unlocked users never see lock
+        },
+
+        _installNavGuard() {
+            if (this._navGuardInstalled || !window.LapeeetUI) return;
+            this._navGuardInstalled = true;
+            const orig = LapeeetUI.navigate.bind(LapeeetUI);
+            LapeeetUI.navigate = (screen) => {
+                const redirect = this._gateTarget(screen);
+                return orig(redirect || screen);
+            };
+        },
+
+        _bindSettingsScreen() {
+            const $st = $('#settingsPasskeyState');
+            const refresh = () => {
+                if (!$st.length) return;
+                try {
+                    const pk = LapeeetDB.getPasskey();
+                    if (pk && pk !== 'SKIP') $st.html('<span class="text-success">Enrolled on this device</span>');
+                    else if (pk === 'SKIP') $st.html('<span class="text-muted">Skipped</span>');
+                    else $st.html('<span class="text-warning">Not set up</span>');
+                } catch (e) { $st.text('—'); }
+            };
+            refresh();
+            $('#btnPasskeyAdd').off('click').on('click', async () => {
+                try {
+                    const prof = LapeeetDB.getProfile();
+                    const rec = await LapeeetAuth.registerPasskey({ name: prof.name, phone: prof.phone });
+                    LapeeetDB.setPasskey(rec);
+                    LapeeetUI.showToast('Passkey enrolled', 'success');
+                    refresh();
+                } catch (e) { LapeeetUI.showToast('Passkey failed: ' + (e.message || e), 'danger'); }
+            });
+            $('#btnPasskeyRemove').off('click').on('click', () => {
+                try {
+                    LapeeetDB.setPasskey('SKIP');
+                    LapeeetUI.showToast('Passkey removed — lock screen off', 'info');
+                    refresh();
+                } catch (e) { LapeeetUI.showToast('Remove failed: ' + (e.message || e), 'danger'); }
+            });
+        },
+
+        _bindLockScreen() {
+            $('#btnUnlock').off('click').on('click', async () => {
+                const errBox = $('#lockError');
+                errBox.hide();
+                try {
+                    const enrolled = LapeeetDB.getPasskey();
+                    const updated = await LapeeetAuth.unlockWithPasskey(enrolled);
+                    LapeeetDB.setPasskey(updated);
+                    this._unlocked = true;
+                    LapeeetUI.showToast('Unlocked — welcome back', 'success');
+                    LapeeetUI.navigate('home');
+                } catch (e) {
+                    errBox.text('Unlock failed: ' + (e.message || e)).show();
+                }
+            });
+            $('#btnLockErase').off('click').on('click', () => {
+                LapeeetUI.openModal({
+                    title: 'Erase this device?',
+                    bodyHtml: '<p class="small">This wipes your local tenant DB (profile, e-bikes, rides). Export first from another device if you need it. This cannot be undone.</p>',
+                    footerHtml: '<button class="btn btn-secondary" id="lockEraseCancel">Cancel</button> ' +
+                        '<button class="btn btn-danger" id="lockEraseGo">Erase everything</button>'
+                });
+                $('#lockEraseCancel').off('click').on('click', () => LapeeetUI.closeModal());
+                $('#lockEraseGo').off('click').on('click', async () => {
+                    try { await LapeeetDB.wipe(); } catch (e) {}
+                    try { localStorage.removeItem('lapeeet::role'); } catch (e) {}
+                    window.location.reload();
+                });
+            });
         },
 
         /* ---------- PHASE 6: ?mode= ROLE DEEP LINKS ---------- */
@@ -35619,9 +36137,15 @@ module.exports = L.Routing = {
         _bindProfileScreen() {
             $('#btnSaveProfile').off('click').on('click', () => {
                 try {
+                    const phoneRaw = ($('#profilePhone').val() || '').trim();
+                    const phone = window.LapeeetAuth ? LapeeetAuth.normalizePHMobile(phoneRaw) : phoneRaw;
+                    if (phoneRaw && !phone) {
+                        LapeeetUI.showToast('Enter a valid PH mobile (09xxxxxxxxx)', 'warning');
+                        return;
+                    }
                     const saved = LapeeetDB.saveProfile({
                         name: ($('#profileName').val() || '').trim().slice(0, 60),
-                        phone: ($('#profilePhone').val() || '').trim().slice(0, 20)
+                        phone: phone || ''
                     });
                     LapeeetUI.updateSidebar({ name: saved.name || 'Guest User' });
                     LapeeetUI.showToast('Profile saved', 'success');
@@ -35709,10 +36233,24 @@ module.exports = L.Routing = {
 
         _bindOnboardingScreen() {
             let step = 1;
-            const TOTAL = 4;
+            const TOTAL = 5;
             const resolveBrand = this._brandSelectWire('#obBrand', '#obBrandOtherWrap', '#obBrandOther');
             // Pre-fill role from resolved boot role (?mode= / saved).
             try { $('#obRole').val(this.role); } catch (e) {}
+            // Restore in-progress passkey state label.
+            const refreshPasskeyLabel = () => {
+                try {
+                    const pk = LapeeetDB.getPasskey();
+                    if (pk && pk !== 'SKIP') {
+                        $('#obPasskeyState').text('Passkey ready on this device.');
+                        $('#obPasskeyBtn').prop('disabled', true);
+                    } else if (pk === 'SKIP') {
+                        $('#obPasskeyState').text('Skipped — you can add one later from Settings.');
+                    } else if (!window.LapeeetAuth || LapeeetAuth.supportReason() !== 'ok') {
+                        $('#obPasskeyState').text(LapeeetAuth ? LapeeetAuth.supportReason() : 'Passkeys unavailable here.');
+                    }
+                } catch (e) {}
+            };
             const show = () => {
                 $('.ob-step').each(function () {
                     $(this).toggle(Number($(this).attr('data-step')) === step);
@@ -35731,17 +36269,34 @@ module.exports = L.Routing = {
                 }
             };
             $('#obBack').off('click').on('click', () => { if (step > 1) { step--; show(); } });
+            const validPhoneOrWarn = () => {
+                const norm = window.LapeeetAuth ? LapeeetAuth.normalizePHMobile($('#obPhone').val()) : null;
+                if (!norm) {
+                    LapeeetUI.showToast('Enter a valid PH mobile (09xxxxxxxxx)', 'warning');
+                    return null;
+                }
+                return norm;
+            };
             $('#obNext').off('click').on('click', () => {
-                if (step < TOTAL) { step++; show(); return; }
+                // Leaving step 2 requires a valid mobile number (registration gate).
+                if (step === 2 && !validPhoneOrWarn()) return;
+                if (step < TOTAL) { step++; if (step === 4) refreshPasskeyLabel(); show(); return; }
                 // Finish: persist role + profile (+ first e-bike for drivers).
                 try {
+                    const phone = validPhoneOrWarn();
+                    if (!phone) { step = 2; show(); return; }
+                    const name = ($('#obName').val() || '').trim().slice(0, 60);
+                    if (!name) {
+                        LapeeetUI.showToast('Enter your display name', 'warning');
+                        step = 2; show(); return;
+                    }
                     const role = $('#obRole').val() === 'DRIVER' ? 'DRIVER' : 'RIDER';
                     if (role !== this.role) LapeeetUI.toggleRole();
                     try { localStorage.setItem('lapeeet::role', this.role); } catch (e) {}
                     this._syncModeUrl();
                     const saved = LapeeetDB.saveProfile({
-                        name: ($('#obName').val() || '').trim().slice(0, 60) || 'Guest User',
-                        phone: ($('#obPhone').val() || '').trim().slice(0, 20)
+                        name,
+                        phone
                     });
                     if (role === 'DRIVER') {
                         const model = ($('#obModel').val() || '').trim();
@@ -35756,6 +36311,26 @@ module.exports = L.Routing = {
                     LapeeetUI.showToast('Setup complete — welcome!', 'success');
                     LapeeetUI.navigate('home');
                 } catch (e) { LapeeetUI.showToast('Setup failed: ' + (e.message || e), 'danger'); }
+            });
+            $('#obPasskeyBtn').off('click').on('click', async () => {
+                const btn = $('#obPasskeyBtn');
+                btn.prop('disabled', true);
+                try {
+                    const name = ($('#obName').val() || '').trim().slice(0, 60) || 'Lapeeet User';
+                    const phone = LapeeetAuth.normalizePHMobile($('#obPhone').val()) || '';
+                    const rec = await LapeeetAuth.registerPasskey({ name, phone });
+                    LapeeetDB.setPasskey(rec);
+                    $('#obPasskeyState').text('Passkey created on this device.');
+                    LapeeetUI.showToast('Passkey created', 'success');
+                } catch (e) {
+                    $('#obPasskeyState').text('Could not create passkey: ' + (e.message || e));
+                    btn.prop('disabled', false);
+                }
+            });
+            $('#obPasskeySkip').off('click').on('click', () => {
+                try { LapeeetDB.setPasskey('SKIP'); } catch (e) {}
+                $('#obPasskeyState').text('Skipped — you can add one later from Settings.');
+                step++; show();
             });
             show();
         },

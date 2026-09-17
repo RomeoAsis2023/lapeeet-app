@@ -8767,6 +8767,22 @@ svg.leaflet-image-layer.leaflet-interactive path {
     height: 100%;
 }
 
+/* Home mini-map: shorter than the booking map, same branded frame */
+.map-container.home-map {
+    height: 260px;
+    min-height: 240px;
+}
+#homeMap {
+    width: 100%;
+    height: 100%;
+    background: #dbe9ff;
+}
+#nearRadius {
+    min-height: 38px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
 /* ---------- 60km RADIUS PILLS (new classes) ---------- */
 .radius-indicator {
     display: inline-flex;
@@ -33405,15 +33421,18 @@ module.exports = L.Routing = {
             return { role: this._role, name };
         },
 
-        _sendHello(transportId) {
+        _sendHello(transportId, extra) {
             const snap = this._profileSnapshot();
-            const body = { pub: this.myPublicKey, role: snap.role, name: snap.name };
+            const body = Object.assign({ pub: this.myPublicKey, role: snap.role, name: snap.name }, extra || {});
             if (transportId) this.sendDirectByTransport(transportId, MSG_TYPES.HELLO, body);
             else this.broadcast(MSG_TYPES.HELLO, body);
         },
 
         _currentLoc() {
-            // Cached-first geolocation (cheap on 10s heartbeat).
+            // Shared cache with the map layer when available (cheap on 10s heartbeat).
+            try {
+                if (global.LapeeetMap && LapeeetMap.cachedLocation) return LapeeetMap.cachedLocation(60000);
+            } catch (e) {}
             return new Promise((resolve) => {
                 if (!navigator.geolocation) { resolve(null); return; }
                 navigator.geolocation.getCurrentPosition(
@@ -33424,10 +33443,23 @@ module.exports = L.Routing = {
             });
         },
 
+        myLoc: null,            // last known own position {lat, lng, ts}
+        _lastRiderHello: 0,
+        RIDER_HELLO_MS: 15000,
+
         async _heartbeatTick() {
             if (!this.initialized || this.status !== 'online') return;
-            if (this._role !== 'DRIVER') return;
             const loc = await this._currentLoc();
+            if (loc) this.myLoc = { lat: loc.lat, lng: loc.lng, ts: Date.now() };
+            if (this._role !== 'DRIVER') {
+                // Passenger presence: truncated coords only (no name/phone/photo),
+                // so nearby drivers can discover them. Throttled to 15s.
+                if (loc && Date.now() - this._lastRiderHello > this.RIDER_HELLO_MS) {
+                    this._lastRiderHello = Date.now();
+                    this._sendHello(null, { tLat: trunc3(loc.lat), tLng: trunc3(loc.lng) });
+                }
+                return;
+            }
             let brand = '', model = '', capacity = 0;
             try {
                 if (global.LapeeetDB && LapeeetDB.initialized) {
@@ -33558,6 +33590,7 @@ module.exports = L.Routing = {
 
     global.LapeeetP2P = LapeeetP2P;
     global.LapeeetGeohash = geohash;
+    global.LapeeetGeo = { geohash, haversineKm, trunc3, MAX_TRIP_KM: 60 };
 })(window);
 
 </script>
@@ -33674,6 +33707,30 @@ module.exports = L.Routing = {
 
         /* ---------- MAP SETUP ---------- */
 
+        _tileLayer() {
+            return L.tileLayer(this.tilesUrl, {
+                maxZoom: 19,
+                attribution: this.tilesAttrib,
+                // Offline/blocked-tiles fallback: light grid tile so pins +
+                // distance gate keep working with zero network. (Phase 1.1)
+                errorTileUrl: 'data:image/svg+xml;utf8,' + encodeURIComponent(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256">' +
+                    '<rect width="256" height="256" fill="#dbe9ff"/>' +
+                    '<path d="M0 64H256M0 128H256M0 192H256M64 0V256M128 0V256M192 0V256" stroke="#b9c8e2" stroke-width="1"/>' +
+                    '</svg>'
+                )
+            });
+        },
+
+        _noteTilesOffline(map) {
+            // One-time notice if tiles fail (map still usable offline).
+            map.on('tileerror', () => {
+                if (this._tileOfflineNoted) return;
+                this._tileOfflineNoted = true;
+                if (window.LapeeetUI) LapeeetUI.showToast('Map tiles offline — pins + 60km check still work', 'warning');
+            });
+        },
+
         _createMap() {
             const mapEl = document.getElementById(this.containerId);
             if (!mapEl) {
@@ -33687,24 +33744,8 @@ module.exports = L.Routing = {
                 gestureHandling: (typeof L !== 'undefined' && L.gestureHandling) ? true : false
             }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
 
-            L.tileLayer(this.tilesUrl, {
-                maxZoom: 19,
-                attribution: this.tilesAttrib,
-                // Offline/blocked-tiles fallback: light grid tile so pins +
-                // distance gate keep working with zero network. (Phase 1.1)
-                errorTileUrl: 'data:image/svg+xml;utf8,' + encodeURIComponent(
-                    '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256">' +
-                    '<rect width="256" height="256" fill="#dbe9ff"/>' +
-                    '<path d="M0 64H256M0 128H256M0 192H256M64 0V256M128 0V256M192 0V256" stroke="#b9c8e2" stroke-width="1"/>' +
-                    '</svg>'
-                )
-            }).addTo(map);
-            // One-time notice if tiles fail (map still usable offline).
-            map.on('tileerror', () => {
-                if (this._tileOfflineNoted) return;
-                this._tileOfflineNoted = true;
-                if (window.LapeeetUI) LapeeetUI.showToast('Map tiles offline — pins + 60km check still work', 'warning');
-            });
+            this._tileLayer().addTo(map);
+            this._noteTilesOffline(map);
 
             this.drawMaxRadius(DEFAULT_CENTER[0], DEFAULT_CENTER[1], MAX_TRIP_KM);
 
@@ -33713,6 +33754,88 @@ module.exports = L.Routing = {
 
             this.map = map;
             setTimeout(() => { try { map.invalidateSize(); } catch (e) { /* noop */ } }, 120);
+        },
+
+        /* ---------- HOME MINI-MAP (second instance: nearby peers, radius search) ---------- */
+
+        homeMap: null,
+        homeMarkers: new Map(),   // key -> L.marker (keys: 'ref' | 'd:'+identity | 'r:'+identity)
+        homeCircle: null,
+        homeRef: null,            // {lat, lng} reference point for radius filtering
+
+        initHome(containerId, center) {
+            this.destroyHome();
+            if (typeof L === 'undefined') return false;
+            const el = document.getElementById(containerId || 'homeMap');
+            if (!el) return false;
+            const c = center || { lat: DEFAULT_CENTER[0], lng: DEFAULT_CENTER[1] };
+            const map = L.map(el, {
+                zoomControl: true,
+                attributionControl: false,
+                gestureHandling: (typeof L !== 'undefined' && L.gestureHandling) ? true : false
+            }).setView([c.lat, c.lng], 12);
+            this._tileLayer().addTo(map);
+            this._noteTilesOffline(map);
+            this.homeMap = map;
+            this.setHomeRef(c.lat, c.lng, MAX_TRIP_KM);
+            setTimeout(() => { try { map.invalidateSize(); } catch (e) { /* noop */ } }, 120);
+            return true;
+        },
+
+        destroyHome() {
+            try {
+                if (this.homeMap) {
+                    this.homeMarkers.forEach(m => { try { this.homeMap.removeLayer(m); } catch (e) {} });
+                    this.homeMap.remove();
+                }
+            } catch (e) {}
+            this.homeMap = null;
+            this.homeMarkers = new Map();
+            this.homeCircle = null;
+        },
+
+        /** Move the radius reference point (search result or GPS); redraws the ring. */
+        setHomeRef(lat, lng, radiusKm) {
+            this.homeRef = { lat: Number(lat), lng: Number(lng) };
+            if (!this.homeMap) return;
+            if (this.homeCircle) { try { this.homeMap.removeLayer(this.homeCircle); } catch (e) {} }
+            const r = Math.min(Number(radiusKm) || MAX_TRIP_KM, MAX_TRIP_KM);
+            this.homeCircle = L.circle([this.homeRef.lat, this.homeRef.lng], {
+                radius: r * 1000,
+                color: '#1E74FD', weight: 1.2, opacity: 0.55,
+                fillColor: '#1E74FD', fillOpacity: 0.04, dashArray: '6 6'
+            }).addTo(this.homeMap);
+            // Reference pin (you / search point).
+            const old = this.homeMarkers.get('ref');
+            if (old) { try { this.homeMap.removeLayer(old); } catch (e) {} }
+            const ref = L.marker([this.homeRef.lat, this.homeRef.lng], {
+                icon: this._pinIcon('pickup'), title: 'Reference point', keyboard: false
+            }).addTo(this.homeMap);
+            this.homeMarkers.set('ref', ref);
+        },
+
+        upsertHomePin(key, lat, lng, kind, label) {
+            if (!this.homeMap) return;
+            const old = this.homeMarkers.get(key);
+            if (old) { try { this.homeMap.removeLayer(old); } catch (e) {} }
+            const m = L.marker([lat, lng], {
+                icon: this._pinIcon(kind === 'rider' ? 'driver' : 'dropoff'),
+                title: label || key
+            });
+            if (label) m.bindTooltip(String(label));
+            m.addTo(this.homeMap);
+            this.homeMarkers.set(key, m);
+        },
+
+        removeHomePin(key) {
+            const m = this.homeMarkers.get(key);
+            if (m && this.homeMap) { try { this.homeMap.removeLayer(m); } catch (e) {} }
+            this.homeMarkers.delete(key);
+        },
+
+        focusHome(lat, lng, zoom) {
+            if (!this.homeMap) return;
+            try { this.homeMap.flyTo([lat, lng], zoom || 12, { duration: 0.8 }); } catch (e) {}
         },
 
         _onMapClick(ev) {
@@ -33727,6 +33850,29 @@ module.exports = L.Routing = {
         },
 
         /* ---------- CURRENT LOCATION ---------- */
+
+        _locCache: null, // {lat, lng, ts}
+
+        /** Cached-first geolocation shared by home map, heartbeat and search. */
+        cachedLocation(maxAgeMs) {
+            const maxAge = maxAgeMs == null ? 60000 : maxAgeMs;
+            if (this._locCache && (Date.now() - this._locCache.ts) < maxAge) {
+                return Promise.resolve({ lat: this._locCache.lat, lng: this._locCache.lng });
+            }
+            if (!navigator.geolocation) return Promise.resolve(null);
+            return new Promise((resolve) => {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        this._locCache = { lat: pos.coords.latitude, lng: pos.coords.longitude, ts: Date.now() };
+                        resolve({ lat: this._locCache.lat, lng: this._locCache.lng });
+                    },
+                    () => resolve(this._locCache
+                        ? { lat: this._locCache.lat, lng: this._locCache.lng }
+                        : null),
+                    { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 }
+                );
+            });
+        },
 
         async flyToCurrentLocation() {
             if (!navigator.geolocation) {
@@ -34596,6 +34742,45 @@ module.exports = L.Routing = {
                                 </div>
                             `).join('')}
                         </div>
+                    </div>
+                </div>
+
+                <!-- Nearby live map (realtime mesh peers around you) -->
+                <div class="card card-white mb-3">
+                    <div class="card-body">
+                        <div class="home-section-head mb-2">
+                            <h6 class="home-section-title">${isRider ? 'Drivers near you' : 'Passengers near you'}</h6>
+                            <span class="text-muted small-12" id="nearCount">locating…</span>
+                        </div>
+                        <div class="map-container home-map">
+                            <div id="homeMap"></div>
+                        </div>
+                        <div class="form-group boxed mt-2 mb-1">
+                            <div class="input-wrapper">
+                                <label class="label" for="nearSearch">Search area</label>
+                                <input type="text" class="form-control" id="nearSearch"
+                                       placeholder="City, barangay, landmark…">
+                                <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
+                            </div>
+                            <div id="nearSuggest" class="mt-1" style="max-height: 160px; overflow: auto;"></div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2" style="gap:8px">
+                            <button id="btnNearLocate" type="button" class="btn btn-sm btn-outline-primary">
+                                <ion-icon name="locate-outline"></ion-icon> My location
+                            </button>
+                            <label class="label mb-0 ml-1" for="nearRadius">Radius</label>
+                            <select class="form-control ml-1" id="nearRadius" style="max-width:110px">
+                                <option value="5">5 km</option>
+                                <option value="10" selected>10 km</option>
+                                <option value="20">20 km</option>
+                                <option value="40">40 km</option>
+                                <option value="60">60 km</option>
+                            </select>
+                        </div>
+                        <ul class="listview flush transparent simple-listview mt-2" id="nearList">
+                            <li class="small text-muted">Waiting for mesh peers…</li>
+                        </ul>
+                        <p class="small text-muted mb-0 mt-1">Live peer discovery — only approximate locations are shared${isRider ? ', drivers see the same of you while this tab is open' : ''}.</p>
                     </div>
                 </div>
 
@@ -35608,7 +35793,10 @@ module.exports = L.Routing = {
                             }, 40);
                         }
                     }
-                    if (s === 'home') this._populateHomeStatus();
+                    if (s === 'home') { this._populateHomeStatus(); this._bindHomeScreen(); }
+                    else if (window.LapeeetMap && LapeeetMap.homeMap) {
+                        try { LapeeetMap.destroyHome(); } catch (e) {}
+                    }
                     if (s === 'settings') { this._populateSettingsGit(); this._bindSettingsScreen(); }
                     if (s === 'data') this._bindDataScreen();
                     if (s === 'profile') this._bindProfileScreen();
@@ -36050,6 +36238,132 @@ module.exports = L.Routing = {
             });
         },
 
+        /* ---------- HOME NEARBY MAP (realtime mesh peers + radius search) ---------- */
+
+        _homeRadiusKm: 10,
+
+        async _bindHomeScreen() {
+            const self = this;
+            // (Re)create the mini-map; the old instance is destroyed on leave.
+            let center = null;
+            try { center = await LapeeetMap.cachedLocation(120000); } catch (e) {}
+            if (!LapeeetMap.homeMap) {
+                LapeeetMap.initHome('homeMap', center || undefined);
+            }
+            if (center) {
+                LapeeetMap.setHomeRef(center.lat, center.lng, this._homeRadiusKm);
+                LapeeetMap.focusHome(center.lat, center.lng, 12);
+            } else {
+                // No GPS yet: keep default center, refresh silently in background.
+                LapeeetMap.cachedLocation(0).then(p => {
+                    if (!p || LapeeetUI.currentScreen !== 'home') return;
+                    LapeeetMap.setHomeRef(p.lat, p.lng, self._homeRadiusKm);
+                    LapeeetMap.focusHome(p.lat, p.lng, 12);
+                    self._refreshHomePeers();
+                }).catch(() => {});
+            }
+            $('#nearRadius').off('change').on('change', function () {
+                self._homeRadiusKm = Math.min(60, Number($(this).val()) || 10);
+                const ref = LapeeetMap.homeRef;
+                if (ref) LapeeetMap.setHomeRef(ref.lat, ref.lng, self._homeRadiusKm);
+                self._refreshHomePeers();
+            });
+            $('#btnNearLocate').off('click').on('click', async () => {
+                const p = await LapeeetMap.cachedLocation(0);
+                if (!p) { LapeeetUI.showToast('Could not determine your location', 'warning'); return; }
+                LapeeetMap.setHomeRef(p.lat, p.lng, self._homeRadiusKm);
+                LapeeetMap.focusHome(p.lat, p.lng, 12);
+                $('#nearSearch').val('');
+                self._refreshHomePeers();
+            });
+            this._bindHomeSearch();
+            this._refreshHomePeers();
+        },
+
+        _bindHomeSearch() {
+            const self = this;
+            let debounce = null;
+            const $input = $('#nearSearch');
+            const $box = $('#nearSuggest');
+            if (!$input.length) return;
+            $input.off('input keyup focus').on('input keyup focus', function () {
+                const q = $(this).val();
+                if (debounce) clearTimeout(debounce);
+                if (!q || q.length < 3) { $box.empty(); return; }
+                debounce = setTimeout(async () => {
+                    const rows = await LapeeetMap.searchAddress(q);
+                    if (!rows || !rows.length) {
+                        $box.html('<div class="small text-muted p-1">No results — peers show around your location</div>');
+                        return;
+                    }
+                    const html = rows.slice(0, 5).map(r => `
+                        <a href="javascript:;" class="list-group-item list-group-item-action p-2 small d-block"
+                           data-lat="${r.lat}" data-lng="${r.lng}" data-addr="${self._escapeAttr(r.address)}">
+                             ${self._truncate(r.address, 120)}
+                        </a>`).join('');
+                    $box.html('<div class="list-group">' + html + '</div>');
+                    $box.find('a[data-lat]').off('click').on('click', function () {
+                        const lat = parseFloat($(this).attr('data-lat'));
+                        const lng = parseFloat($(this).attr('data-lng'));
+                        const addr = $(this).attr('data-addr') || '';
+                        LapeeetMap.setHomeRef(lat, lng, self._homeRadiusKm);
+                        LapeeetMap.focusHome(lat, lng, 12);
+                        $('#nearSearch').val(self._truncate(addr, 120));
+                        $box.empty();
+                        self._refreshHomePeers();
+                    });
+                }, 380);
+            });
+        },
+
+        _refreshHomePeers() {
+            if (!window.LapeeetUI || !window.LapeeetP2P || !window.LapeeetMap) return;
+            if (LapeeetUI.currentScreen !== 'home' || !$('#nearList').length) return;
+            const isRider = this.role === 'RIDER';
+            const ref = LapeeetMap.homeRef || LapeeetP2P.myLoc || { lat: 14.5995, lng: 120.9842 };
+            const R = Math.min(60, this._homeRadiusKm || 10);
+            const rows = [];
+            const push = (key, lat, lng, label, kind) => {
+                if (lat === undefined || lat === null || lng === undefined || lng === null) return;
+                const km = LapeeetMap.haversineKm(ref.lat, ref.lng, Number(lat), Number(lng));
+                if (km <= R) rows.push({ key, lat: Number(lat), lng: Number(lng), km, label, kind });
+            };
+            if (isRider) {
+                // Passengers discover nearby DRIVERS from heartbeats.
+                LapeeetP2P.peers.forEach((p, id) => {
+                    if ((p.role || '') !== 'DRIVER') return;
+                    const bike = ((p.brand || '') + ' ' + (p.model || '')).trim();
+                    push('d:' + id, p.tLat, p.tLng,
+                        (bike || ('Driver ' + this._shortId(id))) + (p.capacity ? ' · ' + p.capacity + ' seats' : ''),
+                        'driver');
+                });
+            } else {
+                // Drivers discover nearby PASSENGERS from presence + live requests.
+                LapeeetP2P.peers.forEach((p, id) => {
+                    if ((p.role || '') === 'DRIVER') return;
+                    push('r:' + id, p.tLat, p.tLng, (p.name || ('Passenger ' + this._shortId(id))), 'rider');
+                });
+                LapeeetP2P.rideRequests.forEach((r, rideId) => {
+                    const b = r.body || {};
+                    push('q:' + rideId, b.pickup_lat, b.pickup_lng,
+                        'Request · ' + Number(b.distance_km || 0).toFixed(1) + ' km · ' + (b.capacity || '?') + ' seat(s)',
+                        'rider');
+                });
+            }
+            rows.sort((a, b) => a.km - b.km);
+            const shown = rows.slice(0, 50);
+            const want = new Set(shown.map(r => r.key));
+            Array.from(LapeeetMap.homeMarkers.keys()).forEach(k => {
+                if (k !== 'ref' && !want.has(k)) LapeeetMap.removeHomePin(k);
+            });
+            shown.forEach(r => LapeeetMap.upsertHomePin(r.key, r.lat, r.lng, r.kind,
+                r.label + ' · ' + r.km.toFixed(1) + ' km'));
+            $('#nearCount').text(shown.length + ' within ' + R + ' km');
+            $('#nearList').html(shown.length ? shown.map(r =>
+                `<li><span>${this._escapeAttr(r.label)}</span><strong>${r.km.toFixed(1)} km</strong></li>`
+            ).join('') : '<li class="small text-muted">No peers in range yet — mesh is still discovering.</li>');
+        },
+
         _populateHomeStatus() {
             $('#dbStatus').html( LapeeetDB.initialized   ? '<span class="text-success">Ready</span>' : '<span class="text-warning">Phase 2 stub</span>');
             const peerN = (LapeeetP2P.peerCount) ? LapeeetP2P.peerCount() : 0;
@@ -36444,12 +36758,18 @@ module.exports = L.Routing = {
                 case '__peer-leave':
                     this._populateHomeStatus();
                     if (LapeeetUI.currentScreen === 'map') this._renderDriverRequests();
+                    if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
+                    break;
+                case T.HELLO:
+                case T.DRIVER_STATUS:
+                    if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
                     break;
                 case T.RIDE_REQUEST:
                     if (this.role === 'DRIVER' && !evt.isSelf) {
                         LapeeetUI.showToast('New ride request nearby', 'info');
                         if (LapeeetUI.currentScreen === 'map') this._renderDriverRequests();
                     }
+                    if (LapeeetUI.currentScreen === 'home') this._refreshHomePeers();
                     break;
                 case T.RIDE_ACCEPT:
                     if (!evt.isSelf) this._onRideAccepted(evt);

@@ -6,6 +6,11 @@ dist/
 .graphify-venv/
 graphify-out/cache/
 graphify-out/2026-*/
+# OrbitDB spike artifacts (node_modules, vite dist, test data dirs)
+tools/orbit-spike/node_modules/
+tools/orbit-spike/dist/
+tools/orbit-spike/test/data-*/
+tools/orbit-spike/test/dbg*/
 # OS / editor
 .DS_Store
 Thumbs.db

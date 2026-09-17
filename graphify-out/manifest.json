@@ -166,5 +166,65 @@
     "seen": 1789647088.7391276,
     "ast_hash": "38a453c96bf90baa99fd8ab12bcbaf63",
     "semantic_hash": ""
+  },
+  "tools/orbit-spike/package.json": {
+    "mtime": 1789651592.1362152,
+    "seen": 1789651598.2792485,
+    "ast_hash": "4804c710241d5e5cd38b2fa0c08ba7ba",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/test/converge.js": {
+    "mtime": 1789653162.8329518,
+    "seen": 1789653171.250686,
+    "ast_hash": "7d955420e262279dbd54b3f3e9c6d76f",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/test/probe.js": {
+    "mtime": 1789652345.6663017,
+    "seen": 1789652346.4985793,
+    "ast_hash": "8f28f4128b821642941ca27a48e596e5",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/converge-out.txt": {
+    "mtime": 1789653233.6303966,
+    "seen": 1789653289.591736,
+    "ast_hash": "681e1d17f9bd16d2290390917c26378e",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/test/probe2.js": {
+    "mtime": 1789652389.7091389,
+    "seen": 1789652398.4585538,
+    "ast_hash": "c38496f5a0eb036fac32cc8b86b76e65",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/test/probe3.js": {
+    "mtime": 1789652687.7247665,
+    "seen": 1789652695.815191,
+    "ast_hash": "bb545ad71562a4c0c37383de1d885313",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/test/probe4.js": {
+    "mtime": 1789653281.155742,
+    "seen": 1789653289.5916958,
+    "ast_hash": "a114e22f9c3d9a82a7c7040dd8d31382",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/test/probe5.js": {
+    "mtime": 1789653361.2983408,
+    "seen": 1789653369.7426977,
+    "ast_hash": "995b6b3468634c9a064c6ba89f9f1500",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/src/spike-bundle.js": {
+    "mtime": 1789653545.6154733,
+    "seen": 1789653553.9937432,
+    "ast_hash": "120dc1e11053f1e1cb24a96a306b221d",
+    "semantic_hash": ""
+  },
+  "tools/orbit-spike/vite.config.js": {
+    "mtime": 1789653495.3242667,
+    "seen": 1789653503.770452,
+    "ast_hash": "6a88dfca1f293884d29719dbb24f9ed0",
+    "semantic_hash": ""
   }
 }

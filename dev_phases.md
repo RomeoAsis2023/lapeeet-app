@@ -92,15 +92,24 @@
 - [ ] 7.3 Mixed-content CI guard (deferred — add when Actions CI lands)
 - [ ] 7.4 Device check left: open live URL on phone browser, confirm boot + map + `?mode=` both roles with zero console errors (fetch-based check can't execute JS)
 
-## Phase 8 — OrbitDB Full Replacement ⬜ TRACK (after 7; gates each step)
+## Phase 8 — OrbitDB via webconnect Bridge 🟡 P0 SPIKE VERDICT: CONDITIONAL GO
 
-**Exit:** sql.js removed; tenant + shared ride data on OrbitDB; same UI; same field-test script green.
-- [ ] 8.0 P0 SPIKE (go/no-go): vite-bundle Helia+libp2p-v2-pinned+`@orbitdb/core@4` → load from `file://` AND Pages URL → open/persist/reload `documents` DB (IndexedDB blockstore) → 2-tab replication via address. STOP if `file://` breaks libp2p (fallback: WebView serves over localhost).
-- [ ] 8.1 Stores: `profile`/`ebikes`/`rides` (documents+keyvalue per tenant, creator-only write) + shared per-ride `events` log (`write:[rider,driver]`); `connectId↔orbitIdentity` sidecar; keep Ed25519 envelope signing
-- [ ] 8.2 Facade rewrite: identical `LapeeetDB` API over stores; 60km/capacity CHECKs → JS guards + peer recheck; export → JSON dump (+optional CAR); Data-screen copy updated; `check-db.js` → guard tests
-- [ ] 8.3 Ride sharing: create/grant shared `events` DB inside existing ACCEPT/RIDER_INFO directs; `appendEvent` writes shared log; photos stay in tenant docs (never in shared log)
-- [ ] 8.4 Harness+docs: `check-orbit.js` (Node round-trip), phases/README update, commit, push; bundle-size + budget-phone cold-start measured
-- [ ] 8.5 FIELD TEST: 2-device full cycle + kill/restart persistence + export/import round-trip
+**P0 proven headless (`tools/orbit-spike/`, zero app code touched):**
+- G1 ✅ Offline init: bare libp2p (no transports/discovery/bootstrap) + Helia + FsBlockstore starts in ~80ms, never dials. **Caveat found:** Helia 7 always merges its defaults — pass a prebuilt libp2p *instance* and it gets mangled as options (hard crash); pass pure options with `peerDiscovery:[]` + `services:{}` to stay hermetic. Same rule will apply to the browser config.
+- G2 ✅ Public seams, no fork: stock DBs expose `.log` + `joinEntry()`; `open()` takes `sync:false` (v4 name — `syncAutomatically` is silently ignored!); custom `entryStorage` supported.
+- G3 ✅ Trust over untrusted wire: forged entry (mutated payload, original hash) refused by `joinEntry`; writer-list (`write:[ids]`) enforced on merge.
+- G4 ✅ Manifest sharing unneeded for open DBs: same name+params → identical address (`/orbitdb/zdpu…`) on both peers.
+- G5 ⚠️ PARTIAL — full convergence via bridge: head relay + error-driven block fetch works mechanically, but two block-layer behaviors need the production design to account for them: (a) v4 blockstores are **streaming** (`get()` returns async iterable — the exact #1244 terrain; consume-and-concat everywhere), (b) missing blocks **hang on bitswap** instead of throwing, so the bridge must *proactively* push a head package (head entry + writer identity-key blocks + ancestors), never rely on pull-on-miss.
+- G6 ✅ Bundle: vite build of exact stack = **2.40MB raw / 598KB gzip** (browser entry, IDB blockstore). Shippable; production +webrtc transport adds ~15-25%.
+- NOT testable headless (need browsers): 2-tab live convergence, `file://` vs Pages origin parity, Trystero payload limits. These become P1-in-browser gates, not P0 blockers.
+
+**Pinned stack (exact, `tools/orbit-spike/package.json`):** `@orbitdb/core@4.0.0`, `helia@7.1.12`, `libp2p@3.3.11`, `blockstore-idb@4.0.1`, `vite@7.3.6` (+ Node-harness-only: tcp/noise/yamux/identify, blockstore-fs).
+**Revised P1 worklist:** `orbit-bridge.js` with head-package protocol (heads + identity blocks + ancestors, CID-verified on receipt), custom entryStorage with timeouts (never bare bitswap), identity mapping via HELLO, `sync:false` everywhere; then browser-gate rerun of G5 + origins + payload limits before touching ride wiring.
+**Exit (unchanged):** sql.js removed; tenant + shared ride data on OrbitDB; same UI; same field-test script green.
+- [x] 8.0 P0 spike (conditional GO — see above; full log in `tools/orbit-spike/`)
+- [ ] 8.1 Head-package bridge + P1 browser gates (convergence, origins, payload limits)
+- [ ] 8.2 Stores + facade rewrite (guards replace CHECKs; export → JSON dump)
+- [ ] 8.3 Ride sharing wiring + 8.4 harness/docs + 8.5 field test (unchanged)
 
 ## Phase 9 — Phone Registration Gate + WebAuthn Passkeys ✅ DONE (code; ceremony field test pending)
 
@@ -147,7 +156,7 @@
 
 ## Risks
 
-R1 bootstrap/relay downtime → status UI + retry (unchanged) · R2 photo/quota bloat → 1280px/q0.85/3max + 80% warn + export-first wipe · R3 OSRM/Nominatim limits → haversine gate + cache · R4 spoofed coords → sig covers coords + recompute + 25% tolerance reject · R5 capacity bypass → UI+JS+DB+peer (DB layer drops to 3-layer under OrbitDB) · R6 NAT → STUN + chat fallback · R7 site-data clear → export reminder · R8 (OrbitDB) libp2p-v3 incompatibility → pin v2 stack · R9 (OrbitDB) bundle size/startup → measure in P0 · R10 (Pages) mixed content → CI guard
+R1 bootstrap/relay downtime → status UI + retry (unchanged) · R2 photo/quota bloat → 1280px/q0.85/3max + 80% warn + export-first wipe · R3 OSRM/Nominatim limits → haversine gate + cache · R4 spoofed coords → sig covers coords + recompute + 25% tolerance reject · R5 capacity bypass → UI+JS+DB+peer (DB layer drops to 3-layer under OrbitDB) · R6 NAT → STUN + chat fallback · R7 site-data clear → export reminder · R8 (OrbitDB) version skew → exact pins in `tools/orbit-spike/package.json`; Helia merges defaults so pass explicit offline options (P0 lesson) · R9 (OrbitDB) bundle measured P0: 2.40MB / 598kB gzip (+webrtc in prod) · R10 (Pages) mixed content → CI guard · R11 (OrbitDB) v4 blockstores stream + missing blocks hang on bitswap → head-package push protocol + entryStorage timeouts (P0 lesson)
 
 ## Open decisions (need your call)
 

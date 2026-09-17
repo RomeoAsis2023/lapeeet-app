@@ -1,0 +1,25 @@
+{
+  "name": "lapeeet-orbit-spike",
+  "version": "0.0.0",
+  "private": true,
+  "description": "P0 spike: OrbitDB over webconnect bridge. No app code. Decides Phase 8 go/no-go.",
+  "type": "module",
+  "scripts": {
+    "install:pinned": "npm install --no-audit --no-fund",
+    "build": "vite build",
+    "test": "node test/converge.js",
+    "pins": "node -e \"for (const p of ['@orbitdb/core','helia','libp2p','blockstore-idb','vite']) console.log(p, require('./package.json').dependencies[p])\""
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-yamux": "^8.0.1",
+    "@libp2p/identify": "^4.1.14",
+    "@libp2p/noise": "^17.0.2",
+    "@libp2p/tcp": "^11.0.28",
+    "@orbitdb/core": "4.0.0",
+    "blockstore-fs": "^4.0.1",
+    "blockstore-idb": "4.0.1",
+    "helia": "7.1.12",
+    "libp2p": "3.3.11",
+    "vite": "7.3.6"
+  }
+}

@@ -1,8 +1,8 @@
 {
   "www/assets/js/app.js": {
-    "mtime": 1789645447.3960643,
-    "seen": 1789645453.2920396,
-    "ast_hash": "397660b6d4e4f9f666f0bc0b852cdb28",
+    "mtime": 1789646668.3187013,
+    "seen": 1789646674.047653,
+    "ast_hash": "4efea99ec7dddba9fa405f5be9adc9ff",
     "semantic_hash": ""
   },
   "www/assets/js/base.js": {
@@ -18,9 +18,9 @@
     "semantic_hash": ""
   },
   "www/assets/js/db-layer.js": {
-    "mtime": 1789642440.1418982,
-    "seen": 1789642445.39594,
-    "ast_hash": "b0272344cf9b3c78a79f08363af23a26",
+    "mtime": 1789646546.528473,
+    "seen": 1789646552.467011,
+    "ast_hash": "c63f4043ba9e3f9cd6ea089a41af7239",
     "semantic_hash": ""
   },
   "www/assets/js/map-layer.js": {
@@ -36,9 +36,9 @@
     "semantic_hash": ""
   },
   "www/assets/js/ui-components.js": {
-    "mtime": 1789642576.8971584,
-    "seen": 1789642582.2616274,
-    "ast_hash": "d190f2f61c890de2dfdc2ab311c669ba",
+    "mtime": 1789646668.3187013,
+    "seen": 1789646674.0476718,
+    "ast_hash": "5582f76298203a62b21c969007a220db",
     "semantic_hash": ""
   },
   "Lapeet_app_development.md": {
@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "tools/check-db.js": {
-    "mtime": 1789642609.226531,
-    "seen": 1789642614.6886888,
-    "ast_hash": "3c96cd6e9ef04ef2ba3373c699ac1063",
+    "mtime": 1789646710.3060045,
+    "seen": 1789646710.4771829,
+    "ast_hash": "35ad6d0e65f28c4e4cebc9f5ace623ce",
     "semantic_hash": ""
   },
   "tools/check-dist.js": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "dev_phases.md": {
-    "mtime": 1789642642.485829,
-    "seen": 1789642655.6694276,
-    "ast_hash": "abd10ea46d3af1bb215fde91cafa0f2e",
+    "mtime": 1789646772.2073402,
+    "seen": 1789646784.6354132,
+    "ast_hash": "b3d5149dd60e9012a1061c5f374d990e",
     "semantic_hash": ""
   },
   "tools/check-mode.js": {
@@ -138,15 +138,15 @@
     "semantic_hash": ""
   },
   "www/assets/js/auth-layer.js": {
-    "mtime": 1789645432.7592158,
-    "seen": 1789645438.321015,
-    "ast_hash": "e862c2c14a22ace830af67860d413189",
+    "mtime": 1789646748.0951161,
+    "seen": 1789646753.7007906,
+    "ast_hash": "bb019ccede8e098a1b66dacf663284ba",
     "semantic_hash": ""
   },
   "tools/check-auth.js": {
-    "mtime": 1789644487.688404,
-    "seen": 1789644493.087985,
-    "ast_hash": "7c30be57cbf53e7c5caf91ff2b422520",
+    "mtime": 1789646704.4397411,
+    "seen": 1789646710.4771774,
+    "ast_hash": "ec871ed7d837cf81f8114a55137da31f",
     "semantic_hash": ""
   },
   "tools/check-webauthn.js": {

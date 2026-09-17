@@ -63,8 +63,8 @@ const VL = path.join(__dirname, '..', 'www', 'assets', 'vendor-live');
   // Phase 9: passkey column present on fresh schema.
   const cols = db2.exec('PRAGMA table_info(my_profile)')[0].values.map(r => r[1]);
   console.log((cols.includes('passkey_json') ? 'PASS' : 'FAIL') + ' - my_profile.passkey_json column');
-  // Rich profile columns (first/last/email/avatar).
-  ['first_name', 'last_name', 'email'].forEach(c => {
+  // Rich profile + PIN columns.
+  ['first_name', 'last_name', 'email', 'pin_json'].forEach(c => {
     console.log((cols.includes(c) ? 'PASS' : 'FAIL') + ' - my_profile.' + c + ' column');
   });
   ok('passkey set/get round-trip', () => {

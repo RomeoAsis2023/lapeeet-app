@@ -164,13 +164,14 @@
             } catch (e) { return false; }
         },
 
-        /** Lock needed = passkey enrolled (not skipped) and not yet unlocked this session. */
+        /** Lock needed = passkey enrolled or device PIN set (and not unlocked). */
         _needsUnlock() {
             if (this._unlocked) return false;
             try {
                 if (!(window.LapeeetDB && LapeeetDB.initialized)) return false;
                 const pk = LapeeetDB.getPasskey();
-                return !!(pk && pk !== 'SKIP');
+                if (pk && pk !== 'SKIP') return true;
+                return !!LapeeetDB.getPin();
             } catch (e) { return false; }
         },
 
@@ -225,6 +226,53 @@
                     LapeeetDB.setPasskey('SKIP');
                     LapeeetUI.showToast('Passkey removed — lock screen off', 'info');
                     refresh();
+                } catch (e) { LapeeetUI.showToast('Remove failed: ' + (e.message || e), 'danger'); }
+            });
+            const refreshPin = () => {
+                const el = $('#settingsPinState');
+                if (!el.length) return;
+                try {
+                    el.html(LapeeetDB.getPin()
+                        ? '<span class="text-success">Set on this device</span>'
+                        : '<span class="text-muted">Not set</span>');
+                } catch (e) { el.text('—'); }
+            };
+            refreshPin();
+            $('#btnPinSet').off('click').on('click', async () => {
+                const w0 = $('#pinCurWrap'), w1 = $('#pinSetWrap'), w2 = $('#pinSetWrap2');
+                const existing = (() => { try { return LapeeetDB.getPin(); } catch (e) { return null; } })();
+                if (!w1.is(':visible')) {
+                    w0.toggle(!!existing);
+                    w1.show(); w2.show();
+                    (existing ? $('#settingsPinCur') : $('#settingsPin1')).focus();
+                    return;
+                }
+                const p1 = ($('#settingsPin1').val() || '').trim();
+                const p2 = ($('#settingsPin2').val() || '').trim();
+                if (!LapeeetAuth.isValidPinFormat(p1) || p1 !== p2) {
+                    LapeeetUI.showToast('PINs must match and be 4–12 digits', 'warning');
+                    return;
+                }
+                try {
+                    if (existing) {
+                        const cur = ($('#settingsPinCur').val() || '').trim();
+                        if (!(await LapeeetAuth.verifyPin(cur, existing))) {
+                            LapeeetUI.showToast('Current PIN is wrong', 'danger');
+                            return;
+                        }
+                    }
+                    LapeeetDB.setPin(await LapeeetAuth.hashPin(p1));
+                    $('#settingsPinCur, #settingsPin1, #settingsPin2').val('');
+                    w0.hide(); w1.hide(); w2.hide();
+                    LapeeetUI.showToast('Device PIN saved', 'success');
+                    refreshPin();
+                } catch (e) { LapeeetUI.showToast('PIN save failed: ' + (e.message || e), 'danger'); }
+            });
+            $('#btnPinRemove').off('click').on('click', () => {
+                try {
+                    LapeeetDB.setPin(null);
+                    LapeeetUI.showToast('Device PIN removed', 'info');
+                    refreshPin();
                 } catch (e) { LapeeetUI.showToast('Remove failed: ' + (e.message || e), 'danger'); }
             });
         },
@@ -284,8 +332,42 @@
             LapeeetUI.showToast('No passkey on this device — add one in Settings to enable lock', 'warning');
         },
 
+        _pinAttempts: 0,
+        _pinLockUntil: 0,
+
         _bindLockScreen() {
             $('#btnLockRecover').off('click').on('click', () => LapeeetUI.navigate('recover'));
+            // Show only the unlock methods actually enrolled on this device.
+            try {
+                const hasPk = (() => { const pk = LapeeetDB.getPasskey(); return !!(pk && pk !== 'SKIP'); })();
+                const hasPin = !!LapeeetDB.getPin();
+                $('#lockPkWrap').toggle(hasPk);
+                $('#lockPinWrap').toggle(hasPin);
+            } catch (e) {}
+            $('#btnPinUnlock').off('click').on('click', async () => {
+                const errBox = $('#lockError');
+                errBox.hide();
+                const now = Date.now();
+                if (now < this._pinLockUntil) {
+                    const s = Math.ceil((this._pinLockUntil - now) / 1000);
+                    errBox.text(`Too many tries — wait ${s}s`).show();
+                    return;
+                }
+                try {
+                    const okPin = await LapeeetAuth.verifyPin(($('#lockPin').val() || '').trim(), LapeeetDB.getPin());
+                    if (!okPin) throw new Error('Wrong PIN');
+                    this._pinAttempts = 0;
+                    this._pinLockUntil = 0;
+                    this._unlocked = true;
+                    LapeeetUI.showToast('Unlocked — welcome back', 'success');
+                    LapeeetUI.navigate('home');
+                } catch (e) {
+                    this._pinAttempts++;
+                    this._pinLockUntil = Date.now() + Math.min(this._pinAttempts * 2000, 15000);
+                    errBox.text('Unlock failed: ' + (e.message || e)).show();
+                    try { $('#lockPin').val(''); } catch (err) {}
+                }
+            });
             $('#btnUnlock').off('click').on('click', async () => {
                 const btn = $('#btnUnlock');
                 if (btn.prop('disabled')) return; // double-tap guard (one ceremony at a time)
@@ -1413,6 +1495,28 @@
                 try { LapeeetDB.setPasskey('SKIP'); } catch (e) {}
                 $('#obPasskeyState').text('Skipped — you can add one later from Settings.');
                 step++; show();
+            });
+            $('#obPinUse').off('click').on('click', () => {
+                $('#obPinSetup').toggle();
+            });
+            $('#obPinSave').off('click').on('click', async () => {
+                const p1 = ($('#obPin').val() || '').trim();
+                const p2 = ($('#obPin2').val() || '').trim();
+                if (!LapeeetAuth.isValidPinFormat(p1)) {
+                    $('#obPinState').text('PIN must be 4–12 digits.');
+                    return;
+                }
+                if (p1 !== p2) {
+                    $('#obPinState').text('PINs do not match — try again.');
+                    return;
+                }
+                try {
+                    LapeeetDB.setPin(await LapeeetAuth.hashPin(p1));
+                    $('#obPinState').text('Device PIN saved on this device.');
+                    LapeeetUI.showToast('Device PIN saved', 'success');
+                } catch (e) {
+                    $('#obPinState').text('Could not save PIN: ' + (e.message || e));
+                }
             });
             show();
         },

@@ -1,9 +1,12 @@
 // Phase 9 auth harness: pure helpers only (ceremonies need a real authenticator).
 const fs = require('fs');
 const vm = require('vm');
+const nodeCrypto = require('crypto');
 const src = fs.readFileSync('www/assets/js/auth-layer.js', 'utf8');
 const sandbox = {
   console,
+  crypto: nodeCrypto.webcrypto,
+  TextEncoder,
   btoa: (s) => Buffer.from(s, 'binary').toString('base64'),
   atob: (s) => Buffer.from(s, 'base64').toString('binary'),
 };
@@ -83,4 +86,19 @@ ok('InvalidStateError mentions retry', /retry/.test(fe('InvalidStateError')));
 ok('AbortError says cancelled', /cancelled/.test(A.friendlyError({ name: 'AbortError' }, 'unlock')));
 ok('unknown passes message through', A.friendlyError({ name: 'Weird', message: 'raw-Weird' }) === 'raw-Weird');
 
-process.exit(fails ? 1 : 0);
+// Device PIN: format + PBKDF2 round-trip (async tail of the harness).
+(async () => {
+  ok('pin format accepts 4-12 digits', A.isValidPinFormat('1234') && A.isValidPinFormat('123456789012'));
+  ok('pin format rejects short/letters', !A.isValidPinFormat('123') && !A.isValidPinFormat('12ab') && !A.isValidPinFormat(''));
+  ok('pin format rejects too long', !A.isValidPinFormat('1234567890123'));
+  const rec = await A.hashPin('246810');
+  ok('pin record shape', !!rec.salt && !!rec.hash && rec.iter === A.PIN_ITERATIONS);
+  ok('correct PIN verifies', await A.verifyPin('246810', rec));
+  ok('wrong PIN rejects', !(await A.verifyPin('246811', rec)));
+  ok('malformed pin rejects', !(await A.verifyPin('ab', rec)));
+  const rec2 = await A.hashPin('246810');
+  ok('salts unique per hash', rec2.salt !== rec.salt && rec2.hash !== rec.hash);
+  ok('verify rejects empty record', !(await A.verifyPin('246810', null)));
+  ok('short pin refuses to hash', await A.hashPin('12').then(() => false, () => true));
+  process.exit(fails ? 1 : 0);
+})().catch((e) => { console.error('HARNESS FAIL:', e); process.exit(1); });

@@ -724,6 +724,26 @@
                             </div>
                             <div class="text-center mt-2">
                                 <a href="javascript:;" id="obPasskeySkip" class="small text-muted">Skip for now</a>
+                                <span class="small text-muted"> · </span>
+                                <a href="javascript:;" id="obPinUse" class="small text-primary">Use a device PIN instead</a>
+                            </div>
+                            <div id="obPinSetup" style="display:none">
+                                <div class="form-group boxed mt-2"><div class="input-wrapper">
+                                    <label class="label" for="obPin">Device PIN (4–12 digits)</label>
+                                    <input type="password" class="form-control" id="obPin"
+                                        inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Choose PIN">
+                                </div></div>
+                                <div class="form-group boxed"><div class="input-wrapper">
+                                    <label class="label" for="obPin2">Confirm PIN</label>
+                                    <input type="password" class="form-control" id="obPin2"
+                                        inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Repeat PIN">
+                                </div></div>
+                                <p class="small" id="obPinState" style="color:var(--lapeeet-text-lo);">A simple device lock for phones without passkeys. It does not encrypt your data.</p>
+                                <div class="form-button-group">
+                                    <button id="obPinSave" type="button" class="btn btn-outline-primary btn-block">
+                                        Save Device PIN
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="ob-step" data-step="5" style="display:none">
@@ -756,10 +776,22 @@
                         <h5 class="auth-title">Welcome back${name ? ', ' + this._escapeHtml(name) : ''}</h5>
                         <p class="auth-sub">Unlock with your passkey to continue</p>
                         <p class="card-text small text-danger text-center" id="lockError" style="display:none"></p>
-                        <div class="form-button-group">
+                        <div class="form-button-group" id="lockPkWrap">
                             <button id="btnUnlock" type="button" class="btn btn-primary btn-block shadowed">
                                 <ion-icon name="finger-print-outline"></ion-icon> Unlock with Passkey
                             </button>
+                        </div>
+                        <div id="lockPinWrap" style="display:none">
+                            <div class="form-group boxed mt-2"><div class="input-wrapper">
+                                <label class="label" for="lockPin">Device PIN</label>
+                                <input type="password" class="form-control" id="lockPin"
+                                    inputmode="numeric" maxlength="12" autocomplete="off" placeholder="Enter PIN">
+                            </div></div>
+                            <div class="form-button-group">
+                                <button id="btnPinUnlock" type="button" class="btn btn-outline-primary btn-block">
+                                    Unlock with PIN
+                                </button>
+                            </div>
                         </div>
                         <div class="text-center mt-3">
                             <a href="javascript:;" id="btnLockRecover" class="small text-primary d-block mb-2">Recover from a backup file</a>
@@ -993,6 +1025,7 @@
                 <div class="wide-block pt-2 pb-2 pl-3 pr-3">
                     <ul class="listview flush transparent simple-listview">
                         <li>Passkey <strong id="settingsPasskeyState">checking…</strong></li>
+                        <li>Device PIN <strong id="settingsPinState">checking…</strong></li>
                     </ul>
                     <div class="form-button-group mt-2">
                         <button id="btnPasskeyAdd" type="button" class="btn btn-primary btn-block shadowed">
@@ -1002,6 +1035,31 @@
                     <div class="form-button-group mt-2">
                         <button id="btnPasskeyRemove" type="button" class="btn btn-outline-secondary btn-block">
                             Remove Passkey
+                        </button>
+                    </div>
+                    <div class="form-group boxed mt-2" id="pinCurWrap" style="display:none"><div class="input-wrapper">
+                        <label class="label" for="settingsPinCur">Current PIN</label>
+                        <input type="password" class="form-control" id="settingsPinCur"
+                            inputmode="numeric" maxlength="12" autocomplete="off" placeholder="Current PIN">
+                    </div></div>
+                    <div class="form-group boxed mt-2" id="pinSetWrap" style="display:none"><div class="input-wrapper">
+                        <label class="label" for="settingsPin1">New device PIN (4–12 digits)</label>
+                        <input type="password" class="form-control" id="settingsPin1"
+                            inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Choose PIN">
+                    </div></div>
+                    <div class="form-group boxed" id="pinSetWrap2" style="display:none"><div class="input-wrapper">
+                        <label class="label" for="settingsPin2">Confirm PIN</label>
+                        <input type="password" class="form-control" id="settingsPin2"
+                            inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Repeat PIN">
+                    </div></div>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPinSet" type="button" class="btn btn-outline-primary btn-block">
+                            Set / Change Device PIN
+                        </button>
+                    </div>
+                    <div class="form-button-group mt-2">
+                        <button id="btnPinRemove" type="button" class="btn btn-outline-secondary btn-block">
+                            Remove Device PIN
                         </button>
                     </div>
                     <p class="text-muted smaller mt-3 mb-0" style="color:var(--lapeeet-text-mute);">

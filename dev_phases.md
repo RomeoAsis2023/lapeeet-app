@@ -116,6 +116,13 @@
 - [x] 10.2 `processAvatar()` (256px square center-crop JPEG); tap-to-change avatar on Profile header; onboarding collects first/last; all name consumers (sidebar, lock, HELLO, RIDER_INFO) use `displayName()`; email format + phone re-validated on save
 - [x] 10.3 Harness 26/26 (`tools/check-db.js` incl. real `saveProfile`/`displayName` runs); rebuild + redeploy
 
+## Phase 11 — Device PIN Fallback ✅ DONE
+
+- [x] 11.1 `my_profile.pin_json` (`{salt, hash, iter}`; guarded ALTER); `getPin()`/`setPin()`; PIN kept on backup import (memorized secret transfers — unlike device-bound passkeys)
+- [x] 11.2 `hashPin`/`verifyPin` (PBKDF2-SHA256, 600k iters, 32B salt); constant-shape compare; realm-safe base64url fix
+- [x] 11.3 Gate covers passkey OR PIN; lock screen shows enrolled methods only; onboarding step 4 gains inline PIN setup; Settings PIN set/change (current-PIN verified)/remove; progressive retry delay on lock screen
+- [x] 11.4 Harness 12/12 PIN checks (`tools/check-auth.js`); full suite green; rebuild + redeploy
+
 ## Track W — WebView Wrapper ⬜ (parallel, device-side)
 
 - [ ] W.1 Minimal Android wrapper loading `dist/` (local server preferred over raw `file://` for OrbitDB future), geolocation + mic/camera permissions, kill/restart IndexedDB check

@@ -16,8 +16,15 @@
     const AUTH_VERSION = '9.0.0-phase9';
 
     /* ---------- base64url ---------- */
+    function isArrayBufferLike(b) {
+        if (!b || typeof b !== 'object') return false;
+        if (b instanceof ArrayBuffer) return true;
+        // Cross-realm safe (vm harnesses, WebView bridges): instanceof lies across realms.
+        try { return Object.prototype.toString.call(b) === '[object ArrayBuffer]'; }
+        catch (e) { return false; }
+    }
     function b64urlEncode(buf) {
-        const bytes = buf instanceof ArrayBuffer ? new Uint8Array(buf) : buf;
+        const bytes = isArrayBufferLike(buf) ? new Uint8Array(buf) : buf;
         let s = '';
         for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
         return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -175,6 +182,60 @@
 
         isValidPHMobile(raw) {
             return this.normalizePHMobile(raw) !== null;
+        },
+
+        /* ---------- device PIN fallback (local device lock, NOT account security) ----------
+           A memorized secret verified with PBKDF2-SHA256. Honest limits: anyone with a
+           copy of the tenant file can brute-force it offline, so this is a casual gate
+           for devices without a platform authenticator — never presented as encryption
+           or server-grade authentication. */
+
+        PIN_ITERATIONS: 600000,
+        PIN_MIN_LEN: 4,
+        PIN_MAX_LEN: 12,
+
+        isValidPinFormat(pin) {
+            return typeof pin === 'string' && new RegExp(`^\\d{${this.PIN_MIN_LEN},${this.PIN_MAX_LEN}}$`).test(pin);
+        },
+
+        /** Hash a PIN with a fresh random salt. Returns {salt, hash, iter} (all b64url/plain). */
+        async hashPin(pin) {
+            if (!this.isValidPinFormat(pin)) {
+                throw new Error(`PIN must be ${this.PIN_MIN_LEN}–${this.PIN_MAX_LEN} digits`);
+            }
+            const salt = new Uint8Array(32);
+            (crypto.getRandomValues ? crypto.getRandomValues(salt)
+                : salt.map(() => Math.floor(Math.random() * 256)));
+            const key = await crypto.subtle.importKey(
+                'raw', new TextEncoder().encode('lapeeet-pin:' + pin),
+                { name: 'PBKDF2' }, false, ['deriveBits']
+            );
+            const bits = await crypto.subtle.deriveBits(
+                { name: 'PBKDF2', salt, iterations: this.PIN_ITERATIONS, hash: 'SHA-256' },
+                key, 256
+            );
+            return { salt: b64urlEncode(salt), hash: b64urlEncode(bits), iter: this.PIN_ITERATIONS };
+        },
+
+        /** Returns true iff pin reproduces the stored record. */
+        async verifyPin(pin, record) {
+            if (!record || !record.salt || !record.hash) return false;
+            if (!this.isValidPinFormat(pin)) return false;
+            const iter = Number(record.iter) || this.PIN_ITERATIONS;
+            const key = await crypto.subtle.importKey(
+                'raw', new TextEncoder().encode('lapeeet-pin:' + pin),
+                { name: 'PBKDF2' }, false, ['deriveBits']
+            );
+            const bits = await crypto.subtle.deriveBits(
+                { name: 'PBKDF2', salt: b64urlDecode(record.salt), iterations: iter, hash: 'SHA-256' },
+                key, 256
+            );
+            const a = b64urlEncode(bits);
+            const b = String(record.hash);
+            if (a.length !== b.length) return false;
+            let diff = 0;
+            for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+            return diff === 0;
         },
 
         /* ---------- passkey enrollment ---------- */

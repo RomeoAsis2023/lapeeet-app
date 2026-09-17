@@ -79,7 +79,8 @@
         passkey_json TEXT DEFAULT '',
         first_name TEXT DEFAULT '',
         last_name TEXT DEFAULT '',
-        email TEXT DEFAULT ''
+        email TEXT DEFAULT '',
+        pin_json TEXT DEFAULT ''
     );
     CREATE TABLE IF NOT EXISTS my_ebikes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -181,7 +182,7 @@
             // Migrations for pre-existing tenant DBs (each guarded; repeat-safe).
             try { this.db.exec('ALTER TABLE my_profile ADD COLUMN passkey_json TEXT DEFAULT ' + "''"); }
             catch (e) { /* column already exists — ignore */ }
-            ['first_name', 'last_name', 'email'].forEach(col => {
+            ['first_name', 'last_name', 'email', 'pin_json'].forEach(col => {
                 try { this.db.exec(`ALTER TABLE my_profile ADD COLUMN ${col} TEXT DEFAULT ''`); }
                 catch (e) { /* already exists — ignore */ }
             });
@@ -285,6 +286,21 @@
             this._needInit();
             const val = recordOrSkip === 'SKIP' ? 'SKIP' : JSON.stringify(recordOrSkip || {});
             this._run('UPDATE my_profile SET passkey_json = ? WHERE id = 1', [val]);
+        },
+        /** Device PIN record {salt, hash, iter} object, or null. Never stores the PIN. */
+        getPin() {
+            this._needInit();
+            const raw = (this.getProfile().pin_json || '').trim();
+            if (!raw) return null;
+            try {
+                const rec = JSON.parse(raw);
+                return (rec && rec.salt && rec.hash) ? rec : null;
+            } catch (e) { return null; }
+        },
+        setPin(recordOrNull) {
+            this._needInit();
+            this._run('UPDATE my_profile SET pin_json = ? WHERE id = 1',
+                [recordOrNull ? JSON.stringify(recordOrNull) : '']);
         },
         setIdentity(connectId, pubkey) {
             this._needInit();

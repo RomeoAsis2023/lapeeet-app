@@ -385,6 +385,22 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Active ride panel (populated when a ride is matched) -->
+            <div class="section full mt-2 mb-2" id="activeRideSection" style="display:none">
+                <div class="section-title">Active Ride (P2P)</div>
+                <div class="wide-block pt-3 pb-3 pl-3 pr-3" id="activeRideBody"></div>
+            </div>
+
+            <!-- Driver-only: incoming ride requests from the mesh -->
+            <div class="section full mt-2 mb-2" id="driverRequestsSection" style="display:none">
+                <div class="section-title">Nearby Requests (Drivers)</div>
+                <div class="wide-block pt-2 pb-2 pl-3 pr-3">
+                    <ul class="listview flush transparent simple-listview" id="driverRequestsList">
+                        <li class="small text-muted">Listening for RIDE_REQUEST broadcasts…</li>
+                    </ul>
+                </div>
             </div>`;
         },
 
@@ -445,8 +461,48 @@
             </div>`;
         },
         _screenMessages() {
-            return this._placeholderCard('Messages',
-                'Phase 3 — P2P 1:1 chat, WebRTC call history, SMS fallbacks.');
+            const app = global.LapeeetApp || {};
+            const peers = (typeof app._chatPeers === 'function' && app._chatPeers()) || [];
+            const sel = app._chatSelected || null;
+            const thread = (typeof app._chatThread === 'function' && app._chatThread(sel)) || [];
+            const peerPills = peers.length ? peers.map(p => `
+                <a href="javascript:;" data-chat-peer="${this._escapeAttr(p.id)}"
+                   class="badge ${p.id === sel ? 'badge-primary' : 'badge-secondary'} mr-1 mb-1" style="font-size:12px">
+                    ${this._escapeHtml(p.label || (p.id || '').slice(0, 8))}${p.unread ? ' · ' + p.unread : ''}
+                </a>`).join('')
+                : '<span class="small text-muted">No peers yet — match a ride first, or wait for mesh peers.</span>';
+            const msgs = thread.length ? thread.map(m => `
+                <div class="mb-2 ${m.mine ? 'text-right' : 'text-left'}">
+                    <span class="badge ${m.mine ? 'badge-primary' : 'badge-secondary'}" style="font-size:13px;font-weight:400;white-space:normal;text-align:left;max-width:100%;display:inline-block">${this._escapeHtml(m.text)}</span>
+                    <div class="small text-muted" style="font-size:10px">${new Date(m.ts).toLocaleTimeString()}</div>
+                </div>`).join('')
+                : '<p class="small text-muted">No messages yet.</p>';
+            return `
+            <div class="section mt-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle">End-to-end via mesh</h6>
+                        <h5 class="card-title">Messages</h5>
+                        <div>${peerPills}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section full mt-2 mb-2">
+                <div class="wide-block pt-3 pb-3 pl-3 pr-3">
+                    <div id="chatThread" style="max-height:300px;overflow-y:auto" class="mb-2">${msgs}</div>
+                    <form onsubmit="event.preventDefault();">
+                        <div class="form-group boxed"><div class="input-wrapper">
+                            <input type="text" class="form-control" id="chatInput"
+                                placeholder="${sel ? 'Message peer…' : 'Select a peer first…'}" ${sel ? '' : 'disabled'} maxlength="500">
+                        </div></div>
+                        <div class="form-button-group">
+                            <button id="btnChatSend" type="button" class="btn btn-primary btn-block shadowed" ${sel ? '' : 'disabled'}>
+                                Send via P2P
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>`;
         },
         _screenProfile() {
             let stats = { rides: 0, km: 0, money: 0 };

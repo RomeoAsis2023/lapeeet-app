@@ -72,20 +72,20 @@ CREATE TABLE geocode_cache(q TEXT PRIMARY KEY, lat REAL, lng REAL, address TEXT,
 
 **Exit:** 2 browsers/phones full cycle: driver online → rider sees pin → request → accept → status → rating, both sides have matching `ride_events`.
 
-- [ ] 3.1 Identity: `_ensureKeys()` → `nacl.sign.keyPair()` first run → secret in IndexedDB, `connectId = base58(pubkey[0..16])`. `init({lat,lng})` joins `lapeeet-{geohash4}`, `getMyId`, `onConnect/onDisconnect/onReceive`, status `offline/connecting/online`.
-- [ ] 3.2 Envelope `{type, body, from, ts, sig}` + `sign()/verify()` for all 14 types: `DRIVER_STATUS RIDE_REQUEST RIDE_ACCEPT RIDE_REJECT RIDE_CANCEL RIDE_STATUS LOCATION_UPDATE EBIKE_INFO RIDER_INFO RATING DB_SYNC_REQ DB_SYNC_RES CALL_INITIATE CALL_END`.
-- [ ] 3.3 Driver heartbeat every 10 s: `{online, tLat, tLng (truncated), capacity, brand, model, rating}` → rider `upsertDriverPin()` / `removeDriverPin()` on disconnect.
-- [ ] 3.4 Rider `RIDE_REQUEST {ride_id, pickup, dropoff, distance_km, fare_php, capacity, ts}` broadcast; receiver runs `validateRideRequest()` (distance<=60 recomputed + capacity whitelist) then shows in driver Map request list.
-- [ ] 3.5 Driver Accept (direct, includes `EBIKE_INFO` summary, no photo yet) → rider modal → both `appendEvent()` + `my_rides_*` rows. Reject/Cancel paths update status both sides.
-- [ ] 3.6 Active ride: `RIDE_STATUS (enroute/arrived/completed)` + `LOCATION_UPDATE` direct (exact) + jittered mesh copy; photo + phone exchanged only now (`EBIKE_INFO`/`RIDER_INFO` direct).
-- [ ] 3.7 Rating both ways + Trips history + receipts from local tables, all money via `formatCurrency()`.
+- [x] 3.1 Identity: `_ensureKeys()` → `nacl.sign.keyPair()` first run → secret in IndexedDB `lapeeet::identity_v1`, `connectId = b64(pubkey)` (stable; transport peerIds stay ephemeral). `init({lat,lng,role})` joins `lapeeet-{geohash4}` (Manila = `lapeeet-wdw5`), `getMyId`/`onConnect`/`onDisconnect`/`onReceive`, HELLO presence both ways. Verified via `tools/check-p2p.js` (13/13).
+- [x] 3.2 Envelope `{v,id,type,body,from,pub,ts,sig}` + `signEnvelope()/verify()` (freshness ±24h, from==pub bind) + 1000-id dedup ring (multi-engine duplicates). 16 types (14 + HELLO presence + CHAT for Phase 4 fallback).
+- [x] 3.3 Driver heartbeat every 10 s: `{online, tLat, tLng (truncated 3dp), capacity, brand, model}` → rider `upsertDriverPin()` / `removeDriverPin()` on transport leave; cached-first geolocation.
+- [x] 3.4 Rider `RIDE_REQUEST` broadcast (saved to `my_rides_as_rider` + `ride_events` first); receiver runs `validateRideRequest()` (haversine recompute ≤60 + 25% spoof tolerance + capacity whitelist) then shows in driver Map request panel.
+- [x] 3.5 Driver Accept (direct ACCEPT + EBIKE_INFO incl. photo1) → rider match modal (Chat/Call/Navigate) + `RIDER_INFO` back; both sides `upsertRide` + `appendEvent`. Reject/Cancel paths clear `activeRide` both sides.
+- [x] 3.6 Active ride panel on Map: driver Enroute/Arrived/Completed, rider Chat/Call/Navigate/Cancel; exact `LOCATION_UPDATE` direct-only during active ride (moves map pin); photo + phone exchanged only post-accept.
+- [x] 3.7 Rating modal on completed (stars → RATING direct + event); Trips/Profile read real tables. Remaining: live 2-device field test (needs 2 browsers + internet for bootstrap).
 
 ## Phase 4 — Call + Chat
 
 **Exit:** matched pair can voice-call; if media/NAT fails, P2P chat always works.
 
-- [ ] 4.1 `LapeeetCall.startCall(peer, rideId)`: `getUserMedia → sendDirect CALL_INITIATE → openStreaming(localStream)`, `onStreaming` → remote video, mic/cam toggles, `CALL_END` + track cleanup.
-- [ ] 4.2 Messages screen: 1:1 P2P text over same mesh (ordered by `ts`), call-history entries, no SMS dependency.
+- [x] 4.1 `LapeeetCall.startCall(peer, rideId)`: `getUserMedia → sendDirect CALL_INITIATE → openStreaming(localStream)`, `onStreaming` via `attachMesh()` (wired after P2P init), mic/cam toggles, self-rendered modal, busy auto-reject, `CALL_END` + track cleanup. Remaining: live 2-device media test.
+- [x] 4.2 Messages screen: peer pills with unread counts, threads (localStorage `lapeeet::chat_v1`, 20 peers × 100 msgs), `CHAT` direct send, incoming auto-refresh + toast. Remaining: live 2-device chat test.
 
 ## Phase 5 — Polish + WebView Wrap
 

@@ -32,6 +32,7 @@
                 onRoleChange: (newRole) => {
                     this.role = newRole;
                     try { localStorage.setItem('lapeeet::role', newRole); } catch (e) { /* ignore */ }
+                    try { if (window.LapeeetP2P) LapeeetP2P.setRole(newRole); } catch (e) {}
                     console.info('[APP] Role changed to', newRole);
                 },
                 onScreenChange: (s) => {
@@ -50,6 +51,7 @@
                     if (s === 'data') this._bindDataScreen();
                     if (s === 'profile') this._bindProfileScreen();
                     if (s === 'ebike') this._bindEbikeScreen();
+                    if (s === 'messages') this._bindMessagesScreen();
                     if (s === 'onboarding') this._bindOnboardingScreen();
                 }
             });
@@ -81,15 +83,18 @@
                 onEnded:       (e)    => console.info('[APP] Call ended:', e)
             });
 
-            // 4. P2P LAYER stub
+            // 4. P2P LAYER (Phase 3 real mesh)
             try {
                 await LapeeetP2P.init({
                     lat: 14.5995, lng: 120.9842,
-                    onEventCallback: (evt) => console.debug('[APP] P2P event:', evt.type)
+                    role: this.role,
+                    onEventCallback: (evt) => this._onP2PEvent(evt)
                 });
             } catch (e) {
-                console.warn('[APP] P2P init will be implemented Phase 3:', e && e.message);
+                console.warn('[APP] P2P init failed:', e && e.message);
+                LapeeetUI.showToast('P2P mesh unavailable — maps + DB still work', 'warning');
             }
+            try { if (window.LapeeetCall) LapeeetCall.attachMesh(); } catch (e) {}
 
             // 5. Update sidebar identity (profile name when DB ready)
             let sidebarName = 'Guest User';
@@ -164,9 +169,10 @@
 
         _populateHomeStatus() {
             $('#dbStatus').html( LapeeetDB.initialized   ? '<span class="text-success">Ready</span>' : '<span class="text-warning">Phase 2 stub</span>');
-            $('#p2pStatus').html(LapeeetP2P.initialized   ? '<span class="text-success">' + (LapeeetP2P.status) + '</span>' : '<span class="text-warning">Phase 3 stub</span>');
+            const peerN = (LapeeetP2P.peerCount) ? LapeeetP2P.peerCount() : 0;
+            $('#p2pStatus').html(LapeeetP2P.initialized   ? '<span class="text-success">' + (LapeeetP2P.status) + ' · ' + peerN + ' peers</span>' : '<span class="text-warning">Phase 3 stub</span>');
             $('#mapStatus').html(LapeeetMap.initialized   ? '<span class="text-success">Active</span>' : '<span class="text-info">Open Map tab</span>');
-            $('#peerId').text   (LapeeetP2P.connectId     || ('not-yet-connected (Phase 3)'));
+            $('#peerId').text   (LapeeetP2P.connectId     ? (this._shortId(LapeeetP2P.connectId) + (LapeeetP2P.channel ? ' · ' + LapeeetP2P.channel : '')) : ('not-yet-connected (Phase 3)'));
             $('#keyStatus').html(LapeeetP2P.myPublicKey   ? '<span class="text-success">Generated</span>' : '<span class="text-warning">Phase 3</span>');
             const g = window.LapeeetGit;
             if ($('#gitStatus').length) {
@@ -234,6 +240,7 @@
                 },
                 onRouteCalculated: (r) => {
                     const cat = LapeeetMap.classifyDistance(r.distanceKm);
+                    self._lastRoute = { distanceKm: r.distanceKm, durationMin: r.durationMin };
                     $('#distKm').text(`${r.distanceKm.toFixed(1)} km${r.haversine ? ' (approx)' : ''}`);
                     $('#etaMin').text(`${Math.round(r.durationMin)} min`);
                     $('#fareEst').text(this._calcFare(r.distanceKm, r.durationMin));
@@ -255,22 +262,40 @@
             const self = this;
             $('#btnOpenOm').off('click').on('click', () => LapeeetMap.launchOrganicMaps('route', {}));
             $('#btnRequestRide').off('click').on('click', () => {
-                const cat = LapeeetMap.classifyDistance(
-                    (LapeeetMap.pickupLatLng && LapeeetMap.dropoffLatLng)
-                        ? LapeeetMap.haversineKm(LapeeetMap.pickupLatLng.lat, LapeeetMap.pickupLatLng.lng,
-                                                 LapeeetMap.dropoffLatLng.lat, LapeeetMap.dropoffLatLng.lng)
-                        : null
-                );
-                if (cat === 'bad') {
-                    LapeeetUI.showToast('Trip exceeds 60 km — choose a closer destination', 'danger');
-                    return;
-                }
                 if (!LapeeetMap.pickupLatLng || !LapeeetMap.dropoffLatLng) {
                     LapeeetUI.showToast('Set pickup and dropoff on the map first', 'warning');
                     return;
                 }
-                const cap = (document.getElementById('capacityValue') && document.getElementById('capacityValue').value) || $('input[name="capacity"]').val() || '1';
-                LapeeetUI.showToast(`Ride requested (${cap} seat${cap>1?'s':''}) — matching drivers in Phase 3`, 'success');
+                const km = (self._lastRoute && self._lastRoute.distanceKm) ||
+                    LapeeetMap.haversineKm(LapeeetMap.pickupLatLng.lat, LapeeetMap.pickupLatLng.lng,
+                        LapeeetMap.dropoffLatLng.lat, LapeeetMap.dropoffLatLng.lng);
+                if (!LapeeetMap.isDistanceAllowed(km)) {
+                    LapeeetUI.showToast('Trip exceeds 60 km — choose a closer destination', 'danger');
+                    return;
+                }
+                const min = (self._lastRoute && self._lastRoute.durationMin) || Math.max(1, Math.round(km * 2.8));
+                const cap = self.getCapacity ? self.getCapacity() : 1;
+                const rideId = 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+                const ride = {
+                    ride_id: rideId,
+                    pickup_lat: LapeeetMap.pickupLatLng.lat, pickup_lng: LapeeetMap.pickupLatLng.lng,
+                    drop_lat: LapeeetMap.dropoffLatLng.lat, drop_lng: LapeeetMap.dropoffLatLng.lng,
+                    distance_km: Math.round(km * 10) / 10,
+                    fare_php: Math.round((30 + km * 12 + min * 2) * 100) / 100,
+                    capacity: cap, ts: Date.now()
+                };
+                try {
+                    LapeeetDB.upsertRide('RIDER', Object.assign({}, ride, {
+                        id: rideId, status: 'requested', peer_id: '', created_at: Date.now()
+                    }));
+                    LapeeetDB.appendEvent({ ride_id: rideId, type: 'RIDE_REQUEST', from_id: LapeeetP2P.connectId || 'me', body: ride }, '');
+                } catch (e) { LapeeetUI.showToast('Could not save ride: ' + (e.message || e), 'danger'); return; }
+                const env = LapeeetP2P.sendRideRequest(ride);
+                if (env) {
+                    LapeeetUI.showToast(`Ride broadcast to ${LapeeetP2P.peerCount()} peer${LapeeetP2P.peerCount() === 1 ? '' : 's'} — waiting for drivers`, 'success');
+                } else {
+                    LapeeetUI.showToast('Mesh offline — ride saved, retry when connected', 'warning');
+                }
             });
             $('#btnLocate').off('click').on('click', async () => {
                 const p = await LapeeetMap.flyToCurrentLocation();
@@ -292,6 +317,365 @@
             this._bindAutocomplete('dropoff', 'dropoffInput', 'dropoffSuggest');
 
             this._bindCapacityDropdown();
+            this._renderDriverRequests();
+            this._renderActiveRide();
+        },
+
+        _shortId(id) {
+            id = String(id || '');
+            return id.length > 12 ? id.slice(0, 8) + '…' + id.slice(-4) : id;
+        },
+
+        _renderDriverRequests() {
+            const sec = $('#driverRequestsSection');
+            if (!sec.length) return;
+            const isDriver = this.role === 'DRIVER';
+            sec.toggle(isDriver);
+            if (!isDriver) return;
+            const list = $('#driverRequestsList');
+            const reqs = Array.from(LapeeetP2P.rideRequests.entries())
+                .sort((a, b) => b[1].ts - a[1].ts).slice(0, 10);
+            if (!reqs.length) {
+                list.html('<li class="small text-muted">Listening for RIDE_REQUEST broadcasts…</li>');
+                return;
+            }
+            list.html(reqs.map(([rideId, r]) => {
+                const b = r.body;
+                return `<li><div class="d-flex justify-content-between align-items-center w-100">
+                    <div><strong>${Number(b.distance_km).toFixed(1)} km · ${LapeeetUI.formatCurrency(b.fare_php || 0)}</strong>
+                    <div class="small text-muted">${b.capacity} seat${b.capacity > 1 ? 's' : ''} · rider ${this._shortId(r.from)}</div></div>
+                    <div><button class="btn btn-sm btn-success mr-1" data-req-accept="${rideId}">Accept</button>` +
+                    `<button class="btn btn-sm btn-outline-secondary" data-req-reject="${rideId}">Reject</button></div>
+                </div></li>`;
+            }).join(''));
+            list.off('click.reqRow').on('click.reqRow', 'button[data-req-accept], button[data-req-reject]', (e) => {
+                const btn = $(e.currentTarget);
+                if (btn.is('[data-req-accept]')) this._driverAccept(btn.attr('data-req-accept'));
+                else this._driverReject(btn.attr('data-req-reject'));
+            });
+        },
+
+        _driverAccept(rideId) {
+            const rec = LapeeetP2P.rideRequests.get(rideId);
+            if (!rec) { LapeeetUI.showToast('Request expired', 'warning'); return; }
+            const b = rec.body;
+            let bike = null;
+            try {
+                bike = LapeeetDB.getPrimaryEbike() || (LapeeetDB.listEbikes()[0] || null);
+                LapeeetDB.upsertRide('DRIVER', {
+                    id: rideId, pickup_lat: b.pickup_lat, pickup_lng: b.pickup_lng,
+                    drop_lat: b.drop_lat, drop_lng: b.drop_lng, distance_km: b.distance_km,
+                    fare_php: b.fare_php || 0, status: 'accepted', peer_id: rec.from, created_at: Date.now()
+                });
+                LapeeetDB.appendEvent({ ride_id: rideId, type: 'RIDE_ACCEPT', from_id: LapeeetP2P.connectId, body: b }, '');
+            } catch (e) { LapeeetUI.showToast('Accept failed: ' + (e.message || e), 'danger'); return; }
+            const ebike = bike ? { brand: bike.brand, model: bike.model, color: bike.color, capacity: bike.capacity } : {};
+            LapeeetP2P.sendRideAccept(rec.from, Object.assign({ ride_id: rideId, eta_min: 10 }, { ebike }));
+            try {
+                LapeeetP2P.sendEbikeInfo(rec.from, Object.assign({ ride_id: rideId }, ebike, { photo1: bike && bike.photo1 ? bike.photo1 : '' }));
+            } catch (e) {}
+            LapeeetP2P.activeRide = { ride_id: rideId, peer_identity: rec.from, role: 'DRIVER' };
+            LapeeetP2P.rideRequests.delete(rideId);
+            LapeeetUI.showToast('Ride accepted — rider notified', 'success');
+            this._chatSelected = rec.from;
+            this._renderDriverRequests();
+            this._renderActiveRide();
+        },
+
+        _driverReject(rideId) {
+            const rec = LapeeetP2P.rideRequests.get(rideId);
+            if (rec) {
+                LapeeetP2P.sendRideReject(rec.from, { ride_id: rideId });
+                LapeeetP2P.rideRequests.delete(rideId);
+            }
+            this._renderDriverRequests();
+        },
+
+        _renderActiveRide() {
+            const sec = $('#activeRideSection');
+            if (!sec.length) return;
+            const ar = LapeeetP2P.activeRide;
+            if (!ar) { sec.hide(); return; }
+            sec.show();
+            const body = $('#activeRideBody');
+            const isDriver = ar.role === 'DRIVER';
+            body.html(
+                `<p class="small mb-1">Ride <strong>${this._shortId(ar.ride_id)}</strong> · peer <strong>${this._shortId(ar.peer_identity)}</strong></p>` +
+                `<div class="d-flex" style="gap:8px;flex-wrap:wrap">` +
+                (isDriver
+                    ? `<button class="btn btn-sm btn-primary" data-ride-status="enroute">Enroute</button>` +
+                      `<button class="btn btn-sm btn-primary" data-ride-status="arrived">Arrived</button>` +
+                      `<button class="btn btn-sm btn-success" data-ride-status="completed">Completed</button>`
+                    : `<button class="btn btn-sm btn-outline-primary" data-ride-chat="1">Chat</button>` +
+                      `<button class="btn btn-sm btn-outline-primary" data-ride-call="1">Call</button>` +
+                      `<button class="btn btn-sm btn-outline-secondary" data-ride-nav="1">Navigate</button>`) +
+                `<button class="btn btn-sm btn-danger" data-ride-cancel="1">Cancel</button></div>`);
+            body.off('click.rideRow').on('click.rideRow', 'button', (e) => {
+                const btn = $(e.currentTarget);
+                if (btn.is('[data-ride-status]')) this._driverSetStatus(btn.attr('data-ride-status'));
+                else if (btn.is('[data-ride-cancel]')) this._cancelActiveRide();
+                else if (btn.is('[data-ride-chat]')) { this._chatSelected = ar.peer_identity; LapeeetUI.navigate('messages'); }
+                else if (btn.is('[data-ride-call]')) { try { LapeeetCall.startCall(ar.peer_identity, ar.ride_id, true, true); } catch (err) {} }
+                else if (btn.is('[data-ride-nav]')) { LapeeetMap.launchOrganicMaps('route', {}); }
+            });
+        },
+
+        _driverSetStatus(status) {
+            const ar = LapeeetP2P.activeRide;
+            if (!ar) return;
+            try {
+                LapeeetDB.upsertRide('DRIVER', {
+                    id: ar.ride_id, status, peer_id: ar.peer_identity, created_at: Date.now()
+                });
+                LapeeetDB.appendEvent({ ride_id: ar.ride_id, type: 'RIDE_STATUS', from_id: LapeeetP2P.connectId, body: { status } }, '');
+            } catch (e) {}
+            LapeeetP2P.sendRideStatus(ar.peer_identity, { ride_id: ar.ride_id, status });
+            LapeeetUI.showToast('Status → ' + status, 'info');
+            if (status === 'completed') {
+                LapeeetP2P.activeRide = null;
+                this._renderActiveRide();
+            }
+        },
+
+        _cancelActiveRide() {
+            const ar = LapeeetP2P.activeRide;
+            if (!ar) return;
+            try {
+                LapeeetDB.appendEvent({ ride_id: ar.ride_id, type: 'RIDE_CANCEL', from_id: LapeeetP2P.connectId, body: {} }, '');
+            } catch (e) {}
+            LapeeetP2P.sendRideCancel(ar.peer_identity, { ride_id: ar.ride_id });
+            LapeeetP2P.activeRide = null;
+            this._renderActiveRide();
+            LapeeetUI.showToast('Ride cancelled', 'warning');
+        },
+
+        /* ---------- CHAT STORE (localStorage, per peer identity) ---------- */
+        _chatSelected: null,
+        _CHAT_KEY: 'lapeeet::chat_v1',
+        _chatLoad() {
+            try { return JSON.parse(localStorage.getItem(this._CHAT_KEY) || '{}'); }
+            catch (e) { return {}; }
+        },
+        _chatSave(all) {
+            try {
+                const ids = Object.keys(all).slice(-20);
+                const slim = {};
+                ids.forEach(id => { slim[id] = (all[id] || []).slice(-100); });
+                localStorage.setItem(this._CHAT_KEY, JSON.stringify(slim));
+            } catch (e) {}
+        },
+        _chatPeers() {
+            const all = this._chatLoad();
+            const ids = Object.keys(all);
+            LapeeetP2P.peers.forEach((p, id) => { if (ids.indexOf(id) === -1) ids.push(id); });
+            if (this._chatSelected && ids.indexOf(this._chatSelected) === -1) ids.push(this._chatSelected);
+            return ids.map(id => {
+                const thread = all[id] || [];
+                const peer = LapeeetP2P.peers.get(id) || {};
+                return {
+                    id,
+                    label: peer.name || (peer.brand ? peer.brand + ' ' + (peer.model || '') : null) || id.slice(0, 8),
+                    unread: thread.filter(m => !m.mine && !m.read).length
+                };
+            });
+        },
+        _chatThread(id) {
+            if (!id) return [];
+            return this._chatLoad()[id] || [];
+        },
+        _chatPush(id, text, mine) {
+            if (!id) return;
+            const all = this._chatLoad();
+            (all[id] = all[id] || []).push({ text: String(text).slice(0, 500), mine: !!mine, ts: Date.now(), read: !!mine });
+            this._chatSave(all);
+        },
+        _chatMarkRead(id) {
+            if (!id) return;
+            const all = this._chatLoad();
+            (all[id] || []).forEach(m => { m.read = true; });
+            this._chatSave(all);
+        },
+
+        _bindMessagesScreen() {
+            if (this._chatSelected) this._chatMarkRead(this._chatSelected);
+            $('#screen-root').off('click.chatPeer').on('click.chatPeer', 'a[data-chat-peer]', (e) => {
+                e.preventDefault();
+                this._chatSelected = $(e.currentTarget).attr('data-chat-peer');
+                LapeeetUI.navigate('messages');
+            });
+            $('#btnChatSend').off('click').on('click', () => {
+                const text = ($('#chatInput').val() || '').trim();
+                if (!text || !this._chatSelected) return;
+                const env = LapeeetP2P.sendChat(this._chatSelected, { text });
+                if (env) {
+                    this._chatPush(this._chatSelected, text, true);
+                    LapeeetUI.navigate('messages');
+                } else {
+                    LapeeetUI.showToast('Peer offline — message not sent', 'warning');
+                }
+            });
+        },
+
+        /* ---------- P2P EVENT ROUTER ---------- */
+
+        _onP2PEvent(evt) {
+            console.debug('[APP] P2P event:', evt.type);
+            const T = LapeeetP2P.MSG_TYPES;
+            switch (evt.type) {
+                case '__status':
+                case '__peer-join':
+                case '__peer-leave':
+                    this._populateHomeStatus();
+                    if (LapeeetUI.currentScreen === 'map') this._renderDriverRequests();
+                    break;
+                case T.RIDE_REQUEST:
+                    if (this.role === 'DRIVER' && !evt.isSelf) {
+                        LapeeetUI.showToast('New ride request nearby', 'info');
+                        if (LapeeetUI.currentScreen === 'map') this._renderDriverRequests();
+                    }
+                    break;
+                case T.RIDE_ACCEPT:
+                    if (!evt.isSelf) this._onRideAccepted(evt);
+                    break;
+                case T.RIDE_REJECT:
+                    if (!evt.isSelf) {
+                        LapeeetUI.showToast('Driver declined — try another request', 'warning');
+                        try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'RIDE_REJECT', from_id: evt.from, body: evt.body }, ''); } catch (e) {}
+                    }
+                    break;
+                case T.RIDE_CANCEL:
+                    if (!evt.isSelf) {
+                        LapeeetUI.showToast('Ride cancelled by peer', 'warning');
+                        try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'RIDE_CANCEL', from_id: evt.from, body: evt.body }, ''); } catch (e) {}
+                        if (LapeeetP2P.activeRide && LapeeetP2P.activeRide.ride_id === evt.body.ride_id) {
+                            LapeeetP2P.activeRide = null;
+                            this._renderActiveRide();
+                        }
+                    }
+                    break;
+                case T.RIDE_STATUS:
+                    if (!evt.isSelf) this._onRideStatus(evt);
+                    break;
+                case T.LOCATION_UPDATE:
+                    if (!evt.isSelf && evt.body.lat !== undefined) {
+                        try { LapeeetMap.upsertDriverPin(evt.from, evt.body.lat, evt.body.lng, { name: 'Driver' }); } catch (e) {}
+                    }
+                    break;
+                case T.EBIKE_INFO:
+                    if (!evt.isSelf) {
+                        LapeeetUI.showToast(`Driver e-bike: ${evt.body.brand || ''} ${evt.body.model || ''}`.trim(), 'info');
+                        try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'EBIKE_INFO', from_id: evt.from, body: evt.body }, ''); } catch (e) {}
+                    }
+                    break;
+                case T.RIDER_INFO:
+                    if (!evt.isSelf) {
+                        LapeeetUI.showToast(`Rider: ${evt.body.name || 'guest'}`.trim(), 'info');
+                        try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'RIDER_INFO', from_id: evt.from, body: { name: evt.body.name || '' } }, ''); } catch (e) {}
+                    }
+                    break;
+                case T.RATING:
+                    if (!evt.isSelf) {
+                        LapeeetUI.showToast(`You got ${evt.body.stars || '?'}★ from peer`, 'success');
+                        try { LapeeetDB.appendEvent({ ride_id: evt.body.ride_id, type: 'RATING', from_id: evt.from, body: evt.body }, ''); } catch (e) {}
+                    }
+                    break;
+                case T.CHAT:
+                    if (!evt.isSelf && evt.body.text) {
+                        this._chatPush(evt.from, evt.body.text, false);
+                        if (LapeeetUI.currentScreen === 'messages') LapeeetUI.navigate('messages');
+                        else LapeeetUI.showToast('New P2P message', 'info');
+                    }
+                    break;
+                case T.DB_SYNC_REQ:
+                    if (!evt.isSelf) {
+                        let counts = {};
+                        try {
+                            counts = {
+                                ebikes: LapeeetDB.listEbikes().length,
+                                rides_rider: LapeeetDB.listRides('RIDER', 1000).length,
+                                rides_driver: LapeeetDB.listRides('DRIVER', 1000).length
+                            };
+                        } catch (e) {}
+                        LapeeetP2P.sendDirect(evt.from, T.DB_SYNC_RES, counts);
+                    }
+                    break;
+                case T.DB_SYNC_RES:
+                    if (!evt.isSelf) console.info('[APP] peer DB summary:', evt.body);
+                    break;
+                case T.CALL_INITIATE:
+                    if (!evt.isSelf && window.LapeeetCall) LapeeetCall._handleIncoming(evt.body, evt.from, evt.transportId);
+                    break;
+                case T.CALL_END:
+                    if (!evt.isSelf && window.LapeeetCall) LapeeetCall._handleRemoteEnd();
+                    break;
+                default:
+                    break;
+            }
+        },
+
+        _onRideAccepted(evt) {
+            const b = evt.body || {};
+            try {
+                LapeeetDB.upsertRide('RIDER', {
+                    id: b.ride_id, status: 'accepted', peer_id: evt.from, created_at: Date.now()
+                });
+                LapeeetDB.appendEvent({ ride_id: b.ride_id, type: 'RIDE_ACCEPT', from_id: evt.from, body: b }, '');
+                const prof = LapeeetDB.getProfile();
+                LapeeetP2P.sendDirect(evt.from, LapeeetP2P.MSG_TYPES.RIDER_INFO,
+                    { ride_id: b.ride_id, name: prof.name || '', phone: prof.phone || '' });
+            } catch (e) {}
+            LapeeetP2P.activeRide = { ride_id: b.ride_id, peer_identity: evt.from, role: 'RIDER' };
+            this._chatSelected = evt.from;
+            this._renderActiveRide();
+            const eb = b.ebike || {};
+            LapeeetUI.openModal({
+                title: 'Driver found',
+                bodyHtml: `<p>ETA ~${b.eta_min || '?'} min</p>` +
+                    `<p class="small text-muted">E-bike: ${this._escapeAttr(eb.brand || '')} ${this._escapeAttr(eb.model || '')} · ${eb.capacity || '?'} seats</p>` +
+                    `<p class="small text-muted">Phone + photo arrive via direct messages after match.</p>`,
+                footerHtml: `<button class="btn btn-outline-primary" data-match="chat">Chat</button> ` +
+                    `<button class="btn btn-outline-primary" data-match="call">Call</button> ` +
+                    `<button class="btn btn-primary" data-match="nav">Navigate</button>`
+            });
+            $('#globalModalFooter').off('click.match').on('click.match', 'button[data-match]', (e) => {
+                const what = $(e.currentTarget).attr('data-match');
+                LapeeetUI.closeModal();
+                if (what === 'chat') { this._chatSelected = evt.from; LapeeetUI.navigate('messages'); }
+                else if (what === 'call') { try { LapeeetCall.startCall(evt.from, b.ride_id, true, true); } catch (err) {} }
+                else if (what === 'nav') { LapeeetMap.launchOrganicMaps('route', {}); }
+            });
+        },
+
+        _onRideStatus(evt) {
+            const b = evt.body || {};
+            try {
+                LapeeetDB.appendEvent({ ride_id: b.ride_id, type: 'RIDE_STATUS', from_id: evt.from, body: b }, '');
+            } catch (e) {}
+            LapeeetUI.showToast('Ride status → ' + (b.status || '?'), 'info');
+            if (b.status === 'completed') {
+                LapeeetP2P.activeRide = null;
+                this._renderActiveRide();
+                this._showRatingModal(b.ride_id, evt.from);
+            }
+        },
+
+        _showRatingModal(rideId, peerIdentity) {
+            LapeeetUI.openModal({
+                title: 'Rate your ride',
+                bodyHtml: '<div class="d-flex" style="gap:8px">' +
+                    [1, 2, 3, 4, 5].map(s => `<button class="btn btn-outline-primary" data-stars="${s}">${s}★</button>`).join('') +
+                    '</div>',
+                footerHtml: '<button class="btn btn-secondary" data-stars="0">Skip</button>'
+            });
+            $('#globalModalBody, #globalModalFooter').off('click.rate').on('click.rate', 'button[data-stars]', (e) => {
+                const stars = Number($(e.currentTarget).attr('data-stars'));
+                LapeeetUI.closeModal();
+                if (stars > 0) {
+                    LapeeetP2P.sendRating(peerIdentity, { ride_id: rideId, stars });
+                    try { LapeeetDB.appendEvent({ ride_id: rideId, type: 'RATING', from_id: LapeeetP2P.connectId, body: { stars } }, ''); } catch (err) {}
+                    LapeeetUI.showToast(`Rated ${stars}★`, 'success');
+                }
+            });
         },
 
         _bindCapacityDropdown() {

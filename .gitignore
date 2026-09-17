@@ -1,0 +1,13 @@
+# Lapeeet git ignores — dev machine
+# Build output (regenerate via: python tools/build-single.py)
+dist/
+# Local graphify install + AST cache (regenerate via pip --target / extract)
+.graphify-site/
+.graphify-venv/
+graphify-out/cache/
+graphify-out/2026-*/
+# OS / editor
+.DS_Store
+Thumbs.db
+*.tmp
+*.log

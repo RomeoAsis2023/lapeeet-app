@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1E74FD">
+    <title>Lapeeet | E-Bike Ride-Hailing</title>
+    <meta name="description"
+        content="Lapeeet — Peer-to-peer e-bike ride-hailing. No server. Your data. 60km short trips.">
+    <meta name="keywords" content="ebike, e-scooter, ride-hailing, p2p, webrtc, sql.js, lapeeet">
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/icon.svg" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon.svg">
+
+    <!-- UI kit stylesheet (includes bootstrap, owl carousel via @import) -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- External lib CSS that must live in HEAD (all styles before markup) -->
+    <link rel="stylesheet" href="assets/vendor-live/leaflet.css" />
+    <link rel="stylesheet"
+        href="assets/vendor-live/leaflet-routing-machine.css" />
+
+    <!-- Lapeeet light-touch brand theme (only extends; no structural overrides) -->
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<body class="bg-white dark-mode-active">
+
+    <!-- loader (native UI kit pattern — base.js fades this out on load) -->
+    <div id="loader">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- * loader -->
+
+    <!-- App Header (shown after LapeeetApp boot reveals shell) -->
+    <div id="appHeader" class="appHeader bg-primary scrolled d-none">
+        <div class="left">
+            <a href="#" id="btnSidebarToggle" class="headerButton" data-toggle="modal"
+                data-target="#sidebarPanel">
+                <ion-icon name="menu-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle" id="screenTitle">
+            <img src="assets/img/logotext.svg" alt="Lapeeet" class="header-logo">
+        </div>
+        <div class="right">
+            <a href="javascript:;" id="btnRoleToggle" class="headerButton" title="Switch Rider / Driver">
+                <ion-icon id="roleIcon" name="person-outline"></ion-icon>
+            </a>
+        </div>
+    </div>
+    <!-- * App Header -->
+
+    <!-- App Capsule (all screens rendered inside here via screen-root) -->
+    <div id="appCapsule" class="d-none">
+        <div id="screen-root">
+            <!-- Dynamic screens rendered by ui-components.js -->
+        </div>
+    </div>
+    <!-- * App Capsule -->
+
+    <!-- App Bottom Menu (5 icons — follows UI kit exact structure) -->
+    <div id="appBottomMenu" class="appBottomMenu d-none">
+        <a href="javascript:;" class="item active" data-screen="home">
+            <div class="col">
+                <ion-icon name="home-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="javascript:;" class="item" data-screen="map">
+            <div class="col">
+                <ion-icon name="map-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="javascript:;" class="item" data-screen="trips">
+            <div class="col">
+                <ion-icon name="list-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="javascript:;" class="item" data-screen="messages">
+            <div class="col">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="javascript:;" class="item" data-screen="profile">
+            <div class="col">
+                <ion-icon name="person-outline"></ion-icon>
+            </div>
+        </a>
+    </div>
+    <!-- * App Bottom Menu -->
+
+    <!-- App Sidebar (uses exact UI kit classes — panelbox, profileBox, close button) -->
+    <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+
+                    <!-- profile box -->
+                    <div class="profileBox">
+                        <div class="image-wrapper">
+                            <img src="assets/img/icon.svg" alt="avatar" class="imaged rounded" id="sidebarAvatar">
+                        </div>
+                        <div class="in">
+                            <strong id="sidebarName">Guest User</strong>
+                            <div class="text-muted" id="sidebarRole">
+                                <ion-icon name="person-outline"></ion-icon>
+                                Rider
+                            </div>
+                        </div>
+                        <a href="javascript:;" class="close-sidebar-button" data-dismiss="modal">
+                            <ion-icon name="close"></ion-icon>
+                        </a>
+                    </div>
+                    <!-- * profile box -->
+
+                    <ul class="listview flush transparent no-line image-listview mt-2">
+                        <li>
+                            <a href="javascript:;" class="item" data-screen="home">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="home-outline"></ion-icon>
+                                </div>
+                                <div class="in">Home</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="item" data-screen="onboarding">
+                                <div class="icon-box bg-success">
+                                    <ion-icon name="rocket-outline"></ion-icon>
+                                </div>
+                                <div class="in">Complete Onboarding</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="item" data-screen="map">
+                                <div class="icon-box bg-info">
+                                    <ion-icon name="map-outline"></ion-icon>
+                                </div>
+                                <div class="in">Map &amp; Booking</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="item" data-screen="trips">
+                                <div class="icon-box bg-warning">
+                                    <ion-icon name="list-outline"></ion-icon>
+                                </div>
+                                <div class="in">My Trips</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="item" data-screen="ebike">
+                                <div class="icon-box bg-secondary">
+                                    <ion-icon name="bicycle-outline"></ion-icon>
+                                </div>
+                                <div class="in">My E-Bikes (Driver)</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="item" data-screen="data">
+                                <div class="icon-box bg-dark">
+                                    <ion-icon name="server-outline"></ion-icon>
+                                </div>
+                                <div class="in">Data &amp; Privacy (Tenant)</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="item" data-screen="settings">
+                                <div class="icon-box bg-light">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </div>
+                                <div class="in">Settings</div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="divider mb-0 mt-2"></div>
+                            <div class="p-2 text-left small text-muted mt-1">
+                                <div><strong>Peer ID:</strong> <span id="sidebarPeerId"
+                                        class="font-weight-normal">connecting…</span></div>
+                                <div><strong>Status:</strong> <span id="sidebarP2pStatus"
+                                        class="font-weight-normal">offline</span></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * App Sidebar -->
+
+    <!-- Global Modal (dynamic content) -->
+    <div class="modal fade" id="globalModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="globalModalTitle">Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="globalModalBody"></div>
+                <div class="modal-footer" id="globalModalFooter"></div>
+            </div>
+        </div>
+    </div>
+    <!-- * Global Modal -->
+
+    <!-- ============================================================== -->
+    <!-- JS — exact UI kit order (jQuery → Popper → Bootstrap → Ionicons -->
+    <!--              → plugins → base.js → app modules)                  -->
+    <!-- ============================================================== -->
+
+    <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/lib/popper.min.js"></script>
+    <script src="assets/js/lib/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="assets/js/base.js"></script>
+
+    <!-- LIVE VENDOR LIBS (local, inlined into dist/lapeeet.html by tools/build-single.py) -->
+    <script src="assets/vendor-live/webconnect.js"></script>
+    <script src="assets/vendor-live/sql-wasm.js"></script>
+    <script src="assets/vendor-live/leaflet.js"></script>
+    <script
+        src="assets/vendor-live/leaflet-routing-machine.js"></script>
+    <script src="assets/vendor-live/nacl.min.js"></script>
+    <script src="assets/vendor-live/nacl-util.min.js"></script>
+
+    <!-- ========= ISOMORPHIC-GIT@1.25.0 (vendored) + LightningFS ========== -->
+    <!-- Order matters: LightningFS (browser fs emulator) first, then       -->
+    <!-- isomorphic-git UMD (exposes global `window.isogit`), then ESM     -->
+    <!-- dynamic import to attach the CORS-aware HTTP transport to window. -->
+    <script src="assets/vendor/lightning-fs.umd.min.js"></script>
+    <script src="assets/vendor/isomorphic-git.umd.min.js"></script>
+    <script type="module">
+        import http from './assets/vendor/http/web/index.js';
+        // Resolve UMD global name (UMD exposes `window.git` or `window.isogit`
+        // depending on build; unify to `window.git` for our internal API).
+        const lib = (window.git || window.isogit || window.isomorphicGit);
+        if (!window.git && lib) window.git = lib;
+        window.gitHttp = http;
+        window.dispatchEvent(new CustomEvent('lapeeet:git-ready', {
+            detail: { version: '1.25.0', available: !!lib }
+        }));
+    </script>
+
+    <!-- LAPEEET APPLICATION MODULES (ordered: bottom-up) -->
+    <script src="assets/js/db-layer.js"></script>
+    <script src="assets/js/p2p-layer.js"></script>
+    <script src="assets/js/map-layer.js"></script>
+    <script src="assets/js/call-layer.js"></script>
+    <script src="assets/js/ui-components.js"></script>
+    <script src="assets/js/git-layer.js"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>

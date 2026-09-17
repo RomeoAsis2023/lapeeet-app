@@ -1,0 +1,1074 @@
+/* =============================================================
+   Lapeeet — Brand Theme Additions
+   Extends mobilekit-25 / Bootstrap 4 CSS (no structural overrides)
+   Place AFTER style.css in index.html
+   ============================================================= */
+
+:root {
+    /* Brand palette (light tint additions only; UI kit's native layout rules remain untouched) */
+    --lapeeet-primary: #1E74FD;
+    --lapeeet-primary-dark: #0a58ca;
+    --lapeeet-secondary: #20c997;
+    --lapeeet-warning: #fd7e14;
+    --lapeeet-danger: #dc3545;
+    --lapeeet-success: #28a745;
+    --lapeeet-radius: 14px;
+    --lapeeet-shadow: 0 4px 20px rgba(30, 116, 253, 0.08);
+
+    /* Official dark-content surfaces (main body between light header + light footer) */
+    --lapeeet-pagebg:    #0a1324;
+    --lapeeet-pagebg-2:  #0b1629;
+    --lapeeet-cardbg:    #121d35;
+    --lapeeet-cardbg-2:  #141f38;
+    --lapeeet-actionbg:  #182545;
+    --lapeeet-listbg:    #14203c;
+    --lapeeet-text-hi:   #ffffff;
+    --lapeeet-text-md:   #e6edf7;
+    --lapeeet-text-lo:   #b9c8e2;
+    --lapeeet-text-mute: #93a4bf;
+    --lapeeet-border:    rgba(255, 255, 255, 0.06);
+    --lapeeet-inputbg:   #0f1a31;
+}
+
+/* ---------- BRAND COLOR TINTS (Bootstrap variants; light-touch only) ---------- */
+
+.btn-ebike {
+    background-color: var(--lapeeet-secondary);
+    border-color: var(--lapeeet-secondary);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(32, 201, 151, 0.28);
+}
+.btn-ebike:hover { background-color: #17a57c; border-color: #17a57c; color: #fff; }
+
+.bg-ebike { background-color: var(--lapeeet-secondary) !important; color: #fff !important; }
+.text-ebike { color: var(--lapeeet-secondary) !important; }
+
+/* ---------- HEADER LOGO (lapeeet_logotext.png) ---------- */
+.header-logo {
+    height: 28px;
+    max-width: 180px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ---------- MAP CONTAINER (UI kit has no map — brand-new class) ---------- */
+.map-container {
+    width: 100%;
+    height: 52vh;
+    min-height: 320px;
+    border-radius: var(--lapeeet-radius);
+    overflow: hidden;
+    box-shadow: var(--lapeeet-shadow);
+    background: #dbe9ff;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------- 60km RADIUS PILLS (new classes) ---------- */
+.radius-indicator {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.radius-ok   { background: rgba(40, 167, 69, 0.12); color: #1e7e34; }
+.radius-warn { background: rgba(253, 126, 20, 0.12); color: #d35400; }
+.radius-bad  { background: rgba(220, 53, 69, 0.12); color: #b02a37; }
+
+/* ---------- CAPACITY BUTTON GROUP (legacy inline variant) ---------- */
+.btn-group-capacity .btn {
+    min-width: 48px;
+    border-radius: 10px !important;
+    font-weight: 600;
+}
+.btn-group-capacity .btn.active {
+    background-color: var(--lapeeet-primary);
+    border-color: var(--lapeeet-primary);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(30, 116, 253, 0.3);
+}
+
+/* ---------- CAPACITY DROPDOWN (Map booking — dark theme, Phase 1) ---------- */
+.capacity-dropdown { position: relative; }
+.capacity-dropdown__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: var(--lapeeet-inputbg) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: 12px !important;
+    padding: 10px 12px !important;
+    color: var(--lapeeet-text-hi) !important;
+    min-height: 58px;
+    cursor: pointer;
+    text-align: left;
+}
+.capacity-dropdown__button:focus {
+    border-color: rgba(30, 116, 253, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(30, 116, 253, 0.18);
+    outline: none !important;
+}
+.capacity-dropdown__button-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+.capacity-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, rgba(30,116,253,0.28), rgba(30,116,253,0.12));
+    border: 1px solid rgba(30, 116, 253, 0.35);
+    color: #8cbeff;
+    border-radius: 10px;
+    padding: 7px 10px;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+.capacity-pill strong { font-size: 15px; color: #fff; }
+.capacity-dropdown__meta { display: flex; flex-direction: column; min-width: 0; }
+.capacity-dropdown__sel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--lapeeet-text-hi);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.capacity-dropdown__sel-sub { font-size: 11px; color: var(--lapeeet-text-mute); }
+.capacity-dropdown__chevron {
+    font-size: 18px;
+    color: var(--lapeeet-text-mute);
+    transition: transform 0.15s ease;
+    flex-shrink: 0;
+}
+.capacity-dropdown__button[aria-expanded="true"] .capacity-dropdown__chevron { transform: rotate(180deg); }
+.capacity-dropdown__list {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 6px);
+    z-index: 1050;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: linear-gradient(180deg, #101d38 0%, #0e1a32 100%) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: 12px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42);
+    max-height: 264px;
+    overflow-y: auto;
+}
+.capacity-dropdown__list.is-open { display: block; }
+.capacity-dropdown__list li[role="option"] {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+.capacity-dropdown__list li[role="option"]:hover,
+.capacity-dropdown__list li[role="option"].is-focused {
+    background: rgba(30,116,253,0.12);
+}
+.capacity-dropdown__list li[role="option"].is-selected {
+    border-color: rgba(30, 116, 253, 0.4);
+    background: rgba(30,116,253,0.10);
+}
+.capacity-dropdown__list li[role="option"] .capacity-dropdown__meta { flex: 1 1 auto; }
+.capacity-dropdown__check {
+    font-size: 18px;
+    color: #7fe3b0;
+    opacity: 0;
+    flex-shrink: 0;
+}
+.capacity-dropdown__list li[role="option"].is-selected .capacity-dropdown__check { opacity: 1; }
+
+/* ---------- SIDEBAR AVATAR TWEAK (our sidebar image only) ---------- */
+#sidebarAvatar.profileBox .image-wrapper .imaged,
+.profileBox .image-wrapper #sidebarAvatar.imaged {
+    object-fit: cover;
+    border: 0 !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+/* Fallback (direct id selector) */
+#sidebarAvatar {
+    border: 0 !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* ---------- ROLE BADGE (new classes) ---------- */
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.role-rider  { background: rgba(30, 116, 253, 0.12); color: var(--lapeeet-primary); }
+.role-driver { background: rgba(32, 201, 151, 0.15);  color: #13895f; }
+
+/* ---------- E-BIKE THUMBNAIL PLACEHOLDER (new class) ---------- */
+.ebike-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #dbe9ff, #f6f9ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--lapeeet-primary);
+    font-size: 40px;
+    border: 1px dashed rgba(30, 116, 253, 0.25);
+}
+
+/* ---------- FORM BUTTON GROUPS — IN-FLOW (Phase 2 fix) ----------
+   UI kit pins `.form-button-group` to the viewport bottom
+   (position:fixed; bottom:0), which puts the Request Ride button
+   BEHIND the fixed bottom tab bar and overlaps content. Inside our
+   SPA screens the groups must flow with the form instead. */
+body.dark-mode-active #screen-root .form-button-group,
+#screen-root .form-button-group {
+    position: static !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 4px 0 !important;
+    background: transparent !important;
+    display: block !important;
+    box-shadow: none !important;
+}
+body.dark-mode-active #screen-root .form-button-group .btn,
+#screen-root .form-button-group .btn {
+    position: relative;
+    z-index: 1;
+}
+/* Request Ride button: full-width, thumb-reachable, never disabled-invisible */
+#btnRequestRide {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 52px;
+    font-size: 16px;
+}
+#btnRequestRide:disabled {
+    opacity: 0.85;
+    cursor: not-allowed;
+}
+
+/* ---------- TOAST HOST (new class) ---------- */
+#lp-toast-host .toast {
+    min-width: 280px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    margin-bottom: 8px;
+}
+
+/* ---------- UTILITIES (new classes only) ---------- */
+.nowrap { white-space: nowrap; }
+.small-11 { font-size: 11px; }
+.small-12 { font-size: 12px; }
+.rounded-la { border-radius: var(--lapeeet-radius) !important; }
+.shadow-la { box-shadow: var(--lapeeet-shadow); }
+.flex-1 { flex: 1 1 auto !important; }
+
+/* =============================================================
+   GLOBAL MAIN-CONTENT SURFACES — OFFICIAL DARK THEME
+   Shell chrome = light (header white + footer white with blue pill).
+   All main body content between them = official dark theme, same
+   visual language as home: page gradient → dark cards with subtle
+   blue halo → light text with WCAG AA contrast minimum.
+
+   This applies to EVERY screen rendered via ui-components.navigate()
+   (Home / Map / Trips / Messages / Profile / Onboarding / E-Bikes /
+   Data / Settings).
+   ============================================================= */
+
+/* --- (1) Page shell: dark gradient bg for #appCapsule (non-header/sidebar/footer area) --- */
+body.dark-mode-active #appCapsule,
+#appCapsule {
+    padding-bottom: 84px !important;
+    background-color: var(--lapeeet-pagebg) !important;
+    background-image:
+      radial-gradient(1200px 600px at 50% -30%, rgba(30,116,253,0.16), transparent 60%),
+      linear-gradient(180deg, var(--lapeeet-pagebg) 0%, var(--lapeeet-pagebg-2) 55%, var(--lapeeet-pagebg) 100%) !important;
+    background-repeat: no-repeat !important;
+    position: relative;
+    z-index: 0;
+}
+
+/* Screens wrapper padding (match home screen — uniform 14px side gutters) */
+#screen-root > .screen,
+#screen-root > [class*="screen-"] {
+    padding: 14px 14px 24px 14px !important;
+    min-height: calc(100vh - 140px);
+    background: transparent;
+}
+
+/* Remove legacy UI kit white/light padding/backgrounds from sections */
+.section,
+.section.full {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 12px;
+}
+
+/* --- (2) Generic dark card shell (.card.card-dark on screen) --- */
+body.dark-mode-active #screen-root .card.card-dark,
+body.dark-mode-active #screen-root .card,
+#screen-root .card.card-dark,
+#screen-root .card {
+    background-color: var(--lapeeet-cardbg) !important;
+    color: var(--lapeeet-text-md) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: var(--lapeeet-radius) !important;
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.26),
+      0 2px 8px rgba(0, 0, 0, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    overflow: hidden;
+}
+body.dark-mode-active #screen-root .card .card-body,
+#screen-root .card .card-body {
+    padding: 20px 18px;
+    line-height: 1.5em;
+}
+/* Dark-card text hierarchy (headings bold-white, body muted-blue-grey) */
+body.dark-mode-active #screen-root .card h1,
+body.dark-mode-active #screen-root .card h2,
+body.dark-mode-active #screen-root .card h3,
+body.dark-mode-active #screen-root .card h4,
+body.dark-mode-active #screen-root .card h5,
+body.dark-mode-active #screen-root .card h6,
+body.dark-mode-active #screen-root .card .card-title,
+body.dark-mode-active #screen-root .card .card-subtitle,
+#screen-root .card h1,
+#screen-root .card h2,
+#screen-root .card h3,
+#screen-root .card h4,
+#screen-root .card h5,
+#screen-root .card h6,
+#screen-root .card .card-title,
+#screen-root .card .card-subtitle {
+    color: var(--lapeeet-text-hi) !important;
+}
+body.dark-mode-active #screen-root .card .text-muted,
+body.dark-mode-active #screen-root .card p,
+body.dark-mode-active #screen-root .card li,
+#screen-root .card .text-muted,
+#screen-root .card p,
+#screen-root .card li {
+    color: var(--lapeeet-text-lo) !important;
+}
+body.dark-mode-active #screen-root .card p,
+#screen-root .card p {
+    color: var(--lapeeet-text-lo);
+}
+body.dark-mode-active #screen-root .card .card-subtitle,
+#screen-root .card .card-subtitle {
+    font-size: 12px !important;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--lapeeet-text-mute) !important;
+    opacity: 1 !important;
+}
+
+/* Card footer: dark + no ugly pale blue tints */
+body.dark-mode-active #screen-root .card-footer,
+#screen-root .card-footer {
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.03)) !important;
+    border-top: 1px solid var(--lapeeet-border) !important;
+    color: var(--lapeeet-text-md);
+}
+body.dark-mode-active #screen-root .card-header,
+#screen-root .card-header {
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)) !important;
+    border-bottom: 1px solid var(--lapeeet-border) !important;
+    color: var(--lapeeet-text-hi) !important;
+}
+
+/* --- (3) Section titles + wide-block = dark inside-card look --- */
+.section-title {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.4px !important;
+    text-transform: uppercase;
+    padding: 6px 2px 10px;
+    color: var(--lapeeet-text-hi) !important;
+}
+.section-title::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 14px;
+    background: linear-gradient(180deg, var(--lapeeet-primary), #5aa1ff);
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: -2px;
+}
+
+.wide-block {
+    background: linear-gradient(180deg, var(--lapeeet-listbg) 0%, #111b33 100%) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: var(--lapeeet-radius) !important;
+    padding: 20px 18px !important;
+    color: var(--lapeeet-text-md) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.wide-block h1, .wide-block h2, .wide-block h3,
+.wide-block h4, .wide-block h5, .wide-block h6 {
+    color: var(--lapeeet-text-hi) !important;
+}
+.wide-block .text-muted { color: var(--lapeeet-text-mute) !important; }
+.wide-block small     { color: var(--lapeeet-text-mute) !important; }
+.wide-block p         { color: var(--lapeeet-text-lo) !important; }
+
+/* --- (4) Form inputs: boxed style (dark input surface + blue focus ring) --- */
+.form-group.boxed .label,
+.form-group .label,
+.form-group label {
+    color: var(--lapeeet-text-hi) !important;
+    font-weight: 600 !important;
+    font-size: 12px;
+    margin-bottom: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.form-group.boxed .input-wrapper .form-control,
+.form-group .input-wrapper .form-control,
+#screen-root input.form-control,
+#screen-root select.form-control,
+#screen-root textarea.form-control {
+    background-color: var(--lapeeet-inputbg) !important;
+    color: var(--lapeeet-text-hi) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: 12px !important;
+    padding: 12px 14px !important;
+    font-size: 14px;
+    min-height: 44px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+.form-group.boxed .input-wrapper .form-control:focus,
+.form-group .input-wrapper .form-control:focus,
+#screen-root input.form-control:focus,
+#screen-root select.form-control:focus,
+#screen-root textarea.form-control:focus {
+    border-color: rgba(30, 116, 253, 0.55) !important;
+    background-color: #101d38 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(30, 116, 253, 0.18);
+}
+#screen-root input.form-control::placeholder,
+#screen-root textarea.form-control::placeholder {
+    color: rgba(185, 200, 226, 0.45) !important;
+}
+/* clear-input X icon inside input */
+#screen-root .clear-input ion-icon { color: var(--lapeeet-text-mute) !important; }
+
+/* Buttons: keep Bootstrap defaults; make outline-primary punchy on dark */
+.btn-outline-primary {
+    color: #8cbeff !important;
+    border-color: rgba(30,116,253,0.45) !important;
+    background: rgba(30,116,253,0.08) !important;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:active {
+    background: var(--lapeeet-primary) !important;
+    color: #fff !important;
+    border-color: var(--lapeeet-primary) !important;
+}
+.btn-outline-secondary {
+    color: var(--lapeeet-text-lo) !important;
+    border-color: rgba(185,200,226,0.22) !important;
+    background: rgba(255,255,255,0.02) !important;
+}
+
+/* --- (5) Dark listviews (both card-nested + wide-block-nested) --- */
+body.dark-mode-active #screen-root .listview,
+#screen-root .listview {
+    background: transparent !important;
+    color: var(--lapeeet-text-md) !important;
+    border-radius: 12px;
+    overflow: hidden;
+}
+body.dark-mode-active #screen-root .listview li,
+#screen-root .listview li {
+    border-bottom: 1px solid var(--lapeeet-border) !important;
+    padding: 11px 12px !important;
+    color: var(--lapeeet-text-md) !important;
+}
+body.dark-mode-active #screen-root .listview li:last-child,
+#screen-root .listview li:last-child {
+    border-bottom: 0 !important;
+}
+body.dark-mode-active #screen-root .listview li:hover,
+body.dark-mode-active #screen-root .listview li:nth-child(even),
+#screen-root .listview li:hover,
+#screen-root .listview li:nth-child(even) {
+    background: rgba(255, 255, 255, 0.015);
+}
+body.dark-mode-active #screen-root .listview li strong,
+#screen-root .listview li strong {
+    color: var(--lapeeet-text-hi) !important;
+    font-weight: 600;
+}
+
+/* --- (6) Autocomplete suggest drop-down (Nominatim matches) --- */
+[id$="Suggest"] {
+    background: linear-gradient(180deg, #101d38 0%, #0e1a32 100%) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: 12px;
+    overflow: hidden;
+}
+[id$="Suggest"] .suggest-item {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--lapeeet-border);
+    color: var(--lapeeet-text-md) !important;
+    cursor: pointer;
+}
+[id$="Suggest"] .suggest-item:last-child { border-bottom: 0; }
+[id$="Suggest"] .suggest-item:hover {
+    background: rgba(30,116,253,0.12);
+    color: var(--lapeeet-text-hi);
+}
+
+/* --- (7) Profile head + stats blocks dark styling --- */
+.profile-head {
+    background: linear-gradient(135deg, #15223e 0%, #121d35 55%, #0f1a31 100%) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: var(--lapeeet-radius) !important;
+    padding: 22px 18px !important;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.profile-head .avatar .imaged.w64 {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, rgba(30,116,253,0.22), rgba(30,116,253,0.08));
+    border: 2px solid rgba(30,116,253,0.35) !important;
+    padding: 2px !important;
+}
+.profile-head .in .name  { color: var(--lapeeet-text-hi) !important; font-size: 18px; }
+.profile-head .in .subtext { color: var(--lapeeet-text-mute) !important; font-size: 12px; font-weight: 600; letter-spacing: 0.2px; text-transform: uppercase; }
+
+.profile-stats {
+    background: linear-gradient(180deg, var(--lapeeet-listbg) 0%, #111b33 100%) !important;
+    border: 1px solid var(--lapeeet-border) !important;
+    border-radius: var(--lapeeet-radius) !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.03);
+    padding: 14px 10px !important;
+    margin-top: 0 !important;
+}
+.profile-stats .item {
+    text-align: center;
+    color: var(--lapeeet-text-md) !important;
+}
+.profile-stats .item strong {
+    color: var(--lapeeet-text-hi) !important;
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* --- (8) Radius badge + OK/warn/bad pills — tweak for dark contrast --- */
+.radius-ok   { background: rgba(40, 199, 110, 0.16); color: #7fe3b0 !important; border: 1px solid rgba(40,199,110,0.28); }
+.radius-warn { background: rgba(255, 176, 32, 0.16); color: #ffc96a !important; border: 1px solid rgba(255,176,32,0.32); }
+.radius-bad  { background: rgba(220, 53, 69, 0.18);  color: #ff9aa2 !important; border: 1px solid rgba(220,53,69,0.32); }
+
+/* Badge base tweak on dark backgrounds */
+#screen-root .badge {
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 4px 10px;
+    letter-spacing: 0.1px;
+}
+
+/* --- (9) SIDEBAR: also dark theme to match main content --- */
+body.dark-mode-active .sidebar,
+.sidebar {
+    background:
+      radial-gradient(600px 300px at 30% 0%, rgba(30,116,253,0.20), transparent 60%),
+      linear-gradient(180deg, #0a1324 0%, #0b1629 60%, #0a1324 100%) !important;
+    color: var(--lapeeet-text-md) !important;
+}
+body.dark-mode-active .sidebar .profileBox,
+.sidebar .profileBox {
+    background: linear-gradient(135deg, #15223e 0%, #121d35 55%, #0f1a31 100%) !important;
+    border-bottom: 1px solid var(--lapeeet-border) !important;
+}
+body.dark-mode-active .sidebar .profileBox .name,
+.sidebar .profileBox .name { color: var(--lapeeet-text-hi) !important; font-weight: 700; }
+body.dark-mode-active .sidebar .profileBox .sub,
+.sidebar .profileBox .sub   { color: var(--lapeeet-text-mute) !important; font-size: 12px; }
+body.dark-mode-active .sidebar .listview li,
+.sidebar .listview li {
+    border-bottom: 1px solid var(--lapeeet-border) !important;
+    padding: 11px 16px !important;
+}
+body.dark-mode-active .sidebar .listview li a,
+.sidebar .listview li a { color: var(--lapeeet-text-md) !important; }
+body.dark-mode-active .sidebar .listview li .icon,
+body.dark-mode-active .sidebar .listview li ion-icon,
+.sidebar .listview li .icon,
+.sidebar .listview li ion-icon { color: #8fa1be !important; }
+body.dark-mode-active .sidebar .listview li:hover,
+.sidebar .listview li:hover { background: rgba(30,116,253,0.10); }
+body.dark-mode-active .sidebar .divider-title,
+.sidebar .divider-title { color: var(--lapeeet-text-mute) !important; }
+
+/* =============================================================
+   HOME SCREEN — DARK THEME (extends above base rules)
+   Unique home-only flourishes (hero gradient, Quick Actions grid,
+   status list) — all other screens use the generic card-dark rules.
+   ============================================================= */
+body.dark-mode-active .home-screen.pb-3,
+body.dark-mode-active .home-screen,
+.home-screen.pb-3,
+.home-screen {
+    padding: 14px 14px 24px 14px !important;
+    background-color: #0a1324 !important;
+    background-image:
+      radial-gradient(1200px 600px at 50% -20%, rgba(30,116,253,0.16), transparent 60%),
+      linear-gradient(180deg, #0a1324 0%, #0b1629 55%, #0a1324 100%) !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    display: block !important;
+    min-height: calc(100vh - 140px);
+    visibility: visible;
+}
+
+/* ---------- Master DARK CARD class ---------- */
+body.dark-mode-active #screen-root .card.card-white,
+body.dark-mode-active .home-screen .card.card-white,
+#screen-root .card.card-white,
+.home-screen .card.card-white {
+    background-color: #121d35 !important;
+    color: #e6edf7 !important;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--lapeeet-radius) !important;
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.28),
+      0 2px 8px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+}
+body.dark-mode-active #screen-root .card.card-white .card-body,
+.home-screen .card.card-white .card-body {
+    padding: 20px 18px;
+    line-height: 1.5em;
+}
+/* Light text for dark cards (defeats previous white-card dark text rule) */
+body.dark-mode-active #screen-root .card.card-white .card-title,
+body.dark-mode-active #screen-root .card.card-white .card-subtitle,
+body.dark-mode-active .home-screen .card.card-white h1,
+body.dark-mode-active .home-screen .card.card-white h2,
+body.dark-mode-active .home-screen .card.card-white h3,
+body.dark-mode-active .home-screen .card.card-white h4,
+body.dark-mode-active .home-screen .card.card-white h5,
+body.dark-mode-active .home-screen .card.card-white h6,
+body.dark-mode-active .home-screen .card.card-white .card-title,
+body.dark-mode-active .home-screen .card.card-white .card-subtitle,
+.home-screen .card.card-white h1,
+.home-screen .card.card-white h2,
+.home-screen .card.card-white h3,
+.home-screen .card.card-white h4,
+.home-screen .card.card-white h5,
+.home-screen .card.card-white h6,
+.home-screen .card.card-white .card-title,
+.home-screen .card.card-white .card-subtitle {
+    color: #ffffff !important;
+}
+body.dark-mode-active .home-screen .card.card-white .text-muted,
+.home-screen .card.card-white .text-muted {
+    color: #93a4bf !important;
+}
+body.dark-mode-active .home-screen .card.card-white p,
+.home-screen .card.card-white p {
+    color: #c6d3e8;
+}
+
+/* ---------- HERO CARD (dark gradient + brand glow) ---------- */
+.card-hero {
+    background:
+      radial-gradient(520px 220px at 95% 0%, rgba(30,116,253,0.26), transparent 65%),
+      linear-gradient(135deg, #15223e 0%, #121d35 55%, #0f1a31 100%) !important;
+    position: relative;
+    border-color: rgba(30, 116, 253, 0.22) !important;
+}
+.home-title {
+    font-size: 24px;
+    line-height: 1.15;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.22);
+}
+.home-subtitle {
+    font-size: 13px;
+    color: #aab9d1;
+}
+.home-greet-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, rgba(30,116,253,0.28), rgba(30,116,253,0.12));
+    color: #7fb2ff;
+    font-size: 26px;
+    border: 1px solid rgba(30, 116, 253, 0.22);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.role-badge {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.role-rider  { background: rgba(30,116,253,0.18) !important; color: #8cbeff !important; border: 1px solid rgba(30,116,253,0.35) !important; }
+.role-driver { background: rgba(40,199,110,0.16) !important; color: #7fe3b0 !important; border: 1px solid rgba(40,199,110,0.35) !important; }
+
+/* ---------- Section header (Quick Actions / System Status row) ---------- */
+.home-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.home-section-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #e6edf7;
+    letter-spacing: 0.1px;
+}
+.home-section-link {
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    text-decoration: none;
+    color: #7fb2ff !important;
+}
+
+/* ---------- Quick Actions 2x2 grid ---------- */
+.home-actions-grid > [class*="col-"] {
+    padding: 6px;
+}
+.home-actions-grid {
+    margin: -6px;
+}
+.card-action {
+    border-radius: 14px !important;
+    background-color: #182545 !important;
+    background-image: linear-gradient(160deg, #182545 0%, #141f38 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    cursor: pointer;
+    user-select: none;
+    height: 100%;
+}
+.card-action:active {
+    transform: scale(0.97);
+    background-color: #1b2a4f !important;
+    background-image: linear-gradient(160deg, #1b2a4f 0%, #172340 100%) !important;
+    border-color: rgba(30, 116, 253, 0.28) !important;
+    box-shadow: 0 0 0 1px rgba(30,116,253,0.22), 0 8px 18px rgba(0,0,0,0.3) !important;
+}
+.card-action .card-body {
+    padding: 16px 10px !important;
+}
+.action-icon {
+    width: 54px;
+    height: 54px;
+    font-size: 26px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 8px 18px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.bg-primary.action-icon { background: linear-gradient(135deg, #247dff, #1a5fd0) !important; }
+.bg-success.action-icon { background: linear-gradient(135deg, #36cf82, #1fa561) !important; }
+.bg-warning.action-icon { background: linear-gradient(135deg, #ffb020, #e68a00) !important; color: #1a1405 !important; }
+.bg-info.action-icon    { background: linear-gradient(135deg, #8a6dff, #6147e0) !important; }
+.action-title {
+    font-size: 13px;
+    line-height: 1.2;
+    color: #ffffff;
+    font-weight: 700;
+}
+.action-sub {
+    font-size: 11px;
+    line-height: 1.3;
+    color: #9fb1ce;
+}
+
+/* ---------- Status list (dark table-like card) ---------- */
+.home-status-list.listview {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    background-color: #14203c !important;
+    background-image: linear-gradient(180deg, #14203c 0%, #111b33 100%) !important;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+body.dark-mode-active .home-status-list.listview {
+    background-color: #14203c !important;
+    background-image: linear-gradient(180deg, #14203c 0%, #111b33 100%) !important;
+    border-color: rgba(255, 255, 255, 0.06) !important;
+}
+.home-status-list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 11px 12px !important;
+    color: #dde6f4 !important;
+}
+.home-status-list li:last-child {
+    border-bottom: 0 !important;
+}
+.home-status-list li:hover,
+.home-status-list li:nth-child(even) {
+    background: rgba(255, 255, 255, 0.015);
+}
+.home-status-row > div {
+    min-height: 22px;
+    font-size: 13px;
+    color: #dde6f4;
+}
+.status-icon {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #8fa1be !important;
+}
+.status-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e6edf7;
+}
+.status-value {
+    font-size: 13px;
+    color: #b9c8e2;
+    text-align: right;
+    max-width: 62%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
+}
+body.dark-mode-active .status-label,
+body.dark-mode-active .home-status-row > div,
+body.dark-mode-active .status-value {
+    color: #e6edf7 !important;
+}
+body.dark-mode-active .status-value {
+    color: #b9c8e2 !important;
+}
+body.dark-mode-active .status-icon {
+    color: #8fa1be !important;
+}
+
+/* ---------- Fare banner (dark) ---------- */
+.fare-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, rgba(40,199,110,0.22), rgba(40,199,110,0.08));
+    color: #7fe3b0;
+    border: 1px solid rgba(40,199,110,0.22);
+    font-size: 24px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.fare-icon + div h6 { color: #ffffff !important; }
+.fare-icon + div p  { color: #c6d3e8 !important; }
+.fare-icon + div p strong { color: #fff !important; }
+
+/* =============================================================
+   SPA SHELL MICRO-FIXES (for exact UI kit look with static mount)
+   UI kit design uses ::before pseudo on appHeader that activates
+   only on-scroll (handled by base.js).  Our SPA mounts screens
+   dynamically without page scroll, so we force the solid header
+   bar and adjusted capsule spacing at load time.
+   ============================================================= */
+
+/* Solid LIGHT header bar (pure white surface)
+   UI kit sets .appHeader.scrolled.bg-primary = transparent pre-scroll.
+   We override to LIGHT white at SPA mount (matches new light footer for uniform
+   shell chrome above/below dark home-screen content). */
+.appHeader.scrolled.bg-primary {
+    background-color: #ffffff !important;
+    min-height: 56px;
+    border-bottom: 1px solid rgba(15, 28, 47, 0.08) !important;
+    box-shadow:
+      0 3px 10px rgba(0, 0, 0, 0.10),
+      0 1px 3px rgba(0, 0, 0, 0.06),
+      inset 0 -1px 0 rgba(15, 28, 47, 0.04);
+}
+.appHeader.scrolled.bg-primary .pageTitle,
+.appHeader.scrolled.bg-primary .headerButton,
+.appHeader.scrolled.bg-primary .headerButton ion-icon {
+    color: rgba(20, 21, 21, 0.82) !important;
+}
+.appHeader.scrolled.bg-primary .pageTitle { opacity: 1 !important; }
+/* Logo on light header: render the original blue logo SVG with NO CSS filter
+   (user explicitly requested filter removal — native brand color restored). */
+.appHeader.scrolled.bg-primary .pageTitle .header-logo {
+    filter: none !important;
+}
+
+/* Ensure content clears the 5-tab bottom menu (UI kit default 56px is tight) */
+#appCapsule {
+    padding-bottom: 84px !important;
+}
+
+/* ---------- BOTTOM TAB BAR — LIGHT THEME (white surface, dark icons, blue active pill) ----------
+   Default style.css: white bg, dark icons, active=blue text. Dark mode inverts to near-black.
+   We force LIGHT footer while permanent dark mode body + home-screen content stays DARK.
+   NOTE: We prefix with `body.dark-mode-active` (always present) to beat dark-mode's
+   `.dark-mode-active .appBottomMenu` rule specificity, AND with `#appBottomMenu` id fallback. */
+body.dark-mode-active #appBottomMenu.appBottomMenu,
+#appBottomMenu.appBottomMenu {
+    background-color: #ffffff !important;
+    border-top: 1px solid rgba(15, 28, 47, 0.08) !important;
+    box-shadow:
+      0 -6px 18px rgba(0, 0, 0, 0.12),
+      0 -2px 6px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    min-height: 56px;
+}
+body.dark-mode-active #appBottomMenu.appBottomMenu .item,
+#appBottomMenu.appBottomMenu .item {
+    color: rgba(20, 21, 21, 0.72) !important;
+}
+body.dark-mode-active #appBottomMenu.appBottomMenu .item i.icon,
+body.dark-mode-active #appBottomMenu.appBottomMenu .item ion-icon,
+body.dark-mode-active #appBottomMenu.appBottomMenu .item strong,
+#appBottomMenu.appBottomMenu .item i.icon,
+#appBottomMenu.appBottomMenu .item ion-icon,
+#appBottomMenu.appBottomMenu .item strong {
+    color: rgba(20, 21, 21, 0.72) !important;
+    transition: all 0.15s ease;
+}
+body.dark-mode-active #appBottomMenu.appBottomMenu .item strong,
+#appBottomMenu.appBottomMenu .item strong {
+    font-weight: 500;
+    margin-top: 2px;
+    font-size: 10px;
+    letter-spacing: 0.2px;
+    color: rgba(20, 21, 21, 0.78) !important;
+}
+/* Hover non-active icons: a hair darker for desktop */
+body.dark-mode-active #appBottomMenu.appBottomMenu .item:hover i.icon,
+body.dark-mode-active #appBottomMenu.appBottomMenu .item:hover ion-icon,
+body.dark-mode-active #appBottomMenu.appBottomMenu .item:hover strong,
+#appBottomMenu.appBottomMenu .item:hover i.icon,
+#appBottomMenu.appBottomMenu .item:hover ion-icon,
+#appBottomMenu.appBottomMenu .item:hover strong {
+    color: rgba(20, 21, 21, 0.95) !important;
+}
+
+/* Active tab: BRAND BLUE rounded pill + white icon/text (high contrast) */
+body.dark-mode-active #appBottomMenu.appBottomMenu .item.active,
+#appBottomMenu.appBottomMenu .item.active {
+    color: #ffffff !important;
+}
+body.dark-mode-active #appBottomMenu.appBottomMenu .item.active .col,
+#appBottomMenu.appBottomMenu .item.active .col {
+    background: linear-gradient(135deg, var(--lapeeet-primary) 0%, #1a67e5 100%) !important;
+    border-radius: 14px;
+    margin: 6px 4px;
+    padding: 5px 0 4px;
+    box-shadow:
+      0 8px 18px rgba(30, 116, 253, 0.35),
+      0 3px 8px rgba(30, 116, 253, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+body.dark-mode-active #appBottomMenu.appBottomMenu .item.active i.icon,
+body.dark-mode-active #appBottomMenu.appBottomMenu .item.active ion-icon,
+body.dark-mode-active #appBottomMenu.appBottomMenu .item.active strong,
+#appBottomMenu.appBottomMenu .item.active i.icon,
+#appBottomMenu.appBottomMenu .item.active ion-icon,
+#appBottomMenu.appBottomMenu .item.active strong {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Center action button (if used later): dark raised button on white surface */
+body.dark-mode-active #appBottomMenu.appBottomMenu .item .action-button,
+#appBottomMenu.appBottomMenu .item .action-button {
+    background: #0e1528 !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+}
+body.dark-mode-active #appBottomMenu.appBottomMenu .item .action-button i.icon,
+body.dark-mode-active #appBottomMenu.appBottomMenu .item .action-button ion-icon,
+#appBottomMenu.appBottomMenu .item .action-button i.icon,
+#appBottomMenu.appBottomMenu .item .action-button ion-icon {
+    color: #ffffff !important;
+}
+
+/* ---------- RESPONSIVE: Desktop "phone frame" preview (≥768px) ----------
+   Visual only for dev preview. Does not touch UI kit structural rules
+   like left/right on fixed-positioned appHeader / appBottomMenu.
+   --------------------------------------------------------------- */
+@media (min-width: 768px) {
+    body {
+        background-color: #0f1c2f !important;
+    }
+    .appHeader {
+        max-width: 440px;
+        margin: 0 auto;
+    }
+    #appCapsule {
+        max-width: 440px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        background: #0f1c2f;
+    }
+    .appBottomMenu {
+        max-width: 440px;
+        margin: 0 auto;
+    }
+}
+

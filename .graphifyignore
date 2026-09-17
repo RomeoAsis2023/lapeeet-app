@@ -1,0 +1,59 @@
+# Graphify ignore rules for Lapeeet repo
+# (graphify uses gitignore syntax via .graphifyignore — see detect.py L1253+)
+# Goal: ONLY our hand-authored source files are indexed.
+# Keep graph tiny & clean (200 nodes target).
+
+# ---------- Vendored / reference assets (NOT part of Lapeeet source) ----------
+.mobileapp_UI_kit/
+mobileapp_UI_kit/
+
+# ---------- Python virtual environments & any pip --target dirs ----------
+.graphify-site/
+.graphify-venv/
+.graphify-*/
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# ---------- Graphify's own output (don't re-index the graph as source) ----------
+graphify-out/
+graphify_*.json
+GRAPH_REPORT.md
+2026-*/
+
+# ---------- Node/npm/cache ----------
+node_modules/
+dist/
+build/
+.cache/
+.tmp/
+.DS_Store
+._*
+
+# ---------- Vendored JS libs inside www/ (only index Lapeeet-AUTHOR layers: app.js, layer files, ui-components.js) ----------
+www/assets/js/lib/
+www/assets/js/plugins/
+www/assets/vendor/
+www/assets/vendor-live/
+
+# ---------- Binary / non-code assets (PNG images, icons, wordmarks) ----------
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.webp
+*.woff
+*.woff2
+*.ttf
+*.otf
+*.pdf
+*.zip
+*.tar
+*.gz
+
+# ---------- Caches & temp ----------
+*.tmp
+*.log

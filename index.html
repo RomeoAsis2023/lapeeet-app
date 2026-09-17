@@ -34016,21 +34016,30 @@ module.exports = L.Routing = {
                 return;
             }
 
+            const saved = this.getSavedLocation();
+            const startView = saved ? [saved.lat, saved.lng] : DEFAULT_CENTER;
             const map = L.map(this.containerId, {
                 zoomControl: true,
                 attributionControl: true,
                 gestureHandling: (typeof L !== 'undefined' && L.gestureHandling) ? true : false
-            }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+            }).setView(startView, DEFAULT_ZOOM);
 
             this._tileLayer().addTo(map);
             this._noteTilesOffline(map);
 
-            this.drawMaxRadius(DEFAULT_CENTER[0], DEFAULT_CENTER[1], MAX_TRIP_KM);
+            this.drawMaxRadius(startView[0], startView[1], MAX_TRIP_KM);
 
             const self = this;
             map.on('click', (ev) => self._onMapClick(ev));
 
             this.map = map;
+            // Default pickup = permanent saved point; first tap then sets dropoff.
+            if (saved) {
+                try {
+                    this.setPickup(saved.lat, saved.lng, true);
+                    this.placeNext = 'dropoff';
+                } catch (e) {}
+            }
             setTimeout(() => { try { map.invalidateSize(); } catch (e) { /* noop */ } }, 120);
         },
 
@@ -34129,11 +34138,53 @@ module.exports = L.Routing = {
 
         /* ---------- CURRENT LOCATION ---------- */
 
-        _locCache: null, // {lat, lng, ts}
+        _locCache: null, // {lat, lng, ts} (session memory)
+        MY_LOC_KEY: 'lapeeet::my-location',
 
-        /** Cached-first geolocation shared by home map, heartbeat and search. */
+        /** Permanent saved point. Frozen until the user presses Change (locate).
+            Shape: {lat, lng, ts}. Returns null when never set or corrupt. */
+        getSavedLocation() {
+            try {
+                const raw = localStorage.getItem(this.MY_LOC_KEY);
+                if (!raw) return null;
+                const p = JSON.parse(raw);
+                if (typeof p.lat !== 'number' || typeof p.lng !== 'number' ||
+                    !isFinite(p.lat) || !isFinite(p.lng)) return null;
+                return { lat: p.lat, lng: p.lng, ts: p.ts || 0 };
+            } catch (e) { return null; }
+        },
+
+        /** Persist the permanent point (Change button / first GPS fix). */
+        saveLocation(lat, lng) {
+            try {
+                if (typeof lat !== 'number' || typeof lng !== 'number') return null;
+                const p = { lat, lng, ts: Date.now() };
+                localStorage.setItem(this.MY_LOC_KEY, JSON.stringify(p));
+                this._locCache = { lat, lng, ts: Date.now() };
+                return { lat, lng };
+            } catch (e) { return null; }
+        },
+
+        /** Force a fresh GPS fix and save it permanently (Change button path). */
+        refreshSavedLocation() {
+            if (!navigator.geolocation) return Promise.resolve(this.getSavedLocation());
+            return new Promise((resolve) => {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => resolve(this.saveLocation(pos.coords.latitude, pos.coords.longitude) ||
+                        { lat: pos.coords.latitude, lng: pos.coords.longitude }),
+                    () => resolve(this.getSavedLocation() ||
+                        (this._locCache ? { lat: this._locCache.lat, lng: this._locCache.lng } : null)),
+                    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                );
+            });
+        },
+
+        /** Cached-first geolocation shared by home map, heartbeat and search.
+            Prefers the permanent saved point; the first-ever GPS fix auto-saves. */
         cachedLocation(maxAgeMs) {
             const maxAge = maxAgeMs == null ? 60000 : maxAgeMs;
+            const saved = this.getSavedLocation();
+            if (saved) return Promise.resolve({ lat: saved.lat, lng: saved.lng });
             if (this._locCache && (Date.now() - this._locCache.ts) < maxAge) {
                 return Promise.resolve({ lat: this._locCache.lat, lng: this._locCache.lng });
             }
@@ -34141,8 +34192,9 @@ module.exports = L.Routing = {
             return new Promise((resolve) => {
                 navigator.geolocation.getCurrentPosition(
                     (pos) => {
-                        this._locCache = { lat: pos.coords.latitude, lng: pos.coords.longitude, ts: Date.now() };
-                        resolve({ lat: this._locCache.lat, lng: this._locCache.lng });
+                        const p = this.saveLocation(pos.coords.latitude, pos.coords.longitude) ||
+                            { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                        resolve(p);
                     },
                     () => resolve(this._locCache
                         ? { lat: this._locCache.lat, lng: this._locCache.lng }
@@ -36221,9 +36273,15 @@ module.exports = L.Routing = {
             });
 
             // 4. P2P LAYER (Phase 3 real mesh)
+            // Mesh channel follows the permanent saved point when one exists.
             try {
+                let initLat = 14.5995, initLng = 120.9842;
+                try {
+                    const s = LapeeetMap.getSavedLocation();
+                    if (s) { initLat = s.lat; initLng = s.lng; }
+                } catch (e) {}
                 await LapeeetP2P.init({
-                    lat: 14.5995, lng: 120.9842,
+                    lat: initLat, lng: initLng,
                     role: this.role,
                     onEventCallback: (evt) => this._onP2PEvent(evt)
                 });
@@ -36658,7 +36716,8 @@ module.exports = L.Routing = {
                 LapeeetMap.setHomeRef(center.lat, center.lng, this._homeRadiusKm);
                 LapeeetMap.focusHome(center.lat, center.lng, 12);
             } else {
-                // No GPS yet: keep default center, refresh silently in background.
+                // No saved point and no GPS yet: keep default center, refresh
+                // silently in background (first fix auto-saves permanently).
                 LapeeetMap.cachedLocation(0).then(p => {
                     if (!p || LapeeetUI.currentScreen !== 'home') return;
                     LapeeetMap.setHomeRef(p.lat, p.lng, self._homeRadiusKm);
@@ -36673,11 +36732,20 @@ module.exports = L.Routing = {
                 self._refreshHomePeers();
             });
             $('#btnNearLocate').off('click').on('click', async () => {
-                const p = await LapeeetMap.cachedLocation(0);
+                // CHANGE button: fresh GPS fix becomes the permanent point
+                // everywhere (home ref, maps, heartbeats, mesh channel).
+                const p = await LapeeetMap.refreshSavedLocation();
                 if (!p) { LapeeetUI.showToast('Could not determine your location', 'warning'); return; }
                 LapeeetMap.setHomeRef(p.lat, p.lng, self._homeRadiusKm);
                 LapeeetMap.focusHome(p.lat, p.lng, 12);
                 $('#nearSearch').val('');
+                LapeeetUI.showToast('Location saved', 'success');
+                try {
+                    if (window.LapeeetP2P && LapeeetP2P.initialized) {
+                        LapeeetP2P.myLoc = { lat: p.lat, lng: p.lng, ts: Date.now() };
+                        await LapeeetP2P.rejoin();
+                    }
+                } catch (e) {}
                 self._refreshHomePeers();
             });
             this._bindHomeSearch();
